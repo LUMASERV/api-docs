@@ -20,18 +20,33 @@ paths:
       summary: getCloudServers
       tags:
         - cloudserver
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCloudServerResponse'
       operationId: getCloudServers
-      description: Lists all existing cloudservers
+      description: Returns all cloudservers
     post:
       summary: createCloudServer
       operationId: createCloudServer
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerResponse'
       description: Creates a new cloudserver
       tags:
         - cloudserver
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCloudServerRequest'
   '/cloud/servers/{id}':
     parameters:
       - schema:
@@ -44,7 +59,13 @@ paths:
       summary: getCloudServer
       tags:
         - cloudserver
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerResponse'
       operationId: getCloudServer
       description: Returns a single cloudserver
     put:
@@ -53,15 +74,28 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerResponse'
       description: Updates a cloudserver
       tags:
         - cloudserver
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCloudServerRequest'
     delete:
       summary: deleteCloudServer
       operationId: deleteCloudServer
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
       description: Deletes a cloudserver
       tags:
         - cloudserver
@@ -77,16 +111,33 @@ paths:
       summary: getCloudServerFirewallRules
       tags:
         - cloudserver
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFirewallRuleResponse'
       operationId: getCloudServerFirewallRules
+      description: Returns all firewall rules of this cloud server
     post:
       summary: createCloudServerFirewallRule
       operationId: createCloudServerFirewallRule
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallRuleResponse'
       tags:
         - cloudserver
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFirewallRuleRequest'
+      description: Creates a new firewall rule for this cloud server
   '/cloud/servers/{id}/firewall/rules/{rule_id}':
     parameters:
       - schema:
@@ -105,39 +156,80 @@ paths:
       summary: getCloudServerFirewallRule
       tags:
         - cloudserver
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallRuleResponse'
       operationId: getCloudServerFirewallRule
+      description: Returns a single firewall rule
     put:
       summary: updateCloudServerFirewallRule
       operationId: updateCloudServerFirewallRule
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallRuleResponse'
       tags:
         - cloudserver
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFirewallRuleRequest'
+        description: ''
+      description: Updates the firewall rule
     delete:
       summary: deleteCloudServerFirewallRule
       operationId: deleteCloudServerFirewallRule
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
       tags:
         - cloudserver
+      description: Deletes the firewall rule
   /cloud/firewall/rule-sets:
     get:
       summary: getFirewallRuleSets
       tags:
         - firewall
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFirewallRuleSetResponse'
       operationId: getFirewallRuleSets
+      description: Returns all firewall rulesets
     post:
       summary: createFirewallRuleSet
       operationId: createFirewallRuleSet
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallRuleSetResponse'
       tags:
         - firewall
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFirewallRuleSetRequest'
+        description: ''
+      description: Creates a new firewall ruleset
   '/cloud/firewall/rule-sets/{id}':
     parameters:
       - schema:
@@ -150,24 +242,46 @@ paths:
       summary: getFirewallRuleSet
       tags:
         - firewall
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallRuleSetResponse'
       operationId: getFirewallRuleSet
+      description: Returns a single firewall ruleset
     delete:
       summary: deleteFirewallRuleSet
       operationId: deleteFirewallRuleSet
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
       tags:
         - firewall
+      description: Deletes the firewall ruleset
     put:
       summary: updateFirewallRuleSet
       operationId: updateFirewallRuleSet
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallRuleSetResponse'
       tags:
         - firewall
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFirewallRuleSetRequest'
+      description: Updates the firewall ruleset
   '/cloud/firewall/rule-sets/{id}/rules':
     parameters:
       - schema:
@@ -180,16 +294,34 @@ paths:
       summary: getFirewallRuleSetRules
       tags:
         - firewall
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFirewallRuleResponse'
       operationId: getFirewallRuleSetRules
+      description: Returns all firewall rules in the ruleset
     post:
       summary: createFirewallRuleSetRule
       operationId: createFirewallRuleSetRule
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallRuleResponse'
       tags:
         - firewall
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFirewallRuleRequest'
+        description: ''
+      description: Creates a new firewall rule in the ruleset
   '/cloud/firewall/rule-sets/{id}/rules/{rule_id}':
     parameters:
       - schema:
@@ -208,39 +340,78 @@ paths:
       summary: getFirewallRuleSetRule
       tags:
         - firewall
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallRuleResponse'
       operationId: getFirewallRuleSetRule
+      description: Returns a single firewall rule
     put:
       summary: updateFirewallRuleSetRule
       operationId: updateFirewallRuleSetRule
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallRuleResponse'
       tags:
         - firewall
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFirewallRuleRequest'
+      description: Updates the firewall rule
     delete:
       summary: deleteFirewallRuleSetRule
       operationId: deleteFirewallRuleSetRule
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
       tags:
         - firewall
+      description: Deletes the firewall rule
   /cloud/firewall/address-sets:
     get:
       summary: getFirewallAddressSets
       tags:
         - firewall
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFirewallAddressSetResponse'
       operationId: getFirewallAddressSets
+      description: Returns all firewall address sets
     post:
       summary: createFirewallAddressSet
       operationId: createFirewallAddressSet
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallAddressSetResponse'
       tags:
         - firewall
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFirewallAddressSetRequest'
+      description: Creates a new firewall address set
   '/cloud/firewall/address-sets/{id}':
     parameters:
       - schema:
@@ -253,24 +424,46 @@ paths:
       summary: getFirewallAddressSet
       tags:
         - firewall
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallAddressSetResponse'
       operationId: getFirewallAddressSet
+      description: Returns a single firewall address set
     put:
       summary: updateFirewallAddressSet
       operationId: updateFirewallAddressSet
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallAddressSetResponse'
       tags:
         - firewall
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFirewallAddressSetRequest'
+      description: Updates the firewall address set
     delete:
       summary: deleteFirewallAddressSet
       operationId: deleteFirewallAddressSet
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
       tags:
         - firewall
+      description: Deletes the firewall address set
   '/cloud/firewall/address-sets/{id}/addresses':
     parameters:
       - schema:
@@ -283,17 +476,33 @@ paths:
       summary: getFirewallAddressSetAddresses
       tags:
         - firewall
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFirewallAddressResponse'
       operationId: getFirewallAddressSetAddresses
-      description: ''
+      description: Returns all addresses in a firewall address set
     post:
       summary: createFirewallAddressSetAddress
       operationId: createFirewallAddressSetAddress
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallAddressResponse'
       tags:
         - firewall
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFirewallAddressRequest'
+      description: Adds a new address to the firewall address set
   '/cloud/firewall/address-sets/{id}/addresses/{cidr}':
     parameters:
       - schema:
@@ -311,24 +520,46 @@ paths:
       summary: getFirewallAddressSetAddress
       tags:
         - firewall
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallAddressResponse'
       operationId: getFirewallAddressSetAddress
+      description: Returns a single firewall address
     put:
       summary: updateFirewallAddressSetAddress
       operationId: updateFirewallAddressSetAddress
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleFirewallAddressResponse'
       tags:
         - firewall
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFirewallAddressRequest'
+      description: Updates the firewall address
     delete:
       summary: deleteFirewallAddressSetAddress
       operationId: deleteFirewallAddressSetAddress
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
       tags:
         - firewall
+      description: Deletes the address from the firewall address set
 components:
   schemas:
     CloudServer:
@@ -423,11 +654,9 @@ components:
           type: integer
           minimum: 1
         created_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
         updated_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
       required:
         - id
         - netname
@@ -466,11 +695,9 @@ components:
         is_boot:
           type: boolean
         created_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
         updated_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
       required:
         - id
         - size
@@ -501,11 +728,9 @@ components:
         title:
           type: string
         created_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
         updated_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
       required:
         - id
         - cidr
@@ -537,11 +762,9 @@ components:
         title:
           type: string
         created_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
         updated_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
       required:
         - id
         - user
@@ -617,11 +840,9 @@ components:
         destination_port:
           type: string
         created_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
         updated_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
       required:
         - id
         - title
@@ -654,11 +875,9 @@ components:
           type: string
           format: uuid
         created_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
         updated_at:
-          type: string
-          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+          $ref: '#/components/schemas/Timestamp'
       required:
         - id
         - user
@@ -670,6 +889,465 @@ components:
       title: Timestamp
       x-examples:
         '2020-01-30 00:00:00': {}
+    CreateCloudServerRequest:
+      title: CreateCloudServerRequest
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        title:
+          type: string
+        project_uuid:
+          type: string
+          format: uuid
+        cores:
+          type: string
+        memory:
+          type: string
+        template:
+          type: string
+        password:
+          type: string
+        storages:
+          type: array
+          items:
+            type: object
+            properties:
+              size:
+                type: integer
+                minimum: 5
+              replication:
+                type: integer
+                default: 2
+                minimum: 0
+            required:
+              - size
+        networks:
+          type: array
+          items:
+            type: object
+            properties:
+              network_id:
+                type: integer
+                minimum: 1
+              primary_ipv4:
+                type: string
+                format: ipv4
+              ipv4:
+                type: array
+                items:
+                  type: string
+                  format: ipv4
+              custom_address:
+                type: string
+              custom_gateway:
+                type: string
+                format: ipv4
+      required:
+        - cores
+        - memory
+        - template
+        - storages
+        - networks
+    CreateFirewallRuleSetRequest:
+      title: CreateFirewallRuleSetRequest
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        title:
+          type: string
+        project_uuid:
+          type: string
+          format: uuid
+      required:
+        - title
+    CreateFirewallAddressSetRequest:
+      title: CreateFirewallAddressSetRequest
+      type: object
+      properties:
+        title:
+          type: string
+        project_uuid:
+          type: string
+          format: uuid
+      required:
+        - title
+      x-tags:
+        - firewall
+    CreateFirewallAddressRequest:
+      title: CreateFirewallAddressRequest
+      type: object
+      x-tags:
+        - firewall
+      description: ''
+      properties:
+        cidr:
+          type: string
+        title:
+          type: string
+      required:
+        - cidr
+        - title
+    CreateFirewallRuleRequest:
+      title: CreateFirewallRuleRequest
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        title:
+          type: string
+        order:
+          type: integer
+          minimum: 0
+        direction:
+          type: string
+          enum:
+            - IN
+            - OUT
+        action:
+          type: string
+          enum:
+            - ACCEPT
+            - DROP
+            - REJECT
+        protocol:
+          type: string
+          enum:
+            - tcp
+            - udp
+        interface:
+          type: string
+          enum:
+            - net0
+            - net1
+            - net2
+            - net3
+        source_address:
+          type: string
+        source_address_set_id:
+          type: integer
+          minimum: 1
+        destination_address:
+          type: string
+        destination_address_set_id:
+          type: integer
+          minimum: 1
+        source_port:
+          type: string
+        destination_port:
+          type: string
+        linked_rule_set_id:
+          type: integer
+          minimum: 1
+      required:
+        - title
+        - order
+    UpdateFirewallAddressSetRequest:
+      title: UpdateFirewallAddressSetRequest
+      type: object
+      properties:
+        title:
+          type: string
+        project_uuid:
+          type: string
+          format: uuid
+      x-tags:
+        - firewall
+    UpdateFirewallRuleSetRequest:
+      title: UpdateFirewallRuleSetRequest
+      type: object
+      properties:
+        title:
+          type: string
+        project_uuid:
+          type: string
+          format: uuid
+      x-tags:
+        - firewall
+    UpdateFirewallAddressRequest:
+      title: UpdateFirewallAddressRequest
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        title:
+          type: string
+    UpdateFirewallRuleRequest:
+      title: UpdateFirewallRuleRequest
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        title:
+          type: string
+        order:
+          type: integer
+          minimum: 0
+        direction:
+          type: string
+          enum:
+            - IN
+            - OUT
+        action:
+          type: string
+          enum:
+            - ACCEPT
+            - DROP
+            - REJECT
+        protocol:
+          type: string
+          enum:
+            - tcp
+            - udp
+        source_address:
+          type: string
+        source_address_set_id:
+          type: integer
+          minimum: 1
+        destination_address:
+          type: string
+        destination_address_set_id:
+          type: integer
+          minimum: 1
+        source_port:
+          type: string
+        destination_port:
+          type: string
+        linked_address_set_id:
+          type: integer
+          minimum: 1
+    UpdateCloudServerRequest:
+      title: UpdateCloudServerRequest
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        title:
+          type: string
+        project_uuid:
+          type: string
+          format: uuid
+        cores:
+          type: integer
+        memory:
+          type: integer
+    ResponseMetadata:
+      title: ResponseMetadata
+      type: object
+      properties:
+        clientTransactionId:
+          type: string
+        serverTransactionId:
+          type: string
+      required:
+        - serverTransactionId
+    ResponseMessages:
+      title: ResponseMessages
+      type: object
+      properties:
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        success:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+      required:
+        - warnings
+        - errors
+        - success
+    ResponseMessage:
+      title: ResponseMessage
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+      required:
+        - code
+        - message
+    SingleCloudServerResponse:
+      title: GetCloudServerResponse
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/CloudServer'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+      x-tags:
+        - cloudserver
+    ListCloudServerResponse:
+      title: ListCloudServerResponse
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudServer'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    GenericResponse:
+      title: GenericResponse
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          oneOf:
+            - type: object
+            - type: array
+              items: {}
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    EmptyResponse:
+      title: EmptyResponse
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    SingleFirewallAddressSetResponse:
+      title: SingleFirewallAddressSetResponse
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/FirewallAddressSet'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    ListFirewallAddressSetResponse:
+      title: ListFirewallAddressSetResponse
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FirewallAddressSet'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    SingleFirewallRuleSetResponse:
+      title: SingleFirewallRuleSetResponse
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/FirewallRuleSet'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    ListFirewallRuleSetResponse:
+      title: ListFirewallRuleSetResponse
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FirewallRuleSet'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    SingleFirewallAddressResponse:
+      title: SingleFirewallAddressResponse
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/FirewallAddress'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    ListFirewallAddressResponse:
+      title: ListFirewallAddressResponse
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FirewallAddress'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    SingleFirewallRuleResponse:
+      title: SingleFirewallRuleResponse
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/FirewallRule'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    ListFirewallRuleResponse:
+      title: ListFirewallRuleResponse
+      type: object
+      x-tags:
+        - firewall
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FirewallRule'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
   securitySchemes:
     AuthToken:
       type: http
