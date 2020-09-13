@@ -1,0 +1,663 @@
+openapi: 3.0.0
+info:
+  title: api-spec-v1
+  version: '1.0'
+  contact:
+    name: Jan Waldecker
+    email: support@lumaserv.com
+  description: LUMASERV API
+servers:
+  - url: 'https://connect.nicapi.eu/api/v1'
+    description: Live
+tags:
+  - name: cloudserver
+    description: CloudServer Management
+  - name: firewall
+    description: Firewall Management
+paths:
+  /cloud/servers:
+    get:
+      summary: getCloudServers
+      tags:
+        - cloudserver
+      responses: {}
+      operationId: getCloudServers
+      description: Lists all existing cloudservers
+    post:
+      summary: createCloudServer
+      operationId: createCloudServer
+      responses:
+        '200':
+          description: OK
+      description: Creates a new cloudserver
+      tags:
+        - cloudserver
+  '/cloud/servers/{id}':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getCloudServer
+      tags:
+        - cloudserver
+      responses: {}
+      operationId: getCloudServer
+      description: Returns a single cloudserver
+    put:
+      summary: updateCloudServer
+      operationId: updateCloudServer
+      responses:
+        '200':
+          description: OK
+      description: Updates a cloudserver
+      tags:
+        - cloudserver
+    delete:
+      summary: deleteCloudServer
+      operationId: deleteCloudServer
+      responses:
+        '200':
+          description: OK
+      description: Deletes a cloudserver
+      tags:
+        - cloudserver
+  '/cloud/servers/{id}/firewall/rules':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getCloudServerFirewallRules
+      tags:
+        - cloudserver
+      responses: {}
+      operationId: getCloudServerFirewallRules
+    post:
+      summary: createCloudServerFirewallRule
+      operationId: createCloudServerFirewallRule
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cloudserver
+  '/cloud/servers/{id}/firewall/rules/{rule_id}':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: integer
+          minimum: 1
+        name: rule_id
+        in: path
+        required: true
+    get:
+      summary: getCloudServerFirewallRule
+      tags:
+        - cloudserver
+      responses: {}
+      operationId: getCloudServerFirewallRule
+    put:
+      summary: updateCloudServerFirewallRule
+      operationId: updateCloudServerFirewallRule
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cloudserver
+    delete:
+      summary: deleteCloudServerFirewallRule
+      operationId: deleteCloudServerFirewallRule
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cloudserver
+  /cloud/firewall/rule-sets:
+    get:
+      summary: getFirewallRuleSets
+      tags:
+        - firewall
+      responses: {}
+      operationId: getFirewallRuleSets
+    post:
+      summary: createFirewallRuleSet
+      operationId: createFirewallRuleSet
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+  '/cloud/firewall/rule-sets/{id}':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getFirewallRuleSet
+      tags:
+        - firewall
+      responses: {}
+      operationId: getFirewallRuleSet
+    delete:
+      summary: deleteFirewallRuleSet
+      operationId: deleteFirewallRuleSet
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+    put:
+      summary: updateFirewallRuleSet
+      operationId: updateFirewallRuleSet
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+  '/cloud/firewall/rule-sets/{id}/rules':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getFirewallRuleSetRules
+      tags:
+        - firewall
+      responses: {}
+      operationId: getFirewallRuleSetRules
+    post:
+      summary: createFirewallRuleSetRule
+      operationId: createFirewallRuleSetRule
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+  '/cloud/firewall/rule-sets/{id}/rules/{rule_id}':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: integer
+          minimum: 1
+        name: rule_id
+        in: path
+        required: true
+    get:
+      summary: getFirewallRuleSetRule
+      tags:
+        - firewall
+      responses: {}
+      operationId: getFirewallRuleSetRule
+    put:
+      summary: updateFirewallRuleSetRule
+      operationId: updateFirewallRuleSetRule
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+    delete:
+      summary: deleteFirewallRuleSetRule
+      operationId: deleteFirewallRuleSetRule
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+  /cloud/firewall/address-sets:
+    get:
+      summary: getFirewallAddressSets
+      tags:
+        - firewall
+      responses: {}
+      operationId: getFirewallAddressSets
+    post:
+      summary: createFirewallAddressSet
+      operationId: createFirewallAddressSet
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+  '/cloud/firewall/address-sets/{id}':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getFirewallAddressSet
+      tags:
+        - firewall
+      responses: {}
+      operationId: getFirewallAddressSet
+    put:
+      summary: updateFirewallAddressSet
+      operationId: updateFirewallAddressSet
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+    delete:
+      summary: deleteFirewallAddressSet
+      operationId: deleteFirewallAddressSet
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+  '/cloud/firewall/address-sets/{id}/addresses':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getFirewallAddressSetAddresses
+      tags:
+        - firewall
+      responses: {}
+      operationId: getFirewallAddressSetAddresses
+      description: ''
+    post:
+      summary: createFirewallAddressSetAddress
+      operationId: createFirewallAddressSetAddress
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+  '/cloud/firewall/address-sets/{id}/addresses/{cidr}':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: cidr
+        in: path
+        required: true
+    get:
+      summary: getFirewallAddressSetAddress
+      tags:
+        - firewall
+      responses: {}
+      operationId: getFirewallAddressSetAddress
+    put:
+      summary: updateFirewallAddressSetAddress
+      operationId: updateFirewallAddressSetAddress
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+    delete:
+      summary: deleteFirewallAddressSetAddress
+      operationId: deleteFirewallAddressSetAddress
+      responses:
+        '200':
+          description: OK
+      tags:
+        - firewall
+components:
+  schemas:
+    CloudServer:
+      title: CloudServer
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        user:
+          type: string
+        title:
+          type: string
+        hostname:
+          type: string
+          format: hostname
+        cores:
+          type: integer
+          minimum: 1
+        memory:
+          type: integer
+          minimum: 1024
+        template:
+          type: string
+        max_backups:
+          type: integer
+          minimum: 0
+        max_scheduled_tasks:
+          type: integer
+          minimum: 0
+        created_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+        updated_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+      x-examples:
+        example:
+          id: 10001
+          user: john.doe
+          title: My Webserver
+          hostname: example.com
+          cores: 1
+          memory: 1024
+          template: DEBIAN_10
+          max_backups: 0
+          max_scheduled_tasks: 0
+          created_at: '2020-01-30 00:00:00'
+          updated_at: '2020-01-30 00:00:00'
+      description: A cloudserver
+    CloudServerInterface:
+      title: CloudServerInterface
+      type: object
+      x-tags:
+        - cloudserver
+      description: A network interface of a cloudserver
+      x-examples:
+        example:
+          id: 10001
+          netname: eth0
+          title: Internet
+          mac_address: '00:00:00:00:00:00'
+          firewall: true
+          network_id: 10001
+          created_at: '2020-01-30 00:00:00'
+          updated_at: '2020-01-30 00:00:00'
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        netname:
+          type: string
+        title:
+          type: string
+        mac_address:
+          type: string
+          pattern: '^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$'
+        firewall:
+          type: boolean
+        network_id:
+          type: integer
+          minimum: 1
+        created_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+        updated_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+      required:
+        - id
+        - netname
+        - mac_address
+        - firewall
+        - network_id
+    CloudServerStorage:
+      title: CloudServerStorage
+      type: object
+      x-tags:
+        - cloudserver
+      x-examples:
+        example:
+          id: 10001
+          title: Boot Drive
+          size: 10
+          replication: 2
+          is_boot: true
+          created_at: '2020-01-30 00:00:00'
+          updated_at: '2020-01-30 00:00:00'
+      description: A storage drive of a cloudserver
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        title:
+          type: string
+        size:
+          type: integer
+          minimum: 10
+        replication:
+          type: integer
+          default: 2
+        is_boot:
+          type: boolean
+        created_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+        updated_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+      required:
+        - id
+        - size
+        - replication
+        - is_boot
+        - created_at
+        - updated_at
+    FirewallAddress:
+      title: FirewallAddress
+      type: object
+      x-tags:
+        - cloudserver
+      description: Address in a FirewallAddressSet
+      x-examples:
+        example:
+          id: 10001
+          address_set_id: 10001
+          cidr: 127.0.0.0/8
+          title: Loopback
+          created_at: '2020-01-30 00:00:00'
+          updated_at: '2020-01-30 00:00:00'
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        cidr:
+          type: string
+        title:
+          type: string
+        created_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+        updated_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+      required:
+        - id
+        - cidr
+        - title
+        - created_at
+        - updated_at
+    FirewallAddressSet:
+      title: FirewallAddressSet
+      type: object
+      x-tags:
+        - cloudserver
+      x-examples:
+        example:
+          id: 10001
+          user: john.doe
+          project_uuid: 1de37675-f868-4726-bb1d-b08d89f463f9
+          title: Loopback Addresses
+          created_at: '2020-01-30 00:00:00'
+          updated_at: '2020-01-30 00:00:00'
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        user:
+          type: string
+        project_uuid:
+          type: string
+          format: uuid
+        title:
+          type: string
+        created_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+        updated_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+      required:
+        - id
+        - user
+        - title
+        - created_at
+        - updated_at
+    FirewallRule:
+      title: FirewallRule
+      type: object
+      x-tags:
+        - cloudserver
+      description: A firewall rule or a link to a FirewallRuleSet
+      x-examples:
+        example:
+          id: 10001
+          title: Example Rule
+          order: 0
+          direction: IN
+          action: DROP
+          interface: net0
+          protocol: udp
+          source_address: 127.0.0.1
+          destination_address_set_id: 10001
+          source_port: '1234'
+          destination_port: '4321'
+          created_at: '2020-01-30 00:00:00'
+          updated_at: '2020-01-30 00:00:00'
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        title:
+          type: string
+        order:
+          type: integer
+          exclusiveMinimum: false
+          minimum: 0
+        linked_rule_set_id:
+          type: integer
+        direction:
+          type: string
+          enum:
+            - IN
+            - OUT
+        action:
+          type: string
+          enum:
+            - ACCEPT
+            - DROP
+            - REJECT
+        interface:
+          type: string
+          enum:
+            - net0
+            - net1
+            - net2
+            - net3
+        protocol:
+          type: string
+          enum:
+            - udp
+            - tcp
+        source_address:
+          type: string
+        source_address_set_id:
+          type: integer
+        destination_address:
+          type: string
+        destination_address_set_id:
+          type: integer
+        source_port:
+          type: string
+        destination_port:
+          type: string
+        created_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+        updated_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+      required:
+        - id
+        - title
+        - order
+        - created_at
+        - updated_at
+    FirewallRuleSet:
+      title: FirewallRuleSet
+      type: object
+      x-tags:
+        - cloudserver
+      x-examples:
+        example:
+          id: 10001
+          user: john.doe
+          title: Example Ruleset
+          project_uuid: 1de37675-f868-4726-bb1d-b08d89f463f9
+          created_at: '2020-01-30 00:00:00'
+          updated_at: '2020-01-30 00:00:00'
+      description: A set of firewall rules
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        user:
+          type: string
+        title:
+          type: string
+        project_uuid:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+        updated_at:
+          type: string
+          pattern: '(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})'
+      required:
+        - id
+        - user
+        - title
+        - created_at
+        - updated_at
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: query
+      name: API Token
+security:
+  - authToken: []
