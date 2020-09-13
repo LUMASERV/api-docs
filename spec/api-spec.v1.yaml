@@ -3,7 +3,7 @@ info:
   title: api-spec-v1
   version: '1.0'
   contact:
-    name: Jan Waldecker
+    name: LUMASERV Support Team
     email: support@lumaserv.com
   description: LUMASERV API
 servers:
