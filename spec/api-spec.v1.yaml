@@ -655,8 +655,9 @@ components:
         - created_at
         - updated_at
   securitySchemes:
-    API Key:
+    AuthToken:
       type: http
       scheme: bearer
+      description: ''
 security:
-  - authToken: []
+  - AuthToken: []
