@@ -655,9 +655,8 @@ components:
         - created_at
         - updated_at
   securitySchemes:
-    authToken:
-      type: apiKey
-      in: query
-      name: API Token
+    API Key:
+      type: http
+      scheme: bearer
 security:
   - authToken: []
