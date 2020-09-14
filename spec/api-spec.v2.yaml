@@ -658,6 +658,108 @@ paths:
       tags:
         - projects
       description: Deletes the project
+  '/cloud/servers/{id}/interfaces':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getCloudServerInterfaces
+      tags:
+        - cloudserver
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCloudServerInterfaceResponse'
+      operationId: getCloudServerInterfaces
+      description: Returns all interfaces of the cloud server
+    post:
+      summary: createCloudServerInterface
+      operationId: createCloudServerInterface
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerInterfaceResponse'
+      tags:
+        - cloudserver
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCloudServerInterfaceRequest'
+      description: Create a new interface on the cloud server
+  '/cloud/servers/{id}/interfaces/{netname}':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+          enum:
+            - net0
+            - net1
+            - net2
+            - net3
+        name: netname
+        in: path
+        required: true
+    get:
+      summary: getCloudServerInterface
+      tags:
+        - cloudserver
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerInterfaceResponse'
+      operationId: getCloudServerInterface
+      description: Returns a single cloud server interface
+    delete:
+      summary: deleteCloudServerInterface
+      operationId: deleteCloudServerInterface
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+      tags:
+        - cloudserver
+      description: Deletes the cloud server interface
+    put:
+      summary: updateCloudServerInterface
+      operationId: updateCloudServerInterface
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerInterfaceResponse'
+      tags:
+        - cloudserver
+      description: Updates the cloud server interface
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCloudServerInterfaceRequest'
+        description: ''
 components:
   schemas:
     CloudServer:
@@ -736,9 +838,6 @@ components:
           created_at: '2020-01-30 00:00:00'
           updated_at: '2020-01-30 00:00:00'
       properties:
-        id:
-          type: integer
-          minimum: 1
         netname:
           type: string
         title:
@@ -756,7 +855,6 @@ components:
         updated_at:
           $ref: '#/components/schemas/Timestamp'
       required:
-        - id
         - netname
         - mac_address
         - firewall
@@ -1674,6 +1772,28 @@ components:
         - data
         - status
         - messages
+    UpdateCloudServerInterfaceRequest:
+      title: UpdateCloudServerInterfaceRequest
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        network_id:
+          type: integer
+          minimum: 1
+        ipv4:
+          type: array
+          items:
+            type: string
+            format: ipv4
+        primary_ipv4:
+          type: string
+          format: ipv4
+        custom_address:
+          type: string
+        custom_gateway:
+          type: string
+          format: ipv4
   securitySchemes:
     AuthToken:
       type: http
