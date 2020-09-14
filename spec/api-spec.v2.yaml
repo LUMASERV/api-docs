@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
-  title: api-spec-v1
-  version: '1.0'
+  title: LUMASERV Cloud API
+  version: '2.0'
   contact:
     name: LUMASERV Support Team
     email: support@lumaserv.com
@@ -1008,45 +1008,19 @@ components:
           type: string
         storages:
           type: array
+          minItems: 1
           items:
-            type: object
-            properties:
-              size:
-                type: integer
-                minimum: 5
-              replication:
-                type: integer
-                default: 2
-                minimum: 0
-            required:
-              - size
-        networks:
+            $ref: '#/components/schemas/CreateCloudServerStorageRequest'
+        interfaces:
           type: array
           items:
-            type: object
-            properties:
-              network_id:
-                type: integer
-                minimum: 1
-              primary_ipv4:
-                type: string
-                format: ipv4
-              ipv4:
-                type: array
-                items:
-                  type: string
-                  format: ipv4
-              custom_address:
-                type: string
-              custom_gateway:
-                type: string
-                format: ipv4
+            $ref: '#/components/schemas/CreateCloudServerInterfaceRequest'
       required:
         - cores
         - memory
         - template
         - storages
-        - networks
+        - interfaces
     CreateFirewallRuleSetRequest:
       title: CreateFirewallRuleSetRequest
       type: object
@@ -1274,6 +1248,8 @@ components:
     SingleCloudServerResponse:
       title: GetCloudServerResponse
       type: object
+      x-tags:
+        - cloudserver
       properties:
         metadata:
           $ref: '#/components/schemas/ResponseMetadata'
@@ -1283,8 +1259,11 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
-      x-tags:
-        - cloudserver
+      required:
+        - metadata
+        - data
+        - status
+        - messages
     ListCloudServerResponse:
       title: ListCloudServerResponse
       type: object
@@ -1301,6 +1280,11 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
     GenericResponse:
       title: GenericResponse
       type: object
@@ -1316,6 +1300,10 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - status
+        - messages
     EmptyResponse:
       title: EmptyResponse
       type: object
@@ -1326,6 +1314,10 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - status
+        - messages
     SingleFirewallAddressSetResponse:
       title: SingleFirewallAddressSetResponse
       type: object
@@ -1340,6 +1332,11 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
     ListFirewallAddressSetResponse:
       title: ListFirewallAddressSetResponse
       type: object
@@ -1356,6 +1353,11 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
     SingleFirewallRuleSetResponse:
       title: SingleFirewallRuleSetResponse
       type: object
@@ -1370,6 +1372,11 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
     ListFirewallRuleSetResponse:
       title: ListFirewallRuleSetResponse
       type: object
@@ -1386,6 +1393,11 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
     SingleFirewallAddressResponse:
       title: SingleFirewallAddressResponse
       type: object
@@ -1400,6 +1412,11 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
     ListFirewallAddressResponse:
       title: ListFirewallAddressResponse
       type: object
@@ -1416,6 +1433,11 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
     SingleFirewallRuleResponse:
       title: SingleFirewallRuleResponse
       type: object
@@ -1430,6 +1452,11 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
     ListFirewallRuleResponse:
       title: ListFirewallRuleResponse
       type: object
@@ -1446,6 +1473,11 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
     Project:
       title: Project
       type: object
@@ -1488,6 +1520,8 @@ components:
     SingleProjectResponse:
       title: SingleProjectResponse
       type: object
+      x-tags:
+        - projects
       properties:
         metadata:
           $ref: '#/components/schemas/ResponseMetadata'
@@ -1497,11 +1531,16 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
-      x-tags:
-        - projects
+      required:
+        - metadata
+        - data
+        - status
+        - messages
     ListProjectResponse:
       title: ListProjectResponse
       type: object
+      x-tags:
+        - projects
       properties:
         metadata:
           $ref: '#/components/schemas/ResponseMetadata'
@@ -1513,8 +1552,128 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
+    CreateCloudServerInterfaceRequest:
+      title: CreateCloudServerInterfaceRequest
+      type: object
       x-tags:
-        - projects
+        - cloudserver
+      properties:
+        network_id:
+          type: integer
+          minimum: 1
+        ipv4:
+          type: array
+          items:
+            type: string
+            format: ipv4
+        primary_ipv4:
+          type: string
+          format: ipv4
+        custom_address:
+          type: string
+        custom_gateway:
+          type: string
+          format: ipv4
+    CreateCloudServerStorageRequest:
+      title: CreateCloudServerStorageRequest
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        size:
+          type: integer
+          minimum: 5
+        replication:
+          type: integer
+          default: 2
+          minimum: 0
+      required:
+        - size
+    SingleCloudServerInterfaceResponse:
+      title: SingleCloudServerInterfaceResponse
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/CloudServerInterface'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
+      x-tags:
+        - cloudserver
+    SingleCloudServerStorageResponse:
+      title: SingleCloudServerStorageResponse
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/CloudServerStorage'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
+    ListCloudServerInterfaceResponse:
+      title: ListCloudServerInterfaceResponse
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudServerInterface'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
+    ListCloudServerStorageResponse:
+      title: ListCloudServerStorageResponse
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudServerStorage'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
   securitySchemes:
     AuthToken:
       type: http
