@@ -14,6 +14,7 @@ tags:
     description: CloudServer Management
   - name: firewall
     description: Firewall Management
+  - name: projects
 paths:
   /cloud/servers:
     get:
@@ -55,6 +56,7 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of the cloud server
     get:
       summary: getCloudServer
       tags:
@@ -107,6 +109,7 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of the cloud server
     get:
       summary: getCloudServerFirewallRules
       tags:
@@ -146,12 +149,14 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of the cloud server
       - schema:
           type: integer
           minimum: 1
         name: rule_id
         in: path
         required: true
+        description: ID of the firewall rule
     get:
       summary: getCloudServerFirewallRule
       tags:
@@ -238,6 +243,7 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of the ruleset
     get:
       summary: getFirewallRuleSet
       tags:
@@ -290,6 +296,7 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of the ruleset
     get:
       summary: getFirewallRuleSetRules
       tags:
@@ -330,12 +337,14 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of the ruleset
       - schema:
           type: integer
           minimum: 1
         name: rule_id
         in: path
         required: true
+        description: ID of the rule
     get:
       summary: getFirewallRuleSetRule
       tags:
@@ -420,6 +429,7 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of the address set
     get:
       summary: getFirewallAddressSet
       tags:
@@ -472,6 +482,7 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of the address set
     get:
       summary: getFirewallAddressSetAddresses
       tags:
@@ -511,11 +522,13 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of the address set
       - schema:
           type: string
         name: cidr
         in: path
         required: true
+        description: Single IP address or IP net CIDR
     get:
       summary: getFirewallAddressSetAddress
       tags:
@@ -560,6 +573,91 @@ paths:
       tags:
         - firewall
       description: Deletes the address from the firewall address set
+  /projects:
+    get:
+      summary: getProjects
+      tags:
+        - projects
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProjectResponse'
+      operationId: getProjects
+      description: Returns all projects
+    post:
+      summary: createProject
+      operationId: createProject
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleProjectResponse'
+      tags:
+        - projects
+      description: Create a new project
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+  '/projects/{uuid}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: uuid
+        in: path
+        required: true
+        description: UUID of the project
+    get:
+      summary: getProject
+      tags:
+        - projects
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleProjectResponse'
+      operationId: getProject
+      description: Returns a single project
+    put:
+      summary: updateProject
+      operationId: updateProject
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleProjectResponse'
+      tags:
+        - projects
+      description: Updates the project
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+    delete:
+      summary: deleteProject
+      operationId: deleteProject
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+      tags:
+        - projects
+      description: Deletes the project
 components:
   schemas:
     CloudServer:
@@ -1348,6 +1446,75 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+    Project:
+      title: Project
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        created_at:
+          $ref: '#/components/schemas/Timestamp'
+        updated_at:
+          $ref: '#/components/schemas/Timestamp'
+      x-tags:
+        - projects
+    CreateProjectRequest:
+      title: CreateProjectRequest
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+      required:
+        - title
+      x-tags:
+        - projects
+    UpdateProjectRequest:
+      title: UpdateProjectRequest
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+      x-tags:
+        - projects
+    SingleProjectResponse:
+      title: SingleProjectResponse
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/Project'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+      x-tags:
+        - projects
+    ListProjectResponse:
+      title: ListProjectResponse
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+      x-tags:
+        - projects
   securitySchemes:
     AuthToken:
       type: http
