@@ -931,7 +931,6 @@ components:
       description: A network interface of a cloudserver
       x-examples:
         example:
-          id: 10001
           netname: eth0
           title: Internet
           mac_address: '00:00:00:00:00:00'
@@ -970,8 +969,7 @@ components:
         - cloudserver
       x-examples:
         example:
-          id: 10001
-          title: Boot Drive
+          title: scsi0
           size: 10
           replication: 2
           is_boot: true
@@ -1182,8 +1180,8 @@ components:
     Timestamp:
       type: string
       title: Timestamp
-      x-examples:
-        '2020-01-30 00:00:00': {}
+      x-examples: {}
+      example: '2020-01-30 00:00:00'
     CreateCloudServerRequest:
       title: CreateCloudServerRequest
       type: object
@@ -1407,8 +1405,10 @@ components:
       properties:
         clientTransactionId:
           type: string
+          example: lumaserv_api_request_1234
         serverTransactionId:
           type: string
+          example: '200913214225851845414'
       required:
         - serverTransactionId
     ResponseMessages:
@@ -1431,14 +1431,23 @@ components:
         - warnings
         - errors
         - success
+      x-examples:
+        example:
+          warnings: []
+          errors: []
+          success:
+            - code: 10000
+              message: Action successfully executed.
     ResponseMessage:
       title: ResponseMessage
       type: object
       properties:
         code:
           type: integer
+          example: 10000
         message:
           type: string
+          example: Action successfully executed.
       required:
         - code
         - message
@@ -1692,6 +1701,13 @@ components:
           $ref: '#/components/schemas/Timestamp'
       x-tags:
         - projects
+      x-examples:
+        example:
+          uuid: 095be615-a8ad-4c33-8e9c-c7612fbf6c9f
+          title: Nice App
+          description: A really nice app
+          created_at: '2020-01-30 00:00:00'
+          updated_at: '2020-01-30 00:00:00'
     CreateProjectRequest:
       title: CreateProjectRequest
       type: object
@@ -1776,6 +1792,7 @@ components:
         custom_gateway:
           type: string
           format: ipv4
+      x-examples: {}
     CreateCloudServerStorageRequest:
       title: CreateCloudServerStorageRequest
       type: object
