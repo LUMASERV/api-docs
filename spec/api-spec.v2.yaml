@@ -666,6 +666,7 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of the cloud server
     get:
       summary: getCloudServerInterfaces
       tags:
@@ -705,6 +706,7 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of the cloud server
       - schema:
           type: string
           enum:
@@ -715,6 +717,7 @@ paths:
         name: netname
         in: path
         required: true
+        description: Name of the interface (net0-net3)
     get:
       summary: getCloudServerInterface
       tags:
@@ -760,6 +763,105 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateCloudServerInterfaceRequest'
         description: ''
+  '/cloud/servers/{id}/storages':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+        description: ID of the cloud server
+    get:
+      summary: getCloudServerStorages
+      tags:
+        - cloudserver
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCloudServerStorageResponse'
+      operationId: getCloudServerStorages
+      description: Returns all storages of the cloud server
+    post:
+      summary: createCloudServerStorage
+      operationId: createCloudServerStorage
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerStorageResponse'
+      tags:
+        - cloudserver
+      description: Adds a new storage to the cloud server
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCloudServerStorageRequest'
+  '/cloud/servers/{id}/storages/{title}':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+        description: ID of the cloud server
+      - schema:
+          type: string
+        name: title
+        in: path
+        required: true
+        description: Title of the storage
+    get:
+      summary: getCloudServerStorage
+      tags:
+        - cloudserver
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerStorageResponse'
+      operationId: getCloudServerStorage
+      description: Returns a single cloud server storage
+    put:
+      summary: updateCloudServerStorage
+      operationId: updateCloudServerStorage
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerStorageResponse'
+      tags:
+        - cloudserver
+      description: Updates the cloud server storage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCloudServerStorageRequest'
+    delete:
+      summary: deleteCloudServerStorage
+      operationId: deleteCloudServerStorage
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+      tags:
+        - cloudserver
+      description: Deletes the cloud server storage
 components:
   schemas:
     CloudServer:
@@ -877,9 +979,6 @@ components:
           updated_at: '2020-01-30 00:00:00'
       description: A storage drive of a cloudserver
       properties:
-        id:
-          type: integer
-          minimum: 1
         title:
           type: string
         size:
@@ -895,7 +994,7 @@ components:
         updated_at:
           $ref: '#/components/schemas/Timestamp'
       required:
-        - id
+        - title
         - size
         - replication
         - is_boot
@@ -1794,6 +1893,15 @@ components:
         custom_gateway:
           type: string
           format: ipv4
+    UpdateCloudServerStorageRequest:
+      title: UpdateCloudServerStorageRequest
+      type: object
+      properties:
+        size:
+          type: integer
+          minimum: 1
+      x-tags:
+        - cloudserver
   securitySchemes:
     AuthToken:
       type: http
