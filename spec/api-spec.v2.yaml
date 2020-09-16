@@ -1491,25 +1491,6 @@ components:
         - data
         - status
         - messages
-    GenericResponse:
-      title: GenericResponse
-      type: object
-      properties:
-        metadata:
-          $ref: '#/components/schemas/ResponseMetadata'
-        data:
-          oneOf:
-            - type: object
-            - type: array
-              items: {}
-        status:
-          type: string
-        messages:
-          $ref: '#/components/schemas/ResponseMessages'
-      required:
-        - metadata
-        - status
-        - messages
     EmptyResponse:
       title: EmptyResponse
       type: object
