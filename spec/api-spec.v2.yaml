@@ -15,6 +15,9 @@ tags:
   - name: firewall
     description: Firewall Management
   - name: projects
+  - name: auth
+  - name: users
+  - name: networks
 paths:
   /cloud/servers:
     get:
@@ -862,6 +865,119 @@ paths:
       tags:
         - cloudserver
       description: Deletes the cloud server storage
+  /auth/login:
+    post:
+      summary: login
+      operationId: login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+      tags:
+        - auth
+      description: Exchanges user credentials for an auth token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+  /auth/logout:
+    post:
+      summary: logout
+      operationId: logout
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+      tags:
+        - auth
+      description: Invalidates the current session
+  /auth/self:
+    get:
+      summary: getSelf
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SelfResponse'
+      operationId: getSelf
+      description: Returns the own user
+  /users:
+    get:
+      summary: getUsers
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUserResponse'
+      operationId: getUsers
+      description: Returns all accessible users
+  '/users/{username}':
+    parameters:
+      - schema:
+          type: string
+        name: username
+        in: path
+        required: true
+    get:
+      summary: getUser
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleUserResponse'
+      operationId: getUser
+      description: Returns a single user by username
+    put:
+      summary: updateUser
+      operationId: updateUser
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleUserResponse'
+      tags:
+        - users
+      description: Updates the user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+  /cloud/networks:
+    get:
+      summary: getNetworks
+      tags:
+        - networks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListNetworkResponse'
+      operationId: getNetworks
+      description: Returns all networks
 components:
   schemas:
     CloudServer:
@@ -1900,6 +2016,159 @@ components:
           minimum: 1
       x-tags:
         - cloudserver
+    User:
+      title: User
+      type: object
+      x-tags:
+        - users
+      properties:
+        username:
+          type: string
+        gender:
+          type: string
+          enum:
+            - MALE
+            - FEMALE
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        created_at:
+          $ref: '#/components/schemas/Timestamp'
+      required:
+        - username
+        - email
+        - created_at
+    LoginRequest:
+      title: LoginRequest
+      type: object
+      x-tags:
+        - auth
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password
+    LoginResponse:
+      title: LoginResponse
+      type: object
+      x-tags:
+        - auth
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: object
+          properties:
+            token:
+              type: string
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+    SelfResponse:
+      title: SelfResponse
+      type: object
+      x-tags:
+        - auth
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/User'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    ListUserResponse:
+      title: ListUserResponse
+      type: object
+      x-tags:
+        - users
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    SingleUserResponse:
+      title: SingleUserResponse
+      type: object
+      x-tags:
+        - users
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/User'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      type: object
+      x-tags:
+        - users
+      properties:
+        email:
+          type: string
+    Network:
+      title: Network
+      type: object
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        title:
+          type: string
+        description:
+          type: string
+        is_public:
+          type: boolean
+        user:
+          type: string
+        created_at:
+          $ref: '#/components/schemas/Timestamp'
+        updated_at:
+          $ref: '#/components/schemas/Timestamp'
+      required:
+        - id
+        - is_public
+        - user
+        - created_at
+        - updated_at
+      x-tags:
+        - networks
+    ListNetworkResponse:
+      title: ListNetworkResponse
+      type: object
+      x-tags:
+        - networks
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Network'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
   securitySchemes:
     AuthToken:
       type: http
