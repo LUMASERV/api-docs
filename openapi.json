@@ -1,0 +1,4374 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "contact" : {
+      "email" : "support@lumaserv.com",
+      "name" : "LUMASERV Support Team"
+    },
+    "description" : "LUMASERV API",
+    "title" : "LUMASERV Cloud API",
+    "version" : "2.0"
+  },
+  "servers" : [ {
+    "description" : "Live",
+    "url" : "https://connect.nicapi.eu/api/v1"
+  } ],
+  "security" : [ {
+    "AuthToken" : [ ]
+  } ],
+  "tags" : [ {
+    "description" : "CloudServer Management",
+    "name" : "cloudserver"
+  }, {
+    "description" : "Firewall Management",
+    "name" : "firewall"
+  }, {
+    "name" : "projects"
+  }, {
+    "name" : "auth"
+  }, {
+    "name" : "users"
+  }, {
+    "name" : "networks"
+  } ],
+  "paths" : {
+    "/cloud/servers" : {
+      "get" : {
+        "description" : "Returns all cloudservers",
+        "operationId" : "getCloudServers",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCloudServerResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServers",
+        "tags" : [ "cloudserver" ]
+      },
+      "post" : {
+        "description" : "Creates a new cloudserver",
+        "operationId" : "createCloudServer",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCloudServerRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "createCloudServer",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}" : {
+      "delete" : {
+        "description" : "Deletes a cloudserver",
+        "operationId" : "deleteCloudServer",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteCloudServer",
+        "tags" : [ "cloudserver" ]
+      },
+      "get" : {
+        "description" : "Returns a single cloudserver",
+        "operationId" : "getCloudServer",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServer",
+        "tags" : [ "cloudserver" ]
+      },
+      "put" : {
+        "description" : "Updates a cloudserver",
+        "operationId" : "updateCloudServer",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateCloudServerRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "updateCloudServer",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/firewall/rules" : {
+      "get" : {
+        "description" : "Returns all firewall rules of this cloud server",
+        "operationId" : "getCloudServerFirewallRules",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListFirewallRuleResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServerFirewallRules",
+        "tags" : [ "cloudserver" ]
+      },
+      "post" : {
+        "description" : "Creates a new firewall rule for this cloud server",
+        "operationId" : "createCloudServerFirewallRule",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateFirewallRuleRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "createCloudServerFirewallRule",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/firewall/rules/{rule_id}" : {
+      "delete" : {
+        "description" : "Deletes the firewall rule",
+        "operationId" : "deleteCloudServerFirewallRule",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ID of the firewall rule",
+          "explode" : false,
+          "in" : "path",
+          "name" : "rule_id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteCloudServerFirewallRule",
+        "tags" : [ "cloudserver" ]
+      },
+      "get" : {
+        "description" : "Returns a single firewall rule",
+        "operationId" : "getCloudServerFirewallRule",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ID of the firewall rule",
+          "explode" : false,
+          "in" : "path",
+          "name" : "rule_id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServerFirewallRule",
+        "tags" : [ "cloudserver" ]
+      },
+      "put" : {
+        "description" : "Updates the firewall rule",
+        "operationId" : "updateCloudServerFirewallRule",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ID of the firewall rule",
+          "explode" : false,
+          "in" : "path",
+          "name" : "rule_id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateFirewallRuleRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "updateCloudServerFirewallRule",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/firewall/rule-sets" : {
+      "get" : {
+        "description" : "Returns all firewall rulesets",
+        "operationId" : "getFirewallRuleSets",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListFirewallRuleSetResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getFirewallRuleSets",
+        "tags" : [ "firewall" ]
+      },
+      "post" : {
+        "description" : "Creates a new firewall ruleset",
+        "operationId" : "createFirewallRuleSet",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateFirewallRuleSetRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallRuleSetResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "createFirewallRuleSet",
+        "tags" : [ "firewall" ]
+      }
+    },
+    "/cloud/firewall/rule-sets/{id}" : {
+      "delete" : {
+        "description" : "Deletes the firewall ruleset",
+        "operationId" : "deleteFirewallRuleSet",
+        "parameters" : [ {
+          "description" : "ID of the ruleset",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteFirewallRuleSet",
+        "tags" : [ "firewall" ]
+      },
+      "get" : {
+        "description" : "Returns a single firewall ruleset",
+        "operationId" : "getFirewallRuleSet",
+        "parameters" : [ {
+          "description" : "ID of the ruleset",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallRuleSetResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getFirewallRuleSet",
+        "tags" : [ "firewall" ]
+      },
+      "put" : {
+        "description" : "Updates the firewall ruleset",
+        "operationId" : "updateFirewallRuleSet",
+        "parameters" : [ {
+          "description" : "ID of the ruleset",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateFirewallRuleSetRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallRuleSetResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "updateFirewallRuleSet",
+        "tags" : [ "firewall" ]
+      }
+    },
+    "/cloud/firewall/rule-sets/{id}/rules" : {
+      "get" : {
+        "description" : "Returns all firewall rules in the ruleset",
+        "operationId" : "getFirewallRuleSetRules",
+        "parameters" : [ {
+          "description" : "ID of the ruleset",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListFirewallRuleResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getFirewallRuleSetRules",
+        "tags" : [ "firewall" ]
+      },
+      "post" : {
+        "description" : "Creates a new firewall rule in the ruleset",
+        "operationId" : "createFirewallRuleSetRule",
+        "parameters" : [ {
+          "description" : "ID of the ruleset",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateFirewallRuleRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "createFirewallRuleSetRule",
+        "tags" : [ "firewall" ]
+      }
+    },
+    "/cloud/firewall/rule-sets/{id}/rules/{rule_id}" : {
+      "delete" : {
+        "description" : "Deletes the firewall rule",
+        "operationId" : "deleteFirewallRuleSetRule",
+        "parameters" : [ {
+          "description" : "ID of the ruleset",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ID of the rule",
+          "explode" : false,
+          "in" : "path",
+          "name" : "rule_id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteFirewallRuleSetRule",
+        "tags" : [ "firewall" ]
+      },
+      "get" : {
+        "description" : "Returns a single firewall rule",
+        "operationId" : "getFirewallRuleSetRule",
+        "parameters" : [ {
+          "description" : "ID of the ruleset",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ID of the rule",
+          "explode" : false,
+          "in" : "path",
+          "name" : "rule_id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getFirewallRuleSetRule",
+        "tags" : [ "firewall" ]
+      },
+      "put" : {
+        "description" : "Updates the firewall rule",
+        "operationId" : "updateFirewallRuleSetRule",
+        "parameters" : [ {
+          "description" : "ID of the ruleset",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ID of the rule",
+          "explode" : false,
+          "in" : "path",
+          "name" : "rule_id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateFirewallRuleRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "updateFirewallRuleSetRule",
+        "tags" : [ "firewall" ]
+      }
+    },
+    "/cloud/firewall/address-sets" : {
+      "get" : {
+        "description" : "Returns all firewall address sets",
+        "operationId" : "getFirewallAddressSets",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListFirewallAddressSetResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getFirewallAddressSets",
+        "tags" : [ "firewall" ]
+      },
+      "post" : {
+        "description" : "Creates a new firewall address set",
+        "operationId" : "createFirewallAddressSet",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateFirewallAddressSetRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallAddressSetResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "createFirewallAddressSet",
+        "tags" : [ "firewall" ]
+      }
+    },
+    "/cloud/firewall/address-sets/{id}" : {
+      "delete" : {
+        "description" : "Deletes the firewall address set",
+        "operationId" : "deleteFirewallAddressSet",
+        "parameters" : [ {
+          "description" : "ID of the address set",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteFirewallAddressSet",
+        "tags" : [ "firewall" ]
+      },
+      "get" : {
+        "description" : "Returns a single firewall address set",
+        "operationId" : "getFirewallAddressSet",
+        "parameters" : [ {
+          "description" : "ID of the address set",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallAddressSetResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getFirewallAddressSet",
+        "tags" : [ "firewall" ]
+      },
+      "put" : {
+        "description" : "Updates the firewall address set",
+        "operationId" : "updateFirewallAddressSet",
+        "parameters" : [ {
+          "description" : "ID of the address set",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateFirewallAddressSetRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallAddressSetResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "updateFirewallAddressSet",
+        "tags" : [ "firewall" ]
+      }
+    },
+    "/cloud/firewall/address-sets/{id}/addresses" : {
+      "get" : {
+        "description" : "Returns all addresses in a firewall address set",
+        "operationId" : "getFirewallAddressSetAddresses",
+        "parameters" : [ {
+          "description" : "ID of the address set",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListFirewallAddressResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getFirewallAddressSetAddresses",
+        "tags" : [ "firewall" ]
+      },
+      "post" : {
+        "description" : "Adds a new address to the firewall address set",
+        "operationId" : "createFirewallAddressSetAddress",
+        "parameters" : [ {
+          "description" : "ID of the address set",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateFirewallAddressRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallAddressResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "createFirewallAddressSetAddress",
+        "tags" : [ "firewall" ]
+      }
+    },
+    "/cloud/firewall/address-sets/{id}/addresses/{cidr}" : {
+      "delete" : {
+        "description" : "Deletes the address from the firewall address set",
+        "operationId" : "deleteFirewallAddressSetAddress",
+        "parameters" : [ {
+          "description" : "ID of the address set",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Single IP address or IP net CIDR",
+          "explode" : false,
+          "in" : "path",
+          "name" : "cidr",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteFirewallAddressSetAddress",
+        "tags" : [ "firewall" ]
+      },
+      "get" : {
+        "description" : "Returns a single firewall address",
+        "operationId" : "getFirewallAddressSetAddress",
+        "parameters" : [ {
+          "description" : "ID of the address set",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Single IP address or IP net CIDR",
+          "explode" : false,
+          "in" : "path",
+          "name" : "cidr",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallAddressResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getFirewallAddressSetAddress",
+        "tags" : [ "firewall" ]
+      },
+      "put" : {
+        "description" : "Updates the firewall address",
+        "operationId" : "updateFirewallAddressSetAddress",
+        "parameters" : [ {
+          "description" : "ID of the address set",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Single IP address or IP net CIDR",
+          "explode" : false,
+          "in" : "path",
+          "name" : "cidr",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateFirewallAddressRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleFirewallAddressResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "updateFirewallAddressSetAddress",
+        "tags" : [ "firewall" ]
+      }
+    },
+    "/projects" : {
+      "get" : {
+        "description" : "Returns all projects",
+        "operationId" : "getProjects",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListProjectResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getProjects",
+        "tags" : [ "projects" ]
+      },
+      "post" : {
+        "description" : "Create a new project",
+        "operationId" : "createProject",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateProjectRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleProjectResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "createProject",
+        "tags" : [ "projects" ]
+      }
+    },
+    "/projects/{uuid}" : {
+      "delete" : {
+        "description" : "Deletes the project",
+        "operationId" : "deleteProject",
+        "parameters" : [ {
+          "description" : "UUID of the project",
+          "explode" : false,
+          "in" : "path",
+          "name" : "uuid",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteProject",
+        "tags" : [ "projects" ]
+      },
+      "get" : {
+        "description" : "Returns a single project",
+        "operationId" : "getProject",
+        "parameters" : [ {
+          "description" : "UUID of the project",
+          "explode" : false,
+          "in" : "path",
+          "name" : "uuid",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleProjectResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getProject",
+        "tags" : [ "projects" ]
+      },
+      "put" : {
+        "description" : "Updates the project",
+        "operationId" : "updateProject",
+        "parameters" : [ {
+          "description" : "UUID of the project",
+          "explode" : false,
+          "in" : "path",
+          "name" : "uuid",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateProjectRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleProjectResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "updateProject",
+        "tags" : [ "projects" ]
+      }
+    },
+    "/cloud/servers/{id}/interfaces" : {
+      "get" : {
+        "description" : "Returns all interfaces of the cloud server",
+        "operationId" : "getCloudServerInterfaces",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCloudServerInterfaceResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServerInterfaces",
+        "tags" : [ "cloudserver" ]
+      },
+      "post" : {
+        "description" : "Create a new interface on the cloud server",
+        "operationId" : "createCloudServerInterface",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCloudServerInterfaceRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerInterfaceResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "createCloudServerInterface",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/interfaces/{netname}" : {
+      "delete" : {
+        "description" : "Deletes the cloud server interface",
+        "operationId" : "deleteCloudServerInterface",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Name of the interface (net0-net3)",
+          "explode" : false,
+          "in" : "path",
+          "name" : "netname",
+          "required" : true,
+          "schema" : {
+            "enum" : [ "net0", "net1", "net2", "net3" ],
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteCloudServerInterface",
+        "tags" : [ "cloudserver" ]
+      },
+      "get" : {
+        "description" : "Returns a single cloud server interface",
+        "operationId" : "getCloudServerInterface",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Name of the interface (net0-net3)",
+          "explode" : false,
+          "in" : "path",
+          "name" : "netname",
+          "required" : true,
+          "schema" : {
+            "enum" : [ "net0", "net1", "net2", "net3" ],
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerInterfaceResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServerInterface",
+        "tags" : [ "cloudserver" ]
+      },
+      "put" : {
+        "description" : "Updates the cloud server interface",
+        "operationId" : "updateCloudServerInterface",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Name of the interface (net0-net3)",
+          "explode" : false,
+          "in" : "path",
+          "name" : "netname",
+          "required" : true,
+          "schema" : {
+            "enum" : [ "net0", "net1", "net2", "net3" ],
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateCloudServerInterfaceRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerInterfaceResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "updateCloudServerInterface",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/storages" : {
+      "get" : {
+        "description" : "Returns all storages of the cloud server",
+        "operationId" : "getCloudServerStorages",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCloudServerStorageResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServerStorages",
+        "tags" : [ "cloudserver" ]
+      },
+      "post" : {
+        "description" : "Adds a new storage to the cloud server",
+        "operationId" : "createCloudServerStorage",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCloudServerStorageRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerStorageResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "createCloudServerStorage",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/storages/{title}" : {
+      "delete" : {
+        "description" : "Deletes the cloud server storage",
+        "operationId" : "deleteCloudServerStorage",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Title of the storage",
+          "explode" : false,
+          "in" : "path",
+          "name" : "title",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteCloudServerStorage",
+        "tags" : [ "cloudserver" ]
+      },
+      "get" : {
+        "description" : "Returns a single cloud server storage",
+        "operationId" : "getCloudServerStorage",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Title of the storage",
+          "explode" : false,
+          "in" : "path",
+          "name" : "title",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerStorageResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServerStorage",
+        "tags" : [ "cloudserver" ]
+      },
+      "put" : {
+        "description" : "Updates the cloud server storage",
+        "operationId" : "updateCloudServerStorage",
+        "parameters" : [ {
+          "description" : "ID of the cloud server",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Title of the storage",
+          "explode" : false,
+          "in" : "path",
+          "name" : "title",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateCloudServerStorageRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerStorageResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "updateCloudServerStorage",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/auth/login" : {
+      "post" : {
+        "description" : "Exchanges user credentials for an auth token",
+        "operationId" : "login",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoginResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "login",
+        "tags" : [ "auth" ]
+      }
+    },
+    "/auth/logout" : {
+      "post" : {
+        "description" : "Invalidates the current session",
+        "operationId" : "logout",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmptyResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "logout",
+        "tags" : [ "auth" ]
+      }
+    },
+    "/auth/self" : {
+      "get" : {
+        "description" : "Returns the own user",
+        "operationId" : "getSelf",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SelfResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getSelf",
+        "tags" : [ "auth" ]
+      }
+    },
+    "/users" : {
+      "get" : {
+        "description" : "Returns all accessible users",
+        "operationId" : "getUsers",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListUserResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getUsers",
+        "tags" : [ "users" ]
+      }
+    },
+    "/users/{username}" : {
+      "get" : {
+        "description" : "Returns a single user by username",
+        "operationId" : "getUser",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "username",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleUserResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getUser",
+        "tags" : [ "users" ]
+      },
+      "put" : {
+        "description" : "Updates the user",
+        "operationId" : "updateUser",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "username",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleUserResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "updateUser",
+        "tags" : [ "users" ]
+      }
+    },
+    "/cloud/networks" : {
+      "get" : {
+        "description" : "Returns all networks",
+        "operationId" : "getNetworks",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListNetworkResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getNetworks",
+        "tags" : [ "networks" ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "CloudServer" : {
+        "description" : "A cloudserver",
+        "example" : {
+          "template" : "template",
+          "hostname" : "hostname",
+          "cores" : 1,
+          "memory" : 1024,
+          "max_backups" : 0,
+          "max_scheduled_tasks" : 0,
+          "updated_at" : "2020-01-30 00:00:00",
+          "created_at" : "2020-01-30 00:00:00",
+          "id" : 0,
+          "title" : "title",
+          "user" : "user"
+        },
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "user" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "hostname" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "cores" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "memory" : {
+            "minimum" : 1024,
+            "multipleOf" : 1024,
+            "type" : "integer"
+          },
+          "template" : {
+            "type" : "string"
+          },
+          "max_backups" : {
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "max_scheduled_tasks" : {
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "created_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          },
+          "updated_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "required" : [ "cores", "created_at", "hostname", "id", "max_backups", "max_scheduled_tasks", "memory", "template", "updated_at", "user" ],
+        "title" : "CloudServer",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ],
+        "x-examples" : {
+          "example" : {
+            "id" : 8432,
+            "user" : "john.doe",
+            "title" : "My Webserver",
+            "hostname" : "example.com",
+            "cores" : 1,
+            "memory" : 1024,
+            "template" : "DEBIAN_10",
+            "max_backups" : 0,
+            "max_scheduled_tasks" : 0,
+            "created_at" : "2020-01-30 00:00:00",
+            "updated_at" : "2020-01-30 00:00:00"
+          }
+        }
+      },
+      "CloudServerInterface" : {
+        "description" : "A network interface of a cloudserver",
+        "example" : {
+          "network_id" : 1,
+          "updated_at" : "2020-01-30 00:00:00",
+          "netname" : "netname",
+          "firewall" : true,
+          "mac_address" : "mac_address",
+          "created_at" : "2020-01-30 00:00:00",
+          "title" : "title"
+        },
+        "properties" : {
+          "netname" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "mac_address" : {
+            "pattern" : "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$",
+            "type" : "string"
+          },
+          "firewall" : {
+            "type" : "boolean"
+          },
+          "network_id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "created_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          },
+          "updated_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "required" : [ "created_at", "firewall", "mac_address", "netname", "network_id", "updated_at" ],
+        "title" : "CloudServerInterface",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ],
+        "x-examples" : {
+          "example" : {
+            "netname" : "eth0",
+            "title" : "Internet",
+            "mac_address" : "00:00:00:00:00:00",
+            "firewall" : true,
+            "network_id" : 10001,
+            "created_at" : "2020-01-30 00:00:00",
+            "updated_at" : "2020-01-30 00:00:00"
+          }
+        }
+      },
+      "CloudServerStorage" : {
+        "description" : "A storage drive of a cloudserver",
+        "example" : {
+          "replication" : 6,
+          "is_boot" : true,
+          "size" : 10,
+          "updated_at" : "2020-01-30 00:00:00",
+          "created_at" : "2020-01-30 00:00:00",
+          "title" : "title"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "size" : {
+            "minimum" : 10,
+            "type" : "integer"
+          },
+          "replication" : {
+            "default" : 2,
+            "type" : "integer"
+          },
+          "is_boot" : {
+            "type" : "boolean"
+          },
+          "created_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          },
+          "updated_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "required" : [ "created_at", "is_boot", "replication", "size", "title", "updated_at" ],
+        "title" : "CloudServerStorage",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ],
+        "x-examples" : {
+          "example" : {
+            "title" : "scsi0",
+            "size" : 10,
+            "replication" : 2,
+            "is_boot" : true,
+            "created_at" : "2020-01-30 00:00:00",
+            "updated_at" : "2020-01-30 00:00:00"
+          }
+        }
+      },
+      "FirewallAddress" : {
+        "description" : "Address in a FirewallAddressSet",
+        "example" : {
+          "updated_at" : "2020-01-30 00:00:00",
+          "created_at" : "2020-01-30 00:00:00",
+          "cidr" : "cidr",
+          "id" : 1,
+          "title" : "title"
+        },
+        "properties" : {
+          "id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "cidr" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          },
+          "updated_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "required" : [ "cidr", "created_at", "id", "title", "updated_at" ],
+        "title" : "FirewallAddress",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ],
+        "x-examples" : {
+          "example" : {
+            "id" : 10001,
+            "address_set_id" : 10001,
+            "cidr" : "127.0.0.0/8",
+            "title" : "Loopback",
+            "created_at" : "2020-01-30 00:00:00",
+            "updated_at" : "2020-01-30 00:00:00"
+          }
+        }
+      },
+      "FirewallAddressSet" : {
+        "example" : {
+          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+          "updated_at" : "2020-01-30 00:00:00",
+          "created_at" : "2020-01-30 00:00:00",
+          "id" : 1,
+          "title" : "title",
+          "user" : "user"
+        },
+        "properties" : {
+          "id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "user" : {
+            "type" : "string"
+          },
+          "project_uuid" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          },
+          "updated_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "required" : [ "created_at", "id", "title", "updated_at", "user" ],
+        "title" : "FirewallAddressSet",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ],
+        "x-examples" : {
+          "example" : {
+            "id" : 10001,
+            "user" : "john.doe",
+            "project_uuid" : "1de37675-f868-4726-bb1d-b08d89f463f9",
+            "title" : "Loopback Addresses",
+            "created_at" : "2020-01-30 00:00:00",
+            "updated_at" : "2020-01-30 00:00:00"
+          }
+        }
+      },
+      "FirewallRule" : {
+        "description" : "A firewall rule or a link to a FirewallRuleSet",
+        "example" : {
+          "source_address_set_id" : 5,
+          "destination_address_set_id" : 5,
+          "destination_address" : "destination_address",
+          "destination_port" : "destination_port",
+          "created_at" : "2020-01-30 00:00:00",
+          "title" : "title",
+          "interface" : "net0",
+          "protocol" : "udp",
+          "linked_rule_set_id" : 1,
+          "updated_at" : "2020-01-30 00:00:00",
+          "source_address" : "source_address",
+          "source_port" : "source_port",
+          "action" : "ACCEPT",
+          "id" : 1,
+          "order" : 0,
+          "direction" : "IN"
+        },
+        "properties" : {
+          "id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "order" : {
+            "exclusiveMinimum" : false,
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "linked_rule_set_id" : {
+            "type" : "integer"
+          },
+          "direction" : {
+            "enum" : [ "IN", "OUT" ],
+            "type" : "string"
+          },
+          "action" : {
+            "enum" : [ "ACCEPT", "DROP", "REJECT" ],
+            "type" : "string"
+          },
+          "interface" : {
+            "enum" : [ "net0", "net1", "net2", "net3" ],
+            "type" : "string"
+          },
+          "protocol" : {
+            "enum" : [ "udp", "tcp" ],
+            "type" : "string"
+          },
+          "source_address" : {
+            "type" : "string"
+          },
+          "source_address_set_id" : {
+            "type" : "integer"
+          },
+          "destination_address" : {
+            "type" : "string"
+          },
+          "destination_address_set_id" : {
+            "type" : "integer"
+          },
+          "source_port" : {
+            "type" : "string"
+          },
+          "destination_port" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          },
+          "updated_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "required" : [ "created_at", "id", "order", "title", "updated_at" ],
+        "title" : "FirewallRule",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ],
+        "x-examples" : {
+          "example" : {
+            "id" : 10001,
+            "title" : "Example Rule",
+            "order" : 0,
+            "direction" : "IN",
+            "action" : "DROP",
+            "interface" : "net0",
+            "protocol" : "udp",
+            "source_address" : "127.0.0.1",
+            "destination_address_set_id" : 10001,
+            "source_port" : "1234",
+            "destination_port" : "4321",
+            "created_at" : "2020-01-30 00:00:00",
+            "updated_at" : "2020-01-30 00:00:00"
+          }
+        }
+      },
+      "FirewallRuleSet" : {
+        "description" : "A set of firewall rules",
+        "example" : {
+          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+          "updated_at" : "2020-01-30 00:00:00",
+          "created_at" : "2020-01-30 00:00:00",
+          "id" : 1,
+          "title" : "title",
+          "user" : "user"
+        },
+        "properties" : {
+          "id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "user" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "project_uuid" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "created_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          },
+          "updated_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "required" : [ "created_at", "id", "title", "updated_at", "user" ],
+        "title" : "FirewallRuleSet",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ],
+        "x-examples" : {
+          "example" : {
+            "id" : 10001,
+            "user" : "john.doe",
+            "title" : "Example Ruleset",
+            "project_uuid" : "1de37675-f868-4726-bb1d-b08d89f463f9",
+            "created_at" : "2020-01-30 00:00:00",
+            "updated_at" : "2020-01-30 00:00:00"
+          }
+        }
+      },
+      "Timestamp" : {
+        "example" : "2020-01-30 00:00:00",
+        "title" : "Timestamp",
+        "type" : "string",
+        "x-examples" : { }
+      },
+      "CreateCloudServerRequest" : {
+        "example" : {
+          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+          "template" : "template",
+          "storages" : [ {
+            "replication" : 0,
+            "size" : 5
+          }, {
+            "replication" : 0,
+            "size" : 5
+          } ],
+          "password" : "password",
+          "interfaces" : [ {
+            "custom_address" : "custom_address",
+            "network_id" : 1,
+            "primary_ipv4" : "primary_ipv4",
+            "ipv4" : [ "ipv4", "ipv4" ],
+            "custom_gateway" : "custom_gateway"
+          }, {
+            "custom_address" : "custom_address",
+            "network_id" : 1,
+            "primary_ipv4" : "primary_ipv4",
+            "ipv4" : [ "ipv4", "ipv4" ],
+            "custom_gateway" : "custom_gateway"
+          } ],
+          "cores" : "cores",
+          "memory" : "memory",
+          "title" : "title"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "project_uuid" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "cores" : {
+            "type" : "string"
+          },
+          "memory" : {
+            "type" : "string"
+          },
+          "template" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "storages" : {
+            "items" : {
+              "$ref" : "#/components/schemas/CreateCloudServerStorageRequest"
+            },
+            "minItems" : 1,
+            "type" : "array"
+          },
+          "interfaces" : {
+            "items" : {
+              "$ref" : "#/components/schemas/CreateCloudServerInterfaceRequest"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "cores", "interfaces", "memory", "storages", "template" ],
+        "title" : "CreateCloudServerRequest",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "CreateFirewallRuleSetRequest" : {
+        "example" : {
+          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+          "title" : "title"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "project_uuid" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "required" : [ "title" ],
+        "title" : "CreateFirewallRuleSetRequest",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "CreateFirewallAddressSetRequest" : {
+        "example" : {
+          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+          "title" : "title"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "project_uuid" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "required" : [ "title" ],
+        "title" : "CreateFirewallAddressSetRequest",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "CreateFirewallAddressRequest" : {
+        "example" : {
+          "cidr" : "cidr",
+          "title" : "title"
+        },
+        "properties" : {
+          "cidr" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "cidr", "title" ],
+        "title" : "CreateFirewallAddressRequest",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "CreateFirewallRuleRequest" : {
+        "example" : {
+          "source_address_set_id" : 1,
+          "destination_address_set_id" : 1,
+          "destination_address" : "destination_address",
+          "destination_port" : "destination_port",
+          "title" : "title",
+          "interface" : "net0",
+          "protocol" : "tcp",
+          "linked_rule_set_id" : 1,
+          "source_address" : "source_address",
+          "source_port" : "source_port",
+          "action" : "ACCEPT",
+          "order" : 0,
+          "direction" : "IN"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "order" : {
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "direction" : {
+            "enum" : [ "IN", "OUT" ],
+            "type" : "string"
+          },
+          "action" : {
+            "enum" : [ "ACCEPT", "DROP", "REJECT" ],
+            "type" : "string"
+          },
+          "protocol" : {
+            "enum" : [ "tcp", "udp" ],
+            "type" : "string"
+          },
+          "interface" : {
+            "enum" : [ "net0", "net1", "net2", "net3" ],
+            "type" : "string"
+          },
+          "source_address" : {
+            "type" : "string"
+          },
+          "source_address_set_id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "destination_address" : {
+            "type" : "string"
+          },
+          "destination_address_set_id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "source_port" : {
+            "type" : "string"
+          },
+          "destination_port" : {
+            "type" : "string"
+          },
+          "linked_rule_set_id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "order", "title" ],
+        "title" : "CreateFirewallRuleRequest",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "UpdateFirewallAddressSetRequest" : {
+        "example" : {
+          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+          "title" : "title"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "project_uuid" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "title" : "UpdateFirewallAddressSetRequest",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "UpdateFirewallRuleSetRequest" : {
+        "example" : {
+          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+          "title" : "title"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "project_uuid" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "title" : "UpdateFirewallRuleSetRequest",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "UpdateFirewallAddressRequest" : {
+        "example" : {
+          "title" : "title"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "title" : "UpdateFirewallAddressRequest",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "UpdateFirewallRuleRequest" : {
+        "example" : {
+          "linked_address_set_id" : 1,
+          "source_address_set_id" : 1,
+          "destination_address_set_id" : 1,
+          "protocol" : "tcp",
+          "destination_address" : "destination_address",
+          "destination_port" : "destination_port",
+          "source_address" : "source_address",
+          "source_port" : "source_port",
+          "action" : "ACCEPT",
+          "title" : "title",
+          "order" : 0,
+          "direction" : "IN"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "order" : {
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "direction" : {
+            "enum" : [ "IN", "OUT" ],
+            "type" : "string"
+          },
+          "action" : {
+            "enum" : [ "ACCEPT", "DROP", "REJECT" ],
+            "type" : "string"
+          },
+          "protocol" : {
+            "enum" : [ "tcp", "udp" ],
+            "type" : "string"
+          },
+          "source_address" : {
+            "type" : "string"
+          },
+          "source_address_set_id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "destination_address" : {
+            "type" : "string"
+          },
+          "destination_address_set_id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "source_port" : {
+            "type" : "string"
+          },
+          "destination_port" : {
+            "type" : "string"
+          },
+          "linked_address_set_id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        },
+        "title" : "UpdateFirewallRuleRequest",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "UpdateCloudServerRequest" : {
+        "example" : {
+          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+          "cores" : 0,
+          "memory" : 6,
+          "title" : "title"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "project_uuid" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "cores" : {
+            "type" : "integer"
+          },
+          "memory" : {
+            "type" : "integer"
+          }
+        },
+        "title" : "UpdateCloudServerRequest",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "ResponseMetadata" : {
+        "example" : {
+          "serverTransactionId" : "200913214225851845414",
+          "clientTransactionId" : "lumaserv_api_request_1234"
+        },
+        "properties" : {
+          "clientTransactionId" : {
+            "example" : "lumaserv_api_request_1234",
+            "type" : "string"
+          },
+          "serverTransactionId" : {
+            "example" : "200913214225851845414",
+            "type" : "string"
+          }
+        },
+        "required" : [ "serverTransactionId" ],
+        "title" : "ResponseMetadata",
+        "type" : "object"
+      },
+      "ResponseMessages" : {
+        "example" : {
+          "success" : [ {
+            "code" : 10000,
+            "message" : "Action successfully executed."
+          }, {
+            "code" : 10000,
+            "message" : "Action successfully executed."
+          } ],
+          "warnings" : [ {
+            "code" : 10000,
+            "message" : "Action successfully executed."
+          }, {
+            "code" : 10000,
+            "message" : "Action successfully executed."
+          } ],
+          "errors" : [ {
+            "code" : 10000,
+            "message" : "Action successfully executed."
+          }, {
+            "code" : 10000,
+            "message" : "Action successfully executed."
+          } ]
+        },
+        "properties" : {
+          "warnings" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          },
+          "errors" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          },
+          "success" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "errors", "success", "warnings" ],
+        "title" : "ResponseMessages",
+        "type" : "object",
+        "x-examples" : {
+          "example" : {
+            "warnings" : [ ],
+            "errors" : [ ],
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          }
+        }
+      },
+      "ResponseMessage" : {
+        "example" : {
+          "code" : 10000,
+          "message" : "Action successfully executed."
+        },
+        "properties" : {
+          "code" : {
+            "example" : 10000,
+            "type" : "integer"
+          },
+          "message" : {
+            "example" : "Action successfully executed.",
+            "type" : "string"
+          }
+        },
+        "required" : [ "code", "message" ],
+        "title" : "ResponseMessage",
+        "type" : "object"
+      },
+      "SingleCloudServerResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "template" : "template",
+            "hostname" : "hostname",
+            "cores" : 1,
+            "memory" : 1024,
+            "max_backups" : 0,
+            "max_scheduled_tasks" : 0,
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "id" : 0,
+            "title" : "title",
+            "user" : "user"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/CloudServer"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "GetCloudServerResponse",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "ListCloudServerResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "template" : "template",
+            "hostname" : "hostname",
+            "cores" : 1,
+            "memory" : 1024,
+            "max_backups" : 0,
+            "max_scheduled_tasks" : 0,
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "id" : 0,
+            "title" : "title",
+            "user" : "user"
+          }, {
+            "template" : "template",
+            "hostname" : "hostname",
+            "cores" : 1,
+            "memory" : 1024,
+            "max_backups" : 0,
+            "max_scheduled_tasks" : 0,
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "id" : 0,
+            "title" : "title",
+            "user" : "user"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/CloudServer"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "ListCloudServerResponse",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "EmptyResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "messages", "metadata", "status" ],
+        "title" : "EmptyResponse",
+        "type" : "object"
+      },
+      "SingleFirewallAddressSetResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "id" : 1,
+            "title" : "title",
+            "user" : "user"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/FirewallAddressSet"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "SingleFirewallAddressSetResponse",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "ListFirewallAddressSetResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "id" : 1,
+            "title" : "title",
+            "user" : "user"
+          }, {
+            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "id" : 1,
+            "title" : "title",
+            "user" : "user"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/FirewallAddressSet"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "ListFirewallAddressSetResponse",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "SingleFirewallRuleSetResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "id" : 1,
+            "title" : "title",
+            "user" : "user"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/FirewallRuleSet"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "SingleFirewallRuleSetResponse",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "ListFirewallRuleSetResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "id" : 1,
+            "title" : "title",
+            "user" : "user"
+          }, {
+            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "id" : 1,
+            "title" : "title",
+            "user" : "user"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/FirewallRuleSet"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "ListFirewallRuleSetResponse",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "SingleFirewallAddressResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "cidr" : "cidr",
+            "id" : 1,
+            "title" : "title"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/FirewallAddress"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "SingleFirewallAddressResponse",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "ListFirewallAddressResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "cidr" : "cidr",
+            "id" : 1,
+            "title" : "title"
+          }, {
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "cidr" : "cidr",
+            "id" : 1,
+            "title" : "title"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/FirewallAddress"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "ListFirewallAddressResponse",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "SingleFirewallRuleResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "source_address_set_id" : 5,
+            "destination_address_set_id" : 5,
+            "destination_address" : "destination_address",
+            "destination_port" : "destination_port",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title",
+            "interface" : "net0",
+            "protocol" : "udp",
+            "linked_rule_set_id" : 1,
+            "updated_at" : "2020-01-30 00:00:00",
+            "source_address" : "source_address",
+            "source_port" : "source_port",
+            "action" : "ACCEPT",
+            "id" : 1,
+            "order" : 0,
+            "direction" : "IN"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/FirewallRule"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "SingleFirewallRuleResponse",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "ListFirewallRuleResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "source_address_set_id" : 5,
+            "destination_address_set_id" : 5,
+            "destination_address" : "destination_address",
+            "destination_port" : "destination_port",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title",
+            "interface" : "net0",
+            "protocol" : "udp",
+            "linked_rule_set_id" : 1,
+            "updated_at" : "2020-01-30 00:00:00",
+            "source_address" : "source_address",
+            "source_port" : "source_port",
+            "action" : "ACCEPT",
+            "id" : 1,
+            "order" : 0,
+            "direction" : "IN"
+          }, {
+            "source_address_set_id" : 5,
+            "destination_address_set_id" : 5,
+            "destination_address" : "destination_address",
+            "destination_port" : "destination_port",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title",
+            "interface" : "net0",
+            "protocol" : "udp",
+            "linked_rule_set_id" : 1,
+            "updated_at" : "2020-01-30 00:00:00",
+            "source_address" : "source_address",
+            "source_port" : "source_port",
+            "action" : "ACCEPT",
+            "id" : 1,
+            "order" : 0,
+            "direction" : "IN"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/FirewallRule"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "ListFirewallRuleResponse",
+        "type" : "object",
+        "x-tags" : [ "firewall" ]
+      },
+      "Project" : {
+        "example" : {
+          "updated_at" : "2020-01-30 00:00:00",
+          "description" : "description",
+          "created_at" : "2020-01-30 00:00:00",
+          "title" : "title",
+          "uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91"
+        },
+        "properties" : {
+          "uuid" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          },
+          "updated_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "title" : "Project",
+        "type" : "object",
+        "x-tags" : [ "projects" ],
+        "x-examples" : {
+          "example" : {
+            "uuid" : "095be615-a8ad-4c33-8e9c-c7612fbf6c9f",
+            "title" : "Nice App",
+            "description" : "A really nice app",
+            "created_at" : "2020-01-30 00:00:00",
+            "updated_at" : "2020-01-30 00:00:00"
+          }
+        }
+      },
+      "CreateProjectRequest" : {
+        "example" : {
+          "description" : "description",
+          "title" : "title"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "title" ],
+        "title" : "CreateProjectRequest",
+        "type" : "object",
+        "x-tags" : [ "projects" ]
+      },
+      "UpdateProjectRequest" : {
+        "example" : {
+          "description" : "description",
+          "title" : "title"
+        },
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          }
+        },
+        "title" : "UpdateProjectRequest",
+        "type" : "object",
+        "x-tags" : [ "projects" ]
+      },
+      "SingleProjectResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "updated_at" : "2020-01-30 00:00:00",
+            "description" : "description",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title",
+            "uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Project"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "SingleProjectResponse",
+        "type" : "object",
+        "x-tags" : [ "projects" ]
+      },
+      "ListProjectResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "updated_at" : "2020-01-30 00:00:00",
+            "description" : "description",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title",
+            "uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91"
+          }, {
+            "updated_at" : "2020-01-30 00:00:00",
+            "description" : "description",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title",
+            "uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Project"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "ListProjectResponse",
+        "type" : "object",
+        "x-tags" : [ "projects" ]
+      },
+      "CreateCloudServerInterfaceRequest" : {
+        "example" : {
+          "custom_address" : "custom_address",
+          "network_id" : 1,
+          "primary_ipv4" : "primary_ipv4",
+          "ipv4" : [ "ipv4", "ipv4" ],
+          "custom_gateway" : "custom_gateway"
+        },
+        "properties" : {
+          "network_id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "ipv4" : {
+            "items" : {
+              "format" : "ipv4",
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "primary_ipv4" : {
+            "format" : "ipv4",
+            "type" : "string"
+          },
+          "custom_address" : {
+            "type" : "string"
+          },
+          "custom_gateway" : {
+            "format" : "ipv4",
+            "type" : "string"
+          }
+        },
+        "title" : "CreateCloudServerInterfaceRequest",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ],
+        "x-examples" : { }
+      },
+      "CreateCloudServerStorageRequest" : {
+        "example" : {
+          "replication" : 0,
+          "size" : 5
+        },
+        "properties" : {
+          "size" : {
+            "minimum" : 5,
+            "type" : "integer"
+          },
+          "replication" : {
+            "default" : 2,
+            "minimum" : 0,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "size" ],
+        "title" : "CreateCloudServerStorageRequest",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "SingleCloudServerInterfaceResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "network_id" : 1,
+            "updated_at" : "2020-01-30 00:00:00",
+            "netname" : "netname",
+            "firewall" : true,
+            "mac_address" : "mac_address",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/CloudServerInterface"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "SingleCloudServerInterfaceResponse",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "SingleCloudServerStorageResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "replication" : 6,
+            "is_boot" : true,
+            "size" : 10,
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/CloudServerStorage"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "SingleCloudServerStorageResponse",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "ListCloudServerInterfaceResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "network_id" : 1,
+            "updated_at" : "2020-01-30 00:00:00",
+            "netname" : "netname",
+            "firewall" : true,
+            "mac_address" : "mac_address",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title"
+          }, {
+            "network_id" : 1,
+            "updated_at" : "2020-01-30 00:00:00",
+            "netname" : "netname",
+            "firewall" : true,
+            "mac_address" : "mac_address",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/CloudServerInterface"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "ListCloudServerInterfaceResponse",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "ListCloudServerStorageResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "replication" : 6,
+            "is_boot" : true,
+            "size" : 10,
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title"
+          }, {
+            "replication" : 6,
+            "is_boot" : true,
+            "size" : 10,
+            "updated_at" : "2020-01-30 00:00:00",
+            "created_at" : "2020-01-30 00:00:00",
+            "title" : "title"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/CloudServerStorage"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "ListCloudServerStorageResponse",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "UpdateCloudServerInterfaceRequest" : {
+        "example" : {
+          "custom_address" : "custom_address",
+          "network_id" : 1,
+          "primary_ipv4" : "primary_ipv4",
+          "ipv4" : [ "ipv4", "ipv4" ],
+          "custom_gateway" : "custom_gateway"
+        },
+        "properties" : {
+          "network_id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "ipv4" : {
+            "items" : {
+              "format" : "ipv4",
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "primary_ipv4" : {
+            "format" : "ipv4",
+            "type" : "string"
+          },
+          "custom_address" : {
+            "type" : "string"
+          },
+          "custom_gateway" : {
+            "format" : "ipv4",
+            "type" : "string"
+          }
+        },
+        "title" : "UpdateCloudServerInterfaceRequest",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "UpdateCloudServerStorageRequest" : {
+        "example" : {
+          "size" : 1
+        },
+        "properties" : {
+          "size" : {
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        },
+        "title" : "UpdateCloudServerStorageRequest",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "User" : {
+        "example" : {
+          "gender" : "MALE",
+          "last_name" : "last_name",
+          "created_at" : "2020-01-30 00:00:00",
+          "first_name" : "first_name",
+          "email" : "email",
+          "username" : "username"
+        },
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "gender" : {
+            "enum" : [ "MALE", "FEMALE" ],
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "email" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "created_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "required" : [ "created_at", "email", "username" ],
+        "title" : "User",
+        "type" : "object",
+        "x-tags" : [ "users" ]
+      },
+      "LoginRequest" : {
+        "example" : {
+          "password" : "password",
+          "username" : "username"
+        },
+        "properties" : {
+          "username" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "password", "username" ],
+        "title" : "LoginRequest",
+        "type" : "object",
+        "x-tags" : [ "auth" ]
+      },
+      "LoginResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "token" : "token"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/LoginResponse_data"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "metadata" ],
+        "title" : "LoginResponse",
+        "type" : "object",
+        "x-tags" : [ "auth" ]
+      },
+      "SelfResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "gender" : "MALE",
+            "last_name" : "last_name",
+            "created_at" : "2020-01-30 00:00:00",
+            "first_name" : "first_name",
+            "email" : "email",
+            "username" : "username"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/User"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "title" : "SelfResponse",
+        "type" : "object",
+        "x-tags" : [ "auth" ]
+      },
+      "ListUserResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "gender" : "MALE",
+            "last_name" : "last_name",
+            "created_at" : "2020-01-30 00:00:00",
+            "first_name" : "first_name",
+            "email" : "email",
+            "username" : "username"
+          }, {
+            "gender" : "MALE",
+            "last_name" : "last_name",
+            "created_at" : "2020-01-30 00:00:00",
+            "first_name" : "first_name",
+            "email" : "email",
+            "username" : "username"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/User"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "title" : "ListUserResponse",
+        "type" : "object",
+        "x-tags" : [ "users" ]
+      },
+      "SingleUserResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "gender" : "MALE",
+            "last_name" : "last_name",
+            "created_at" : "2020-01-30 00:00:00",
+            "first_name" : "first_name",
+            "email" : "email",
+            "username" : "username"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/User"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "title" : "SingleUserResponse",
+        "type" : "object",
+        "x-tags" : [ "users" ]
+      },
+      "UpdateUserRequest" : {
+        "example" : {
+          "email" : "email"
+        },
+        "properties" : {
+          "email" : {
+            "type" : "string"
+          }
+        },
+        "title" : "UpdateUserRequest",
+        "type" : "object",
+        "x-tags" : [ "users" ]
+      },
+      "Network" : {
+        "example" : {
+          "updated_at" : "2020-01-30 00:00:00",
+          "is_public" : true,
+          "description" : "description",
+          "created_at" : "2020-01-30 00:00:00",
+          "id" : 1,
+          "title" : "title",
+          "user" : "user"
+        },
+        "properties" : {
+          "id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "is_public" : {
+            "type" : "boolean"
+          },
+          "user" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          },
+          "updated_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "required" : [ "created_at", "id", "is_public", "updated_at", "user" ],
+        "title" : "Network",
+        "type" : "object",
+        "x-tags" : [ "networks" ]
+      },
+      "ListNetworkResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "updated_at" : "2020-01-30 00:00:00",
+            "is_public" : true,
+            "description" : "description",
+            "created_at" : "2020-01-30 00:00:00",
+            "id" : 1,
+            "title" : "title",
+            "user" : "user"
+          }, {
+            "updated_at" : "2020-01-30 00:00:00",
+            "is_public" : true,
+            "description" : "description",
+            "created_at" : "2020-01-30 00:00:00",
+            "id" : 1,
+            "title" : "title",
+            "user" : "user"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Network"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "title" : "ListNetworkResponse",
+        "type" : "object",
+        "x-tags" : [ "networks" ]
+      },
+      "LoginResponse_data" : {
+        "example" : {
+          "token" : "token"
+        },
+        "properties" : {
+          "token" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "AuthToken" : {
+        "scheme" : "bearer",
+        "type" : "http"
+      }
+    }
+  }
+}
