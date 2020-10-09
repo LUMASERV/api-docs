@@ -11,7 +11,7 @@
   },
   "servers" : [ {
     "description" : "Live",
-    "url" : "https://connect.nicapi.eu/api/v1"
+    "url" : "https://connect.nicapi.eu/api/v2"
   } ],
   "security" : [ {
     "AuthToken" : [ ]
