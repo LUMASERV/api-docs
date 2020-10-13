@@ -18,6 +18,7 @@ tags:
   - name: auth
   - name: users
   - name: networks
+  - name: addresses
 paths:
   /cloud/servers:
     get:
@@ -978,6 +979,87 @@ paths:
                 $ref: '#/components/schemas/ListNetworkResponse'
       operationId: getNetworks
       description: Returns all networks
+  /addresses:
+    get:
+      summary: getAddresses
+      tags:
+        - addresses
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAddressResponse'
+      operationId: getAddresses
+      description: Returns all accessible addresses
+    post:
+      summary: createAddress
+      operationId: createAddress
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleAddressResponse'
+      tags:
+        - addresses
+      description: Order a new address
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAddressRequest'
+  '/addresses/{address}':
+    parameters:
+      - schema:
+          type: string
+          format: ipv4
+        name: address
+        in: path
+        required: true
+        description: ''
+    get:
+      summary: getAddress
+      tags:
+        - addresses
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleAddressResponse'
+      operationId: getAddress
+      description: Returns a single address
+    put:
+      summary: updateAddress
+      operationId: updateAddress
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleAddressResponse'
+      tags:
+        - addresses
+      description: Updates the address
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAddressRequest'
+    delete:
+      summary: deleteAddress
+      operationId: deleteAddress
+      responses:
+        '200':
+          description: OK
+      description: Deletes the address
+      tags:
+        - addresses
 components:
   schemas:
     CloudServer:
@@ -2169,6 +2251,81 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+    Address:
+      title: Address
+      type: object
+      x-tags:
+        - addresses
+      properties:
+        address:
+          type: string
+        reserved:
+          type: string
+        rdns:
+          type: string
+        created_at:
+          $ref: '#/components/schemas/Timestamp'
+        updated_at:
+          $ref: '#/components/schemas/Timestamp'
+      required:
+        - address
+        - created_at
+        - updated_at
+    ListAddressResponse:
+      title: ListAddressResponse
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
+      x-tags:
+        - addresses
+    SingleAddressResponse:
+      title: SingleAddressResponse
+      type: object
+      x-tags:
+        - addresses
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/Address'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - data
+        - status
+        - messages
+    CreateAddressRequest:
+      title: CreateAddressRequest
+      type: object
+      x-tags:
+        - addresses
+    UpdateAddressRequest:
+      title: UpdateAddressRequest
+      type: object
+      x-tags:
+        - addresses
+      properties:
+        reserved:
+          type: string
+        rdns:
+          type: string
   securitySchemes:
     AuthToken:
       type: http
