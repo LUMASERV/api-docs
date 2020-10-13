@@ -30,6 +30,8 @@
     "name" : "users"
   }, {
     "name" : "networks"
+  }, {
+    "name" : "addresses"
   } ],
   "paths" : {
     "/cloud/servers" : {
@@ -1817,6 +1819,144 @@
         },
         "summary" : "getNetworks",
         "tags" : [ "networks" ]
+      }
+    },
+    "/addresses" : {
+      "get" : {
+        "description" : "Returns all accessible addresses",
+        "operationId" : "getAddresses",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListAddressResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getAddresses",
+        "tags" : [ "addresses" ]
+      },
+      "post" : {
+        "description" : "Order a new address",
+        "operationId" : "createAddress",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateAddressRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleAddressResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "createAddress",
+        "tags" : [ "addresses" ]
+      }
+    },
+    "/addresses/{address}" : {
+      "delete" : {
+        "description" : "Deletes the address",
+        "operationId" : "deleteAddress",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "address",
+          "required" : true,
+          "schema" : {
+            "format" : "ipv4",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteAddress",
+        "tags" : [ "addresses" ]
+      },
+      "get" : {
+        "description" : "Returns a single address",
+        "operationId" : "getAddress",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "address",
+          "required" : true,
+          "schema" : {
+            "format" : "ipv4",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleAddressResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getAddress",
+        "tags" : [ "addresses" ]
+      },
+      "put" : {
+        "description" : "Updates the address",
+        "operationId" : "updateAddress",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "address",
+          "required" : true,
+          "schema" : {
+            "format" : "ipv4",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateAddressRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleAddressResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "updateAddress",
+        "tags" : [ "addresses" ]
       }
     }
   },
@@ -4352,6 +4492,181 @@
         "title" : "ListNetworkResponse",
         "type" : "object",
         "x-tags" : [ "networks" ]
+      },
+      "Address" : {
+        "example" : {
+          "rdns" : "rdns",
+          "address" : "address",
+          "updated_at" : "2020-01-30 00:00:00",
+          "reserved" : "reserved",
+          "created_at" : "2020-01-30 00:00:00"
+        },
+        "properties" : {
+          "address" : {
+            "type" : "string"
+          },
+          "reserved" : {
+            "type" : "string"
+          },
+          "rdns" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          },
+          "updated_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "required" : [ "address", "created_at", "updated_at" ],
+        "title" : "Address",
+        "type" : "object",
+        "x-tags" : [ "addresses" ]
+      },
+      "ListAddressResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "rdns" : "rdns",
+            "address" : "address",
+            "updated_at" : "2020-01-30 00:00:00",
+            "reserved" : "reserved",
+            "created_at" : "2020-01-30 00:00:00"
+          }, {
+            "rdns" : "rdns",
+            "address" : "address",
+            "updated_at" : "2020-01-30 00:00:00",
+            "reserved" : "reserved",
+            "created_at" : "2020-01-30 00:00:00"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Address"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "ListAddressResponse",
+        "type" : "object",
+        "x-tags" : [ "addresses" ]
+      },
+      "SingleAddressResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "rdns" : "rdns",
+            "address" : "address",
+            "updated_at" : "2020-01-30 00:00:00",
+            "reserved" : "reserved",
+            "created_at" : "2020-01-30 00:00:00"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Address"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "SingleAddressResponse",
+        "type" : "object",
+        "x-tags" : [ "addresses" ]
+      },
+      "CreateAddressRequest" : {
+        "title" : "CreateAddressRequest",
+        "type" : "object",
+        "x-tags" : [ "addresses" ]
+      },
+      "UpdateAddressRequest" : {
+        "example" : {
+          "rdns" : "rdns",
+          "reserved" : "reserved"
+        },
+        "properties" : {
+          "reserved" : {
+            "type" : "string"
+          },
+          "rdns" : {
+            "type" : "string"
+          }
+        },
+        "title" : "UpdateAddressRequest",
+        "type" : "object",
+        "x-tags" : [ "addresses" ]
       },
       "LoginResponse_data" : {
         "example" : {
