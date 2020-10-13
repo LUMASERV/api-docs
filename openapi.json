@@ -2402,8 +2402,8 @@
             "ipv4" : [ "ipv4", "ipv4" ],
             "custom_gateway" : "custom_gateway"
           } ],
-          "cores" : "cores",
-          "memory" : "memory",
+          "cores" : 0,
+          "memory" : 1024,
           "title" : "title"
         },
         "properties" : {
@@ -2415,10 +2415,11 @@
             "type" : "string"
           },
           "cores" : {
-            "type" : "string"
+            "type" : "integer"
           },
           "memory" : {
-            "type" : "string"
+            "minimum" : 1024,
+            "type" : "integer"
           },
           "template" : {
             "type" : "string"
@@ -2688,7 +2689,7 @@
         "example" : {
           "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
           "cores" : 0,
-          "memory" : 6,
+          "memory" : 1024,
           "title" : "title"
         },
         "properties" : {
@@ -2703,6 +2704,7 @@
             "type" : "integer"
           },
           "memory" : {
+            "minimum" : 1024,
             "type" : "integer"
           }
         },
