@@ -7,7 +7,7 @@ info:
     email: support@lumaserv.com
   description: LUMASERV API
 servers:
-  - url: 'https://connect.nicapi.eu/api/v1'
+  - url: 'https://connect.nicapi.eu/api/v2'
     description: Live
 tags:
   - name: cloudserver
