@@ -1392,9 +1392,10 @@ components:
           type: string
           format: uuid
         cores:
-          type: string
+          type: integer
         memory:
-          type: string
+          type: integer
+          minimum: 1024
         template:
           type: string
         password:
@@ -1597,6 +1598,7 @@ components:
           type: integer
         memory:
           type: integer
+          minimum: 1024
     ResponseMetadata:
       title: ResponseMetadata
       type: object
