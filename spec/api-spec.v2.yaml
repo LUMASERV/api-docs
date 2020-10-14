@@ -1396,6 +1396,7 @@ components:
         memory:
           type: integer
           minimum: 1024
+          multipleOf: 1024
         template:
           type: string
         password:
@@ -1599,6 +1600,7 @@ components:
         memory:
           type: integer
           minimum: 1024
+          multipleOf: 1024
     ResponseMetadata:
       title: ResponseMetadata
       type: object
