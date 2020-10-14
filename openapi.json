@@ -1974,15 +1974,11 @@
           "updated_at" : "2020-01-30 00:00:00",
           "created_at" : "2020-01-30 00:00:00",
           "id" : 0,
-          "title" : "title",
-          "user" : "user"
+          "title" : "title"
         },
         "properties" : {
           "id" : {
             "type" : "integer"
-          },
-          "user" : {
-            "type" : "string"
           },
           "title" : {
             "type" : "string"
@@ -2018,7 +2014,7 @@
             "$ref" : "#/components/schemas/Timestamp"
           }
         },
-        "required" : [ "cores", "created_at", "hostname", "id", "max_backups", "max_scheduled_tasks", "memory", "template", "updated_at", "user" ],
+        "required" : [ "cores", "created_at", "hostname", "id", "max_backups", "max_scheduled_tasks", "memory", "template", "updated_at" ],
         "title" : "CloudServer",
         "type" : "object",
         "x-tags" : [ "cloudserver" ],
@@ -2185,20 +2181,12 @@
           "updated_at" : "2020-01-30 00:00:00",
           "created_at" : "2020-01-30 00:00:00",
           "id" : 1,
-          "title" : "title",
-          "user" : "user"
+          "title" : "title"
         },
         "properties" : {
           "id" : {
             "minimum" : 1,
             "type" : "integer"
-          },
-          "user" : {
-            "type" : "string"
-          },
-          "project_uuid" : {
-            "format" : "uuid",
-            "type" : "string"
           },
           "title" : {
             "type" : "string"
@@ -2208,9 +2196,13 @@
           },
           "updated_at" : {
             "$ref" : "#/components/schemas/Timestamp"
+          },
+          "project_uuid" : {
+            "format" : "uuid",
+            "type" : "string"
           }
         },
-        "required" : [ "created_at", "id", "title", "updated_at", "user" ],
+        "required" : [ "created_at", "id", "project_uuid", "title", "updated_at" ],
         "title" : "FirewallAddressSet",
         "type" : "object",
         "x-tags" : [ "cloudserver" ],
@@ -2331,16 +2323,12 @@
           "updated_at" : "2020-01-30 00:00:00",
           "created_at" : "2020-01-30 00:00:00",
           "id" : 1,
-          "title" : "title",
-          "user" : "user"
+          "title" : "title"
         },
         "properties" : {
           "id" : {
             "minimum" : 1,
             "type" : "integer"
-          },
-          "user" : {
-            "type" : "string"
           },
           "title" : {
             "type" : "string"
@@ -2356,7 +2344,7 @@
             "$ref" : "#/components/schemas/Timestamp"
           }
         },
-        "required" : [ "created_at", "id", "title", "updated_at", "user" ],
+        "required" : [ "created_at", "id", "project_uuid", "title", "updated_at" ],
         "title" : "FirewallRuleSet",
         "type" : "object",
         "x-tags" : [ "cloudserver" ],
@@ -2402,8 +2390,8 @@
             "ipv4" : [ "ipv4", "ipv4" ],
             "custom_gateway" : "custom_gateway"
           } ],
-          "cores" : 0,
-          "memory" : 1024,
+          "cores" : "cores",
+          "memory" : "memory",
           "title" : "title"
         },
         "properties" : {
@@ -2415,12 +2403,10 @@
             "type" : "string"
           },
           "cores" : {
-            "type" : "integer"
+            "type" : "string"
           },
           "memory" : {
-            "minimum" : 1024,
-            "multipleOf" : 1024,
-            "type" : "integer"
+            "type" : "string"
           },
           "template" : {
             "type" : "string"
@@ -2442,7 +2428,7 @@
             "type" : "array"
           }
         },
-        "required" : [ "cores", "interfaces", "memory", "storages", "template" ],
+        "required" : [ "cores", "interfaces", "memory", "project_uuid", "storages", "template" ],
         "title" : "CreateCloudServerRequest",
         "type" : "object",
         "x-tags" : [ "cloudserver" ]
@@ -2461,7 +2447,7 @@
             "type" : "string"
           }
         },
-        "required" : [ "title" ],
+        "required" : [ "project_uuid", "title" ],
         "title" : "CreateFirewallRuleSetRequest",
         "type" : "object",
         "x-tags" : [ "firewall" ]
@@ -2480,7 +2466,7 @@
             "type" : "string"
           }
         },
-        "required" : [ "title" ],
+        "required" : [ "project_uuid", "title" ],
         "title" : "CreateFirewallAddressSetRequest",
         "type" : "object",
         "x-tags" : [ "firewall" ]
@@ -2690,7 +2676,7 @@
         "example" : {
           "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
           "cores" : 0,
-          "memory" : 1024,
+          "memory" : 6,
           "title" : "title"
         },
         "properties" : {
@@ -2705,8 +2691,6 @@
             "type" : "integer"
           },
           "memory" : {
-            "minimum" : 1024,
-            "multipleOf" : 1024,
             "type" : "integer"
           }
         },
@@ -2826,8 +2810,7 @@
             "updated_at" : "2020-01-30 00:00:00",
             "created_at" : "2020-01-30 00:00:00",
             "id" : 0,
-            "title" : "title",
-            "user" : "user"
+            "title" : "title"
           },
           "messages" : {
             "success" : [ {
@@ -2889,8 +2872,7 @@
             "updated_at" : "2020-01-30 00:00:00",
             "created_at" : "2020-01-30 00:00:00",
             "id" : 0,
-            "title" : "title",
-            "user" : "user"
+            "title" : "title"
           }, {
             "template" : "template",
             "hostname" : "hostname",
@@ -2901,8 +2883,7 @@
             "updated_at" : "2020-01-30 00:00:00",
             "created_at" : "2020-01-30 00:00:00",
             "id" : 0,
-            "title" : "title",
-            "user" : "user"
+            "title" : "title"
           } ],
           "messages" : {
             "success" : [ {
@@ -3008,8 +2989,7 @@
             "updated_at" : "2020-01-30 00:00:00",
             "created_at" : "2020-01-30 00:00:00",
             "id" : 1,
-            "title" : "title",
-            "user" : "user"
+            "title" : "title"
           },
           "messages" : {
             "success" : [ {
@@ -3066,15 +3046,13 @@
             "updated_at" : "2020-01-30 00:00:00",
             "created_at" : "2020-01-30 00:00:00",
             "id" : 1,
-            "title" : "title",
-            "user" : "user"
+            "title" : "title"
           }, {
             "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
             "updated_at" : "2020-01-30 00:00:00",
             "created_at" : "2020-01-30 00:00:00",
             "id" : 1,
-            "title" : "title",
-            "user" : "user"
+            "title" : "title"
           } ],
           "messages" : {
             "success" : [ {
@@ -3134,8 +3112,7 @@
             "updated_at" : "2020-01-30 00:00:00",
             "created_at" : "2020-01-30 00:00:00",
             "id" : 1,
-            "title" : "title",
-            "user" : "user"
+            "title" : "title"
           },
           "messages" : {
             "success" : [ {
@@ -3192,15 +3169,13 @@
             "updated_at" : "2020-01-30 00:00:00",
             "created_at" : "2020-01-30 00:00:00",
             "id" : 1,
-            "title" : "title",
-            "user" : "user"
+            "title" : "title"
           }, {
             "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
             "updated_at" : "2020-01-30 00:00:00",
             "created_at" : "2020-01-30 00:00:00",
             "id" : 1,
-            "title" : "title",
-            "user" : "user"
+            "title" : "title"
           } ],
           "messages" : {
             "success" : [ {
