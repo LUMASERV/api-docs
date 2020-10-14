@@ -2419,6 +2419,7 @@
           },
           "memory" : {
             "minimum" : 1024,
+            "multipleOf" : 1024,
             "type" : "integer"
           },
           "template" : {
@@ -2705,6 +2706,7 @@
           },
           "memory" : {
             "minimum" : 1024,
+            "multipleOf" : 1024,
             "type" : "integer"
           }
         },
