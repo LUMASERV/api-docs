@@ -1084,8 +1084,6 @@ components:
       properties:
         id:
           type: integer
-        user:
-          type: string
         title:
           type: string
         hostname:
@@ -1112,7 +1110,6 @@ components:
           $ref: '#/components/schemas/Timestamp'
       required:
         - id
-        - user
         - hostname
         - cores
         - memory
@@ -1245,23 +1242,21 @@ components:
         id:
           type: integer
           minimum: 1
-        user:
-          type: string
-        project_uuid:
-          type: string
-          format: uuid
         title:
           type: string
         created_at:
           $ref: '#/components/schemas/Timestamp'
         updated_at:
           $ref: '#/components/schemas/Timestamp'
+        project_uuid:
+          type: string
+          format: uuid
       required:
         - id
-        - user
         - title
         - created_at
         - updated_at
+        - project_uuid
     FirewallRule:
       title: FirewallRule
       type: object
@@ -1358,8 +1353,6 @@ components:
         id:
           type: integer
           minimum: 1
-        user:
-          type: string
         title:
           type: string
         project_uuid:
@@ -1371,8 +1364,8 @@ components:
           $ref: '#/components/schemas/Timestamp'
       required:
         - id
-        - user
         - title
+        - project_uuid
         - created_at
         - updated_at
     Timestamp:
@@ -1392,11 +1385,9 @@ components:
           type: string
           format: uuid
         cores:
-          type: integer
+          type: string
         memory:
-          type: integer
-          minimum: 1024
-          multipleOf: 1024
+          type: string
         template:
           type: string
         password:
@@ -1411,6 +1402,7 @@ components:
           items:
             $ref: '#/components/schemas/CreateCloudServerInterfaceRequest'
       required:
+        - project_uuid
         - cores
         - memory
         - template
@@ -1429,9 +1421,12 @@ components:
           format: uuid
       required:
         - title
+        - project_uuid
     CreateFirewallAddressSetRequest:
       title: CreateFirewallAddressSetRequest
       type: object
+      x-tags:
+        - firewall
       properties:
         title:
           type: string
@@ -1440,8 +1435,7 @@ components:
           format: uuid
       required:
         - title
-      x-tags:
-        - firewall
+        - project_uuid
     CreateFirewallAddressRequest:
       title: CreateFirewallAddressRequest
       type: object
@@ -1599,8 +1593,6 @@ components:
           type: integer
         memory:
           type: integer
-          minimum: 1024
-          multipleOf: 1024
     ResponseMetadata:
       title: ResponseMetadata
       type: object
