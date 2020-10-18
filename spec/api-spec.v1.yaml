@@ -294,6 +294,7 @@ paths:
           description: OK
       tags:
         - firewall
+      description: ''
   '/cloud/firewall/address-sets/{id}/addresses/{cidr}':
     parameters:
       - schema:
@@ -329,6 +330,71 @@ paths:
           description: OK
       tags:
         - firewall
+  '/cloud/severs/{id}/start':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: startCloudServer
+      tags: []
+      responses: {}
+      operationId: post-cloud-severs-id-start
+  '/cloud/severs/{id}/stop':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: stopCloudServer
+      tags:
+        - cloudserver
+      responses: {}
+      operationId: post-cloud-severs-id-stop
+  '/cloud/severs/{id}/restart':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: restartCloudServer
+      tags:
+        - cloudserver
+      responses: {}
+      operationId: post-cloud-severs-id-restart
+  '/cloud/severs/{id}/shutdown':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: shutdownCloudServer
+      tags:
+        - cloudserver
+      responses: {}
+      operationId: post-cloud-severs-id-shutdown
+  '/cloud/severs/{id}/restore':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: restoreCloudServerBackup
+      tags:
+        - cloudserver
+      responses: {}
+      operationId: post-cloud-severs-id-restore
+      description: ''
 components:
   schemas:
     CloudServer:
