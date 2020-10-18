@@ -1171,6 +1171,12 @@ paths:
       tags:
         - cloudserver
       description: Creates a backup of the cloud server
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCloudServerBackupRequest'
+        description: ''
     get:
       summary: getCloudServerBackups
       operationId: getCloudServerBackups
