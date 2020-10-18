@@ -1145,6 +1145,11 @@ paths:
       tags:
         - cloudserver
       description: Restores the cloud server from a backup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestoreCloudServerRequest'
   '/cloud/servers/{id}/backups':
     parameters:
       - schema:
@@ -1159,9 +1164,39 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerBackupResponse'
       tags:
         - cloudserver
       description: Creates a backup of the cloud server
+    get:
+      summary: getCloudServerBackups
+      operationId: getCloudServerBackups
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCloudServerBackupResponse'
+      tags:
+        - cloudserver
+      description: Returns all backups of the cloud server
+  /cloud/servers/backups:
+    get:
+      summary: getAllCloudServerBackups
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCloudServerBackupResponse'
+      operationId: getAllCloudServerBackups
+      description: Returns all cloud server backups
 components:
   schemas:
     CloudServer:
@@ -2424,6 +2459,55 @@ components:
           type: string
         rdns:
           type: string
+    CloudServerBackup:
+      title: CloudServerBackup
+      type: object
+      properties:
+        id:
+          type: string
+      x-tags:
+        - cloudserver
+    ListCloudServerBackupResponse:
+      title: ListCloudServerBackupResponse
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudServerBackup'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    SingleCloudServerBackupResponse:
+      title: SingleCloudServerBackupResponse
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/CloudServerBackup'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    RestoreCloudServerRequest:
+      title: RestoreCloudServerRequest
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        backup_id:
+          type: integer
+          minimum: 1
+      required:
+        - backup_id
   securitySchemes:
     AuthToken:
       type: http
