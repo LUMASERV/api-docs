@@ -1060,6 +1060,108 @@ paths:
       description: Deletes the address
       tags:
         - addresses
+  '/cloud/servers/{id}/start':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    post:
+      summary: startCloudServer
+      operationId: startCloudServer
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cloudserver
+      description: Starts the cloud server
+  '/cloud/servers/{id}/shutdown':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    post:
+      summary: shutdownCloudServer
+      operationId: shutdownCloudServer
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cloudserver
+      description: Shuts down the cloud server
+  '/cloud/servers/{id}/stop':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    post:
+      summary: stopCloudServer
+      operationId: stopCloudServer
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cloudserver
+      description: Stops the cloud server
+  '/cloud/servers/{id}/restart':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    post:
+      summary: restartCloudServer
+      operationId: restartCloudServer
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cloudserver
+      description: Restarts the cloud server
+  '/cloud/servers/{id}/restore':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    post:
+      summary: restoreCloudServer
+      operationId: restoreCloudServer
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cloudserver
+      description: Restores the cloud server from a backup
+  '/cloud/servers/{id}/backups':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    post:
+      summary: createCloudServerBackup
+      operationId: createCloudServerBackup
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cloudserver
+      description: Creates a backup of the cloud server
 components:
   schemas:
     CloudServer:
