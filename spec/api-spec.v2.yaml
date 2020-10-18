@@ -2463,11 +2463,15 @@ components:
     CloudServerBackup:
       title: CloudServerBackup
       type: object
-      properties:
-        id:
-          type: string
       x-tags:
         - cloudserver
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+      required:
+        - id
     ListCloudServerBackupResponse:
       title: ListCloudServerBackupResponse
       type: object
@@ -2509,6 +2513,14 @@ components:
           minimum: 1
       required:
         - backup_id
+    CreateCloudServerBackupRequest:
+      title: CreateCloudServerBackupRequest
+      type: object
+      properties:
+        title:
+          type: string
+      x-tags:
+        - cloudserver
   securitySchemes:
     AuthToken:
       type: http
