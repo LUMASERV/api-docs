@@ -2132,6 +2132,15 @@
           },
           "style" : "simple"
         } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCloudServerBackupRequest"
+              }
+            }
+          }
+        },
         "responses" : {
           "200" : {
             "content" : {
@@ -5002,6 +5011,9 @@
         "x-tags" : [ "cloudserver" ]
       },
       "CreateCloudServerBackupRequest" : {
+        "example" : {
+          "title" : "title"
+        },
         "properties" : {
           "title" : {
             "type" : "string"
