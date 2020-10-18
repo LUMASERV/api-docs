@@ -2070,6 +2070,15 @@
           },
           "style" : "simple"
         } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RestoreCloudServerRequest"
+              }
+            }
+          }
+        },
         "responses" : {
           "200" : {
             "description" : "OK"
@@ -2080,6 +2089,35 @@
       }
     },
     "/cloud/servers/{id}/backups" : {
+      "get" : {
+        "description" : "Returns all backups of the cloud server",
+        "operationId" : "getCloudServerBackups",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCloudServerBackupResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServerBackups",
+        "tags" : [ "cloudserver" ]
+      },
       "post" : {
         "description" : "Creates a backup of the cloud server",
         "operationId" : "createCloudServerBackup",
@@ -2096,11 +2134,38 @@
         } ],
         "responses" : {
           "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerBackupResponse"
+                }
+              }
+            },
             "description" : "OK"
           }
         },
         "summary" : "createCloudServerBackup",
         "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/backups" : {
+      "get" : {
+        "description" : "Returns all cloud server backups",
+        "operationId" : "getAllCloudServerBackups",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCloudServerBackupResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getAllCloudServerBackups",
+        "tags" : [ ]
       }
     }
   },
@@ -4790,6 +4855,143 @@
         "title" : "UpdateAddressRequest",
         "type" : "object",
         "x-tags" : [ "addresses" ]
+      },
+      "CloudServerBackup" : {
+        "example" : {
+          "id" : "id"
+        },
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          }
+        },
+        "title" : "CloudServerBackup",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "ListCloudServerBackupResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "id" : "id"
+          }, {
+            "id" : "id"
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/CloudServerBackup"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "title" : "ListCloudServerBackupResponse",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "SingleCloudServerBackupResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "id" : "id"
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/CloudServerBackup"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "title" : "SingleCloudServerBackupResponse",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "RestoreCloudServerRequest" : {
+        "example" : {
+          "backup_id" : 1
+        },
+        "properties" : {
+          "backup_id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "backup_id" ],
+        "title" : "RestoreCloudServerRequest",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
       },
       "LoginResponse_data" : {
         "example" : {
