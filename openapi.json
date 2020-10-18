@@ -4858,13 +4858,18 @@
       },
       "CloudServerBackup" : {
         "example" : {
-          "id" : "id"
+          "id" : 0,
+          "title" : "title"
         },
         "properties" : {
           "id" : {
+            "type" : "integer"
+          },
+          "title" : {
             "type" : "string"
           }
         },
+        "required" : [ "id" ],
         "title" : "CloudServerBackup",
         "type" : "object",
         "x-tags" : [ "cloudserver" ]
@@ -4876,9 +4881,11 @@
             "clientTransactionId" : "lumaserv_api_request_1234"
           },
           "data" : [ {
-            "id" : "id"
+            "id" : 0,
+            "title" : "title"
           }, {
-            "id" : "id"
+            "id" : 0,
+            "title" : "title"
           } ],
           "messages" : {
             "success" : [ {
@@ -4933,7 +4940,8 @@
             "clientTransactionId" : "lumaserv_api_request_1234"
           },
           "data" : {
-            "id" : "id"
+            "id" : 0,
+            "title" : "title"
           },
           "messages" : {
             "success" : [ {
@@ -4990,6 +4998,16 @@
         },
         "required" : [ "backup_id" ],
         "title" : "RestoreCloudServerRequest",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "CreateCloudServerBackupRequest" : {
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "title" : "CreateCloudServerBackupRequest",
         "type" : "object",
         "x-tags" : [ "cloudserver" ]
       },
