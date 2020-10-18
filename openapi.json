@@ -1958,6 +1958,150 @@
         "summary" : "updateAddress",
         "tags" : [ "addresses" ]
       }
+    },
+    "/cloud/servers/{id}/start" : {
+      "post" : {
+        "description" : "Starts the cloud server",
+        "operationId" : "startCloudServer",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "startCloudServer",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/shutdown" : {
+      "post" : {
+        "description" : "Shuts down the cloud server",
+        "operationId" : "shutdownCloudServer",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "shutdownCloudServer",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/stop" : {
+      "post" : {
+        "description" : "Stops the cloud server",
+        "operationId" : "stopCloudServer",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "stopCloudServer",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/restart" : {
+      "post" : {
+        "description" : "Restarts the cloud server",
+        "operationId" : "restartCloudServer",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "restartCloudServer",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/restore" : {
+      "post" : {
+        "description" : "Restores the cloud server from a backup",
+        "operationId" : "restoreCloudServer",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "restoreCloudServer",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/backups" : {
+      "post" : {
+        "description" : "Creates a backup of the cloud server",
+        "operationId" : "createCloudServerBackup",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "createCloudServerBackup",
+        "tags" : [ "cloudserver" ]
+      }
     }
   },
   "components" : {
