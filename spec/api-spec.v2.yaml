@@ -1204,6 +1204,68 @@ paths:
                 $ref: '#/components/schemas/ListCloudServerBackupResponse'
       operationId: getAllCloudServerBackups
       description: Returns all cloud server backups
+  '/cloud/servers/{id}/scheduled-tasks':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getCloudServerScheduledTasks
+      tags:
+        - cloudserver
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCloudServerScheduledTaskResponse'
+      operationId: getCloudServerScheduledTasks
+      description: Return the scheduled tasks for the cloud server
+    post:
+      summary: createCloudServerScheduledTask
+      operationId: createCloudServerScheduledTask
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerScheduledTaskResponse'
+      tags:
+        - cloudserver
+      description: Creates a new scheduled task for the cloud server
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCloudServerScheduledTaskRequest'
+  '/cloud/servers/{id}/scheduled-tasks/{task_id}':
+    parameters:
+      - schema:
+          type: integer
+          minimum: 1
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: integer
+          minimum: 1
+        name: task_id
+        in: path
+        required: true
+    delete:
+      summary: deleteCloudServerScheduledTask
+      operationId: deleteCloudServerScheduledTask
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cloudserver
+      description: Deletes the scheduled task
 components:
   schemas:
     CloudServer:
@@ -2527,6 +2589,71 @@ components:
           type: string
       x-tags:
         - cloudserver
+    CloudServerScheduledTask:
+      title: CloudServerScheduledTask
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        id:
+          type: integer
+    ListCloudServerScheduledTaskResponse:
+      title: ListCloudServerScheduledTaskResponse
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudServerScheduledTask'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    SingleCloudServerScheduledTaskResponse:
+      title: SingleCloudServerScheduledTaskResponse
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        metadata:
+          type: string
+        data:
+          type: string
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    CreateCloudServerScheduledTaskRequest:
+      title: CreateCloudServerScheduledTaskRequest
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        action:
+          type: string
+          enum:
+            - start
+            - stop
+            - shutdown
+            - restart
+            - backup
+        interval:
+          type: string
+          enum:
+            - hour
+            - day
+            - week
+            - month
+            - year
+        next_execution_at:
+          $ref: '#/components/schemas/Timestamp'
+      required:
+        - action
+        - interval
   securitySchemes:
     AuthToken:
       type: http
