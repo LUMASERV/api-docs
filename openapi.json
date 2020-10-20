@@ -2176,6 +2176,109 @@
         "summary" : "getAllCloudServerBackups",
         "tags" : [ "cloudserver" ]
       }
+    },
+    "/cloud/servers/{id}/scheduled-tasks" : {
+      "get" : {
+        "description" : "Return the scheduled tasks for the cloud server",
+        "operationId" : "getCloudServerScheduledTasks",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCloudServerScheduledTaskResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServerScheduledTasks",
+        "tags" : [ "cloudserver" ]
+      },
+      "post" : {
+        "description" : "Creates a new scheduled task for the cloud server",
+        "operationId" : "createCloudServerScheduledTask",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCloudServerScheduledTaskRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerScheduledTaskResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "createCloudServerScheduledTask",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/scheduled-tasks/{task_id}" : {
+      "delete" : {
+        "description" : "Deletes the scheduled task",
+        "operationId" : "deleteCloudServerScheduledTask",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        }, {
+          "explode" : false,
+          "in" : "path",
+          "name" : "task_id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteCloudServerScheduledTask",
+        "tags" : [ "cloudserver" ]
+      }
     }
   },
   "components" : {
@@ -5020,6 +5123,147 @@
           }
         },
         "title" : "CreateCloudServerBackupRequest",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "CloudServerScheduledTask" : {
+        "example" : {
+          "id" : 0
+        },
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          }
+        },
+        "title" : "CloudServerScheduledTask",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "ListCloudServerScheduledTaskResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "id" : 0
+          }, {
+            "id" : 0
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/CloudServerScheduledTask"
+            },
+            "type" : "array"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "title" : "ListCloudServerScheduledTaskResponse",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "SingleCloudServerScheduledTaskResponse" : {
+        "example" : {
+          "metadata" : "metadata",
+          "data" : "data",
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "type" : "string"
+          },
+          "data" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "title" : "SingleCloudServerScheduledTaskResponse",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "CreateCloudServerScheduledTaskRequest" : {
+        "example" : {
+          "next_execution_at" : "2020-01-30 00:00:00",
+          "action" : "start",
+          "interval" : "hour"
+        },
+        "properties" : {
+          "action" : {
+            "enum" : [ "start", "stop", "shutdown", "restart", "backup" ],
+            "type" : "string"
+          },
+          "interval" : {
+            "enum" : [ "hour", "day", "week", "month", "year" ],
+            "type" : "string"
+          },
+          "next_execution_at" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          }
+        },
+        "required" : [ "action", "interval" ],
+        "title" : "CreateCloudServerScheduledTaskRequest",
         "type" : "object",
         "x-tags" : [ "cloudserver" ]
       },
