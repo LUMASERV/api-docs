@@ -2302,6 +2302,7 @@
         "tags" : [ "customers" ]
       },
       "post" : {
+        "deprecated" : true,
         "description" : "Creates a new customer",
         "operationId" : "createCustomer",
         "requestBody" : {
