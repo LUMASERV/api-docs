@@ -1299,6 +1299,7 @@ paths:
               $ref: '#/components/schemas/CreateCustomerRequest'
       tags:
         - cloudserver
+      deprecated: true
     parameters: []
   '/customers/{customer_id}':
     parameters:
