@@ -1266,6 +1266,55 @@ paths:
       tags:
         - cloudserver
       description: Deletes the scheduled task
+  /customers:
+    get:
+      summary: getCustomers
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomerResponse'
+      operationId: getCustomers
+      description: Retrieves the accessible customers
+    post:
+      summary: ''
+      operationId: createCustomer
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCustomerResponse'
+      description: Creates a new customer; currently only available for administrators
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerRequest'
+    parameters: []
+  '/customers/{customer_id}':
+    parameters:
+      - schema:
+          type: string
+        name: customer_id
+        in: path
+        required: true
+    get:
+      summary: getCustomer
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCustomerResponse'
+      operationId: getCustomer
+      description: Retrieves the customer specified by the id
 components:
   schemas:
     CloudServer:
@@ -2654,6 +2703,221 @@ components:
       required:
         - action
         - interval
+    ResponsePagination:
+      description: ''
+      type: object
+      properties:
+        total_element_count:
+          type: number
+        page_element_count:
+          type: number
+        limit:
+          type: number
+        offset:
+          type: number
+        next_page_url:
+          type: string
+        previous_page_url:
+          type: string
+        first_page_url:
+          type: string
+          minLength: 1
+        last_page_url:
+          type: string
+          minLength: 1
+        page_count:
+          type: number
+      required:
+        - total_element_count
+        - page_element_count
+        - limit
+        - offset
+        - first_page_url
+        - last_page_url
+        - page_count
+      x-examples:
+        example-1:
+          total_element_count: 2
+          page_element_count: 2
+          limit: 10
+          offset: 0
+          next_page_url: null
+          previous_page_url: null
+          first_page_url: 'https://localhost/api/v2/customers?limit=10&offset=0'
+          last_page_url: 'https://localhost/api/v2/customers?limit=10&offset=0'
+          page_count: 1
+    Customer:
+      description: ''
+      type: object
+      properties:
+        id:
+          type: number
+        company_name:
+          type: string
+          minLength: 1
+        first_name:
+          type:
+            - string
+            - 'null'
+        last_name:
+          type:
+            - string
+            - 'null'
+        email:
+          type: string
+          minLength: 1
+        email_accounting:
+          type: string
+        email_tech:
+          type: string
+        email_newsletter:
+          type: string
+        email_contact:
+          type: string
+        email_abuse:
+          type: string
+        street:
+          type: string
+          minLength: 1
+        house_number:
+          type: string
+          minLength: 1
+        zip_code:
+          type: string
+          minLength: 1
+        city:
+          type: string
+          minLength: 1
+        country_id:
+          type: number
+        vat_id:
+          type: string
+          minLength: 1
+        amount:
+          type: number
+        credit_limit:
+          type: number
+        next_billing_cycle:
+          type: string
+        created_at:
+          type: string
+          minLength: 1
+        updated_at:
+          type: string
+          minLength: 1
+      required:
+        - id
+        - company_name
+        - email
+        - street
+        - house_number
+        - zip_code
+        - city
+        - country_id
+        - vat_id
+        - credit_limit
+        - created_at
+        - updated_at
+      x-examples:
+        example-1:
+          id: 143
+          company_name: Cole-Batz
+          first_name: null
+          last_name: null
+          email: thad.wunsch@carroll.net
+          email_accounting: null
+          email_tech: null
+          email_newsletter: null
+          email_contact: null
+          email_abuse: null
+          street: Elian Mount
+          house_number: '11'
+          zip_code: '30638'
+          city: Kertzmanntown
+          country_id: 44
+          vat_id: CRujt4VSqsvdXJZkYD
+          amount: null
+          credit_limit: 500
+          next_billing_cycle: '2020-12-01'
+          created_at: '2020-11-26 19:31:57'
+          updated_at: '2020-11-26 19:31:57'
+    SingleCustomerResponse:
+      title: SingleCustomerResponse
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          $ref: '#/components/schemas/Customer'
+        pagination:
+          type: 'null'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    ListCustomerResponse:
+      title: ListCustomerResponse
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        pagination:
+          $ref: '#/components/schemas/ResponsePagination'
+        status:
+          type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+    CreateCustomerRequest:
+      title: CreateCustomerRequest
+      type: object
+      description: ''
+      properties:
+        company_name:
+          type: string
+          description: Required if no first_name is given.
+        first_name:
+          type: string
+          description: Required if no company_name is given.
+        last_name:
+          type: string
+          description: Required if the first_name is given.
+        email:
+          type: string
+          description: Default email if none of the other email types fit.
+        email_accounting:
+          type: string
+        email_tech:
+          type: string
+        email_newsletter:
+          type: string
+        email_contact:
+          type: string
+        email_abuse:
+          type: string
+        street:
+          type: string
+        house_number:
+          type: string
+        city:
+          type: string
+        country_id:
+          type: integer
+        zip_code:
+          type: string
+        vat_id:
+          type: string
+      required:
+        - email
+        - street
+        - house_number
+        - city
+        - country_id
+        - zip_code
+        - vat_id
   securitySchemes:
     AuthToken:
       type: http
