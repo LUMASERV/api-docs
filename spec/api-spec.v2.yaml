@@ -19,6 +19,7 @@ tags:
   - name: users
   - name: networks
   - name: addresses
+  - name: customers
 paths:
   /cloud/servers:
     get:
@@ -1269,7 +1270,8 @@ paths:
   /customers:
     get:
       summary: getCustomers
-      tags: []
+      tags:
+        - customers
       responses:
         '200':
           description: OK
@@ -1280,7 +1282,7 @@ paths:
       operationId: getCustomers
       description: Retrieves the accessible customers
     post:
-      summary: ''
+      summary: createCustomer
       operationId: createCustomer
       responses:
         '201':
@@ -1289,12 +1291,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SingleCustomerResponse'
-      description: Creates a new customer; currently only available for administrators
+      description: Creates a new customer
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateCustomerRequest'
+      tags:
+        - cloudserver
     parameters: []
   '/customers/{customer_id}':
     parameters:
@@ -1305,7 +1309,8 @@ paths:
         required: true
     get:
       summary: getCustomer
-      tags: []
+      tags:
+        - customers
       responses:
         '200':
           description: OK
@@ -2749,6 +2754,8 @@ components:
     Customer:
       description: ''
       type: object
+      x-examples: {}
+      title: Customer
       properties:
         id:
           type: number
@@ -2756,13 +2763,9 @@ components:
           type: string
           minLength: 1
         first_name:
-          type:
-            - string
-            - 'null'
+          type: string
         last_name:
-          type:
-            - string
-            - 'null'
+          type: string
         email:
           type: string
           minLength: 1
@@ -2818,29 +2821,8 @@ components:
         - credit_limit
         - created_at
         - updated_at
-      x-examples:
-        example-1:
-          id: 143
-          company_name: Cole-Batz
-          first_name: null
-          last_name: null
-          email: thad.wunsch@carroll.net
-          email_accounting: null
-          email_tech: null
-          email_newsletter: null
-          email_contact: null
-          email_abuse: null
-          street: Elian Mount
-          house_number: '11'
-          zip_code: '30638'
-          city: Kertzmanntown
-          country_id: 44
-          vat_id: CRujt4VSqsvdXJZkYD
-          amount: null
-          credit_limit: 500
-          next_billing_cycle: '2020-12-01'
-          created_at: '2020-11-26 19:31:57'
-          updated_at: '2020-11-26 19:31:57'
+      x-tags:
+        - customers
     SingleCustomerResponse:
       title: SingleCustomerResponse
       type: object
@@ -2849,8 +2831,6 @@ components:
           $ref: '#/components/schemas/ResponseMetadata'
         data:
           $ref: '#/components/schemas/Customer'
-        pagination:
-          type: 'null'
         status:
           type: string
         messages:
