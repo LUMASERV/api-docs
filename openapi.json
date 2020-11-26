@@ -32,6 +32,8 @@
     "name" : "networks"
   }, {
     "name" : "addresses"
+  }, {
+    "name" : "customers"
   } ],
   "paths" : {
     "/cloud/servers" : {
@@ -2278,6 +2280,83 @@
         },
         "summary" : "deleteCloudServerScheduledTask",
         "tags" : [ "cloudserver" ]
+      }
+    },
+    "/customers" : {
+      "get" : {
+        "description" : "Retrieves the accessible customers",
+        "operationId" : "getCustomers",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCustomerResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCustomers",
+        "tags" : [ "customers" ]
+      },
+      "post" : {
+        "description" : "Creates a new customer",
+        "operationId" : "createCustomer",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCustomerRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCustomerResponse"
+                }
+              }
+            },
+            "description" : "Created"
+          }
+        },
+        "summary" : "createCustomer",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/customers/{customer_id}" : {
+      "get" : {
+        "description" : "Retrieves the customer specified by the id",
+        "operationId" : "getCustomer",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "customer_id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCustomerResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCustomer",
+        "tags" : [ "customers" ]
       }
     }
   },
@@ -5266,6 +5345,421 @@
         "title" : "CreateCloudServerScheduledTaskRequest",
         "type" : "object",
         "x-tags" : [ "cloudserver" ]
+      },
+      "ResponsePagination" : {
+        "example" : {
+          "first_page_url" : "first_page_url",
+          "offset" : 9.301444243932576,
+          "page_element_count" : 2.3021358869347655,
+          "last_page_url" : "last_page_url",
+          "limit" : 7.061401241503109,
+          "next_page_url" : "next_page_url",
+          "previous_page_url" : "previous_page_url",
+          "total_element_count" : 5.637376656633329,
+          "page_count" : 3.616076749251911
+        },
+        "properties" : {
+          "total_element_count" : {
+            "type" : "number"
+          },
+          "page_element_count" : {
+            "type" : "number"
+          },
+          "limit" : {
+            "type" : "number"
+          },
+          "offset" : {
+            "type" : "number"
+          },
+          "next_page_url" : {
+            "type" : "string"
+          },
+          "previous_page_url" : {
+            "type" : "string"
+          },
+          "first_page_url" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "last_page_url" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "page_count" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "first_page_url", "last_page_url", "limit", "offset", "page_count", "page_element_count", "total_element_count" ],
+        "type" : "object",
+        "x-examples" : {
+          "example-1" : {
+            "total_element_count" : 2,
+            "page_element_count" : 2,
+            "limit" : 10,
+            "offset" : 0,
+            "first_page_url" : "https://localhost/api/v2/customers?limit=10&offset=0",
+            "last_page_url" : "https://localhost/api/v2/customers?limit=10&offset=0",
+            "page_count" : 1
+          }
+        }
+      },
+      "Customer" : {
+        "example" : {
+          "email_tech" : "email_tech",
+          "amount" : 1.4658129805029452,
+          "city" : "city",
+          "email_abuse" : "email_abuse",
+          "last_name" : "last_name",
+          "created_at" : "created_at",
+          "house_number" : "house_number",
+          "zip_code" : "zip_code",
+          "next_billing_cycle" : "next_billing_cycle",
+          "updated_at" : "updated_at",
+          "email_accounting" : "email_accounting",
+          "street" : "street",
+          "company_name" : "company_name",
+          "credit_limit" : 5.962133916683182,
+          "vat_id" : "vat_id",
+          "id" : 0.8008281904610115,
+          "email_newsletter" : "email_newsletter",
+          "email_contact" : "email_contact",
+          "first_name" : "first_name",
+          "email" : "email",
+          "country_id" : 6.027456183070403
+        },
+        "properties" : {
+          "id" : {
+            "type" : "number"
+          },
+          "company_name" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "email" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "email_accounting" : {
+            "type" : "string"
+          },
+          "email_tech" : {
+            "type" : "string"
+          },
+          "email_newsletter" : {
+            "type" : "string"
+          },
+          "email_contact" : {
+            "type" : "string"
+          },
+          "email_abuse" : {
+            "type" : "string"
+          },
+          "street" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "house_number" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "zip_code" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "city" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "country_id" : {
+            "type" : "number"
+          },
+          "vat_id" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "amount" : {
+            "type" : "number"
+          },
+          "credit_limit" : {
+            "type" : "number"
+          },
+          "next_billing_cycle" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "updated_at" : {
+            "minLength" : 1,
+            "type" : "string"
+          }
+        },
+        "required" : [ "city", "company_name", "country_id", "created_at", "credit_limit", "email", "house_number", "id", "street", "updated_at", "vat_id", "zip_code" ],
+        "title" : "Customer",
+        "type" : "object",
+        "x-examples" : { },
+        "x-tags" : [ "customers" ]
+      },
+      "SingleCustomerResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : {
+            "email_tech" : "email_tech",
+            "amount" : 1.4658129805029452,
+            "city" : "city",
+            "email_abuse" : "email_abuse",
+            "last_name" : "last_name",
+            "created_at" : "created_at",
+            "house_number" : "house_number",
+            "zip_code" : "zip_code",
+            "next_billing_cycle" : "next_billing_cycle",
+            "updated_at" : "updated_at",
+            "email_accounting" : "email_accounting",
+            "street" : "street",
+            "company_name" : "company_name",
+            "credit_limit" : 5.962133916683182,
+            "vat_id" : "vat_id",
+            "id" : 0.8008281904610115,
+            "email_newsletter" : "email_newsletter",
+            "email_contact" : "email_contact",
+            "first_name" : "first_name",
+            "email" : "email",
+            "country_id" : 6.027456183070403
+          },
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Customer"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "title" : "SingleCustomerResponse",
+        "type" : "object"
+      },
+      "ListCustomerResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "pagination" : {
+            "first_page_url" : "first_page_url",
+            "offset" : 9.301444243932576,
+            "page_element_count" : 2.3021358869347655,
+            "last_page_url" : "last_page_url",
+            "limit" : 7.061401241503109,
+            "next_page_url" : "next_page_url",
+            "previous_page_url" : "previous_page_url",
+            "total_element_count" : 5.637376656633329,
+            "page_count" : 3.616076749251911
+          },
+          "data" : [ {
+            "email_tech" : "email_tech",
+            "amount" : 1.4658129805029452,
+            "city" : "city",
+            "email_abuse" : "email_abuse",
+            "last_name" : "last_name",
+            "created_at" : "created_at",
+            "house_number" : "house_number",
+            "zip_code" : "zip_code",
+            "next_billing_cycle" : "next_billing_cycle",
+            "updated_at" : "updated_at",
+            "email_accounting" : "email_accounting",
+            "street" : "street",
+            "company_name" : "company_name",
+            "credit_limit" : 5.962133916683182,
+            "vat_id" : "vat_id",
+            "id" : 0.8008281904610115,
+            "email_newsletter" : "email_newsletter",
+            "email_contact" : "email_contact",
+            "first_name" : "first_name",
+            "email" : "email",
+            "country_id" : 6.027456183070403
+          }, {
+            "email_tech" : "email_tech",
+            "amount" : 1.4658129805029452,
+            "city" : "city",
+            "email_abuse" : "email_abuse",
+            "last_name" : "last_name",
+            "created_at" : "created_at",
+            "house_number" : "house_number",
+            "zip_code" : "zip_code",
+            "next_billing_cycle" : "next_billing_cycle",
+            "updated_at" : "updated_at",
+            "email_accounting" : "email_accounting",
+            "street" : "street",
+            "company_name" : "company_name",
+            "credit_limit" : 5.962133916683182,
+            "vat_id" : "vat_id",
+            "id" : 0.8008281904610115,
+            "email_newsletter" : "email_newsletter",
+            "email_contact" : "email_contact",
+            "first_name" : "first_name",
+            "email" : "email",
+            "country_id" : 6.027456183070403
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Customer"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "title" : "ListCustomerResponse",
+        "type" : "object"
+      },
+      "CreateCustomerRequest" : {
+        "example" : {
+          "email_tech" : "email_tech",
+          "city" : "city",
+          "email_abuse" : "email_abuse",
+          "last_name" : "last_name",
+          "house_number" : "house_number",
+          "zip_code" : "zip_code",
+          "email_accounting" : "email_accounting",
+          "street" : "street",
+          "company_name" : "company_name",
+          "vat_id" : "vat_id",
+          "email_newsletter" : "email_newsletter",
+          "email_contact" : "email_contact",
+          "first_name" : "first_name",
+          "email" : "email",
+          "country_id" : 0
+        },
+        "properties" : {
+          "company_name" : {
+            "description" : "Required if no first_name is given.",
+            "type" : "string"
+          },
+          "first_name" : {
+            "description" : "Required if no company_name is given.",
+            "type" : "string"
+          },
+          "last_name" : {
+            "description" : "Required if the first_name is given.",
+            "type" : "string"
+          },
+          "email" : {
+            "description" : "Default email if none of the other email types fit.",
+            "type" : "string"
+          },
+          "email_accounting" : {
+            "type" : "string"
+          },
+          "email_tech" : {
+            "type" : "string"
+          },
+          "email_newsletter" : {
+            "type" : "string"
+          },
+          "email_contact" : {
+            "type" : "string"
+          },
+          "email_abuse" : {
+            "type" : "string"
+          },
+          "street" : {
+            "type" : "string"
+          },
+          "house_number" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "country_id" : {
+            "type" : "integer"
+          },
+          "zip_code" : {
+            "type" : "string"
+          },
+          "vat_id" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "city", "country_id", "email", "house_number", "street", "vat_id", "zip_code" ],
+        "title" : "CreateCustomerRequest",
+        "type" : "object"
       },
       "LoginResponse_data" : {
         "example" : {

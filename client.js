@@ -247,4 +247,13 @@ class LUMASERVClient {
     deleteCloudServerScheduledTask(id, task_id){
         return this.request('delete', '/cloud/servers/' + id + '/scheduled-tasks/' + task_id, null, null);
     }
+    getCustomers(){
+        return this.request('get', '/customers', null, null);
+    }
+    createCustomer(body = null){
+        return this.request('post', '/customers', null, body);
+    }
+    getCustomer(customer_id){
+        return this.request('get', '/customers/' + customer_id, null, null);
+    }
 }
