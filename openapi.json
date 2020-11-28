@@ -2359,6 +2359,38 @@
         "summary" : "getCustomer",
         "tags" : [ "customers" ]
       }
+    },
+    "/cloud/servers/{id}/backups/{backup_id}" : {
+      "delete" : {
+        "description" : "Deletes a cloud server backup",
+        "operationId" : "deleteCloudServerBackup",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "explode" : false,
+          "in" : "path",
+          "name" : "backup_id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "deleteCloudServerBackup",
+        "tags" : [ "cloudserver" ]
+      }
     }
   },
   "components" : {

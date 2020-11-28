@@ -258,4 +258,7 @@ export default class LUMASERVClient {
     getCustomer(customer_id){
         return this.request('get', '/customers/' + customer_id, null, null);
     }
+    deleteCloudServerBackup(id, backup_id){
+        return this.request('delete', '/cloud/servers/' + id + '/backups/' + backup_id, null, null);
+    }
 }
