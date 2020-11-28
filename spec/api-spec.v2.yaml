@@ -1321,6 +1321,27 @@ paths:
                 $ref: '#/components/schemas/SingleCustomerResponse'
       operationId: getCustomer
       description: Retrieves the customer specified by the id
+  '/cloud/servers/{id}/backups/{backup_id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: backup_id
+        in: path
+        required: true
+    delete:
+      summary: deleteCloudServerBackup
+      operationId: deleteCloudServerBackup
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cloudserver
+      description: Deletes a cloud server backup
 components:
   schemas:
     CloudServer:
