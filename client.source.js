@@ -1,4 +1,6 @@
-class LUMASERVClient {
+import axios from 'axios'
+
+export default class LUMASERVClient {
     constructor(baseURL = 'https://connect.nicapi.eu/api/v2'){
         this.axios = axios.create({
             baseURL,
