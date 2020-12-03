@@ -2941,8 +2941,8 @@ components:
         - cloudserver
       properties:
         data:
-          type: array
-          items:
+          type: object
+          additionalProperties:
             type: object
             properties:
               id:
