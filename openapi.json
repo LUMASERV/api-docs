@@ -1827,6 +1827,23 @@
       "get" : {
         "description" : "Returns all accessible addresses",
         "operationId" : "getAddresses",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/easyFilter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "easyFilter",
+          "required" : false,
+          "schema" : {
+            "properties" : {
+              "project_uuid" : {
+                "format" : "uuid",
+                "type" : "string"
+              }
+            },
+            "type" : "object"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -5879,6 +5896,15 @@
         "title" : "CloudServerMassStatus",
         "type" : "object",
         "x-tags" : [ "cloudserver" ]
+      },
+      "easyFilter" : {
+        "properties" : {
+          "project_uuid" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
       },
       "LoginResponse_data" : {
         "example" : {

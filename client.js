@@ -201,8 +201,8 @@ export default class LUMASERVClient {
     getNetworks(){
         return this.request('get', '/cloud/networks', null, null);
     }
-    getAddresses(){
-        return this.request('get', '/addresses', null, null);
+    getAddresses(query = null){
+        return this.request('get', '/addresses', query, null);
     }
     createAddress(body = null){
         return this.request('post', '/addresses', null, body);
