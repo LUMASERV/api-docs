@@ -1342,6 +1342,16 @@ paths:
       tags:
         - cloudserver
       description: Deletes a cloud server backup
+  /cloud/servers/massStatus:
+    get:
+      summary: getCloudServerMassStatus
+      tags:
+        - cloudserver
+      responses:
+        '200':
+          description: OK
+      operationId: getCloudServerMassStatus
+      description: Returns the status of all accessible cloud servers
 components:
   schemas:
     CloudServer:
@@ -2920,6 +2930,40 @@ components:
         - country_id
         - zip_code
         - vat_id
+    CloudServerMassStatus:
+      title: CloudServerMassStatus
+      type: array
+      x-tags:
+        - cloudserver
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          type:
+            type: string
+          cpu:
+            type: number
+          disk:
+            type: string
+          maxcpu:
+            type: number
+          maxdisk:
+            type: integer
+          maxmem:
+            type: integer
+          mem:
+            type: string
+          status:
+            type: string
+          uptime:
+            type: integer
+    CloudServerMassStatusResponse:
+      title: CloudServerMassStatusResponse
+      type: object
+      properties:
+        id:
+          type: string
   securitySchemes:
     AuthToken:
       type: http
