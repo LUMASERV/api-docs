@@ -996,7 +996,11 @@ paths:
       description: Returns all accessible addresses
       parameters:
         - schema:
-            type: array
+            type: object
+            properties:
+              project_uuid:
+                type: "string"
+                format: "uuid"
           in: query
           name: easyFilter
     post:
