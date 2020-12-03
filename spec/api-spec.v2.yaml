@@ -994,6 +994,11 @@ paths:
                 $ref: '#/components/schemas/ListAddressResponse'
       operationId: getAddresses
       description: Returns all accessible addresses
+      parameters:
+        - schema:
+            type: array
+          in: query
+          name: easyFilter
     post:
       summary: createAddress
       operationId: createAddress
