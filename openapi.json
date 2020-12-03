@@ -5820,29 +5820,20 @@
             "serverTransactionId" : "200913214225851845414",
             "clientTransactionId" : "lumaserv_api_request_1234"
           },
-          "data" : [ {
-            "disk" : "disk",
-            "mem" : "mem",
-            "maxdisk" : 1,
-            "cpu" : 0.8008281904610115,
-            "id" : "id",
-            "maxcpu" : 6.027456183070403,
-            "type" : "type",
-            "maxmem" : 5,
-            "status" : "status",
-            "uptime" : 5
-          }, {
-            "disk" : "disk",
-            "mem" : "mem",
-            "maxdisk" : 1,
-            "cpu" : 0.8008281904610115,
-            "id" : "id",
-            "maxcpu" : 6.027456183070403,
-            "type" : "type",
-            "maxmem" : 5,
-            "status" : "status",
-            "uptime" : 5
-          } ],
+          "data" : {
+            "key" : {
+              "disk" : "disk",
+              "mem" : "mem",
+              "maxdisk" : 1,
+              "cpu" : 0.8008281904610115,
+              "id" : "id",
+              "maxcpu" : 6.027456183070403,
+              "type" : "type",
+              "maxmem" : 5,
+              "status" : "status",
+              "uptime" : 5
+            }
+          },
           "messages" : {
             "success" : [ {
               "code" : 10000,
@@ -5870,10 +5861,10 @@
         },
         "properties" : {
           "data" : {
-            "items" : {
+            "additionalProperties" : {
               "$ref" : "#/components/schemas/CloudServerMassStatusResponse_data"
             },
-            "type" : "array"
+            "type" : "object"
           },
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
