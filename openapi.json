@@ -2391,6 +2391,19 @@
         "summary" : "deleteCloudServerBackup",
         "tags" : [ "cloudserver" ]
       }
+    },
+    "/cloud/servers/massStatus" : {
+      "get" : {
+        "description" : "Returns the status of all accessible cloud servers",
+        "operationId" : "getCloudServerMassStatus",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServerMassStatus",
+        "tags" : [ "cloudserver" ]
+      }
     }
   },
   "components" : {
@@ -5792,6 +5805,55 @@
         },
         "required" : [ "city", "country_id", "email", "house_number", "street", "vat_id", "zip_code" ],
         "title" : "CreateCustomerRequest",
+        "type" : "object"
+      },
+      "CloudServerMassStatus" : {
+        "items" : {
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "type" : {
+              "type" : "string"
+            },
+            "cpu" : {
+              "type" : "number"
+            },
+            "disk" : {
+              "type" : "string"
+            },
+            "maxcpu" : {
+              "type" : "number"
+            },
+            "maxdisk" : {
+              "type" : "integer"
+            },
+            "maxmem" : {
+              "type" : "integer"
+            },
+            "mem" : {
+              "type" : "string"
+            },
+            "status" : {
+              "type" : "string"
+            },
+            "uptime" : {
+              "type" : "integer"
+            }
+          },
+          "type" : "object"
+        },
+        "title" : "CloudServerMassStatus",
+        "type" : "array",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "CloudServerMassStatusResponse" : {
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          }
+        },
+        "title" : "CloudServerMassStatusResponse",
         "type" : "object"
       },
       "LoginResponse_data" : {
