@@ -2398,6 +2398,13 @@
         "operationId" : "getCloudServerMassStatus",
         "responses" : {
           "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CloudServerMassStatusResponse"
+                }
+              }
+            },
             "description" : "OK"
           }
         },
@@ -5807,54 +5814,80 @@
         "title" : "CreateCustomerRequest",
         "type" : "object"
       },
-      "CloudServerMassStatus" : {
-        "items" : {
-          "properties" : {
-            "id" : {
-              "type" : "string"
-            },
-            "type" : {
-              "type" : "string"
-            },
-            "cpu" : {
-              "type" : "number"
-            },
-            "disk" : {
-              "type" : "string"
-            },
-            "maxcpu" : {
-              "type" : "number"
-            },
-            "maxdisk" : {
-              "type" : "integer"
-            },
-            "maxmem" : {
-              "type" : "integer"
-            },
-            "mem" : {
-              "type" : "string"
-            },
-            "status" : {
-              "type" : "string"
-            },
-            "uptime" : {
-              "type" : "integer"
-            }
-          },
-          "type" : "object"
-        },
-        "title" : "CloudServerMassStatus",
-        "type" : "array",
-        "x-tags" : [ "cloudserver" ]
-      },
       "CloudServerMassStatusResponse" : {
+        "example" : {
+          "metadata" : {
+            "serverTransactionId" : "200913214225851845414",
+            "clientTransactionId" : "lumaserv_api_request_1234"
+          },
+          "data" : [ {
+            "disk" : "disk",
+            "mem" : "mem",
+            "maxdisk" : 1,
+            "cpu" : 0.8008281904610115,
+            "id" : "id",
+            "maxcpu" : 6.027456183070403,
+            "type" : "type",
+            "maxmem" : 5,
+            "status" : "status",
+            "uptime" : 5
+          }, {
+            "disk" : "disk",
+            "mem" : "mem",
+            "maxdisk" : 1,
+            "cpu" : 0.8008281904610115,
+            "id" : "id",
+            "maxcpu" : 6.027456183070403,
+            "type" : "type",
+            "maxmem" : 5,
+            "status" : "status",
+            "uptime" : 5
+          } ],
+          "messages" : {
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "warnings" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ],
+            "errors" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            }, {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          },
+          "status" : "status"
+        },
         "properties" : {
-          "id" : {
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/CloudServerMassStatusResponse_data"
+            },
+            "type" : "array"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "status" : {
             "type" : "string"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "title" : "CloudServerMassStatusResponse",
-        "type" : "object"
+        "title" : "CloudServerMassStatus",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
       },
       "LoginResponse_data" : {
         "example" : {
@@ -5863,6 +5896,52 @@
         "properties" : {
           "token" : {
             "type" : "string"
+          }
+        }
+      },
+      "CloudServerMassStatusResponse_data" : {
+        "example" : {
+          "disk" : "disk",
+          "mem" : "mem",
+          "maxdisk" : 1,
+          "cpu" : 0.8008281904610115,
+          "id" : "id",
+          "maxcpu" : 6.027456183070403,
+          "type" : "type",
+          "maxmem" : 5,
+          "status" : "status",
+          "uptime" : 5
+        },
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "type" : {
+            "type" : "string"
+          },
+          "cpu" : {
+            "type" : "number"
+          },
+          "disk" : {
+            "type" : "string"
+          },
+          "maxcpu" : {
+            "type" : "number"
+          },
+          "maxdisk" : {
+            "type" : "integer"
+          },
+          "maxmem" : {
+            "type" : "integer"
+          },
+          "mem" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "uptime" : {
+            "type" : "integer"
           }
         }
       }
