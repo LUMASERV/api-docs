@@ -1350,6 +1350,10 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudServerMassStatusResponse'
       operationId: getCloudServerMassStatus
       description: Returns the status of all accessible cloud servers
 components:
@@ -2930,40 +2934,43 @@ components:
         - country_id
         - zip_code
         - vat_id
-    CloudServerMassStatus:
+    CloudServerMassStatusResponse:
       title: CloudServerMassStatus
-      type: array
+      type: object
       x-tags:
         - cloudserver
-      items:
-        type: object
-        properties:
-          id:
-            type: string
-          type:
-            type: string
-          cpu:
-            type: number
-          disk:
-            type: string
-          maxcpu:
-            type: number
-          maxdisk:
-            type: integer
-          maxmem:
-            type: integer
-          mem:
-            type: string
-          status:
-            type: string
-          uptime:
-            type: integer
-    CloudServerMassStatusResponse:
-      title: CloudServerMassStatusResponse
-      type: object
       properties:
-        id:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              cpu:
+                type: number
+              disk:
+                type: string
+              maxcpu:
+                type: number
+              maxdisk:
+                type: integer
+              maxmem:
+                type: integer
+              mem:
+                type: string
+              status:
+                type: string
+              uptime:
+                type: integer
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        status:
           type: string
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
   securitySchemes:
     AuthToken:
       type: http
