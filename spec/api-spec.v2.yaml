@@ -999,8 +999,8 @@ paths:
             type: object
             properties:
               project_uuid:
-                type: "string"
-                format: "uuid"
+                type: string
+                format: uuid
           in: query
           name: easyFilter
     post:
@@ -1365,6 +1365,17 @@ paths:
                 $ref: '#/components/schemas/CloudServerMassStatusResponse'
       operationId: getCloudServerMassStatus
       description: Returns the status of all accessible cloud servers
+  /accounting/pricing/cloud/servers:
+    get:
+      summary: getCloudServerPricing
+      tags:
+        - cloudserver
+      responses:
+        '200':
+          description: OK
+      operationId: getCloudServerPricing
+      description: Returns the pricing for cloud servers (this endpoint is subject to changes)
+      deprecated: true
 components:
   schemas:
     CloudServer:
