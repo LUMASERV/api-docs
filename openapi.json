@@ -2428,6 +2428,20 @@
         "summary" : "getCloudServerMassStatus",
         "tags" : [ "cloudserver" ]
       }
+    },
+    "/accounting/pricing/cloud/servers" : {
+      "get" : {
+        "deprecated" : true,
+        "description" : "Returns the pricing for cloud servers (this endpoint is subject to changes)",
+        "operationId" : "getCloudServerPricing",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServerPricing",
+        "tags" : [ "cloudserver" ]
+      }
     }
   },
   "components" : {
