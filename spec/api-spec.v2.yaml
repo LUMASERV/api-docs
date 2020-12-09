@@ -1376,6 +1376,18 @@ paths:
       operationId: getCloudServerPricing
       description: Returns the pricing for cloud servers (this endpoint is subject to changes)
       deprecated: true
+      parameters:
+        - schema:
+            type: integer
+            minimum: 1
+          in: query
+          name: customer_id
+          required: true
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: project_uuid
 components:
   schemas:
     CloudServer:
