@@ -264,7 +264,7 @@ export default class LUMASERVClient {
     getCloudServerMassStatus(){
         return this.request('get', '/cloud/servers/massStatus', null, null);
     }
-    getCloudServerPricing(){
-        return this.request('get', '/accounting/pricing/cloud/servers', null, null);
+    getCloudServerPricing(query = null){
+        return this.request('get', '/accounting/pricing/cloud/servers', query, null);
     }
 }

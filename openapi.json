@@ -2434,6 +2434,27 @@
         "deprecated" : true,
         "description" : "Returns the pricing for cloud servers (this endpoint is subject to changes)",
         "operationId" : "getCloudServerPricing",
+        "parameters" : [ {
+          "explode" : true,
+          "in" : "query",
+          "name" : "customer_id",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "explode" : true,
+          "in" : "query",
+          "name" : "project_uuid",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "description" : "OK"
