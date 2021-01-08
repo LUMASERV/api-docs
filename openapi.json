@@ -2469,18 +2469,6 @@
     "schemas" : {
       "CloudServer" : {
         "description" : "A cloudserver",
-        "example" : {
-          "template" : "template",
-          "hostname" : "hostname",
-          "cores" : 1,
-          "memory" : 1024,
-          "max_backups" : 0,
-          "max_scheduled_tasks" : 0,
-          "updated_at" : "2020-01-30 00:00:00",
-          "created_at" : "2020-01-30 00:00:00",
-          "id" : 0,
-          "title" : "title"
-        },
         "properties" : {
           "id" : {
             "type" : "integer"
@@ -2541,15 +2529,6 @@
       },
       "CloudServerInterface" : {
         "description" : "A network interface of a cloudserver",
-        "example" : {
-          "network_id" : 1,
-          "updated_at" : "2020-01-30 00:00:00",
-          "netname" : "netname",
-          "firewall" : true,
-          "mac_address" : "mac_address",
-          "created_at" : "2020-01-30 00:00:00",
-          "title" : "title"
-        },
         "properties" : {
           "netname" : {
             "type" : "string"
@@ -2593,14 +2572,6 @@
       },
       "CloudServerStorage" : {
         "description" : "A storage drive of a cloudserver",
-        "example" : {
-          "replication" : 6,
-          "is_boot" : true,
-          "size" : 10,
-          "updated_at" : "2020-01-30 00:00:00",
-          "created_at" : "2020-01-30 00:00:00",
-          "title" : "title"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -2640,13 +2611,6 @@
       },
       "FirewallAddress" : {
         "description" : "Address in a FirewallAddressSet",
-        "example" : {
-          "updated_at" : "2020-01-30 00:00:00",
-          "created_at" : "2020-01-30 00:00:00",
-          "cidr" : "cidr",
-          "id" : 1,
-          "title" : "title"
-        },
         "properties" : {
           "id" : {
             "minimum" : 1,
@@ -2681,13 +2645,6 @@
         }
       },
       "FirewallAddressSet" : {
-        "example" : {
-          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-          "updated_at" : "2020-01-30 00:00:00",
-          "created_at" : "2020-01-30 00:00:00",
-          "id" : 1,
-          "title" : "title"
-        },
         "properties" : {
           "id" : {
             "minimum" : 1,
@@ -2724,24 +2681,6 @@
       },
       "FirewallRule" : {
         "description" : "A firewall rule or a link to a FirewallRuleSet",
-        "example" : {
-          "source_address_set_id" : 5,
-          "destination_address_set_id" : 5,
-          "destination_address" : "destination_address",
-          "destination_port" : "destination_port",
-          "created_at" : "2020-01-30 00:00:00",
-          "title" : "title",
-          "interface" : "net0",
-          "protocol" : "udp",
-          "linked_rule_set_id" : 1,
-          "updated_at" : "2020-01-30 00:00:00",
-          "source_address" : "source_address",
-          "source_port" : "source_port",
-          "action" : "ACCEPT",
-          "id" : 1,
-          "order" : 0,
-          "direction" : "IN"
-        },
         "properties" : {
           "id" : {
             "minimum" : 1,
@@ -2823,13 +2762,6 @@
       },
       "FirewallRuleSet" : {
         "description" : "A set of firewall rules",
-        "example" : {
-          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-          "updated_at" : "2020-01-30 00:00:00",
-          "created_at" : "2020-01-30 00:00:00",
-          "id" : 1,
-          "title" : "title"
-        },
         "properties" : {
           "id" : {
             "minimum" : 1,
@@ -2871,34 +2803,6 @@
         "x-examples" : { }
       },
       "CreateCloudServerRequest" : {
-        "example" : {
-          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-          "template" : "template",
-          "storages" : [ {
-            "replication" : 0,
-            "size" : 5
-          }, {
-            "replication" : 0,
-            "size" : 5
-          } ],
-          "password" : "password",
-          "interfaces" : [ {
-            "custom_address" : "custom_address",
-            "network_id" : 1,
-            "primary_ipv4" : "primary_ipv4",
-            "ipv4" : [ "ipv4", "ipv4" ],
-            "custom_gateway" : "custom_gateway"
-          }, {
-            "custom_address" : "custom_address",
-            "network_id" : 1,
-            "primary_ipv4" : "primary_ipv4",
-            "ipv4" : [ "ipv4", "ipv4" ],
-            "custom_gateway" : "custom_gateway"
-          } ],
-          "cores" : "cores",
-          "memory" : "memory",
-          "title" : "title"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -2908,10 +2812,15 @@
             "type" : "string"
           },
           "cores" : {
-            "type" : "string"
+            "maximum" : 64,
+            "minimum" : 1,
+            "type" : "integer"
           },
           "memory" : {
-            "type" : "string"
+            "maximum" : 131072,
+            "minimum" : 1024,
+            "multipleOf" : 1024,
+            "type" : "integer"
           },
           "template" : {
             "type" : "string"
@@ -2931,6 +2840,9 @@
               "$ref" : "#/components/schemas/CreateCloudServerInterfaceRequest"
             },
             "type" : "array"
+          },
+          "hostname" : {
+            "type" : "string"
           }
         },
         "required" : [ "cores", "interfaces", "memory", "project_uuid", "storages", "template" ],
@@ -2939,10 +2851,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "CreateFirewallRuleSetRequest" : {
-        "example" : {
-          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-          "title" : "title"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -2958,10 +2866,6 @@
         "x-tags" : [ "firewall" ]
       },
       "CreateFirewallAddressSetRequest" : {
-        "example" : {
-          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-          "title" : "title"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -2977,10 +2881,6 @@
         "x-tags" : [ "firewall" ]
       },
       "CreateFirewallAddressRequest" : {
-        "example" : {
-          "cidr" : "cidr",
-          "title" : "title"
-        },
         "properties" : {
           "cidr" : {
             "type" : "string"
@@ -2995,21 +2895,6 @@
         "x-tags" : [ "firewall" ]
       },
       "CreateFirewallRuleRequest" : {
-        "example" : {
-          "source_address_set_id" : 1,
-          "destination_address_set_id" : 1,
-          "destination_address" : "destination_address",
-          "destination_port" : "destination_port",
-          "title" : "title",
-          "interface" : "net0",
-          "protocol" : "tcp",
-          "linked_rule_set_id" : 1,
-          "source_address" : "source_address",
-          "source_port" : "source_port",
-          "action" : "ACCEPT",
-          "order" : 0,
-          "direction" : "IN"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -3065,10 +2950,6 @@
         "x-tags" : [ "firewall" ]
       },
       "UpdateFirewallAddressSetRequest" : {
-        "example" : {
-          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-          "title" : "title"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -3083,10 +2964,6 @@
         "x-tags" : [ "firewall" ]
       },
       "UpdateFirewallRuleSetRequest" : {
-        "example" : {
-          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-          "title" : "title"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -3101,9 +2978,6 @@
         "x-tags" : [ "firewall" ]
       },
       "UpdateFirewallAddressRequest" : {
-        "example" : {
-          "title" : "title"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -3114,20 +2988,6 @@
         "x-tags" : [ "firewall" ]
       },
       "UpdateFirewallRuleRequest" : {
-        "example" : {
-          "linked_address_set_id" : 1,
-          "source_address_set_id" : 1,
-          "destination_address_set_id" : 1,
-          "protocol" : "tcp",
-          "destination_address" : "destination_address",
-          "destination_port" : "destination_port",
-          "source_address" : "source_address",
-          "source_port" : "source_port",
-          "action" : "ACCEPT",
-          "title" : "title",
-          "order" : 0,
-          "direction" : "IN"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -3178,12 +3038,6 @@
         "x-tags" : [ "firewall" ]
       },
       "UpdateCloudServerRequest" : {
-        "example" : {
-          "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-          "cores" : 0,
-          "memory" : 6,
-          "title" : "title"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -3197,6 +3051,9 @@
           },
           "memory" : {
             "type" : "integer"
+          },
+          "hostname" : {
+            "type" : "string"
           }
         },
         "title" : "UpdateCloudServerRequest",
@@ -3204,10 +3061,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "ResponseMetadata" : {
-        "example" : {
-          "serverTransactionId" : "200913214225851845414",
-          "clientTransactionId" : "lumaserv_api_request_1234"
-        },
         "properties" : {
           "clientTransactionId" : {
             "example" : "lumaserv_api_request_1234",
@@ -3223,29 +3076,6 @@
         "type" : "object"
       },
       "ResponseMessages" : {
-        "example" : {
-          "success" : [ {
-            "code" : 10000,
-            "message" : "Action successfully executed."
-          }, {
-            "code" : 10000,
-            "message" : "Action successfully executed."
-          } ],
-          "warnings" : [ {
-            "code" : 10000,
-            "message" : "Action successfully executed."
-          }, {
-            "code" : 10000,
-            "message" : "Action successfully executed."
-          } ],
-          "errors" : [ {
-            "code" : 10000,
-            "message" : "Action successfully executed."
-          }, {
-            "code" : 10000,
-            "message" : "Action successfully executed."
-          } ]
-        },
         "properties" : {
           "warnings" : {
             "items" : {
@@ -3281,10 +3111,6 @@
         }
       },
       "ResponseMessage" : {
-        "example" : {
-          "code" : 10000,
-          "message" : "Action successfully executed."
-        },
         "properties" : {
           "code" : {
             "example" : 10000,
@@ -3300,48 +3126,6 @@
         "type" : "object"
       },
       "SingleCloudServerResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "template" : "template",
-            "hostname" : "hostname",
-            "cores" : 1,
-            "memory" : 1024,
-            "max_backups" : 0,
-            "max_scheduled_tasks" : 0,
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "id" : 0,
-            "title" : "title"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -3362,59 +3146,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "ListCloudServerResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "template" : "template",
-            "hostname" : "hostname",
-            "cores" : 1,
-            "memory" : 1024,
-            "max_backups" : 0,
-            "max_scheduled_tasks" : 0,
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "id" : 0,
-            "title" : "title"
-          }, {
-            "template" : "template",
-            "hostname" : "hostname",
-            "cores" : 1,
-            "memory" : 1024,
-            "max_backups" : 0,
-            "max_scheduled_tasks" : 0,
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "id" : 0,
-            "title" : "title"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -3438,36 +3169,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "EmptyResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -3484,43 +3185,6 @@
         "type" : "object"
       },
       "SingleFirewallAddressSetResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "id" : 1,
-            "title" : "title"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -3541,49 +3205,6 @@
         "x-tags" : [ "firewall" ]
       },
       "ListFirewallAddressSetResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "id" : 1,
-            "title" : "title"
-          }, {
-            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "id" : 1,
-            "title" : "title"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -3607,43 +3228,6 @@
         "x-tags" : [ "firewall" ]
       },
       "SingleFirewallRuleSetResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "id" : 1,
-            "title" : "title"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -3664,49 +3248,6 @@
         "x-tags" : [ "firewall" ]
       },
       "ListFirewallRuleSetResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "id" : 1,
-            "title" : "title"
-          }, {
-            "project_uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91",
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "id" : 1,
-            "title" : "title"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -3730,43 +3271,6 @@
         "x-tags" : [ "firewall" ]
       },
       "SingleFirewallAddressResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "cidr" : "cidr",
-            "id" : 1,
-            "title" : "title"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -3787,49 +3291,6 @@
         "x-tags" : [ "firewall" ]
       },
       "ListFirewallAddressResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "cidr" : "cidr",
-            "id" : 1,
-            "title" : "title"
-          }, {
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "cidr" : "cidr",
-            "id" : 1,
-            "title" : "title"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -3853,54 +3314,6 @@
         "x-tags" : [ "firewall" ]
       },
       "SingleFirewallRuleResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "source_address_set_id" : 5,
-            "destination_address_set_id" : 5,
-            "destination_address" : "destination_address",
-            "destination_port" : "destination_port",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title",
-            "interface" : "net0",
-            "protocol" : "udp",
-            "linked_rule_set_id" : 1,
-            "updated_at" : "2020-01-30 00:00:00",
-            "source_address" : "source_address",
-            "source_port" : "source_port",
-            "action" : "ACCEPT",
-            "id" : 1,
-            "order" : 0,
-            "direction" : "IN"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -3921,71 +3334,6 @@
         "x-tags" : [ "firewall" ]
       },
       "ListFirewallRuleResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "source_address_set_id" : 5,
-            "destination_address_set_id" : 5,
-            "destination_address" : "destination_address",
-            "destination_port" : "destination_port",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title",
-            "interface" : "net0",
-            "protocol" : "udp",
-            "linked_rule_set_id" : 1,
-            "updated_at" : "2020-01-30 00:00:00",
-            "source_address" : "source_address",
-            "source_port" : "source_port",
-            "action" : "ACCEPT",
-            "id" : 1,
-            "order" : 0,
-            "direction" : "IN"
-          }, {
-            "source_address_set_id" : 5,
-            "destination_address_set_id" : 5,
-            "destination_address" : "destination_address",
-            "destination_port" : "destination_port",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title",
-            "interface" : "net0",
-            "protocol" : "udp",
-            "linked_rule_set_id" : 1,
-            "updated_at" : "2020-01-30 00:00:00",
-            "source_address" : "source_address",
-            "source_port" : "source_port",
-            "action" : "ACCEPT",
-            "id" : 1,
-            "order" : 0,
-            "direction" : "IN"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4009,13 +3357,6 @@
         "x-tags" : [ "firewall" ]
       },
       "Project" : {
-        "example" : {
-          "updated_at" : "2020-01-30 00:00:00",
-          "description" : "description",
-          "created_at" : "2020-01-30 00:00:00",
-          "title" : "title",
-          "uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91"
-        },
         "properties" : {
           "uuid" : {
             "format" : "uuid",
@@ -4048,10 +3389,6 @@
         }
       },
       "CreateProjectRequest" : {
-        "example" : {
-          "description" : "description",
-          "title" : "title"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -4066,10 +3403,6 @@
         "x-tags" : [ "projects" ]
       },
       "UpdateProjectRequest" : {
-        "example" : {
-          "description" : "description",
-          "title" : "title"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -4083,43 +3416,6 @@
         "x-tags" : [ "projects" ]
       },
       "SingleProjectResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "updated_at" : "2020-01-30 00:00:00",
-            "description" : "description",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title",
-            "uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4140,49 +3436,6 @@
         "x-tags" : [ "projects" ]
       },
       "ListProjectResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "updated_at" : "2020-01-30 00:00:00",
-            "description" : "description",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title",
-            "uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91"
-          }, {
-            "updated_at" : "2020-01-30 00:00:00",
-            "description" : "description",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title",
-            "uuid" : "046b6c7f-0b8a-43b9-b35d-6489e6daee91"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4206,13 +3459,6 @@
         "x-tags" : [ "projects" ]
       },
       "CreateCloudServerInterfaceRequest" : {
-        "example" : {
-          "custom_address" : "custom_address",
-          "network_id" : 1,
-          "primary_ipv4" : "primary_ipv4",
-          "ipv4" : [ "ipv4", "ipv4" ],
-          "custom_gateway" : "custom_gateway"
-        },
         "properties" : {
           "network_id" : {
             "minimum" : 1,
@@ -4243,10 +3489,6 @@
         "x-examples" : { }
       },
       "CreateCloudServerStorageRequest" : {
-        "example" : {
-          "replication" : 0,
-          "size" : 5
-        },
         "properties" : {
           "size" : {
             "minimum" : 5,
@@ -4264,45 +3506,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "SingleCloudServerInterfaceResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "network_id" : 1,
-            "updated_at" : "2020-01-30 00:00:00",
-            "netname" : "netname",
-            "firewall" : true,
-            "mac_address" : "mac_address",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4323,44 +3526,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "SingleCloudServerStorageResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "replication" : 6,
-            "is_boot" : true,
-            "size" : 10,
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4381,53 +3546,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "ListCloudServerInterfaceResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "network_id" : 1,
-            "updated_at" : "2020-01-30 00:00:00",
-            "netname" : "netname",
-            "firewall" : true,
-            "mac_address" : "mac_address",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title"
-          }, {
-            "network_id" : 1,
-            "updated_at" : "2020-01-30 00:00:00",
-            "netname" : "netname",
-            "firewall" : true,
-            "mac_address" : "mac_address",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4451,51 +3569,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "ListCloudServerStorageResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "replication" : 6,
-            "is_boot" : true,
-            "size" : 10,
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title"
-          }, {
-            "replication" : 6,
-            "is_boot" : true,
-            "size" : 10,
-            "updated_at" : "2020-01-30 00:00:00",
-            "created_at" : "2020-01-30 00:00:00",
-            "title" : "title"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4519,13 +3592,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "UpdateCloudServerInterfaceRequest" : {
-        "example" : {
-          "custom_address" : "custom_address",
-          "network_id" : 1,
-          "primary_ipv4" : "primary_ipv4",
-          "ipv4" : [ "ipv4", "ipv4" ],
-          "custom_gateway" : "custom_gateway"
-        },
         "properties" : {
           "network_id" : {
             "minimum" : 1,
@@ -4555,9 +3621,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "UpdateCloudServerStorageRequest" : {
-        "example" : {
-          "size" : 1
-        },
         "properties" : {
           "size" : {
             "minimum" : 1,
@@ -4569,14 +3632,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "User" : {
-        "example" : {
-          "gender" : "MALE",
-          "last_name" : "last_name",
-          "created_at" : "2020-01-30 00:00:00",
-          "first_name" : "first_name",
-          "email" : "email",
-          "username" : "username"
-        },
         "properties" : {
           "username" : {
             "type" : "string"
@@ -4605,10 +3660,6 @@
         "x-tags" : [ "users" ]
       },
       "LoginRequest" : {
-        "example" : {
-          "password" : "password",
-          "username" : "username"
-        },
         "properties" : {
           "username" : {
             "type" : "string"
@@ -4623,39 +3674,6 @@
         "x-tags" : [ "auth" ]
       },
       "LoginResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "token" : "token"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4676,44 +3694,6 @@
         "x-tags" : [ "auth" ]
       },
       "SelfResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "gender" : "MALE",
-            "last_name" : "last_name",
-            "created_at" : "2020-01-30 00:00:00",
-            "first_name" : "first_name",
-            "email" : "email",
-            "username" : "username"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4733,51 +3713,6 @@
         "x-tags" : [ "auth" ]
       },
       "ListUserResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "gender" : "MALE",
-            "last_name" : "last_name",
-            "created_at" : "2020-01-30 00:00:00",
-            "first_name" : "first_name",
-            "email" : "email",
-            "username" : "username"
-          }, {
-            "gender" : "MALE",
-            "last_name" : "last_name",
-            "created_at" : "2020-01-30 00:00:00",
-            "first_name" : "first_name",
-            "email" : "email",
-            "username" : "username"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4800,44 +3735,6 @@
         "x-tags" : [ "users" ]
       },
       "SingleUserResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "gender" : "MALE",
-            "last_name" : "last_name",
-            "created_at" : "2020-01-30 00:00:00",
-            "first_name" : "first_name",
-            "email" : "email",
-            "username" : "username"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4857,9 +3754,6 @@
         "x-tags" : [ "users" ]
       },
       "UpdateUserRequest" : {
-        "example" : {
-          "email" : "email"
-        },
         "properties" : {
           "email" : {
             "type" : "string"
@@ -4870,15 +3764,6 @@
         "x-tags" : [ "users" ]
       },
       "Network" : {
-        "example" : {
-          "updated_at" : "2020-01-30 00:00:00",
-          "is_public" : true,
-          "description" : "description",
-          "created_at" : "2020-01-30 00:00:00",
-          "id" : 1,
-          "title" : "title",
-          "user" : "user"
-        },
         "properties" : {
           "id" : {
             "minimum" : 1,
@@ -4909,53 +3794,6 @@
         "x-tags" : [ "networks" ]
       },
       "ListNetworkResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "updated_at" : "2020-01-30 00:00:00",
-            "is_public" : true,
-            "description" : "description",
-            "created_at" : "2020-01-30 00:00:00",
-            "id" : 1,
-            "title" : "title",
-            "user" : "user"
-          }, {
-            "updated_at" : "2020-01-30 00:00:00",
-            "is_public" : true,
-            "description" : "description",
-            "created_at" : "2020-01-30 00:00:00",
-            "id" : 1,
-            "title" : "title",
-            "user" : "user"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -4978,13 +3816,6 @@
         "x-tags" : [ "networks" ]
       },
       "Address" : {
-        "example" : {
-          "rdns" : "rdns",
-          "address" : "address",
-          "updated_at" : "2020-01-30 00:00:00",
-          "reserved" : "reserved",
-          "created_at" : "2020-01-30 00:00:00"
-        },
         "properties" : {
           "address" : {
             "type" : "string"
@@ -5008,49 +3839,6 @@
         "x-tags" : [ "addresses" ]
       },
       "ListAddressResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "rdns" : "rdns",
-            "address" : "address",
-            "updated_at" : "2020-01-30 00:00:00",
-            "reserved" : "reserved",
-            "created_at" : "2020-01-30 00:00:00"
-          }, {
-            "rdns" : "rdns",
-            "address" : "address",
-            "updated_at" : "2020-01-30 00:00:00",
-            "reserved" : "reserved",
-            "created_at" : "2020-01-30 00:00:00"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -5074,43 +3862,6 @@
         "x-tags" : [ "addresses" ]
       },
       "SingleAddressResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "rdns" : "rdns",
-            "address" : "address",
-            "updated_at" : "2020-01-30 00:00:00",
-            "reserved" : "reserved",
-            "created_at" : "2020-01-30 00:00:00"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -5136,10 +3887,6 @@
         "x-tags" : [ "addresses" ]
       },
       "UpdateAddressRequest" : {
-        "example" : {
-          "rdns" : "rdns",
-          "reserved" : "reserved"
-        },
         "properties" : {
           "reserved" : {
             "type" : "string"
@@ -5153,10 +3900,6 @@
         "x-tags" : [ "addresses" ]
       },
       "CloudServerBackup" : {
-        "example" : {
-          "id" : 0,
-          "title" : "title"
-        },
         "properties" : {
           "id" : {
             "type" : "integer"
@@ -5171,43 +3914,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "ListCloudServerBackupResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "id" : 0,
-            "title" : "title"
-          }, {
-            "id" : 0,
-            "title" : "title"
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -5230,40 +3936,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "SingleCloudServerBackupResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "id" : 0,
-            "title" : "title"
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -5283,9 +3955,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "RestoreCloudServerRequest" : {
-        "example" : {
-          "backup_id" : 1
-        },
         "properties" : {
           "backup_id" : {
             "minimum" : 1,
@@ -5298,9 +3967,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "CreateCloudServerBackupRequest" : {
-        "example" : {
-          "title" : "title"
-        },
         "properties" : {
           "title" : {
             "type" : "string"
@@ -5311,9 +3977,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "CloudServerScheduledTask" : {
-        "example" : {
-          "id" : 0
-        },
         "properties" : {
           "id" : {
             "type" : "integer"
@@ -5324,41 +3987,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "ListCloudServerScheduledTaskResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : [ {
-            "id" : 0
-          }, {
-            "id" : 0
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -5381,34 +4009,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "SingleCloudServerScheduledTaskResponse" : {
-        "example" : {
-          "metadata" : "metadata",
-          "data" : "data",
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "type" : "string"
@@ -5428,11 +4028,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "CreateCloudServerScheduledTaskRequest" : {
-        "example" : {
-          "next_execution_at" : "2020-01-30 00:00:00",
-          "action" : "start",
-          "interval" : "hour"
-        },
         "properties" : {
           "action" : {
             "enum" : [ "start", "stop", "shutdown", "restart", "backup" ],
@@ -5452,17 +4047,6 @@
         "x-tags" : [ "cloudserver" ]
       },
       "ResponsePagination" : {
-        "example" : {
-          "first_page_url" : "first_page_url",
-          "offset" : 9.301444243932576,
-          "page_element_count" : 2.3021358869347655,
-          "last_page_url" : "last_page_url",
-          "limit" : 7.061401241503109,
-          "next_page_url" : "next_page_url",
-          "previous_page_url" : "previous_page_url",
-          "total_element_count" : 5.637376656633329,
-          "page_count" : 3.616076749251911
-        },
         "properties" : {
           "total_element_count" : {
             "type" : "number"
@@ -5509,29 +4093,6 @@
         }
       },
       "Customer" : {
-        "example" : {
-          "email_tech" : "email_tech",
-          "amount" : 1.4658129805029452,
-          "city" : "city",
-          "email_abuse" : "email_abuse",
-          "last_name" : "last_name",
-          "created_at" : "created_at",
-          "house_number" : "house_number",
-          "zip_code" : "zip_code",
-          "next_billing_cycle" : "next_billing_cycle",
-          "updated_at" : "updated_at",
-          "email_accounting" : "email_accounting",
-          "street" : "street",
-          "company_name" : "company_name",
-          "credit_limit" : 5.962133916683182,
-          "vat_id" : "vat_id",
-          "id" : 0.8008281904610115,
-          "email_newsletter" : "email_newsletter",
-          "email_contact" : "email_contact",
-          "first_name" : "first_name",
-          "email" : "email",
-          "country_id" : 6.027456183070403
-        },
         "properties" : {
           "id" : {
             "type" : "number"
@@ -5613,59 +4174,6 @@
         "x-tags" : [ "customers" ]
       },
       "SingleCustomerResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "email_tech" : "email_tech",
-            "amount" : 1.4658129805029452,
-            "city" : "city",
-            "email_abuse" : "email_abuse",
-            "last_name" : "last_name",
-            "created_at" : "created_at",
-            "house_number" : "house_number",
-            "zip_code" : "zip_code",
-            "next_billing_cycle" : "next_billing_cycle",
-            "updated_at" : "updated_at",
-            "email_accounting" : "email_accounting",
-            "street" : "street",
-            "company_name" : "company_name",
-            "credit_limit" : 5.962133916683182,
-            "vat_id" : "vat_id",
-            "id" : 0.8008281904610115,
-            "email_newsletter" : "email_newsletter",
-            "email_contact" : "email_contact",
-            "first_name" : "first_name",
-            "email" : "email",
-            "country_id" : 6.027456183070403
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -5684,92 +4192,6 @@
         "type" : "object"
       },
       "ListCustomerResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "pagination" : {
-            "first_page_url" : "first_page_url",
-            "offset" : 9.301444243932576,
-            "page_element_count" : 2.3021358869347655,
-            "last_page_url" : "last_page_url",
-            "limit" : 7.061401241503109,
-            "next_page_url" : "next_page_url",
-            "previous_page_url" : "previous_page_url",
-            "total_element_count" : 5.637376656633329,
-            "page_count" : 3.616076749251911
-          },
-          "data" : [ {
-            "email_tech" : "email_tech",
-            "amount" : 1.4658129805029452,
-            "city" : "city",
-            "email_abuse" : "email_abuse",
-            "last_name" : "last_name",
-            "created_at" : "created_at",
-            "house_number" : "house_number",
-            "zip_code" : "zip_code",
-            "next_billing_cycle" : "next_billing_cycle",
-            "updated_at" : "updated_at",
-            "email_accounting" : "email_accounting",
-            "street" : "street",
-            "company_name" : "company_name",
-            "credit_limit" : 5.962133916683182,
-            "vat_id" : "vat_id",
-            "id" : 0.8008281904610115,
-            "email_newsletter" : "email_newsletter",
-            "email_contact" : "email_contact",
-            "first_name" : "first_name",
-            "email" : "email",
-            "country_id" : 6.027456183070403
-          }, {
-            "email_tech" : "email_tech",
-            "amount" : 1.4658129805029452,
-            "city" : "city",
-            "email_abuse" : "email_abuse",
-            "last_name" : "last_name",
-            "created_at" : "created_at",
-            "house_number" : "house_number",
-            "zip_code" : "zip_code",
-            "next_billing_cycle" : "next_billing_cycle",
-            "updated_at" : "updated_at",
-            "email_accounting" : "email_accounting",
-            "street" : "street",
-            "company_name" : "company_name",
-            "credit_limit" : 5.962133916683182,
-            "vat_id" : "vat_id",
-            "id" : 0.8008281904610115,
-            "email_newsletter" : "email_newsletter",
-            "email_contact" : "email_contact",
-            "first_name" : "first_name",
-            "email" : "email",
-            "country_id" : 6.027456183070403
-          } ],
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -5794,23 +4216,6 @@
         "type" : "object"
       },
       "CreateCustomerRequest" : {
-        "example" : {
-          "email_tech" : "email_tech",
-          "city" : "city",
-          "email_abuse" : "email_abuse",
-          "last_name" : "last_name",
-          "house_number" : "house_number",
-          "zip_code" : "zip_code",
-          "email_accounting" : "email_accounting",
-          "street" : "street",
-          "company_name" : "company_name",
-          "vat_id" : "vat_id",
-          "email_newsletter" : "email_newsletter",
-          "email_contact" : "email_contact",
-          "first_name" : "first_name",
-          "email" : "email",
-          "country_id" : 0
-        },
         "properties" : {
           "company_name" : {
             "description" : "Required if no first_name is given.",
@@ -5867,50 +4272,6 @@
         "type" : "object"
       },
       "CloudServerMassStatusResponse" : {
-        "example" : {
-          "metadata" : {
-            "serverTransactionId" : "200913214225851845414",
-            "clientTransactionId" : "lumaserv_api_request_1234"
-          },
-          "data" : {
-            "key" : {
-              "disk" : "disk",
-              "mem" : "mem",
-              "maxdisk" : 1,
-              "cpu" : 0.8008281904610115,
-              "id" : "id",
-              "maxcpu" : 6.027456183070403,
-              "type" : "type",
-              "maxmem" : 5,
-              "status" : "status",
-              "uptime" : 5
-            }
-          },
-          "messages" : {
-            "success" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "warnings" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ],
-            "errors" : [ {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            }, {
-              "code" : 10000,
-              "message" : "Action successfully executed."
-            } ]
-          },
-          "status" : "status"
-        },
         "properties" : {
           "data" : {
             "additionalProperties" : {
@@ -5942,28 +4303,14 @@
         "type" : "object"
       },
       "LoginResponse_data" : {
-        "example" : {
-          "token" : "token"
-        },
         "properties" : {
           "token" : {
             "type" : "string"
           }
-        }
+        },
+        "type" : "object"
       },
       "CloudServerMassStatusResponse_data" : {
-        "example" : {
-          "disk" : "disk",
-          "mem" : "mem",
-          "maxdisk" : 1,
-          "cpu" : 0.8008281904610115,
-          "id" : "id",
-          "maxcpu" : 6.027456183070403,
-          "type" : "type",
-          "maxmem" : 5,
-          "status" : "status",
-          "uptime" : 5
-        },
         "properties" : {
           "id" : {
             "type" : "string"
@@ -5995,7 +4342,8 @@
           "uptime" : {
             "type" : "integer"
           }
-        }
+        },
+        "type" : "object"
       }
     },
     "securitySchemes" : {
