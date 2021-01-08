@@ -1713,9 +1713,14 @@ components:
           type: string
           format: uuid
         cores:
-          type: string
+          type: integer
+          minimum: 1
+          maximum: 64
         memory:
-          type: string
+          type: integer
+          minimum: 1024
+          maximum: 131072
+          multipleOf: 1024
         template:
           type: string
         password:
@@ -1729,6 +1734,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CreateCloudServerInterfaceRequest'
+        hostname:
+          type: string
       required:
         - project_uuid
         - cores
@@ -1921,6 +1928,8 @@ components:
           type: integer
         memory:
           type: integer
+        hostname:
+          type: string
     ResponseMetadata:
       title: ResponseMetadata
       type: object
