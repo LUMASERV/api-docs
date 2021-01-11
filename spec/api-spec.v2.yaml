@@ -1402,6 +1402,7 @@ paths:
                 $ref: '#/components/schemas/ListCloudServerTemplateResponse'
       operationId: getCloudServerTemplates
       description: Returns all available cloud server templates
+      deprecated: true
   '/cloud/servers/{id}/reinstall':
     parameters:
       - schema:
@@ -1427,6 +1428,7 @@ paths:
               $ref: '#/components/schemas/ReinstallCloudServerRequest'
       tags:
         - cloudserver
+      deprecated: true
 components:
   schemas:
     CloudServer:
