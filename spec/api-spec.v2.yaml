@@ -1388,6 +1388,45 @@ paths:
             format: uuid
           in: query
           name: project_uuid
+  /cloud/templates/server:
+    get:
+      summary: getCloudServerTemplates
+      tags:
+        - cloudserver
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCloudServerTemplateResponse'
+      operationId: getCloudServerTemplates
+      description: Returns all available cloud server templates
+  '/cloud/servers/{id}/reinstall':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: reinstallCloudServer
+      operationId: reinstallCloudServer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleCloudServerResponse'
+      description: Reinstalls the cloud server
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReinstallCloudServerRequest'
+      tags:
+        - cloudserver
 components:
   schemas:
     CloudServer:
@@ -3012,6 +3051,45 @@ components:
           type: string
         messages:
           $ref: '#/components/schemas/ResponseMessages'
+    CloudServerTemplate:
+      title: CloudServerTemplate
+      type: object
+      properties:
+        key:
+          type: string
+        title:
+          type: string
+      x-tags:
+        - cloudserver
+    ListCloudServerTemplateResponse:
+      title: ListCloudServerTemplateResponse
+      type: object
+      x-tags:
+        - cloudserver
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ResponseMetadata'
+        status:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudServerTemplate'
+        messages:
+          $ref: '#/components/schemas/ResponseMessages'
+      required:
+        - metadata
+        - status
+        - data
+        - messages
+    ReinstallCloudServerRequest:
+      title: ReinstallCloudServerRequest
+      type: object
+      properties:
+        template:
+          type: string
+      x-tags:
+        - cloudserver
   securitySchemes:
     AuthToken:
       type: http
