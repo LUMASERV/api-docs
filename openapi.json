@@ -2463,6 +2463,65 @@
         "summary" : "getCloudServerPricing",
         "tags" : [ "cloudserver" ]
       }
+    },
+    "/cloud/templates/server" : {
+      "get" : {
+        "description" : "Returns all available cloud server templates",
+        "operationId" : "getCloudServerTemplates",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCloudServerTemplateResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "getCloudServerTemplates",
+        "tags" : [ "cloudserver" ]
+      }
+    },
+    "/cloud/servers/{id}/reinstall" : {
+      "post" : {
+        "description" : "Reinstalls the cloud server",
+        "operationId" : "reinstallCloudServer",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReinstallCloudServerRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SingleCloudServerResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "reinstallCloudServer",
+        "tags" : [ "cloudserver" ]
+      }
     }
   },
   "components" : {
@@ -4290,6 +4349,52 @@
           }
         },
         "title" : "CloudServerMassStatus",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "CloudServerTemplate" : {
+        "properties" : {
+          "key" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "title" : "CloudServerTemplate",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "ListCloudServerTemplateResponse" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/CloudServerTemplate"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "status" ],
+        "title" : "ListCloudServerTemplateResponse",
+        "type" : "object",
+        "x-tags" : [ "cloudserver" ]
+      },
+      "ReinstallCloudServerRequest" : {
+        "properties" : {
+          "template" : {
+            "type" : "string"
+          }
+        },
+        "title" : "ReinstallCloudServerRequest",
         "type" : "object",
         "x-tags" : [ "cloudserver" ]
       },

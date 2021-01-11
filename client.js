@@ -267,4 +267,10 @@ export default class LUMASERVClient {
     getCloudServerPricing(query = null){
         return this.request('get', '/accounting/pricing/cloud/servers', query, null);
     }
+    getCloudServerTemplates(){
+        return this.request('get', '/cloud/templates/server', null, null);
+    }
+    reinstallCloudServer(id, body = null){
+        return this.request('post', '/cloud/servers/' + id + '/reinstall', null, body);
+    }
 }
