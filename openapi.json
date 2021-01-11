@@ -2466,6 +2466,7 @@
     },
     "/cloud/templates/server" : {
       "get" : {
+        "deprecated" : true,
         "description" : "Returns all available cloud server templates",
         "operationId" : "getCloudServerTemplates",
         "responses" : {
@@ -2486,6 +2487,7 @@
     },
     "/cloud/servers/{id}/reinstall" : {
       "post" : {
+        "deprecated" : true,
         "description" : "Reinstalls the cloud server",
         "operationId" : "reinstallCloudServer",
         "parameters" : [ {
