@@ -2562,10 +2562,10 @@
             "type" : "integer"
           },
           "created_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           },
           "updated_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           }
         },
         "required" : [ "cores", "created_at", "hostname", "id", "max_backups", "max_scheduled_tasks", "memory", "template", "updated_at" ],
@@ -2609,10 +2609,10 @@
             "type" : "integer"
           },
           "created_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           },
           "updated_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           }
         },
         "required" : [ "created_at", "firewall", "mac_address", "netname", "network_id", "updated_at" ],
@@ -2649,10 +2649,10 @@
             "type" : "boolean"
           },
           "created_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           },
           "updated_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           }
         },
         "required" : [ "created_at", "is_boot", "replication", "size", "title", "updated_at" ],
@@ -2684,10 +2684,10 @@
             "type" : "string"
           },
           "created_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           },
           "updated_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           }
         },
         "required" : [ "cidr", "created_at", "id", "title", "updated_at" ],
@@ -2715,10 +2715,10 @@
             "type" : "string"
           },
           "created_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           },
           "updated_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           },
           "project_uuid" : {
             "format" : "uuid",
@@ -2793,10 +2793,10 @@
             "type" : "string"
           },
           "created_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           },
           "updated_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           }
         },
         "required" : [ "created_at", "id", "order", "title", "updated_at" ],
@@ -2836,10 +2836,10 @@
             "type" : "string"
           },
           "created_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           },
           "updated_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           }
         },
         "required" : [ "created_at", "id", "project_uuid", "title", "updated_at" ],
@@ -2856,12 +2856,6 @@
             "updated_at" : "2020-01-30 00:00:00"
           }
         }
-      },
-      "Timestamp" : {
-        "example" : "2020-01-30 00:00:00",
-        "title" : "Timestamp",
-        "type" : "string",
-        "x-examples" : { }
       },
       "CreateCloudServerRequest" : {
         "properties" : {
@@ -3430,10 +3424,10 @@
             "type" : "string"
           },
           "created_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           },
           "updated_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           }
         },
         "title" : "Project",
@@ -3712,7 +3706,7 @@
             "type" : "string"
           },
           "created_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           }
         },
         "required" : [ "created_at", "email", "username" ],
@@ -3843,10 +3837,10 @@
             "type" : "string"
           },
           "created_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           },
           "updated_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           }
         },
         "required" : [ "created_at", "id", "is_public", "updated_at", "user" ],
@@ -3888,10 +3882,10 @@
             "type" : "string"
           },
           "created_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           },
           "updated_at" : {
-            "$ref" : "#/components/schemas/Timestamp"
+            "type" : "string"
           }
         },
         "required" : [ "address", "created_at", "updated_at" ],
