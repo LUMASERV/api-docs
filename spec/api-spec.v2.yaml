@@ -2817,7 +2817,7 @@ components:
             - month
             - year
         next_execution_at:
-          $ref: '#/components/schemas/Timestamp'
+          type: string
       required:
         - action
         - interval
