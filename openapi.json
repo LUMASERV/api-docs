@@ -3301,9 +3301,101 @@
         "properties" : {
           "code" : {
             "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "PERSON", "ORGANISATION" ],
+            "type" : "string"
+          },
+          "gender" : {
+            "enum" : [ "MALE", "FEMALE" ],
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "organisation" : {
+            "type" : "string"
+          },
+          "street" : {
+            "type" : "string"
+          },
+          "street_number" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "region" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "fax" : {
+            "type" : "string"
+          },
+          "email" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "id_card" : {
+            "type" : "string"
+          },
+          "id_card_issue_date" : {
+            "type" : "string"
+          },
+          "id_card_authority" : {
+            "type" : "string"
+          },
+          "tax_number" : {
+            "type" : "string"
+          },
+          "vat_number" : {
+            "type" : "string"
+          },
+          "birth_date" : {
+            "type" : "string"
+          },
+          "birth_country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "birth_place" : {
+            "type" : "string"
+          },
+          "birth_region" : {
+            "type" : "string"
+          },
+          "company_registration_number" : {
+            "type" : "string"
+          },
+          "privacy_protection" : {
+            "type" : "boolean"
+          },
+          "created_at" : {
+            "type" : "string"
           }
         },
-        "required" : [ "code" ],
+        "required" : [ "city", "code", "country_code", "created_at", "email", "first_name", "gender", "last_name", "postal_code", "privacy_protection", "project_id", "street", "street_number", "type" ],
         "title" : "DomainHandle",
         "type" : "object",
         "x-tags" : [ "domains" ]
