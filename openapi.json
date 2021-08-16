@@ -17,14 +17,9 @@
     "AuthToken" : [ ]
   } ],
   "tags" : [ {
-    "description" : "CloudServer Management",
-    "name" : "cloudserver"
-  }, {
     "name" : "projects"
   }, {
     "name" : "auth"
-  }, {
-    "name" : "users"
   } ],
   "paths" : {
     "/projects" : {
