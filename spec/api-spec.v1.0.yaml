@@ -950,10 +950,14 @@ components:
         id:
           type: string
           format: uuid
+        project_id:
+          type: string
+          format: uuid
         title:
           type: string
       required:
         - id
+        - project_id
         - title
     S3AccessKey:
       title: S3AccessKey
@@ -965,10 +969,14 @@ components:
         id:
           type: string
           format: uuid
+        project_id:
+          type: string
+          format: uuid
         title:
           type: string
       required:
         - id
+        - project_id
         - title
     S3AccessGrant:
       title: S3AccessGrant
