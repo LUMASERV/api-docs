@@ -2572,6 +2572,98 @@
         "content" : {
           "application/json" : {
             "schema" : {
+              "properties" : {
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "type" : {
+                  "enum" : [ "PERSON", "ORGANISATION" ],
+                  "type" : "string"
+                },
+                "gender" : {
+                  "enum" : [ "MALE", "FEMALE" ],
+                  "type" : "string"
+                },
+                "first_name" : {
+                  "type" : "string"
+                },
+                "last_name" : {
+                  "type" : "string"
+                },
+                "organisation" : {
+                  "type" : "string"
+                },
+                "street" : {
+                  "type" : "string"
+                },
+                "street_number" : {
+                  "type" : "string"
+                },
+                "additional_address" : {
+                  "type" : "string"
+                },
+                "postal_code" : {
+                  "type" : "string"
+                },
+                "city" : {
+                  "type" : "string"
+                },
+                "region" : {
+                  "type" : "string"
+                },
+                "country_code" : {
+                  "maxLength" : 2,
+                  "minLength" : 2,
+                  "type" : "string"
+                },
+                "phone" : {
+                  "type" : "string"
+                },
+                "fax" : {
+                  "type" : "string"
+                },
+                "email" : {
+                  "format" : "email",
+                  "type" : "string"
+                },
+                "id_card" : {
+                  "type" : "string"
+                },
+                "id_card_issue_date" : {
+                  "type" : "string"
+                },
+                "id_card_authority" : {
+                  "type" : "string"
+                },
+                "tax_number" : {
+                  "type" : "string"
+                },
+                "vat_number" : {
+                  "type" : "string"
+                },
+                "birth_date" : {
+                  "type" : "string"
+                },
+                "birth_country_code" : {
+                  "maxLength" : 2,
+                  "minLength" : 2,
+                  "type" : "string"
+                },
+                "birth_place" : {
+                  "type" : "string"
+                },
+                "birth_region" : {
+                  "type" : "string"
+                },
+                "company_registration_number" : {
+                  "type" : "string"
+                },
+                "privacy_protection" : {
+                  "type" : "boolean"
+                }
+              },
+              "required" : [ "city", "country_code", "email", "first_name", "gender", "last_name", "postal_code", "project_id", "street", "street_number", "type" ],
               "type" : "object"
             }
           }
@@ -2581,6 +2673,76 @@
         "content" : {
           "application/json" : {
             "schema" : {
+              "properties" : {
+                "street" : {
+                  "type" : "string"
+                },
+                "street_number" : {
+                  "type" : "string"
+                },
+                "additional_address" : {
+                  "type" : "string"
+                },
+                "postal_code" : {
+                  "type" : "string"
+                },
+                "city" : {
+                  "type" : "string"
+                },
+                "region" : {
+                  "type" : "string"
+                },
+                "country_code" : {
+                  "maxLength" : 2,
+                  "minLength" : 2,
+                  "type" : "string"
+                },
+                "phone" : {
+                  "type" : "string"
+                },
+                "fax" : {
+                  "type" : "string"
+                },
+                "email" : {
+                  "format" : "email",
+                  "type" : "string"
+                },
+                "id_card" : {
+                  "type" : "string"
+                },
+                "id_card_issue_date" : {
+                  "type" : "string"
+                },
+                "id_card_authority" : {
+                  "type" : "string"
+                },
+                "tax_number" : {
+                  "type" : "string"
+                },
+                "vat_number" : {
+                  "type" : "string"
+                },
+                "birth_date" : {
+                  "type" : "string"
+                },
+                "birth_country_code" : {
+                  "maxLength" : 2,
+                  "minLength" : 2,
+                  "type" : "string"
+                },
+                "birth_place" : {
+                  "type" : "string"
+                },
+                "birth_region" : {
+                  "type" : "string"
+                },
+                "company_registration_number" : {
+                  "type" : "string"
+                },
+                "privacy_protection" : {
+                  "type" : "boolean"
+                }
+              },
               "type" : "object"
             }
           }
@@ -2590,6 +2752,45 @@
         "content" : {
           "application/json" : {
             "schema" : {
+              "properties" : {
+                "name" : {
+                  "format" : "hostname",
+                  "type" : "string"
+                },
+                "authinfo" : {
+                  "type" : "string"
+                },
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "duration" : {
+                  "exclusiveMinimum" : false,
+                  "maximum" : 10,
+                  "minimum" : 1,
+                  "type" : "integer"
+                },
+                "owner_handle_code" : {
+                  "type" : "string"
+                },
+                "admin_handle_code" : {
+                  "type" : "string"
+                },
+                "tech_handle_code" : {
+                  "type" : "string"
+                },
+                "zone_handle_code" : {
+                  "type" : "string"
+                },
+                "nameserver" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/DomainRequestNameserver"
+                  },
+                  "minItems" : 2,
+                  "type" : "array"
+                }
+              },
+              "required" : [ "admin_handle_code", "name", "nameserver", "owner_handle_code", "project_id", "tech_handle_code", "zone_handle_code" ],
               "type" : "object"
             }
           }
@@ -2599,6 +2800,27 @@
         "content" : {
           "application/json" : {
             "schema" : {
+              "properties" : {
+                "owner_handle_code" : {
+                  "type" : "string"
+                },
+                "admin_handle_code" : {
+                  "type" : "string"
+                },
+                "tech_handle_code" : {
+                  "type" : "string"
+                },
+                "zone_handle_code" : {
+                  "type" : "string"
+                },
+                "nameserver" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/DomainRequestNameserver"
+                  },
+                  "minItems" : 2,
+                  "type" : "array"
+                }
+              },
               "type" : "object"
             }
           }
@@ -3091,9 +3313,28 @@
           "name" : {
             "format" : "hostname",
             "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "owner_handle_code" : {
+            "type" : "string"
+          },
+          "admin_handle_code" : {
+            "type" : "string"
+          },
+          "tech_handle_code" : {
+            "type" : "string"
+          },
+          "zone_handle_code" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
           }
         },
-        "required" : [ "name" ],
+        "required" : [ "admin_handle_code", "created_at", "name", "owner_handle_code", "project_id", "tech_handle_code", "zone_handle_code" ],
         "title" : "Domain",
         "type" : "object",
         "x-tags" : [ "domains" ]
@@ -3109,6 +3350,25 @@
         },
         "required" : [ "authinfo" ],
         "title" : "DomainAuthinfo",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
+      },
+      "DomainRequestNameserver" : {
+        "properties" : {
+          "name" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "addresses" : {
+            "items" : {
+              "format" : "ipv4",
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "name" ],
+        "title" : "DomainRequestNameserver",
         "type" : "object",
         "x-tags" : [ "domains" ]
       },
