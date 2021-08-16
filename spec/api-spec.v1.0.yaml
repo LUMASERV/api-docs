@@ -173,17 +173,14 @@ components:
           created_at: '2020-01-30 00:00:00'
           updated_at: '2020-01-30 00:00:00'
       properties:
-        uuid:
+        id:
           type: string
           format: uuid
         title:
           type: string
-        description:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
+      required:
+        - id
+        - title
     Token:
       title: Token
       type: object
