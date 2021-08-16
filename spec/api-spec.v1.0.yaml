@@ -1012,8 +1012,27 @@ components:
         name:
           type: string
           format: hostname
+        project_id:
+          type: string
+          format: uuid
+        owner_handle_code:
+          type: string
+        admin_handle_code:
+          type: string
+        tech_handle_code:
+          type: string
+        zone_handle_code:
+          type: string
+        created_at:
+          type: string
       required:
         - name
+        - project_id
+        - owner_handle_code
+        - admin_handle_code
+        - tech_handle_code
+        - zone_handle_code
+        - created_at
     DomainAuthinfo:
       title: DomainAuthinfo
       type: object
@@ -1026,6 +1045,22 @@ components:
           type: string
       required:
         - authinfo
+    DomainRequestNameserver:
+      title: DomainRequestNameserver
+      type: object
+      properties:
+        name:
+          type: string
+          format: hostname
+        addresses:
+          type: array
+          items:
+            type: string
+            format: ipv4
+      required:
+        - name
+      x-tags:
+        - domains
   securitySchemes:
     AuthToken:
       type: http
@@ -1549,21 +1584,197 @@ components:
         application/json:
           schema:
             type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              type:
+                type: string
+                enum:
+                  - PERSON
+                  - ORGANISATION
+              gender:
+                type: string
+                enum:
+                  - MALE
+                  - FEMALE
+              first_name:
+                type: string
+              last_name:
+                type: string
+              organisation:
+                type: string
+              street:
+                type: string
+              street_number:
+                type: string
+              additional_address:
+                type: string
+              postal_code:
+                type: string
+              city:
+                type: string
+              region:
+                type: string
+              country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              phone:
+                type: string
+              fax:
+                type: string
+              email:
+                type: string
+                format: email
+              id_card:
+                type: string
+              id_card_issue_date:
+                type: string
+              id_card_authority:
+                type: string
+              tax_number:
+                type: string
+              vat_number:
+                type: string
+              birth_date:
+                type: string
+              birth_country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              birth_place:
+                type: string
+              birth_region:
+                type: string
+              company_registration_number:
+                type: string
+              privacy_protection:
+                type: boolean
+            required:
+              - project_id
+              - type
+              - gender
+              - first_name
+              - last_name
+              - street
+              - street_number
+              - postal_code
+              - city
+              - country_code
+              - email
     DomainHandleUpdateRequest:
       content:
         application/json:
           schema:
             type: object
+            properties:
+              street:
+                type: string
+              street_number:
+                type: string
+              additional_address:
+                type: string
+              postal_code:
+                type: string
+              city:
+                type: string
+              region:
+                type: string
+              country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              phone:
+                type: string
+              fax:
+                type: string
+              email:
+                type: string
+                format: email
+              id_card:
+                type: string
+              id_card_issue_date:
+                type: string
+              id_card_authority:
+                type: string
+              tax_number:
+                type: string
+              vat_number:
+                type: string
+              birth_date:
+                type: string
+              birth_country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              birth_place:
+                type: string
+              birth_region:
+                type: string
+              company_registration_number:
+                type: string
+              privacy_protection:
+                type: boolean
     DomainCreateRequest:
       content:
         application/json:
           schema:
             type: object
+            properties:
+              name:
+                type: string
+                format: hostname
+              authinfo:
+                type: string
+              project_id:
+                type: string
+                format: uuid
+              duration:
+                type: integer
+                minimum: 1
+                maximum: 10
+                exclusiveMinimum: false
+              owner_handle_code:
+                type: string
+              admin_handle_code:
+                type: string
+              tech_handle_code:
+                type: string
+              zone_handle_code:
+                type: string
+              nameserver:
+                type: array
+                minItems: 2
+                items:
+                  $ref: '#/components/schemas/DomainRequestNameserver'
+            required:
+              - name
+              - project_id
+              - owner_handle_code
+              - admin_handle_code
+              - tech_handle_code
+              - zone_handle_code
+              - nameserver
     DomainUpdateRequest:
       content:
         application/json:
           schema:
             type: object
+            properties:
+              owner_handle_code:
+                type: string
+              admin_handle_code:
+                type: string
+              tech_handle_code:
+                type: string
+              zone_handle_code:
+                type: string
+              nameserver:
+                type: array
+                minItems: 2
+                items:
+                  $ref: '#/components/schemas/DomainRequestNameserver'
     DomainScheduleDeleteRequest:
       content:
         application/json:
