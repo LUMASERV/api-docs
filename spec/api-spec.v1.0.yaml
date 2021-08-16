@@ -1001,8 +1001,89 @@ components:
       properties:
         code:
           type: string
+        project_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - PERSON
+            - ORGANISATION
+        gender:
+          type: string
+          enum:
+            - MALE
+            - FEMALE
+        first_name:
+          type: string
+        last_name:
+          type: string
+        organisation:
+          type: string
+        street:
+          type: string
+        street_number:
+          type: string
+        additional_address:
+          type: string
+        postal_code:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        country_code:
+          type: string
+          minLength: 2
+          maxLength: 2
+        phone:
+          type: string
+        fax:
+          type: string
+        email:
+          type: string
+          format: email
+        id_card:
+          type: string
+        id_card_issue_date:
+          type: string
+        id_card_authority:
+          type: string
+        tax_number:
+          type: string
+        vat_number:
+          type: string
+        birth_date:
+          type: string
+        birth_country_code:
+          type: string
+          minLength: 2
+          maxLength: 2
+        birth_place:
+          type: string
+        birth_region:
+          type: string
+        company_registration_number:
+          type: string
+        privacy_protection:
+          type: boolean
+        created_at:
+          type: string
       required:
         - code
+        - project_id
+        - type
+        - gender
+        - first_name
+        - last_name
+        - street
+        - street_number
+        - postal_code
+        - city
+        - country_code
+        - email
+        - privacy_protection
+        - created_at
     Domain:
       title: Domain
       type: object
