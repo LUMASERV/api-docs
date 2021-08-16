@@ -3249,11 +3249,15 @@
             "format" : "uuid",
             "type" : "string"
           },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
           "title" : {
             "type" : "string"
           }
         },
-        "required" : [ "id", "title" ],
+        "required" : [ "id", "project_id", "title" ],
         "title" : "S3Bucket",
         "type" : "object",
         "x-tags" : [ "s3-storage" ]
@@ -3265,11 +3269,15 @@
             "format" : "uuid",
             "type" : "string"
           },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
           "title" : {
             "type" : "string"
           }
         },
-        "required" : [ "id", "title" ],
+        "required" : [ "id", "project_id", "title" ],
         "title" : "S3AccessKey",
         "type" : "object",
         "x-tags" : [ "s3-storage" ]
