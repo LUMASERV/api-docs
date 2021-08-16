@@ -12,6 +12,10 @@ servers:
 tags:
   - name: projects
   - name: auth
+  - name: users
+  - name: plesk-licenses
+  - name: s3-storage
+  - name: domains
 paths:
   /projects:
     get:
@@ -44,15 +48,15 @@ paths:
       description: Create a new project
       requestBody:
         $ref: '#/components/requestBodies/ProjectCreateRequest'
-  '/projects/{uuid}':
+  '/projects/{id}':
     parameters:
       - schema:
           type: string
           format: uuid
-        name: uuid
+        name: id
         in: path
         required: true
-        description: UUID of the project
+        description: ID of the project
     get:
       summary: getProject
       tags:
@@ -118,6 +122,668 @@ paths:
       description: Exchanges user credentials for an auth token
       requestBody:
         $ref: '#/components/requestBodies/LoginRequest'
+  /users:
+    get:
+      summary: getUsers
+      tags:
+        - users
+      responses:
+        '200':
+          $ref: '#/components/responses/UserListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getUsers
+      description: Returns all users
+  '/users/{id}':
+    parameters:
+      - schema:
+          type: integer
+        name: id
+        in: path
+        required: true
+        description: User ID
+    get:
+      summary: getUser
+      tags:
+        - users
+      responses:
+        '200':
+          $ref: '#/components/responses/UserSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getUser
+      description: Returns a single user
+  /storage/s3/buckets:
+    get:
+      summary: getS3Buckets
+      tags:
+        - s3-storage
+      responses:
+        '200':
+          $ref: '#/components/responses/S3BucketListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getS3Buckets
+      description: Returns all s3 buckets
+    post:
+      summary: createS3Bucket
+      operationId: createS3Bucket
+      responses:
+        '201':
+          $ref: '#/components/responses/S3BucketSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new s3 bucket
+      tags:
+        - s3-storage
+      requestBody:
+        $ref: '#/components/requestBodies/S3BucketCreateRequest'
+  '/storage/s3/buckets/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: S3 Bucket ID
+    get:
+      summary: getS3Bucket
+      tags:
+        - s3-storage
+      responses:
+        '200':
+          $ref: '#/components/responses/S3BucketSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getS3Bucket
+      description: Returns a single s3 bucket
+    delete:
+      summary: deleteS3Bucket
+      operationId: deleteS3Bucket
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - s3-storage
+      description: Deletes a s3 bucket
+  /storage/s3/access-keys:
+    get:
+      summary: getS3AccessKeys
+      tags:
+        - s3-storage
+      responses:
+        '200':
+          $ref: '#/components/responses/S3AccessKeyListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getS3AccessKeys
+      description: Returns all access keys
+    post:
+      summary: createS3AccessKey
+      operationId: createS3AccessKey
+      responses:
+        '201':
+          $ref: '#/components/responses/S3AccessKeySingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - s3-storage
+      description: Creates a s3 access key
+      requestBody:
+        $ref: '#/components/requestBodies/S3AccessKeyCreateRequest'
+  '/storage/s3/access-keys/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: S3 Access Key ID
+    get:
+      summary: getS3AccessKey
+      tags:
+        - s3-storage
+      responses:
+        '200':
+          $ref: '#/components/responses/S3AccessKeySingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getS3AccessKey
+      description: Returns a single s3 access key
+    delete:
+      summary: deleteS3AccessKey
+      operationId: deleteS3AccessKey
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - s3-storage
+      description: Deletes a s3 access key
+  /licenses/plesk:
+    get:
+      summary: getPleskLicenses
+      tags:
+        - plesk-licenses
+      operationId: getPleskLicenses
+      description: Returns all plesk licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+    post:
+      summary: createPleskLicense
+      operationId: createPleskLicense
+      responses:
+        '201':
+          $ref: '#/components/responses/PleskLicenseSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - plesk-licenses
+      description: Orders a new plesk license
+      requestBody:
+        $ref: '#/components/requestBodies/PleskLicenseCreateRequest'
+  '/licenses/plesk/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Plesk License ID
+    get:
+      summary: getPleskLicense
+      tags:
+        - plesk-licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPleskLicense
+      description: Returns a single plesk license
+    put:
+      summary: updatePleskLicense
+      operationId: updatePleskLicense
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - plesk-licenses
+      description: Updates a plesk license
+      requestBody:
+        $ref: '#/components/requestBodies/PleskLicenseUpdateRequest'
+  /licenses/plesk-types:
+    get:
+      summary: getPleskLicenseTypes
+      tags:
+        - plesk-licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseTypeListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPleskLicenseTypes
+      description: Return all plesk license types
+  '/licenses/plesk-types/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Plesk License Type ID
+    get:
+      summary: getPleskLicenseType
+      tags:
+        - plesk-licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseTypeSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPleskLicenseType
+      description: Returns a single plesk license type
+  '/storage/s3/access-keys/{access_key_id}/grants':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: access_key_id
+        in: path
+        required: true
+        description: S3 Access Key ID
+    get:
+      summary: getS3AccessKeyGrants
+      tags:
+        - s3-storage
+      responses:
+        '200':
+          $ref: '#/components/responses/S3AccessGrantListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getS3AccessKeyGrants
+      description: Returns all grants for the s3 access key
+    post:
+      summary: createS3AccessKeyGrant
+      operationId: createS3AccessKeyGrant
+      responses:
+        '201':
+          $ref: '#/components/responses/S3AccessGrantSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - s3-storage
+      description: Creates a new grant for the s3 access key
+      requestBody:
+        $ref: '#/components/requestBodies/S3AccessGrantCreateRequest'
+  '/storage/s3/access-keys/{access_key_id}/grants/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: access_key_id
+        in: path
+        required: true
+        description: S3 Access Key ID
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: S3 Access Grant ID
+    delete:
+      summary: deleteS3AccessKeyGrant
+      operationId: deleteS3AccessKeyGrant
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a grant of a s3 access key
+      tags:
+        - s3-storage
+  /domain-handles:
+    get:
+      summary: getDomainHandles
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainHandleListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomainHandles
+      description: Returns all domain handles
+    post:
+      summary: createDomainHandle
+      operationId: createDomainHandle
+      responses:
+        '201':
+          $ref: '#/components/responses/DomainHandleSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Creates a domain handle
+      requestBody:
+        $ref: '#/components/requestBodies/DomainHandleCreateRequest'
+  '/domain-handles/{code}':
+    parameters:
+      - schema:
+          type: string
+        name: code
+        in: path
+        required: true
+    get:
+      summary: getDomainHandle
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainHandleSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomainHandle
+      description: Returns a single domain handle
+    put:
+      summary: updateDomainHandle
+      operationId: updateDomainHandle
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainHandleSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Updates the domain handle
+      requestBody:
+        $ref: '#/components/requestBodies/DomainHandleUpdateRequest'
+    delete:
+      summary: deleteDomainHandle
+      operationId: deleteDomainHandle
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Deletes the domain handle
+  /domains:
+    get:
+      summary: getDomains
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomains
+      description: Returns all domains
+    post:
+      summary: createDomain
+      operationId: createDomain
+      responses:
+        '201':
+          $ref: '#/components/responses/DomainSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Registers or transfer a domain
+      requestBody:
+        $ref: '#/components/requestBodies/DomainCreateRequest'
+  '/domains/{name}':
+    parameters:
+      - schema:
+          type: string
+          format: hostname
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    get:
+      summary: getDomain
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomain
+      description: Returns a single domain
+    put:
+      summary: updateDomain
+      operationId: updateDomain
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Updates a domain
+      requestBody:
+        $ref: '#/components/requestBodies/DomainUpdateRequest'
+    delete:
+      summary: deleteDomain
+      operationId: deleteDomain
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a domain immediately
+      tags:
+        - domains
+  '/domains/{name}/authinfo':
+    parameters:
+      - schema:
+          type: string
+          format: hostname
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    get:
+      summary: getDomainAuthinfo
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainAuthinfoResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomainAuthinfo
+      description: Generates and returns the authinfo for the domain
+    delete:
+      summary: removeDomainAuthinfo
+      operationId: removeDomainAuthinfo
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Removes the authinfo from the domain
+  '/domains/{name}/restore':
+    parameters:
+      - schema:
+          type: string
+          format: hostname
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    post:
+      summary: restoreDomain
+      operationId: restoreDomain
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Restores a deleted domain
+  '/domains/{name}/schedule-delete':
+    parameters:
+      - schema:
+          type: string
+          format: hostname
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    post:
+      summary: scheduleDomainDelete
+      operationId: scheduleDomainDelete
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Schedules the deletion of the domain
+      requestBody:
+        $ref: '#/components/requestBodies/DomainScheduleDeleteRequest'
+  '/domains/{name}/unschedule-delete':
+    parameters:
+      - schema:
+          type: string
+          format: hostname
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    post:
+      summary: unscheduleDomainDelete
+      operationId: unscheduleDomainDelete
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainSingleResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Unscheduled the pending domain deletion
 components:
   schemas:
     ResponseMessages:
@@ -192,6 +858,174 @@ components:
           type: string
       required:
         - token
+    User:
+      title: User
+      type: object
+      x-tags:
+        - users
+      description: ''
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        gender:
+          type: string
+          enum:
+            - MALE
+            - FEMALE
+        street:
+          type: string
+        street_number:
+          type: string
+        additional_address:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        state:
+          type: string
+          enum:
+            - PENDING
+            - ACTIVATED
+            - LOCKED
+      required:
+        - id
+        - email
+        - first_name
+        - last_name
+    PleskLicense:
+      title: PleskLicense
+      type: object
+      description: A Plesk License
+      x-tags:
+        - plesk-licenses
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        license:
+          type: string
+        key:
+          type: string
+        created_at:
+          type: string
+      required:
+        - id
+        - project_id
+        - license
+        - key
+        - created_at
+    PleskLicenseType:
+      title: PleskLicenseType
+      type: object
+      description: A Plesk License Type
+      x-tags:
+        - plesk-licenses
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+      required:
+        - id
+        - title
+    S3Bucket:
+      title: S3Bucket
+      type: object
+      x-tags:
+        - s3-storage
+      description: A S3 Bucket
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+      required:
+        - id
+        - title
+    S3AccessKey:
+      title: S3AccessKey
+      type: object
+      x-tags:
+        - s3-storage
+      description: A S3 Access Key
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+      required:
+        - id
+        - title
+    S3AccessGrant:
+      title: S3AccessGrant
+      type: object
+      description: ''
+      x-tags:
+        - s3-storage
+      properties:
+        id:
+          type: string
+          format: uuid
+        bucket_id:
+          type: string
+          format: uuid
+        path:
+          type: string
+        role:
+          type: string
+          enum:
+            - READ_ONLY
+            - READ_WRITE
+      required:
+        - id
+        - role
+    DomainHandle:
+      title: DomainHandle
+      type: object
+      x-tags:
+        - domains
+      properties:
+        code:
+          type: string
+      required:
+        - code
+    Domain:
+      title: Domain
+      type: object
+      x-tags:
+        - domains
+      properties:
+        name:
+          type: string
+          format: hostname
+      required:
+        - name
+    DomainAuthinfo:
+      title: DomainAuthinfo
+      type: object
+      x-tags:
+        - domains
+      properties:
+        authinfo:
+          type: string
+        valid_until:
+          type: string
+      required:
+        - authinfo
   securitySchemes:
     AuthToken:
       type: http
@@ -294,6 +1128,311 @@ components:
               - success
               - data
               - messages
+    UserListResponse:
+      description: User List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    UserSingleResponse:
+      description: Single User
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/User'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    S3BucketSingleResponse:
+      description: Single S3 Bucket
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/S3Bucket'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    S3BucketListResponse:
+      description: S3 Bucket List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/S3Bucket'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    S3AccessKeySingleResponse:
+      description: Single S3 Access Key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/S3AccessKey'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    S3AccessKeyListResponse:
+      description: S3 Access Key List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/S3AccessKey'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    PleskLicenseSingleResponse:
+      description: Single Plesk License
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/PleskLicense'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    PleskLicenseListResponse:
+      description: Plesk License List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PleskLicense'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    PleskLicenseTypeSingleResponse:
+      description: Single Plesk License Type
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/PleskLicenseType'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    PleskLicenseTypeListResponse:
+      description: Plesk License Type List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PleskLicenseType'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    S3AccessGrantListResponse:
+      description: S3 Access Grant List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/S3AccessGrant'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    S3AccessGrantSingleResponse:
+      description: Single S3 Access Grant
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/S3AccessGrant'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    DomainHandleSingleResponse:
+      description: Single Domain Handle
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DomainHandle'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    DomainHandleListResponse:
+      description: Domain Handle List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainHandle'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    DomainSingleResponse:
+      description: Single Domain
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Domain'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    DomainListResponse:
+      description: Domain List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Domain'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    DomainAuthinfoResponse:
+      description: Authinfo
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DomainAuthinfo'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
   requestBodies:
     ProjectCreateRequest:
       content:
@@ -327,5 +1466,113 @@ components:
               - username
               - password
       description: Login Request
+    S3BucketCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+            required:
+              - project_id
+              - title
+      description: ''
+    S3AccessKeyCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              secret_key:
+                type: string
+            required:
+              - project_id
+              - title
+              - secret_key
+    PleskLicenseCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              type_id:
+                type: string
+                format: uuid
+              address:
+                type: string
+                format: ipv4
+            required:
+              - project_id
+              - type_id
+      description: ''
+    PleskLicenseUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              address:
+                type: string
+                format: ipv4
+    S3AccessGrantCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              bucket_id:
+                type: string
+                format: uuid
+              path:
+                type: string
+              role:
+                type: string
+                enum:
+                  - READ_ONLY
+                  - READ_WRITE
+            required:
+              - role
+    DomainHandleCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+    DomainHandleUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+    DomainCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+    DomainUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+    DomainScheduleDeleteRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              date:
+                type: string
+            required:
+              - date
 security:
   - AuthToken: []
