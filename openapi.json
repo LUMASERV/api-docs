@@ -528,23 +528,15 @@
       },
       "Project" : {
         "properties" : {
-          "uuid" : {
+          "id" : {
             "format" : "uuid",
             "type" : "string"
           },
           "title" : {
             "type" : "string"
-          },
-          "description" : {
-            "type" : "string"
-          },
-          "created_at" : {
-            "type" : "string"
-          },
-          "updated_at" : {
-            "type" : "string"
           }
         },
+        "required" : [ "id", "title" ],
         "title" : "Project",
         "type" : "object",
         "x-tags" : [ "projects" ],
