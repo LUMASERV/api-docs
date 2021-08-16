@@ -20,6 +20,14 @@
     "name" : "projects"
   }, {
     "name" : "auth"
+  }, {
+    "name" : "users"
+  }, {
+    "name" : "plesk-licenses"
+  }, {
+    "name" : "s3-storage"
+  }, {
+    "name" : "domains"
   } ],
   "paths" : {
     "/projects" : {
@@ -118,15 +126,15 @@
         "tags" : [ "projects" ]
       }
     },
-    "/projects/{uuid}" : {
+    "/projects/{id}" : {
       "delete" : {
         "description" : "Deletes the project",
         "operationId" : "deleteProject",
         "parameters" : [ {
-          "description" : "UUID of the project",
+          "description" : "ID of the project",
           "explode" : false,
           "in" : "path",
-          "name" : "uuid",
+          "name" : "id",
           "required" : true,
           "schema" : {
             "format" : "uuid",
@@ -183,10 +191,10 @@
         "description" : "Returns a single project",
         "operationId" : "getProject",
         "parameters" : [ {
-          "description" : "UUID of the project",
+          "description" : "ID of the project",
           "explode" : false,
           "in" : "path",
-          "name" : "uuid",
+          "name" : "id",
           "required" : true,
           "schema" : {
             "format" : "uuid",
@@ -243,10 +251,10 @@
         "description" : "Updates the project",
         "operationId" : "updateProject",
         "parameters" : [ {
-          "description" : "UUID of the project",
+          "description" : "ID of the project",
           "explode" : false,
           "in" : "path",
-          "name" : "uuid",
+          "name" : "id",
           "required" : true,
           "schema" : {
             "format" : "uuid",
@@ -365,6 +373,2046 @@
         "summary" : "login",
         "tags" : [ "auth" ]
       }
+    },
+    "/users" : {
+      "get" : {
+        "description" : "Returns all users",
+        "operationId" : "getUsers",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_2"
+                }
+              }
+            },
+            "description" : "User List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getUsers",
+        "tags" : [ "users" ]
+      }
+    },
+    "/users/{id}" : {
+      "get" : {
+        "description" : "Returns a single user",
+        "operationId" : "getUser",
+        "parameters" : [ {
+          "description" : "User ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_3"
+                }
+              }
+            },
+            "description" : "Single User"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getUser",
+        "tags" : [ "users" ]
+      }
+    },
+    "/storage/s3/buckets" : {
+      "get" : {
+        "description" : "Returns all s3 buckets",
+        "operationId" : "getS3Buckets",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_4"
+                }
+              }
+            },
+            "description" : "S3 Bucket List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getS3Buckets",
+        "tags" : [ "s3-storage" ]
+      },
+      "post" : {
+        "description" : "Creates a new s3 bucket",
+        "operationId" : "createS3Bucket",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/S3BucketCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_1"
+                }
+              }
+            },
+            "description" : "Single S3 Bucket"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createS3Bucket",
+        "tags" : [ "s3-storage" ]
+      }
+    },
+    "/storage/s3/buckets/{id}" : {
+      "delete" : {
+        "description" : "Deletes a s3 bucket",
+        "operationId" : "deleteS3Bucket",
+        "parameters" : [ {
+          "description" : "S3 Bucket ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteS3Bucket",
+        "tags" : [ "s3-storage" ]
+      },
+      "get" : {
+        "description" : "Returns a single s3 bucket",
+        "operationId" : "getS3Bucket",
+        "parameters" : [ {
+          "description" : "S3 Bucket ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_1"
+                }
+              }
+            },
+            "description" : "Single S3 Bucket"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getS3Bucket",
+        "tags" : [ "s3-storage" ]
+      }
+    },
+    "/storage/s3/access-keys" : {
+      "get" : {
+        "description" : "Returns all access keys",
+        "operationId" : "getS3AccessKeys",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_5"
+                }
+              }
+            },
+            "description" : "S3 Access Key List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getS3AccessKeys",
+        "tags" : [ "s3-storage" ]
+      },
+      "post" : {
+        "description" : "Creates a s3 access key",
+        "operationId" : "createS3AccessKey",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/S3AccessKeyCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_2"
+                }
+              }
+            },
+            "description" : "Single S3 Access Key"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createS3AccessKey",
+        "tags" : [ "s3-storage" ]
+      }
+    },
+    "/storage/s3/access-keys/{id}" : {
+      "delete" : {
+        "description" : "Deletes a s3 access key",
+        "operationId" : "deleteS3AccessKey",
+        "parameters" : [ {
+          "description" : "S3 Access Key ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteS3AccessKey",
+        "tags" : [ "s3-storage" ]
+      },
+      "get" : {
+        "description" : "Returns a single s3 access key",
+        "operationId" : "getS3AccessKey",
+        "parameters" : [ {
+          "description" : "S3 Access Key ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_2"
+                }
+              }
+            },
+            "description" : "Single S3 Access Key"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getS3AccessKey",
+        "tags" : [ "s3-storage" ]
+      }
+    },
+    "/licenses/plesk" : {
+      "get" : {
+        "description" : "Returns all plesk licenses",
+        "operationId" : "getPleskLicenses",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_6"
+                }
+              }
+            },
+            "description" : "Plesk License List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getPleskLicenses",
+        "tags" : [ "plesk-licenses" ]
+      },
+      "post" : {
+        "description" : "Orders a new plesk license",
+        "operationId" : "createPleskLicense",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PleskLicenseCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_3"
+                }
+              }
+            },
+            "description" : "Single Plesk License"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createPleskLicense",
+        "tags" : [ "plesk-licenses" ]
+      }
+    },
+    "/licenses/plesk/{id}" : {
+      "get" : {
+        "description" : "Returns a single plesk license",
+        "operationId" : "getPleskLicense",
+        "parameters" : [ {
+          "description" : "Plesk License ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_3"
+                }
+              }
+            },
+            "description" : "Single Plesk License"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getPleskLicense",
+        "tags" : [ "plesk-licenses" ]
+      },
+      "put" : {
+        "description" : "Updates a plesk license",
+        "operationId" : "updatePleskLicense",
+        "parameters" : [ {
+          "description" : "Plesk License ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PleskLicenseUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_3"
+                }
+              }
+            },
+            "description" : "Single Plesk License"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updatePleskLicense",
+        "tags" : [ "plesk-licenses" ]
+      }
+    },
+    "/licenses/plesk-types" : {
+      "get" : {
+        "description" : "Return all plesk license types",
+        "operationId" : "getPleskLicenseTypes",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_7"
+                }
+              }
+            },
+            "description" : "Plesk License Type List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getPleskLicenseTypes",
+        "tags" : [ "plesk-licenses" ]
+      }
+    },
+    "/licenses/plesk-types/{id}" : {
+      "get" : {
+        "description" : "Returns a single plesk license type",
+        "operationId" : "getPleskLicenseType",
+        "parameters" : [ {
+          "description" : "Plesk License Type ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_8"
+                }
+              }
+            },
+            "description" : "Single Plesk License Type"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getPleskLicenseType",
+        "tags" : [ "plesk-licenses" ]
+      }
+    },
+    "/storage/s3/access-keys/{access_key_id}/grants" : {
+      "get" : {
+        "description" : "Returns all grants for the s3 access key",
+        "operationId" : "getS3AccessKeyGrants",
+        "parameters" : [ {
+          "description" : "S3 Access Key ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "access_key_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_9"
+                }
+              }
+            },
+            "description" : "S3 Access Grant List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getS3AccessKeyGrants",
+        "tags" : [ "s3-storage" ]
+      },
+      "post" : {
+        "description" : "Creates a new grant for the s3 access key",
+        "operationId" : "createS3AccessKeyGrant",
+        "parameters" : [ {
+          "description" : "S3 Access Key ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "access_key_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/S3AccessGrantCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_4"
+                }
+              }
+            },
+            "description" : "Single S3 Access Grant"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createS3AccessKeyGrant",
+        "tags" : [ "s3-storage" ]
+      }
+    },
+    "/storage/s3/access-keys/{access_key_id}/grants/{id}" : {
+      "delete" : {
+        "description" : "Deletes a grant of a s3 access key",
+        "operationId" : "deleteS3AccessKeyGrant",
+        "parameters" : [ {
+          "description" : "S3 Access Key ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "access_key_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "S3 Access Grant ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteS3AccessKeyGrant",
+        "tags" : [ "s3-storage" ]
+      }
+    },
+    "/domain-handles" : {
+      "get" : {
+        "description" : "Returns all domain handles",
+        "operationId" : "getDomainHandles",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_10"
+                }
+              }
+            },
+            "description" : "Domain Handle List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomainHandles",
+        "tags" : [ "domains" ]
+      },
+      "post" : {
+        "description" : "Creates a domain handle",
+        "operationId" : "createDomainHandle",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DomainHandleCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_5"
+                }
+              }
+            },
+            "description" : "Single Domain Handle"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createDomainHandle",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domain-handles/{code}" : {
+      "delete" : {
+        "description" : "Deletes the domain handle",
+        "operationId" : "deleteDomainHandle",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteDomainHandle",
+        "tags" : [ "domains" ]
+      },
+      "get" : {
+        "description" : "Returns a single domain handle",
+        "operationId" : "getDomainHandle",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_5"
+                }
+              }
+            },
+            "description" : "Single Domain Handle"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomainHandle",
+        "tags" : [ "domains" ]
+      },
+      "put" : {
+        "description" : "Updates the domain handle",
+        "operationId" : "updateDomainHandle",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DomainHandleUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_5"
+                }
+              }
+            },
+            "description" : "Single Domain Handle"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateDomainHandle",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains" : {
+      "get" : {
+        "description" : "Returns all domains",
+        "operationId" : "getDomains",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_11"
+                }
+              }
+            },
+            "description" : "Domain List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomains",
+        "tags" : [ "domains" ]
+      },
+      "post" : {
+        "description" : "Registers or transfer a domain",
+        "operationId" : "createDomain",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DomainCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_6"
+                }
+              }
+            },
+            "description" : "Single Domain"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createDomain",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains/{name}" : {
+      "delete" : {
+        "description" : "Deletes a domain immediately",
+        "operationId" : "deleteDomain",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteDomain",
+        "tags" : [ "domains" ]
+      },
+      "get" : {
+        "description" : "Returns a single domain",
+        "operationId" : "getDomain",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_6"
+                }
+              }
+            },
+            "description" : "Single Domain"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomain",
+        "tags" : [ "domains" ]
+      },
+      "put" : {
+        "description" : "Updates a domain",
+        "operationId" : "updateDomain",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DomainUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_6"
+                }
+              }
+            },
+            "description" : "Single Domain"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateDomain",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains/{name}/authinfo" : {
+      "delete" : {
+        "description" : "Removes the authinfo from the domain",
+        "operationId" : "removeDomainAuthinfo",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "removeDomainAuthinfo",
+        "tags" : [ "domains" ]
+      },
+      "get" : {
+        "description" : "Generates and returns the authinfo for the domain",
+        "operationId" : "getDomainAuthinfo",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_12"
+                }
+              }
+            },
+            "description" : "Authinfo"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomainAuthinfo",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains/{name}/restore" : {
+      "post" : {
+        "description" : "Restores a deleted domain",
+        "operationId" : "restoreDomain",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "restoreDomain",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains/{name}/schedule-delete" : {
+      "post" : {
+        "description" : "Schedules the deletion of the domain",
+        "operationId" : "scheduleDomainDelete",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DomainScheduleDeleteRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_6"
+                }
+              }
+            },
+            "description" : "Single Domain"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "scheduleDomainDelete",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains/{name}/unschedule-delete" : {
+      "post" : {
+        "description" : "Unscheduled the pending domain deletion",
+        "operationId" : "unscheduleDomainDelete",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_6"
+                }
+              }
+            },
+            "description" : "Single Domain"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "unscheduleDomainDelete",
+        "tags" : [ "domains" ]
+      }
     }
   },
   "components" : {
@@ -416,6 +2464,160 @@
           }
         },
         "description" : "Login Request"
+      },
+      "S3BucketCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "project_id", "title" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "S3AccessKeyCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "secret_key" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "project_id", "secret_key", "title" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "PleskLicenseCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "type_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "address" : {
+                  "format" : "ipv4",
+                  "type" : "string"
+                }
+              },
+              "required" : [ "project_id", "type_id" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "PleskLicenseUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "address" : {
+                  "format" : "ipv4",
+                  "type" : "string"
+                }
+              },
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "S3AccessGrantCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "bucket_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "path" : {
+                  "type" : "string"
+                },
+                "role" : {
+                  "enum" : [ "READ_ONLY", "READ_WRITE" ],
+                  "type" : "string"
+                }
+              },
+              "required" : [ "role" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "DomainHandleCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "DomainHandleUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "DomainCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "DomainUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "DomainScheduleDeleteRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "date" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "date" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -473,6 +2675,176 @@
           }
         },
         "description" : "Login Response"
+      },
+      "UserListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_2"
+            }
+          }
+        },
+        "description" : "User List"
+      },
+      "UserSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_3"
+            }
+          }
+        },
+        "description" : "Single User"
+      },
+      "S3BucketSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_1"
+            }
+          }
+        },
+        "description" : "Single S3 Bucket"
+      },
+      "S3BucketListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_4"
+            }
+          }
+        },
+        "description" : "S3 Bucket List"
+      },
+      "S3AccessKeySingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_2"
+            }
+          }
+        },
+        "description" : "Single S3 Access Key"
+      },
+      "S3AccessKeyListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_5"
+            }
+          }
+        },
+        "description" : "S3 Access Key List"
+      },
+      "PleskLicenseSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_3"
+            }
+          }
+        },
+        "description" : "Single Plesk License"
+      },
+      "PleskLicenseListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_6"
+            }
+          }
+        },
+        "description" : "Plesk License List"
+      },
+      "PleskLicenseTypeSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_8"
+            }
+          }
+        },
+        "description" : "Single Plesk License Type"
+      },
+      "PleskLicenseTypeListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_7"
+            }
+          }
+        },
+        "description" : "Plesk License Type List"
+      },
+      "S3AccessGrantListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_9"
+            }
+          }
+        },
+        "description" : "S3 Access Grant List"
+      },
+      "S3AccessGrantSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_4"
+            }
+          }
+        },
+        "description" : "Single S3 Access Grant"
+      },
+      "DomainHandleSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_5"
+            }
+          }
+        },
+        "description" : "Single Domain Handle"
+      },
+      "DomainHandleListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_10"
+            }
+          }
+        },
+        "description" : "Domain Handle List"
+      },
+      "DomainSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_6"
+            }
+          }
+        },
+        "description" : "Single Domain"
+      },
+      "DomainListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_11"
+            }
+          }
+        },
+        "description" : "Domain List"
+      },
+      "DomainAuthinfoResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_12"
+            }
+          }
+        },
+        "description" : "Authinfo"
       }
     },
     "schemas" : {
@@ -562,6 +2934,184 @@
         "type" : "object",
         "x-tags" : [ "users" ]
       },
+      "User" : {
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "email" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "gender" : {
+            "enum" : [ "MALE", "FEMALE" ],
+            "type" : "string"
+          },
+          "street" : {
+            "type" : "string"
+          },
+          "street_number" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "state" : {
+            "enum" : [ "PENDING", "ACTIVATED", "LOCKED" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "email", "first_name", "id", "last_name" ],
+        "title" : "User",
+        "type" : "object",
+        "x-tags" : [ "users" ]
+      },
+      "PleskLicense" : {
+        "description" : "A Plesk License",
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "license" : {
+            "type" : "string"
+          },
+          "key" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "created_at", "id", "key", "license", "project_id" ],
+        "title" : "PleskLicense",
+        "type" : "object",
+        "x-tags" : [ "plesk-licenses" ]
+      },
+      "PleskLicenseType" : {
+        "description" : "A Plesk License Type",
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "title" ],
+        "title" : "PleskLicenseType",
+        "type" : "object",
+        "x-tags" : [ "plesk-licenses" ]
+      },
+      "S3Bucket" : {
+        "description" : "A S3 Bucket",
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "title" ],
+        "title" : "S3Bucket",
+        "type" : "object",
+        "x-tags" : [ "s3-storage" ]
+      },
+      "S3AccessKey" : {
+        "description" : "A S3 Access Key",
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "title" ],
+        "title" : "S3AccessKey",
+        "type" : "object",
+        "x-tags" : [ "s3-storage" ]
+      },
+      "S3AccessGrant" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "bucket_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "path" : {
+            "type" : "string"
+          },
+          "role" : {
+            "enum" : [ "READ_ONLY", "READ_WRITE" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "role" ],
+        "title" : "S3AccessGrant",
+        "type" : "object",
+        "x-tags" : [ "s3-storage" ]
+      },
+      "DomainHandle" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "code" ],
+        "title" : "DomainHandle",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
+      },
+      "Domain" : {
+        "properties" : {
+          "name" : {
+            "format" : "hostname",
+            "type" : "string"
+          }
+        },
+        "required" : [ "name" ],
+        "title" : "Domain",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
+      },
+      "DomainAuthinfo" : {
+        "properties" : {
+          "authinfo" : {
+            "type" : "string"
+          },
+          "valid_until" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "authinfo" ],
+        "title" : "DomainAuthinfo",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
+      },
       "inline_response_200" : {
         "properties" : {
           "success" : {
@@ -629,6 +3179,285 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/Token"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_2" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/User"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_3" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/User"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_4" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/S3Bucket"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_1" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/S3Bucket"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_5" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/S3AccessKey"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_2" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/S3AccessKey"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_6" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/PleskLicense"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_3" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/PleskLicense"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_7" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/PleskLicenseType"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_8" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/PleskLicenseType"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_9" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/S3AccessGrant"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_4" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/S3AccessGrant"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_10" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DomainHandle"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_5" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/DomainHandle"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_11" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Domain"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_6" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Domain"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_12" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/DomainAuthinfo"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
