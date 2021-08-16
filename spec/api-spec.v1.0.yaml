@@ -10,11 +10,8 @@ servers:
   - url: 'https://api.lumaserv.cloud'
     description: Live
 tags:
-  - name: cloudserver
-    description: CloudServer Management
   - name: projects
   - name: auth
-  - name: users
 paths:
   /projects:
     get:
