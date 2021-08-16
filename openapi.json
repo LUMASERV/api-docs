@@ -6,12 +6,12 @@
       "name" : "LUMASERV Support Team"
     },
     "description" : "LUMASERV API",
-    "title" : "LUMASERV Cloud API",
-    "version" : "2.0"
+    "title" : "LUMASERV API",
+    "version" : "1.0"
   },
   "servers" : [ {
     "description" : "Live",
-    "url" : "https://connect.nicapi.eu/api/v2"
+    "url" : "https://api.lumaserv.cloud"
   } ],
   "security" : [ {
     "AuthToken" : [ ]
@@ -20,1078 +20,13 @@
     "description" : "CloudServer Management",
     "name" : "cloudserver"
   }, {
-    "description" : "Firewall Management",
-    "name" : "firewall"
-  }, {
     "name" : "projects"
   }, {
     "name" : "auth"
   }, {
     "name" : "users"
-  }, {
-    "name" : "networks"
-  }, {
-    "name" : "addresses"
-  }, {
-    "name" : "customers"
   } ],
   "paths" : {
-    "/cloud/servers" : {
-      "get" : {
-        "description" : "Returns all cloudservers",
-        "operationId" : "getCloudServers",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListCloudServerResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServers",
-        "tags" : [ "cloudserver" ]
-      },
-      "post" : {
-        "description" : "Creates a new cloudserver",
-        "operationId" : "createCloudServer",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateCloudServerRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "createCloudServer",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}" : {
-      "delete" : {
-        "description" : "Deletes a cloudserver",
-        "operationId" : "deleteCloudServer",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/EmptyResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "deleteCloudServer",
-        "tags" : [ "cloudserver" ]
-      },
-      "get" : {
-        "description" : "Returns a single cloudserver",
-        "operationId" : "getCloudServer",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServer",
-        "tags" : [ "cloudserver" ]
-      },
-      "put" : {
-        "description" : "Updates a cloudserver",
-        "operationId" : "updateCloudServer",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateCloudServerRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "updateCloudServer",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/firewall/rules" : {
-      "get" : {
-        "description" : "Returns all firewall rules of this cloud server",
-        "operationId" : "getCloudServerFirewallRules",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListFirewallRuleResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServerFirewallRules",
-        "tags" : [ "cloudserver" ]
-      },
-      "post" : {
-        "description" : "Creates a new firewall rule for this cloud server",
-        "operationId" : "createCloudServerFirewallRule",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateFirewallRuleRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "createCloudServerFirewallRule",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/firewall/rules/{rule_id}" : {
-      "delete" : {
-        "description" : "Deletes the firewall rule",
-        "operationId" : "deleteCloudServerFirewallRule",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "ID of the firewall rule",
-          "explode" : false,
-          "in" : "path",
-          "name" : "rule_id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/EmptyResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "deleteCloudServerFirewallRule",
-        "tags" : [ "cloudserver" ]
-      },
-      "get" : {
-        "description" : "Returns a single firewall rule",
-        "operationId" : "getCloudServerFirewallRule",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "ID of the firewall rule",
-          "explode" : false,
-          "in" : "path",
-          "name" : "rule_id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServerFirewallRule",
-        "tags" : [ "cloudserver" ]
-      },
-      "put" : {
-        "description" : "Updates the firewall rule",
-        "operationId" : "updateCloudServerFirewallRule",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "ID of the firewall rule",
-          "explode" : false,
-          "in" : "path",
-          "name" : "rule_id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateFirewallRuleRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "updateCloudServerFirewallRule",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/firewall/rule-sets" : {
-      "get" : {
-        "description" : "Returns all firewall rulesets",
-        "operationId" : "getFirewallRuleSets",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListFirewallRuleSetResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getFirewallRuleSets",
-        "tags" : [ "firewall" ]
-      },
-      "post" : {
-        "description" : "Creates a new firewall ruleset",
-        "operationId" : "createFirewallRuleSet",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateFirewallRuleSetRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallRuleSetResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "createFirewallRuleSet",
-        "tags" : [ "firewall" ]
-      }
-    },
-    "/cloud/firewall/rule-sets/{id}" : {
-      "delete" : {
-        "description" : "Deletes the firewall ruleset",
-        "operationId" : "deleteFirewallRuleSet",
-        "parameters" : [ {
-          "description" : "ID of the ruleset",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/EmptyResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "deleteFirewallRuleSet",
-        "tags" : [ "firewall" ]
-      },
-      "get" : {
-        "description" : "Returns a single firewall ruleset",
-        "operationId" : "getFirewallRuleSet",
-        "parameters" : [ {
-          "description" : "ID of the ruleset",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallRuleSetResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getFirewallRuleSet",
-        "tags" : [ "firewall" ]
-      },
-      "put" : {
-        "description" : "Updates the firewall ruleset",
-        "operationId" : "updateFirewallRuleSet",
-        "parameters" : [ {
-          "description" : "ID of the ruleset",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateFirewallRuleSetRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallRuleSetResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "updateFirewallRuleSet",
-        "tags" : [ "firewall" ]
-      }
-    },
-    "/cloud/firewall/rule-sets/{id}/rules" : {
-      "get" : {
-        "description" : "Returns all firewall rules in the ruleset",
-        "operationId" : "getFirewallRuleSetRules",
-        "parameters" : [ {
-          "description" : "ID of the ruleset",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListFirewallRuleResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getFirewallRuleSetRules",
-        "tags" : [ "firewall" ]
-      },
-      "post" : {
-        "description" : "Creates a new firewall rule in the ruleset",
-        "operationId" : "createFirewallRuleSetRule",
-        "parameters" : [ {
-          "description" : "ID of the ruleset",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateFirewallRuleRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "createFirewallRuleSetRule",
-        "tags" : [ "firewall" ]
-      }
-    },
-    "/cloud/firewall/rule-sets/{id}/rules/{rule_id}" : {
-      "delete" : {
-        "description" : "Deletes the firewall rule",
-        "operationId" : "deleteFirewallRuleSetRule",
-        "parameters" : [ {
-          "description" : "ID of the ruleset",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "ID of the rule",
-          "explode" : false,
-          "in" : "path",
-          "name" : "rule_id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/EmptyResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "deleteFirewallRuleSetRule",
-        "tags" : [ "firewall" ]
-      },
-      "get" : {
-        "description" : "Returns a single firewall rule",
-        "operationId" : "getFirewallRuleSetRule",
-        "parameters" : [ {
-          "description" : "ID of the ruleset",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "ID of the rule",
-          "explode" : false,
-          "in" : "path",
-          "name" : "rule_id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getFirewallRuleSetRule",
-        "tags" : [ "firewall" ]
-      },
-      "put" : {
-        "description" : "Updates the firewall rule",
-        "operationId" : "updateFirewallRuleSetRule",
-        "parameters" : [ {
-          "description" : "ID of the ruleset",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "ID of the rule",
-          "explode" : false,
-          "in" : "path",
-          "name" : "rule_id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateFirewallRuleRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallRuleResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "updateFirewallRuleSetRule",
-        "tags" : [ "firewall" ]
-      }
-    },
-    "/cloud/firewall/address-sets" : {
-      "get" : {
-        "description" : "Returns all firewall address sets",
-        "operationId" : "getFirewallAddressSets",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListFirewallAddressSetResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getFirewallAddressSets",
-        "tags" : [ "firewall" ]
-      },
-      "post" : {
-        "description" : "Creates a new firewall address set",
-        "operationId" : "createFirewallAddressSet",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateFirewallAddressSetRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallAddressSetResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "createFirewallAddressSet",
-        "tags" : [ "firewall" ]
-      }
-    },
-    "/cloud/firewall/address-sets/{id}" : {
-      "delete" : {
-        "description" : "Deletes the firewall address set",
-        "operationId" : "deleteFirewallAddressSet",
-        "parameters" : [ {
-          "description" : "ID of the address set",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/EmptyResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "deleteFirewallAddressSet",
-        "tags" : [ "firewall" ]
-      },
-      "get" : {
-        "description" : "Returns a single firewall address set",
-        "operationId" : "getFirewallAddressSet",
-        "parameters" : [ {
-          "description" : "ID of the address set",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallAddressSetResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getFirewallAddressSet",
-        "tags" : [ "firewall" ]
-      },
-      "put" : {
-        "description" : "Updates the firewall address set",
-        "operationId" : "updateFirewallAddressSet",
-        "parameters" : [ {
-          "description" : "ID of the address set",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateFirewallAddressSetRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallAddressSetResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "updateFirewallAddressSet",
-        "tags" : [ "firewall" ]
-      }
-    },
-    "/cloud/firewall/address-sets/{id}/addresses" : {
-      "get" : {
-        "description" : "Returns all addresses in a firewall address set",
-        "operationId" : "getFirewallAddressSetAddresses",
-        "parameters" : [ {
-          "description" : "ID of the address set",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListFirewallAddressResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getFirewallAddressSetAddresses",
-        "tags" : [ "firewall" ]
-      },
-      "post" : {
-        "description" : "Adds a new address to the firewall address set",
-        "operationId" : "createFirewallAddressSetAddress",
-        "parameters" : [ {
-          "description" : "ID of the address set",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateFirewallAddressRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallAddressResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "createFirewallAddressSetAddress",
-        "tags" : [ "firewall" ]
-      }
-    },
-    "/cloud/firewall/address-sets/{id}/addresses/{cidr}" : {
-      "delete" : {
-        "description" : "Deletes the address from the firewall address set",
-        "operationId" : "deleteFirewallAddressSetAddress",
-        "parameters" : [ {
-          "description" : "ID of the address set",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "Single IP address or IP net CIDR",
-          "explode" : false,
-          "in" : "path",
-          "name" : "cidr",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/EmptyResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "deleteFirewallAddressSetAddress",
-        "tags" : [ "firewall" ]
-      },
-      "get" : {
-        "description" : "Returns a single firewall address",
-        "operationId" : "getFirewallAddressSetAddress",
-        "parameters" : [ {
-          "description" : "ID of the address set",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "Single IP address or IP net CIDR",
-          "explode" : false,
-          "in" : "path",
-          "name" : "cidr",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallAddressResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getFirewallAddressSetAddress",
-        "tags" : [ "firewall" ]
-      },
-      "put" : {
-        "description" : "Updates the firewall address",
-        "operationId" : "updateFirewallAddressSetAddress",
-        "parameters" : [ {
-          "description" : "ID of the address set",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "Single IP address or IP net CIDR",
-          "explode" : false,
-          "in" : "path",
-          "name" : "cidr",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateFirewallAddressRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleFirewallAddressResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "updateFirewallAddressSetAddress",
-        "tags" : [ "firewall" ]
-      }
-    },
     "/projects" : {
       "get" : {
         "description" : "Returns all projects",
@@ -1101,11 +36,31 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ListProjectResponse"
+                  "$ref" : "#/components/schemas/inline_response_200"
                 }
               }
             },
-            "description" : "OK"
+            "description" : "Project List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
           }
         },
         "summary" : "getProjects",
@@ -1115,24 +70,53 @@
         "description" : "Create a new project",
         "operationId" : "createProject",
         "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateProjectRequest"
-              }
-            }
-          }
+          "$ref" : "#/components/requestBodies/ProjectCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/SingleProjectResponse"
+                  "$ref" : "#/components/schemas/inline_response_201"
                 }
               }
             },
-            "description" : "OK"
+            "description" : "Single Project"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
           }
         },
         "summary" : "createProject",
@@ -1160,11 +144,41 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/EmptyResponse"
+                  "$ref" : "#/components/schemas/inline_response_401"
                 }
               }
             },
-            "description" : "OK"
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
           }
         },
         "summary" : "deleteProject",
@@ -1190,11 +204,41 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/SingleProjectResponse"
+                  "$ref" : "#/components/schemas/inline_response_201"
                 }
               }
             },
-            "description" : "OK"
+            "description" : "Single Project"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
           }
         },
         "summary" : "getProject",
@@ -1216,435 +260,67 @@
           "style" : "simple"
         } ],
         "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateProjectRequest"
-              }
-            }
-          }
+          "$ref" : "#/components/requestBodies/ProjectUpdateRequest"
         },
         "responses" : {
           "200" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/SingleProjectResponse"
+                  "$ref" : "#/components/schemas/inline_response_201"
                 }
               }
             },
-            "description" : "OK"
+            "description" : "Single Project"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
           }
         },
         "summary" : "updateProject",
         "tags" : [ "projects" ]
-      }
-    },
-    "/cloud/servers/{id}/interfaces" : {
-      "get" : {
-        "description" : "Returns all interfaces of the cloud server",
-        "operationId" : "getCloudServerInterfaces",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListCloudServerInterfaceResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServerInterfaces",
-        "tags" : [ "cloudserver" ]
-      },
-      "post" : {
-        "description" : "Create a new interface on the cloud server",
-        "operationId" : "createCloudServerInterface",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateCloudServerInterfaceRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerInterfaceResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "createCloudServerInterface",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/interfaces/{netname}" : {
-      "delete" : {
-        "description" : "Deletes the cloud server interface",
-        "operationId" : "deleteCloudServerInterface",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "Name of the interface (net0-net3)",
-          "explode" : false,
-          "in" : "path",
-          "name" : "netname",
-          "required" : true,
-          "schema" : {
-            "enum" : [ "net0", "net1", "net2", "net3" ],
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/EmptyResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "deleteCloudServerInterface",
-        "tags" : [ "cloudserver" ]
-      },
-      "get" : {
-        "description" : "Returns a single cloud server interface",
-        "operationId" : "getCloudServerInterface",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "Name of the interface (net0-net3)",
-          "explode" : false,
-          "in" : "path",
-          "name" : "netname",
-          "required" : true,
-          "schema" : {
-            "enum" : [ "net0", "net1", "net2", "net3" ],
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerInterfaceResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServerInterface",
-        "tags" : [ "cloudserver" ]
-      },
-      "put" : {
-        "description" : "Updates the cloud server interface",
-        "operationId" : "updateCloudServerInterface",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "Name of the interface (net0-net3)",
-          "explode" : false,
-          "in" : "path",
-          "name" : "netname",
-          "required" : true,
-          "schema" : {
-            "enum" : [ "net0", "net1", "net2", "net3" ],
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateCloudServerInterfaceRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerInterfaceResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "updateCloudServerInterface",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/storages" : {
-      "get" : {
-        "description" : "Returns all storages of the cloud server",
-        "operationId" : "getCloudServerStorages",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListCloudServerStorageResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServerStorages",
-        "tags" : [ "cloudserver" ]
-      },
-      "post" : {
-        "description" : "Adds a new storage to the cloud server",
-        "operationId" : "createCloudServerStorage",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateCloudServerStorageRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerStorageResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "createCloudServerStorage",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/storages/{title}" : {
-      "delete" : {
-        "description" : "Deletes the cloud server storage",
-        "operationId" : "deleteCloudServerStorage",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "Title of the storage",
-          "explode" : false,
-          "in" : "path",
-          "name" : "title",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/EmptyResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "deleteCloudServerStorage",
-        "tags" : [ "cloudserver" ]
-      },
-      "get" : {
-        "description" : "Returns a single cloud server storage",
-        "operationId" : "getCloudServerStorage",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "Title of the storage",
-          "explode" : false,
-          "in" : "path",
-          "name" : "title",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerStorageResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServerStorage",
-        "tags" : [ "cloudserver" ]
-      },
-      "put" : {
-        "description" : "Updates the cloud server storage",
-        "operationId" : "updateCloudServerStorage",
-        "parameters" : [ {
-          "description" : "ID of the cloud server",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "description" : "Title of the storage",
-          "explode" : false,
-          "in" : "path",
-          "name" : "title",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateCloudServerStorageRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerStorageResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "updateCloudServerStorage",
-        "tags" : [ "cloudserver" ]
       }
     },
     "/auth/login" : {
@@ -1652,1484 +328,159 @@
         "description" : "Exchanges user credentials for an auth token",
         "operationId" : "login",
         "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/LoginRequest"
-              }
-            }
-          }
+          "$ref" : "#/components/requestBodies/LoginRequest"
         },
         "responses" : {
           "200" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/LoginResponse"
+                  "$ref" : "#/components/schemas/inline_response_200_1"
                 }
               }
             },
-            "description" : "OK"
+            "description" : "Login Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
           }
         },
         "summary" : "login",
         "tags" : [ "auth" ]
       }
-    },
-    "/auth/logout" : {
-      "post" : {
-        "description" : "Invalidates the current session",
-        "operationId" : "logout",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/EmptyResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "logout",
-        "tags" : [ "auth" ]
-      }
-    },
-    "/auth/self" : {
-      "get" : {
-        "description" : "Returns the own user",
-        "operationId" : "getSelf",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SelfResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getSelf",
-        "tags" : [ "auth" ]
-      }
-    },
-    "/users" : {
-      "get" : {
-        "description" : "Returns all accessible users",
-        "operationId" : "getUsers",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListUserResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getUsers",
-        "tags" : [ "users" ]
-      }
-    },
-    "/users/{username}" : {
-      "get" : {
-        "description" : "Returns a single user by username",
-        "operationId" : "getUser",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "username",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleUserResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getUser",
-        "tags" : [ "users" ]
-      },
-      "put" : {
-        "description" : "Updates the user",
-        "operationId" : "updateUser",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "username",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateUserRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleUserResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "updateUser",
-        "tags" : [ "users" ]
-      }
-    },
-    "/cloud/networks" : {
-      "get" : {
-        "description" : "Returns all networks",
-        "operationId" : "getNetworks",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListNetworkResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getNetworks",
-        "tags" : [ "networks" ]
-      }
-    },
-    "/addresses" : {
-      "get" : {
-        "description" : "Returns all accessible addresses",
-        "operationId" : "getAddresses",
-        "parameters" : [ {
-          "$ref" : "#/components/parameters/easyFilter",
-          "explode" : true,
-          "in" : "query",
-          "name" : "easyFilter",
-          "required" : false,
-          "schema" : {
-            "properties" : {
-              "project_uuid" : {
-                "format" : "uuid",
-                "type" : "string"
-              }
-            },
-            "type" : "object"
-          },
-          "style" : "form"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListAddressResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getAddresses",
-        "tags" : [ "addresses" ]
-      },
-      "post" : {
-        "description" : "Order a new address",
-        "operationId" : "createAddress",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateAddressRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleAddressResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "createAddress",
-        "tags" : [ "addresses" ]
-      }
-    },
-    "/addresses/{address}" : {
-      "delete" : {
-        "description" : "Deletes the address",
-        "operationId" : "deleteAddress",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "address",
-          "required" : true,
-          "schema" : {
-            "format" : "ipv4",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        },
-        "summary" : "deleteAddress",
-        "tags" : [ "addresses" ]
-      },
-      "get" : {
-        "description" : "Returns a single address",
-        "operationId" : "getAddress",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "address",
-          "required" : true,
-          "schema" : {
-            "format" : "ipv4",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleAddressResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getAddress",
-        "tags" : [ "addresses" ]
-      },
-      "put" : {
-        "description" : "Updates the address",
-        "operationId" : "updateAddress",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "address",
-          "required" : true,
-          "schema" : {
-            "format" : "ipv4",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/UpdateAddressRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleAddressResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "updateAddress",
-        "tags" : [ "addresses" ]
-      }
-    },
-    "/cloud/servers/{id}/start" : {
-      "post" : {
-        "description" : "Starts the cloud server",
-        "operationId" : "startCloudServer",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        },
-        "summary" : "startCloudServer",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/shutdown" : {
-      "post" : {
-        "description" : "Shuts down the cloud server",
-        "operationId" : "shutdownCloudServer",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        },
-        "summary" : "shutdownCloudServer",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/stop" : {
-      "post" : {
-        "description" : "Stops the cloud server",
-        "operationId" : "stopCloudServer",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        },
-        "summary" : "stopCloudServer",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/restart" : {
-      "post" : {
-        "description" : "Restarts the cloud server",
-        "operationId" : "restartCloudServer",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        },
-        "summary" : "restartCloudServer",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/restore" : {
-      "post" : {
-        "description" : "Restores the cloud server from a backup",
-        "operationId" : "restoreCloudServer",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/RestoreCloudServerRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        },
-        "summary" : "restoreCloudServer",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/backups" : {
-      "get" : {
-        "description" : "Returns all backups of the cloud server",
-        "operationId" : "getCloudServerBackups",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListCloudServerBackupResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServerBackups",
-        "tags" : [ "cloudserver" ]
-      },
-      "post" : {
-        "description" : "Creates a backup of the cloud server",
-        "operationId" : "createCloudServerBackup",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateCloudServerBackupRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerBackupResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "createCloudServerBackup",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/backups" : {
-      "get" : {
-        "description" : "Returns all cloud server backups",
-        "operationId" : "getAllCloudServerBackups",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListCloudServerBackupResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getAllCloudServerBackups",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/scheduled-tasks" : {
-      "get" : {
-        "description" : "Return the scheduled tasks for the cloud server",
-        "operationId" : "getCloudServerScheduledTasks",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListCloudServerScheduledTaskResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServerScheduledTasks",
-        "tags" : [ "cloudserver" ]
-      },
-      "post" : {
-        "description" : "Creates a new scheduled task for the cloud server",
-        "operationId" : "createCloudServerScheduledTask",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateCloudServerScheduledTaskRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerScheduledTaskResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "createCloudServerScheduledTask",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/scheduled-tasks/{task_id}" : {
-      "delete" : {
-        "description" : "Deletes the scheduled task",
-        "operationId" : "deleteCloudServerScheduledTask",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
-          "explode" : false,
-          "in" : "path",
-          "name" : "task_id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        },
-        "summary" : "deleteCloudServerScheduledTask",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/customers" : {
-      "get" : {
-        "description" : "Retrieves the accessible customers",
-        "operationId" : "getCustomers",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListCustomerResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCustomers",
-        "tags" : [ "customers" ]
-      },
-      "post" : {
-        "deprecated" : true,
-        "description" : "Creates a new customer",
-        "operationId" : "createCustomer",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/CreateCustomerRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "201" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCustomerResponse"
-                }
-              }
-            },
-            "description" : "Created"
-          }
-        },
-        "summary" : "createCustomer",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/customers/{customer_id}" : {
-      "get" : {
-        "description" : "Retrieves the customer specified by the id",
-        "operationId" : "getCustomer",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "customer_id",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCustomerResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCustomer",
-        "tags" : [ "customers" ]
-      }
-    },
-    "/cloud/servers/{id}/backups/{backup_id}" : {
-      "delete" : {
-        "description" : "Deletes a cloud server backup",
-        "operationId" : "deleteCloudServerBackup",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        }, {
-          "explode" : false,
-          "in" : "path",
-          "name" : "backup_id",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        },
-        "summary" : "deleteCloudServerBackup",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/massStatus" : {
-      "get" : {
-        "description" : "Returns the status of all accessible cloud servers",
-        "operationId" : "getCloudServerMassStatus",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/CloudServerMassStatusResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServerMassStatus",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/accounting/pricing/cloud/servers" : {
-      "get" : {
-        "deprecated" : true,
-        "description" : "Returns the pricing for cloud servers (this endpoint is subject to changes)",
-        "operationId" : "getCloudServerPricing",
-        "parameters" : [ {
-          "explode" : true,
-          "in" : "query",
-          "name" : "customer_id",
-          "required" : true,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "form"
-        }, {
-          "explode" : true,
-          "in" : "query",
-          "name" : "project_uuid",
-          "required" : false,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "form"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServerPricing",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/templates/server" : {
-      "get" : {
-        "deprecated" : true,
-        "description" : "Returns all available cloud server templates",
-        "operationId" : "getCloudServerTemplates",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ListCloudServerTemplateResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "getCloudServerTemplates",
-        "tags" : [ "cloudserver" ]
-      }
-    },
-    "/cloud/servers/{id}/reinstall" : {
-      "post" : {
-        "deprecated" : true,
-        "description" : "Reinstalls the cloud server",
-        "operationId" : "reinstallCloudServer",
-        "parameters" : [ {
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/ReinstallCloudServerRequest"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/SingleCloudServerResponse"
-                }
-              }
-            },
-            "description" : "OK"
-          }
-        },
-        "summary" : "reinstallCloudServer",
-        "tags" : [ "cloudserver" ]
-      }
     }
   },
   "components" : {
+    "requestBodies" : {
+      "ProjectCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "title" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "title" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ProjectUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "title" : {
+                  "type" : "string"
+                }
+              },
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "LoginRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "username" : {
+                  "type" : "string"
+                },
+                "password" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "password", "username" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "Login Request"
+      }
+    },
+    "responses" : {
+      "InvalidRequestResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_400"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_400"
+            }
+          }
+        },
+        "description" : "Response for validation errors"
+      },
+      "EmptyResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_401"
+            }
+          }
+        },
+        "description" : "Empty Response"
+      },
+      "ProjectListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200"
+            }
+          }
+        },
+        "description" : "Project List"
+      },
+      "ProjectSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201"
+            }
+          }
+        },
+        "description" : "Single Project"
+      },
+      "LoginResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_1"
+            }
+          }
+        },
+        "description" : "Login Response"
+      }
+    },
     "schemas" : {
-      "CloudServer" : {
-        "description" : "A cloudserver",
-        "properties" : {
-          "id" : {
-            "type" : "integer"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "hostname" : {
-            "format" : "hostname",
-            "type" : "string"
-          },
-          "cores" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "memory" : {
-            "minimum" : 1024,
-            "multipleOf" : 1024,
-            "type" : "integer"
-          },
-          "template" : {
-            "type" : "string"
-          },
-          "max_backups" : {
-            "minimum" : 0,
-            "type" : "integer"
-          },
-          "max_scheduled_tasks" : {
-            "minimum" : 0,
-            "type" : "integer"
-          },
-          "created_at" : {
-            "type" : "string"
-          },
-          "updated_at" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "cores", "created_at", "hostname", "id", "max_backups", "max_scheduled_tasks", "memory", "template", "updated_at" ],
-        "title" : "CloudServer",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ],
-        "x-examples" : {
-          "example" : {
-            "id" : 8432,
-            "user" : "john.doe",
-            "title" : "My Webserver",
-            "hostname" : "example.com",
-            "cores" : 1,
-            "memory" : 1024,
-            "template" : "DEBIAN_10",
-            "max_backups" : 0,
-            "max_scheduled_tasks" : 0,
-            "created_at" : "2020-01-30 00:00:00",
-            "updated_at" : "2020-01-30 00:00:00"
-          }
-        }
-      },
-      "CloudServerInterface" : {
-        "description" : "A network interface of a cloudserver",
-        "properties" : {
-          "netname" : {
-            "type" : "string"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "mac_address" : {
-            "pattern" : "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$",
-            "type" : "string"
-          },
-          "firewall" : {
-            "type" : "boolean"
-          },
-          "network_id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "created_at" : {
-            "type" : "string"
-          },
-          "updated_at" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "created_at", "firewall", "mac_address", "netname", "network_id", "updated_at" ],
-        "title" : "CloudServerInterface",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ],
-        "x-examples" : {
-          "example" : {
-            "netname" : "eth0",
-            "title" : "Internet",
-            "mac_address" : "00:00:00:00:00:00",
-            "firewall" : true,
-            "network_id" : 10001,
-            "created_at" : "2020-01-30 00:00:00",
-            "updated_at" : "2020-01-30 00:00:00"
-          }
-        }
-      },
-      "CloudServerStorage" : {
-        "description" : "A storage drive of a cloudserver",
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "size" : {
-            "minimum" : 10,
-            "type" : "integer"
-          },
-          "replication" : {
-            "default" : 2,
-            "type" : "integer"
-          },
-          "is_boot" : {
-            "type" : "boolean"
-          },
-          "created_at" : {
-            "type" : "string"
-          },
-          "updated_at" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "created_at", "is_boot", "replication", "size", "title", "updated_at" ],
-        "title" : "CloudServerStorage",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ],
-        "x-examples" : {
-          "example" : {
-            "title" : "scsi0",
-            "size" : 10,
-            "replication" : 2,
-            "is_boot" : true,
-            "created_at" : "2020-01-30 00:00:00",
-            "updated_at" : "2020-01-30 00:00:00"
-          }
-        }
-      },
-      "FirewallAddress" : {
-        "description" : "Address in a FirewallAddressSet",
-        "properties" : {
-          "id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "cidr" : {
-            "type" : "string"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "created_at" : {
-            "type" : "string"
-          },
-          "updated_at" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "cidr", "created_at", "id", "title", "updated_at" ],
-        "title" : "FirewallAddress",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ],
-        "x-examples" : {
-          "example" : {
-            "id" : 10001,
-            "address_set_id" : 10001,
-            "cidr" : "127.0.0.0/8",
-            "title" : "Loopback",
-            "created_at" : "2020-01-30 00:00:00",
-            "updated_at" : "2020-01-30 00:00:00"
-          }
-        }
-      },
-      "FirewallAddressSet" : {
-        "properties" : {
-          "id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "created_at" : {
-            "type" : "string"
-          },
-          "updated_at" : {
-            "type" : "string"
-          },
-          "project_uuid" : {
-            "format" : "uuid",
-            "type" : "string"
-          }
-        },
-        "required" : [ "created_at", "id", "project_uuid", "title", "updated_at" ],
-        "title" : "FirewallAddressSet",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ],
-        "x-examples" : {
-          "example" : {
-            "id" : 10001,
-            "user" : "john.doe",
-            "project_uuid" : "1de37675-f868-4726-bb1d-b08d89f463f9",
-            "title" : "Loopback Addresses",
-            "created_at" : "2020-01-30 00:00:00",
-            "updated_at" : "2020-01-30 00:00:00"
-          }
-        }
-      },
-      "FirewallRule" : {
-        "description" : "A firewall rule or a link to a FirewallRuleSet",
-        "properties" : {
-          "id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "order" : {
-            "exclusiveMinimum" : false,
-            "minimum" : 0,
-            "type" : "integer"
-          },
-          "linked_rule_set_id" : {
-            "type" : "integer"
-          },
-          "direction" : {
-            "enum" : [ "IN", "OUT" ],
-            "type" : "string"
-          },
-          "action" : {
-            "enum" : [ "ACCEPT", "DROP", "REJECT" ],
-            "type" : "string"
-          },
-          "interface" : {
-            "enum" : [ "net0", "net1", "net2", "net3" ],
-            "type" : "string"
-          },
-          "protocol" : {
-            "enum" : [ "udp", "tcp" ],
-            "type" : "string"
-          },
-          "source_address" : {
-            "type" : "string"
-          },
-          "source_address_set_id" : {
-            "type" : "integer"
-          },
-          "destination_address" : {
-            "type" : "string"
-          },
-          "destination_address_set_id" : {
-            "type" : "integer"
-          },
-          "source_port" : {
-            "type" : "string"
-          },
-          "destination_port" : {
-            "type" : "string"
-          },
-          "created_at" : {
-            "type" : "string"
-          },
-          "updated_at" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "created_at", "id", "order", "title", "updated_at" ],
-        "title" : "FirewallRule",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ],
-        "x-examples" : {
-          "example" : {
-            "id" : 10001,
-            "title" : "Example Rule",
-            "order" : 0,
-            "direction" : "IN",
-            "action" : "DROP",
-            "interface" : "net0",
-            "protocol" : "udp",
-            "source_address" : "127.0.0.1",
-            "destination_address_set_id" : 10001,
-            "source_port" : "1234",
-            "destination_port" : "4321",
-            "created_at" : "2020-01-30 00:00:00",
-            "updated_at" : "2020-01-30 00:00:00"
-          }
-        }
-      },
-      "FirewallRuleSet" : {
-        "description" : "A set of firewall rules",
-        "properties" : {
-          "id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "project_uuid" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "created_at" : {
-            "type" : "string"
-          },
-          "updated_at" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "created_at", "id", "project_uuid", "title", "updated_at" ],
-        "title" : "FirewallRuleSet",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ],
-        "x-examples" : {
-          "example" : {
-            "id" : 10001,
-            "user" : "john.doe",
-            "title" : "Example Ruleset",
-            "project_uuid" : "1de37675-f868-4726-bb1d-b08d89f463f9",
-            "created_at" : "2020-01-30 00:00:00",
-            "updated_at" : "2020-01-30 00:00:00"
-          }
-        }
-      },
-      "CreateCloudServerRequest" : {
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "project_uuid" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "cores" : {
-            "maximum" : 64,
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "memory" : {
-            "maximum" : 131072,
-            "minimum" : 1024,
-            "multipleOf" : 1024,
-            "type" : "integer"
-          },
-          "template" : {
-            "type" : "string"
-          },
-          "password" : {
-            "type" : "string"
-          },
-          "storages" : {
-            "items" : {
-              "$ref" : "#/components/schemas/CreateCloudServerStorageRequest"
-            },
-            "minItems" : 1,
-            "type" : "array"
-          },
-          "interfaces" : {
-            "items" : {
-              "$ref" : "#/components/schemas/CreateCloudServerInterfaceRequest"
-            },
-            "type" : "array"
-          },
-          "hostname" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "cores", "interfaces", "memory", "project_uuid", "storages", "template" ],
-        "title" : "CreateCloudServerRequest",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "CreateFirewallRuleSetRequest" : {
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "project_uuid" : {
-            "format" : "uuid",
-            "type" : "string"
-          }
-        },
-        "required" : [ "project_uuid", "title" ],
-        "title" : "CreateFirewallRuleSetRequest",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "CreateFirewallAddressSetRequest" : {
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "project_uuid" : {
-            "format" : "uuid",
-            "type" : "string"
-          }
-        },
-        "required" : [ "project_uuid", "title" ],
-        "title" : "CreateFirewallAddressSetRequest",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "CreateFirewallAddressRequest" : {
-        "properties" : {
-          "cidr" : {
-            "type" : "string"
-          },
-          "title" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "cidr", "title" ],
-        "title" : "CreateFirewallAddressRequest",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "CreateFirewallRuleRequest" : {
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "order" : {
-            "minimum" : 0,
-            "type" : "integer"
-          },
-          "direction" : {
-            "enum" : [ "IN", "OUT" ],
-            "type" : "string"
-          },
-          "action" : {
-            "enum" : [ "ACCEPT", "DROP", "REJECT" ],
-            "type" : "string"
-          },
-          "protocol" : {
-            "enum" : [ "tcp", "udp" ],
-            "type" : "string"
-          },
-          "interface" : {
-            "enum" : [ "net0", "net1", "net2", "net3" ],
-            "type" : "string"
-          },
-          "source_address" : {
-            "type" : "string"
-          },
-          "source_address_set_id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "destination_address" : {
-            "type" : "string"
-          },
-          "destination_address_set_id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "source_port" : {
-            "type" : "string"
-          },
-          "destination_port" : {
-            "type" : "string"
-          },
-          "linked_rule_set_id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          }
-        },
-        "required" : [ "order", "title" ],
-        "title" : "CreateFirewallRuleRequest",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "UpdateFirewallAddressSetRequest" : {
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "project_uuid" : {
-            "format" : "uuid",
-            "type" : "string"
-          }
-        },
-        "title" : "UpdateFirewallAddressSetRequest",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "UpdateFirewallRuleSetRequest" : {
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "project_uuid" : {
-            "format" : "uuid",
-            "type" : "string"
-          }
-        },
-        "title" : "UpdateFirewallRuleSetRequest",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "UpdateFirewallAddressRequest" : {
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          }
-        },
-        "title" : "UpdateFirewallAddressRequest",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "UpdateFirewallRuleRequest" : {
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "order" : {
-            "minimum" : 0,
-            "type" : "integer"
-          },
-          "direction" : {
-            "enum" : [ "IN", "OUT" ],
-            "type" : "string"
-          },
-          "action" : {
-            "enum" : [ "ACCEPT", "DROP", "REJECT" ],
-            "type" : "string"
-          },
-          "protocol" : {
-            "enum" : [ "tcp", "udp" ],
-            "type" : "string"
-          },
-          "source_address" : {
-            "type" : "string"
-          },
-          "source_address_set_id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "destination_address" : {
-            "type" : "string"
-          },
-          "destination_address_set_id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "source_port" : {
-            "type" : "string"
-          },
-          "destination_port" : {
-            "type" : "string"
-          },
-          "linked_address_set_id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          }
-        },
-        "title" : "UpdateFirewallRuleRequest",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "UpdateCloudServerRequest" : {
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "project_uuid" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "cores" : {
-            "type" : "integer"
-          },
-          "memory" : {
-            "type" : "integer"
-          },
-          "hostname" : {
-            "type" : "string"
-          }
-        },
-        "title" : "UpdateCloudServerRequest",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "ResponseMetadata" : {
-        "properties" : {
-          "clientTransactionId" : {
-            "example" : "lumaserv_api_request_1234",
-            "type" : "string"
-          },
-          "serverTransactionId" : {
-            "example" : "200913214225851845414",
-            "type" : "string"
-          }
-        },
-        "required" : [ "serverTransactionId" ],
-        "title" : "ResponseMetadata",
-        "type" : "object"
-      },
       "ResponseMessages" : {
         "properties" : {
           "warnings" : {
@@ -3167,249 +518,18 @@
       },
       "ResponseMessage" : {
         "properties" : {
-          "code" : {
-            "example" : 10000,
-            "type" : "integer"
+          "key" : {
+            "example" : "general.serverError",
+            "type" : "string"
           },
           "message" : {
             "example" : "Action successfully executed.",
             "type" : "string"
           }
         },
-        "required" : [ "code", "message" ],
+        "required" : [ "key", "message" ],
         "title" : "ResponseMessage",
         "type" : "object"
-      },
-      "SingleCloudServerResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/CloudServer"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "GetCloudServerResponse",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "ListCloudServerResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/CloudServer"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "ListCloudServerResponse",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "EmptyResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "messages", "metadata", "status" ],
-        "title" : "EmptyResponse",
-        "type" : "object"
-      },
-      "SingleFirewallAddressSetResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/FirewallAddressSet"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "SingleFirewallAddressSetResponse",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "ListFirewallAddressSetResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/FirewallAddressSet"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "ListFirewallAddressSetResponse",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "SingleFirewallRuleSetResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/FirewallRuleSet"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "SingleFirewallRuleSetResponse",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "ListFirewallRuleSetResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/FirewallRuleSet"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "ListFirewallRuleSetResponse",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "SingleFirewallAddressResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/FirewallAddress"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "SingleFirewallAddressResponse",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "ListFirewallAddressResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/FirewallAddress"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "ListFirewallAddressResponse",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "SingleFirewallRuleResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/FirewallRule"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "SingleFirewallRuleResponse",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
-      },
-      "ListFirewallRuleResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/FirewallRule"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "ListFirewallRuleResponse",
-        "type" : "object",
-        "x-tags" : [ "firewall" ]
       },
       "Project" : {
         "properties" : {
@@ -3443,57 +563,22 @@
           }
         }
       },
-      "CreateProjectRequest" : {
+      "Token" : {
+        "description" : "API / Session Token",
         "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "description" : {
+          "token" : {
             "type" : "string"
           }
         },
-        "required" : [ "title" ],
-        "title" : "CreateProjectRequest",
+        "required" : [ "token" ],
+        "title" : "Token",
         "type" : "object",
-        "x-tags" : [ "projects" ]
+        "x-tags" : [ "users" ]
       },
-      "UpdateProjectRequest" : {
+      "inline_response_200" : {
         "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "description" : {
-            "type" : "string"
-          }
-        },
-        "title" : "UpdateProjectRequest",
-        "type" : "object",
-        "x-tags" : [ "projects" ]
-      },
-      "SingleProjectResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/Project"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "SingleProjectResponse",
-        "type" : "object",
-        "x-tags" : [ "projects" ]
-      },
-      "ListProjectResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
+          "success" : {
+            "type" : "boolean"
           },
           "data" : {
             "items" : {
@@ -3501,949 +586,68 @@
             },
             "type" : "array"
           },
-          "status" : {
-            "type" : "string"
-          },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "ListProjectResponse",
-        "type" : "object",
-        "x-tags" : [ "projects" ]
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
       },
-      "CreateCloudServerInterfaceRequest" : {
+      "inline_response_401" : {
         "properties" : {
-          "network_id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "ipv4" : {
-            "items" : {
-              "format" : "ipv4",
-              "type" : "string"
-            },
-            "type" : "array"
-          },
-          "primary_ipv4" : {
-            "format" : "ipv4",
-            "type" : "string"
-          },
-          "custom_address" : {
-            "type" : "string"
-          },
-          "custom_gateway" : {
-            "format" : "ipv4",
-            "type" : "string"
-          }
-        },
-        "title" : "CreateCloudServerInterfaceRequest",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ],
-        "x-examples" : { }
-      },
-      "CreateCloudServerStorageRequest" : {
-        "properties" : {
-          "size" : {
-            "minimum" : 5,
-            "type" : "integer"
-          },
-          "replication" : {
-            "default" : 2,
-            "minimum" : 0,
-            "type" : "integer"
-          }
-        },
-        "required" : [ "size" ],
-        "title" : "CreateCloudServerStorageRequest",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "SingleCloudServerInterfaceResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/CloudServerInterface"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "SingleCloudServerInterfaceResponse",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "SingleCloudServerStorageResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/CloudServerStorage"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "SingleCloudServerStorageResponse",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "ListCloudServerInterfaceResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/CloudServerInterface"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "ListCloudServerInterfaceResponse",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "ListCloudServerStorageResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/CloudServerStorage"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "ListCloudServerStorageResponse",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "UpdateCloudServerInterfaceRequest" : {
-        "properties" : {
-          "network_id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "ipv4" : {
-            "items" : {
-              "format" : "ipv4",
-              "type" : "string"
-            },
-            "type" : "array"
-          },
-          "primary_ipv4" : {
-            "format" : "ipv4",
-            "type" : "string"
-          },
-          "custom_address" : {
-            "type" : "string"
-          },
-          "custom_gateway" : {
-            "format" : "ipv4",
-            "type" : "string"
-          }
-        },
-        "title" : "UpdateCloudServerInterfaceRequest",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "UpdateCloudServerStorageRequest" : {
-        "properties" : {
-          "size" : {
-            "minimum" : 1,
-            "type" : "integer"
-          }
-        },
-        "title" : "UpdateCloudServerStorageRequest",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "User" : {
-        "properties" : {
-          "username" : {
-            "type" : "string"
-          },
-          "gender" : {
-            "enum" : [ "MALE", "FEMALE" ],
-            "type" : "string"
-          },
-          "first_name" : {
-            "type" : "string"
-          },
-          "last_name" : {
-            "type" : "string"
-          },
-          "email" : {
-            "format" : "email",
-            "type" : "string"
-          },
-          "created_at" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "created_at", "email", "username" ],
-        "title" : "User",
-        "type" : "object",
-        "x-tags" : [ "users" ]
-      },
-      "LoginRequest" : {
-        "properties" : {
-          "username" : {
-            "type" : "string"
-          },
-          "password" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "password", "username" ],
-        "title" : "LoginRequest",
-        "type" : "object",
-        "x-tags" : [ "auth" ]
-      },
-      "LoginResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/LoginResponse_data"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "metadata" ],
-        "title" : "LoginResponse",
-        "type" : "object",
-        "x-tags" : [ "auth" ]
-      },
-      "SelfResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/User"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "title" : "SelfResponse",
-        "type" : "object",
-        "x-tags" : [ "auth" ]
-      },
-      "ListUserResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/User"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "title" : "ListUserResponse",
-        "type" : "object",
-        "x-tags" : [ "users" ]
-      },
-      "SingleUserResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/User"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "title" : "SingleUserResponse",
-        "type" : "object",
-        "x-tags" : [ "users" ]
-      },
-      "UpdateUserRequest" : {
-        "properties" : {
-          "email" : {
-            "type" : "string"
-          }
-        },
-        "title" : "UpdateUserRequest",
-        "type" : "object",
-        "x-tags" : [ "users" ]
-      },
-      "Network" : {
-        "properties" : {
-          "id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "description" : {
-            "type" : "string"
-          },
-          "is_public" : {
+          "success" : {
             "type" : "boolean"
           },
-          "user" : {
-            "type" : "string"
-          },
-          "created_at" : {
-            "type" : "string"
-          },
-          "updated_at" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "created_at", "id", "is_public", "updated_at", "user" ],
-        "title" : "Network",
-        "type" : "object",
-        "x-tags" : [ "networks" ]
-      },
-      "ListNetworkResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/Network"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "title" : "ListNetworkResponse",
-        "type" : "object",
-        "x-tags" : [ "networks" ]
-      },
-      "Address" : {
-        "properties" : {
-          "address" : {
-            "type" : "string"
-          },
-          "reserved" : {
-            "type" : "string"
-          },
-          "rdns" : {
-            "type" : "string"
-          },
-          "created_at" : {
-            "type" : "string"
-          },
-          "updated_at" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "address", "created_at", "updated_at" ],
-        "title" : "Address",
-        "type" : "object",
-        "x-tags" : [ "addresses" ]
-      },
-      "ListAddressResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/Address"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "ListAddressResponse",
-        "type" : "object",
-        "x-tags" : [ "addresses" ]
-      },
-      "SingleAddressResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/Address"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "SingleAddressResponse",
-        "type" : "object",
-        "x-tags" : [ "addresses" ]
-      },
-      "CreateAddressRequest" : {
-        "title" : "CreateAddressRequest",
-        "type" : "object",
-        "x-tags" : [ "addresses" ]
-      },
-      "UpdateAddressRequest" : {
-        "properties" : {
-          "reserved" : {
-            "type" : "string"
-          },
-          "rdns" : {
-            "type" : "string"
-          }
-        },
-        "title" : "UpdateAddressRequest",
-        "type" : "object",
-        "x-tags" : [ "addresses" ]
-      },
-      "CloudServerBackup" : {
-        "properties" : {
-          "id" : {
-            "type" : "integer"
-          },
-          "title" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "id" ],
-        "title" : "CloudServerBackup",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "ListCloudServerBackupResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/CloudServerBackup"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "title" : "ListCloudServerBackupResponse",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "SingleCloudServerBackupResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/CloudServerBackup"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "title" : "SingleCloudServerBackupResponse",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "RestoreCloudServerRequest" : {
-        "properties" : {
-          "backup_id" : {
-            "minimum" : 1,
-            "type" : "integer"
-          }
-        },
-        "required" : [ "backup_id" ],
-        "title" : "RestoreCloudServerRequest",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "CreateCloudServerBackupRequest" : {
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          }
-        },
-        "title" : "CreateCloudServerBackupRequest",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "CloudServerScheduledTask" : {
-        "properties" : {
-          "id" : {
-            "type" : "integer"
-          }
-        },
-        "title" : "CloudServerScheduledTask",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "ListCloudServerScheduledTaskResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/CloudServerScheduledTask"
-            },
-            "type" : "array"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "title" : "ListCloudServerScheduledTaskResponse",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "SingleCloudServerScheduledTaskResponse" : {
-        "properties" : {
-          "metadata" : {
-            "type" : "string"
-          },
-          "data" : {
-            "type" : "string"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "title" : "SingleCloudServerScheduledTaskResponse",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "CreateCloudServerScheduledTaskRequest" : {
-        "properties" : {
-          "action" : {
-            "enum" : [ "start", "stop", "shutdown", "restart", "backup" ],
-            "type" : "string"
-          },
-          "interval" : {
-            "enum" : [ "hour", "day", "week", "month", "year" ],
-            "type" : "string"
-          },
-          "next_execution_at" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "action", "interval" ],
-        "title" : "CreateCloudServerScheduledTaskRequest",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "ResponsePagination" : {
-        "properties" : {
-          "total_element_count" : {
-            "type" : "number"
-          },
-          "page_element_count" : {
-            "type" : "number"
-          },
-          "limit" : {
-            "type" : "number"
-          },
-          "offset" : {
-            "type" : "number"
-          },
-          "next_page_url" : {
-            "type" : "string"
-          },
-          "previous_page_url" : {
-            "type" : "string"
-          },
-          "first_page_url" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "last_page_url" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "page_count" : {
-            "type" : "number"
-          }
-        },
-        "required" : [ "first_page_url", "last_page_url", "limit", "offset", "page_count", "page_element_count", "total_element_count" ],
-        "type" : "object",
-        "x-examples" : {
-          "example-1" : {
-            "total_element_count" : 2,
-            "page_element_count" : 2,
-            "limit" : 10,
-            "offset" : 0,
-            "first_page_url" : "https://localhost/api/v2/customers?limit=10&offset=0",
-            "last_page_url" : "https://localhost/api/v2/customers?limit=10&offset=0",
-            "page_count" : 1
-          }
-        }
-      },
-      "Customer" : {
-        "properties" : {
-          "id" : {
-            "type" : "number"
-          },
-          "company_name" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "first_name" : {
-            "type" : "string"
-          },
-          "last_name" : {
-            "type" : "string"
-          },
-          "email" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "email_accounting" : {
-            "type" : "string"
-          },
-          "email_tech" : {
-            "type" : "string"
-          },
-          "email_newsletter" : {
-            "type" : "string"
-          },
-          "email_contact" : {
-            "type" : "string"
-          },
-          "email_abuse" : {
-            "type" : "string"
-          },
-          "street" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "house_number" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "zip_code" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "city" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "country_id" : {
-            "type" : "number"
-          },
-          "vat_id" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "amount" : {
-            "type" : "number"
-          },
-          "credit_limit" : {
-            "type" : "number"
-          },
-          "next_billing_cycle" : {
-            "type" : "string"
-          },
-          "created_at" : {
-            "minLength" : 1,
-            "type" : "string"
-          },
-          "updated_at" : {
-            "minLength" : 1,
-            "type" : "string"
-          }
-        },
-        "required" : [ "city", "company_name", "country_id", "created_at", "credit_limit", "email", "house_number", "id", "street", "updated_at", "vat_id", "zip_code" ],
-        "title" : "Customer",
-        "type" : "object",
-        "x-examples" : { },
-        "x-tags" : [ "customers" ]
-      },
-      "SingleCustomerResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/Customer"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "title" : "SingleCustomerResponse",
+        "required" : [ "messages", "success" ],
         "type" : "object"
       },
-      "ListCustomerResponse" : {
+      "inline_response_201" : {
         "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
+          "success" : {
+            "type" : "boolean"
           },
           "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/Customer"
-            },
-            "type" : "array"
-          },
-          "pagination" : {
-            "$ref" : "#/components/schemas/ResponsePagination"
-          },
-          "status" : {
-            "type" : "string"
+            "$ref" : "#/components/schemas/Project"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "title" : "ListCustomerResponse",
+        "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "CreateCustomerRequest" : {
+      "inline_response_400" : {
         "properties" : {
-          "company_name" : {
-            "description" : "Required if no first_name is given.",
-            "type" : "string"
+          "success" : {
+            "type" : "boolean"
           },
-          "first_name" : {
-            "description" : "Required if no company_name is given.",
-            "type" : "string"
-          },
-          "last_name" : {
-            "description" : "Required if the first_name is given.",
-            "type" : "string"
-          },
-          "email" : {
-            "description" : "Default email if none of the other email types fit.",
-            "type" : "string"
-          },
-          "email_accounting" : {
-            "type" : "string"
-          },
-          "email_tech" : {
-            "type" : "string"
-          },
-          "email_newsletter" : {
-            "type" : "string"
-          },
-          "email_contact" : {
-            "type" : "string"
-          },
-          "email_abuse" : {
-            "type" : "string"
-          },
-          "street" : {
-            "type" : "string"
-          },
-          "house_number" : {
-            "type" : "string"
-          },
-          "city" : {
-            "type" : "string"
-          },
-          "country_id" : {
-            "type" : "integer"
-          },
-          "zip_code" : {
-            "type" : "string"
-          },
-          "vat_id" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "city", "country_id", "email", "house_number", "street", "vat_id", "zip_code" ],
-        "title" : "CreateCustomerRequest",
-        "type" : "object"
-      },
-      "CloudServerMassStatusResponse" : {
-        "properties" : {
           "data" : {
-            "additionalProperties" : {
-              "$ref" : "#/components/schemas/CloudServerMassStatusResponse_data"
-            },
             "type" : "object"
           },
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "status" : {
-            "type" : "string"
-          },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "title" : "CloudServerMassStatus",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
+        "required" : [ "messages", "success" ],
+        "type" : "object"
       },
-      "CloudServerTemplate" : {
+      "inline_response_200_1" : {
         "properties" : {
-          "key" : {
-            "type" : "string"
-          },
-          "title" : {
-            "type" : "string"
-          }
-        },
-        "title" : "CloudServerTemplate",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "ListCloudServerTemplateResponse" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "status" : {
-            "type" : "string"
+          "success" : {
+            "type" : "boolean"
           },
           "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/CloudServerTemplate"
-            },
-            "type" : "array"
+            "$ref" : "#/components/schemas/Token"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "required" : [ "data", "messages", "metadata", "status" ],
-        "title" : "ListCloudServerTemplateResponse",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "ReinstallCloudServerRequest" : {
-        "properties" : {
-          "template" : {
-            "type" : "string"
-          }
-        },
-        "title" : "ReinstallCloudServerRequest",
-        "type" : "object",
-        "x-tags" : [ "cloudserver" ]
-      },
-      "easyFilter" : {
-        "properties" : {
-          "project_uuid" : {
-            "format" : "uuid",
-            "type" : "string"
-          }
-        },
-        "type" : "object"
-      },
-      "LoginResponse_data" : {
-        "properties" : {
-          "token" : {
-            "type" : "string"
-          }
-        },
-        "type" : "object"
-      },
-      "CloudServerMassStatusResponse_data" : {
-        "properties" : {
-          "id" : {
-            "type" : "string"
-          },
-          "type" : {
-            "type" : "string"
-          },
-          "cpu" : {
-            "type" : "number"
-          },
-          "disk" : {
-            "type" : "string"
-          },
-          "maxcpu" : {
-            "type" : "number"
-          },
-          "maxdisk" : {
-            "type" : "integer"
-          },
-          "maxmem" : {
-            "type" : "integer"
-          },
-          "mem" : {
-            "type" : "string"
-          },
-          "status" : {
-            "type" : "string"
-          },
-          "uptime" : {
-            "type" : "integer"
-          }
-        },
+        "required" : [ "data", "messages", "success" ],
         "type" : "object"
       }
     },
