@@ -14,7 +14,7 @@ jobs:
       with:
         node-version: 12.x
     - run: npm i -g redoc-cli
-    - run: npx redoc-cli bundle spec/api-spec.v2.yaml --options.theme.colors.primary.main=#ac0006
+    - run: npx redoc-cli bundle spec/api-spec.v1.0.yaml --options.theme.colors.primary.main=#ac0006
     - run: mkdir docs && cp redoc-static.html docs/index.html
     - name: Deploy
       uses: s0/git-publish-subdir-action@develop
