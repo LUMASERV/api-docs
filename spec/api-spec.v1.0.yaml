@@ -1,0 +1,337 @@
+openapi: 3.0.0
+info:
+  title: LUMASERV API
+  version: '1.0'
+  contact:
+    name: LUMASERV Support Team
+    email: support@lumaserv.com
+  description: LUMASERV API
+servers:
+  - url: 'https://api.lumaserv.cloud'
+    description: Live
+tags:
+  - name: cloudserver
+    description: CloudServer Management
+  - name: projects
+  - name: auth
+  - name: users
+paths:
+  /projects:
+    get:
+      summary: getProjects
+      tags:
+        - projects
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getProjects
+      description: Returns all projects
+    post:
+      summary: createProject
+      operationId: createProject
+      responses:
+        '201':
+          $ref: '#/components/responses/ProjectSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - projects
+      description: Create a new project
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectCreateRequest'
+  '/projects/{uuid}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: uuid
+        in: path
+        required: true
+        description: UUID of the project
+    get:
+      summary: getProject
+      tags:
+        - projects
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getProject
+      description: Returns a single project
+    put:
+      summary: updateProject
+      operationId: updateProject
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - projects
+      description: Updates the project
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectUpdateRequest'
+    delete:
+      summary: deleteProject
+      operationId: deleteProject
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - projects
+      description: Deletes the project
+  /auth/login:
+    post:
+      summary: login
+      operationId: login
+      responses:
+        '200':
+          $ref: '#/components/responses/LoginResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - auth
+      description: Exchanges user credentials for an auth token
+      requestBody:
+        $ref: '#/components/requestBodies/LoginRequest'
+components:
+  schemas:
+    ResponseMessages:
+      title: ResponseMessages
+      type: object
+      properties:
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        success:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+      required:
+        - warnings
+        - errors
+        - success
+      x-examples:
+        example:
+          warnings: []
+          errors: []
+          success:
+            - code: 10000
+              message: Action successfully executed.
+    ResponseMessage:
+      title: ResponseMessage
+      type: object
+      properties:
+        key:
+          type: string
+          example: general.serverError
+        message:
+          type: string
+          example: Action successfully executed.
+      required:
+        - key
+        - message
+    Project:
+      title: Project
+      type: object
+      x-tags:
+        - projects
+      x-examples:
+        example:
+          uuid: 095be615-a8ad-4c33-8e9c-c7612fbf6c9f
+          title: Nice App
+          description: A really nice app
+          created_at: '2020-01-30 00:00:00'
+          updated_at: '2020-01-30 00:00:00'
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    Token:
+      title: Token
+      type: object
+      x-tags:
+        - users
+      description: API / Session Token
+      properties:
+        token:
+          type: string
+      required:
+        - token
+  securitySchemes:
+    AuthToken:
+      type: http
+      scheme: bearer
+      description: ''
+  responses:
+    InvalidRequestResponse:
+      description: Response for validation errors
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - messages
+        application/xml:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - messages
+    EmptyResponse:
+      description: Empty Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - messages
+    ProjectListResponse:
+      description: Project List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    ProjectSingleResponse:
+      description: Single Project
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Project'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    LoginResponse:
+      description: Login Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Token'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+  requestBodies:
+    ProjectCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+            required:
+              - title
+    ProjectUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+    LoginRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+            required:
+              - username
+              - password
+      description: Login Request
+security:
+  - AuthToken: []
