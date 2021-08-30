@@ -28,6 +28,8 @@
     "name" : "s3-storage"
   }, {
     "name" : "domains"
+  }, {
+    "name" : "ssl"
   } ],
   "paths" : {
     "/projects" : {
@@ -2413,6 +2415,732 @@
         "summary" : "unscheduleDomainDelete",
         "tags" : [ "domains" ]
       }
+    },
+    "/ssl/contacts" : {
+      "get" : {
+        "description" : "Returns all ssl contacts",
+        "operationId" : "getSSLContacts",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_13"
+                }
+              }
+            },
+            "description" : "SSLContact List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLContacts",
+        "tags" : [ "ssl" ]
+      },
+      "post" : {
+        "description" : "Creates a ssl contact",
+        "operationId" : "createSSLContact",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/SSLContactCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_7"
+                }
+              }
+            },
+            "description" : "Single SSLContact"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createSSLContact",
+        "tags" : [ "ssl" ]
+      }
+    },
+    "/ssl/contacts/{id}" : {
+      "delete" : {
+        "description" : "Deletes a ssl contact",
+        "operationId" : "deleteSSLContact",
+        "parameters" : [ {
+          "description" : "SSL Contact ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteSSLContact",
+        "tags" : [ "ssl" ]
+      },
+      "get" : {
+        "description" : "Returns a single ssl contact",
+        "operationId" : "getSSLContact",
+        "parameters" : [ {
+          "description" : "SSL Contact ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_7"
+                }
+              }
+            },
+            "description" : "Single SSLContact"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLContact",
+        "tags" : [ "ssl" ]
+      }
+    },
+    "/ssl/organisations" : {
+      "get" : {
+        "description" : "Returns all ssl organisations",
+        "operationId" : "getSSLOrganisations",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_14"
+                }
+              }
+            },
+            "description" : "SSLOrganisation List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLOrganisations",
+        "tags" : [ "ssl" ]
+      },
+      "post" : {
+        "description" : "Creates a ssl organisation",
+        "operationId" : "createSSLOrganisation",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/SSLOrganisationCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_8"
+                }
+              }
+            },
+            "description" : "Single SSLOrganisation"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createSSLOrganisation",
+        "tags" : [ "ssl" ]
+      }
+    },
+    "/ssl/organisations/{id}" : {
+      "delete" : {
+        "description" : "Deletes a ssl organisation",
+        "operationId" : "deleteSSLOrganisation",
+        "parameters" : [ {
+          "description" : "SSL Organisation ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteSSLOrganisation",
+        "tags" : [ "ssl" ]
+      },
+      "get" : {
+        "description" : "Returns a single ssl organisation",
+        "operationId" : "getSSLOrganisation",
+        "parameters" : [ {
+          "description" : "SSL Organisation ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_8"
+                }
+              }
+            },
+            "description" : "Single SSLOrganisation"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLOrganisation",
+        "tags" : [ "ssl" ]
+      }
+    },
+    "/ssl/types" : {
+      "get" : {
+        "description" : "Returns all ssl types",
+        "operationId" : "getSSLTypes",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_15"
+                }
+              }
+            },
+            "description" : "SSLType List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLTypes",
+        "tags" : [ "ssl" ]
+      }
+    },
+    "/ssl/types/{id}" : {
+      "get" : {
+        "description" : "Returns a single ssl type",
+        "operationId" : "getSSLType",
+        "parameters" : [ {
+          "description" : "SSL Type ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_16"
+                }
+              }
+            },
+            "description" : "Single SSLType"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLType",
+        "tags" : [ "ssl" ]
+      }
+    },
+    "/ssl/certificates" : {
+      "get" : {
+        "description" : "Returns all ssl certificates",
+        "operationId" : "getSSLCertificates",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_17"
+                }
+              }
+            },
+            "description" : "SSLCertificate List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLCertificates",
+        "tags" : [ "ssl" ]
+      },
+      "post" : {
+        "description" : "Orders a new ssl certificate",
+        "operationId" : "createSSLCertificate",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/SSLCertificateCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_9"
+                }
+              }
+            },
+            "description" : "Single SSLCertificate"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createSSLCertificate",
+        "tags" : [ "ssl" ]
+      }
+    },
+    "/ssl/certificates/{id}" : {
+      "get" : {
+        "description" : "Returns a single ssl certificate",
+        "operationId" : "getSSLCertificate",
+        "parameters" : [ {
+          "description" : "SSL Certificate ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_9"
+                }
+              }
+            },
+            "description" : "Single SSLCertificate"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLCertificate",
+        "tags" : [ "ssl" ]
+      }
     }
   },
   "components" : {
@@ -2840,6 +3568,166 @@
             }
           }
         }
+      },
+      "SSLContactCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "first_name" : {
+                  "type" : "string"
+                },
+                "last_name" : {
+                  "type" : "string"
+                },
+                "organisation" : {
+                  "type" : "string"
+                },
+                "email" : {
+                  "format" : "email",
+                  "type" : "string"
+                },
+                "phone" : {
+                  "type" : "string"
+                },
+                "fax" : {
+                  "type" : "string"
+                },
+                "address" : {
+                  "type" : "string"
+                },
+                "additional_address" : {
+                  "type" : "string"
+                },
+                "city" : {
+                  "type" : "string"
+                },
+                "postal_code" : {
+                  "type" : "string"
+                },
+                "region" : {
+                  "type" : "string"
+                },
+                "country_code" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "address", "city", "country_code", "email", "first_name", "last_name", "organisation", "phone", "postal_code", "project_id" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "SSLOrganisationCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "name" : {
+                  "type" : "string"
+                },
+                "division" : {
+                  "type" : "string"
+                },
+                "address" : {
+                  "type" : "string"
+                },
+                "additional_address" : {
+                  "type" : "string"
+                },
+                "city" : {
+                  "type" : "string"
+                },
+                "postal_code" : {
+                  "type" : "string"
+                },
+                "region" : {
+                  "type" : "string"
+                },
+                "country_code" : {
+                  "type" : "string"
+                },
+                "phone" : {
+                  "type" : "string"
+                },
+                "fax" : {
+                  "type" : "string"
+                },
+                "registration_number" : {
+                  "type" : "string"
+                },
+                "duns" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "address", "city", "country_code", "name", "phone", "postal_code", "project_id" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "SSLCertificateCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "type_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "organisation_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "organisation" : {
+                  "type" : "object"
+                },
+                "admin_contact_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "admin_contact" : {
+                  "type" : "object"
+                },
+                "tech_contact_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "tech_contact" : {
+                  "type" : "object"
+                },
+                "csr" : {
+                  "type" : "string"
+                },
+                "validation_method" : {
+                  "enum" : [ "DNS", "HTTPS" ],
+                  "type" : "string"
+                },
+                "approver_email" : {
+                  "format" : "email",
+                  "type" : "string"
+                }
+              },
+              "required" : [ "approver_email", "csr", "project_id", "type_id", "validation_method" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -3067,6 +3955,86 @@
           }
         },
         "description" : "Authinfo"
+      },
+      "SSLTypeListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_15"
+            }
+          }
+        },
+        "description" : "SSLType List"
+      },
+      "SSLTypeSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_16"
+            }
+          }
+        },
+        "description" : "Single SSLType"
+      },
+      "SSLContactListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_13"
+            }
+          }
+        },
+        "description" : "SSLContact List"
+      },
+      "SSLContactSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_7"
+            }
+          }
+        },
+        "description" : "Single SSLContact"
+      },
+      "SSLOrganisationListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_14"
+            }
+          }
+        },
+        "description" : "SSLOrganisation List"
+      },
+      "SSLOrganisationSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_8"
+            }
+          }
+        },
+        "description" : "Single SSLOrganisation"
+      },
+      "SSLCertificateListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_17"
+            }
+          }
+        },
+        "description" : "SSLCertificate List"
+      },
+      "SSLCertificateSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_9"
+            }
+          }
+        },
+        "description" : "Single SSLCertificate"
       }
     },
     "schemas" : {
@@ -3472,6 +4440,174 @@
         "type" : "object",
         "x-tags" : [ "domains" ]
       },
+      "SSLCertificate" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "organisation_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "admin_contact_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "tech_contact_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "approver_email" : {
+            "type" : "string"
+          },
+          "valid_until" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "admin_contact_id", "approver_email", "created_at", "id", "organisation_id", "project_id", "tech_contact_id", "type_id" ],
+        "title" : "SSLCertificate",
+        "type" : "object",
+        "x-tags" : [ "ssl" ]
+      },
+      "SSLContact" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "organisation" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "fax" : {
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "region" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "address", "city", "country_code", "created_at", "email", "first_name", "id", "last_name", "organisation", "phone", "postal_code", "project_id" ],
+        "title" : "SSLContact",
+        "type" : "object",
+        "x-tags" : [ "ssl" ]
+      },
+      "SSLOrganisation" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "division" : {
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "region" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "fax" : {
+            "type" : "string"
+          },
+          "registration_number" : {
+            "type" : "string"
+          },
+          "duns" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "address", "city", "country_code", "created_at", "id", "name", "phone", "postal_code", "project_id" ],
+        "title" : "SSLOrganisation",
+        "type" : "object",
+        "x-tags" : [ "ssl" ]
+      },
+      "SSLType" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "title" ],
+        "title" : "SSLType",
+        "type" : "object",
+        "x-tags" : [ "ssl" ]
+      },
       "inline_response_200" : {
         "properties" : {
           "success" : {
@@ -3818,6 +4954,138 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/DomainAuthinfo"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_13" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSLContact"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_7" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SSLContact"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_14" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSLOrganisation"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_8" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SSLOrganisation"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_15" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSLType"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_16" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SSLType"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_17" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSLCertificate"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_9" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SSLCertificate"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"

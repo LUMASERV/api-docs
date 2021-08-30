@@ -165,4 +165,43 @@ export default class LUMASERVClient {
     unscheduleDomainDelete(name){
         return this.request('post', '/domains/' + name + '/unschedule-delete', null, null);
     }
+    getSSLContacts(){
+        return this.request('get', '/ssl/contacts', null, null);
+    }
+    createSSLContact(body = null){
+        return this.request('post', '/ssl/contacts', null, body);
+    }
+    deleteSSLContact(id){
+        return this.request('delete', '/ssl/contacts/' + id, null, null);
+    }
+    getSSLContact(id){
+        return this.request('get', '/ssl/contacts/' + id, null, null);
+    }
+    getSSLOrganisations(){
+        return this.request('get', '/ssl/organisations', null, null);
+    }
+    createSSLOrganisation(body = null){
+        return this.request('post', '/ssl/organisations', null, body);
+    }
+    deleteSSLOrganisation(id){
+        return this.request('delete', '/ssl/organisations/' + id, null, null);
+    }
+    getSSLOrganisation(id){
+        return this.request('get', '/ssl/organisations/' + id, null, null);
+    }
+    getSSLTypes(){
+        return this.request('get', '/ssl/types', null, null);
+    }
+    getSSLType(id){
+        return this.request('get', '/ssl/types/' + id, null, null);
+    }
+    getSSLCertificates(){
+        return this.request('get', '/ssl/certificates', null, null);
+    }
+    createSSLCertificate(body = null){
+        return this.request('post', '/ssl/certificates', null, body);
+    }
+    getSSLCertificate(id){
+        return this.request('get', '/ssl/certificates/' + id, null, null);
+    }
 }
