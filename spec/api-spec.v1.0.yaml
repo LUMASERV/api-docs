@@ -16,6 +16,7 @@ tags:
   - name: plesk-licenses
   - name: s3-storage
   - name: domains
+  - name: ssl
 paths:
   /projects:
     get:
@@ -784,6 +785,245 @@ paths:
       tags:
         - domains
       description: Unscheduled the pending domain deletion
+  /ssl/contacts:
+    get:
+      summary: getSSLContacts
+      tags:
+        - ssl
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLContactListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLContacts
+      description: Returns all ssl contacts
+    post:
+      summary: createSSLContact
+      operationId: createSSLContact
+      responses:
+        '201':
+          $ref: '#/components/responses/SSLContactSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - ssl
+      description: Creates a ssl contact
+      requestBody:
+        $ref: '#/components/requestBodies/SSLContactCreateRequest'
+  '/ssl/contacts/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: SSL Contact ID
+    get:
+      summary: getSSLContact
+      tags:
+        - ssl
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLContactSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLContact
+      description: Returns a single ssl contact
+    delete:
+      summary: deleteSSLContact
+      operationId: deleteSSLContact
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - ssl
+      description: Deletes a ssl contact
+  /ssl/organisations:
+    get:
+      summary: getSSLOrganisations
+      tags:
+        - ssl
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLOrganisationListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLOrganisations
+      description: Returns all ssl organisations
+    post:
+      summary: createSSLOrganisation
+      operationId: createSSLOrganisation
+      responses:
+        '201':
+          $ref: '#/components/responses/SSLOrganisationSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - ssl
+      description: Creates a ssl organisation
+      requestBody:
+        $ref: '#/components/requestBodies/SSLOrganisationCreateRequest'
+  '/ssl/organisations/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: SSL Organisation ID
+    get:
+      summary: getSSLOrganisation
+      tags:
+        - ssl
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLOrganisationSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLOrganisation
+      description: Returns a single ssl organisation
+    delete:
+      summary: deleteSSLOrganisation
+      operationId: deleteSSLOrganisation
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - ssl
+      description: Deletes a ssl organisation
+  /ssl/types:
+    get:
+      summary: getSSLTypes
+      tags:
+        - ssl
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLTypeListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLTypes
+      description: Returns all ssl types
+  '/ssl/types/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: SSL Type ID
+    get:
+      summary: getSSLType
+      tags:
+        - ssl
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLTypeSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLType
+      description: Returns a single ssl type
+  /ssl/certificates:
+    get:
+      summary: getSSLCertificates
+      tags:
+        - ssl
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLCertificateListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLCertificates
+      description: Returns all ssl certificates
+    post:
+      summary: createSSLCertificate
+      operationId: createSSLCertificate
+      responses:
+        '201':
+          $ref: '#/components/responses/SSLCertificateSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - ssl
+      description: Orders a new ssl certificate
+      requestBody:
+        $ref: '#/components/requestBodies/SSLCertificateCreateRequest'
+  '/ssl/certificates/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: SSL Certificate ID
+    get:
+      summary: getSSLCertificate
+      tags:
+        - ssl
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLCertificateSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLCertificate
+      description: Returns a single ssl certificate
 components:
   schemas:
     ResponseMessages:
@@ -1150,6 +1390,159 @@ components:
         - name
       x-tags:
         - domains
+    SSLCertificate:
+      title: SSLCertificate
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        type_id:
+          type: string
+          format: uuid
+        organisation_id:
+          type: string
+          format: uuid
+        admin_contact_id:
+          type: string
+          format: uuid
+        tech_contact_id:
+          type: string
+          format: uuid
+        approver_email:
+          type: string
+        valid_until:
+          type: string
+        created_at:
+          type: string
+      required:
+        - id
+        - project_id
+        - type_id
+        - organisation_id
+        - admin_contact_id
+        - tech_contact_id
+        - approver_email
+        - created_at
+      x-tags:
+        - ssl
+    SSLContact:
+      title: SSLContact
+      type: object
+      x-tags:
+        - ssl
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+        title:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        organisation:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        fax:
+          type: string
+        address:
+          type: string
+        additional_address:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        region:
+          type: string
+        country_code:
+          type: string
+        created_at:
+          type: string
+      required:
+        - id
+        - project_id
+        - first_name
+        - last_name
+        - organisation
+        - email
+        - phone
+        - address
+        - city
+        - postal_code
+        - country_code
+        - created_at
+    SSLOrganisation:
+      title: SSLOrganisation
+      type: object
+      x-tags:
+        - ssl
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        division:
+          type: string
+        address:
+          type: string
+        additional_address:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        region:
+          type: string
+        country_code:
+          type: string
+        phone:
+          type: string
+        fax:
+          type: string
+        registration_number:
+          type: string
+        duns:
+          type: string
+        created_at:
+          type: string
+      required:
+        - id
+        - project_id
+        - name
+        - address
+        - city
+        - postal_code
+        - country_code
+        - phone
+        - created_at
+    SSLType:
+      title: SSLType
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+      required:
+        - id
+        - title
+      x-tags:
+        - ssl
   securitySchemes:
     AuthToken:
       type: http
@@ -1557,6 +1950,150 @@ components:
               - success
               - data
               - messages
+    SSLTypeListResponse:
+      description: SSLType List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSLType'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    SSLTypeSingleResponse:
+      description: Single SSLType
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SSLType'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    SSLContactListResponse:
+      description: SSLContact List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSLContact'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    SSLContactSingleResponse:
+      description: Single SSLContact
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SSLContact'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    SSLOrganisationListResponse:
+      description: SSLOrganisation List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSLOrganisation'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    SSLOrganisationSingleResponse:
+      description: Single SSLOrganisation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SSLOrganisation'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    SSLCertificateListResponse:
+      description: SSLCertificate List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSLCertificate'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    SSLCertificateSingleResponse:
+      description: Single SSLCertificate
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SSLCertificate'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
   requestBodies:
     ProjectCreateRequest:
       content:
@@ -1874,5 +2411,136 @@ components:
                 type: string
             required:
               - date
+    SSLContactCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              organisation:
+                type: string
+              email:
+                type: string
+                format: email
+              phone:
+                type: string
+              fax:
+                type: string
+              address:
+                type: string
+              additional_address:
+                type: string
+              city:
+                type: string
+              postal_code:
+                type: string
+              region:
+                type: string
+              country_code:
+                type: string
+            required:
+              - project_id
+              - first_name
+              - last_name
+              - organisation
+              - email
+              - phone
+              - address
+              - city
+              - postal_code
+              - country_code
+    SSLOrganisationCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              division:
+                type: string
+              address:
+                type: string
+              additional_address:
+                type: string
+              city:
+                type: string
+              postal_code:
+                type: string
+              region:
+                type: string
+              country_code:
+                type: string
+              phone:
+                type: string
+              fax:
+                type: string
+              registration_number:
+                type: string
+              duns:
+                type: string
+            required:
+              - project_id
+              - name
+              - address
+              - city
+              - postal_code
+              - country_code
+              - phone
+    SSLCertificateCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              type_id:
+                type: string
+                format: uuid
+              organisation_id:
+                type: string
+                format: uuid
+              organisation:
+                type: object
+              admin_contact_id:
+                type: string
+                format: uuid
+              admin_contact:
+                type: object
+              tech_contact_id:
+                type: string
+                format: uuid
+              tech_contact:
+                type: object
+              csr:
+                type: string
+              validation_method:
+                type: string
+                enum:
+                  - DNS
+                  - HTTPS
+              approver_email:
+                type: string
+                format: email
+            required:
+              - project_id
+              - type_id
+              - csr
+              - validation_method
+              - approver_email
 security:
   - AuthToken: []
