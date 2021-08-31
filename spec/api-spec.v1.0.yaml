@@ -17,6 +17,8 @@ tags:
   - name: s3-storage
   - name: domains
   - name: ssl
+  - name: server
+  .
 paths:
   /projects:
     get:
@@ -1024,6 +1026,19 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getSSLCertificate
       description: Returns a single ssl certificate
+  /ssh-keys:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - sshkey
+      responses: {}
+      operationId: get-ssh-keys
+    post:
+      summary: ''
+      operationId: post-ssh-keys
+      responses:
+        '200':
+          description: OK
 components:
   schemas:
     ResponseMessages:
@@ -1543,6 +1558,138 @@ components:
         - title
       x-tags:
         - ssl
+    Server:
+      title: Server
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        legacy_id:
+          type: string
+          deprecated: true
+        project_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        cores:
+          type: integer
+          minimum: 1
+          maximum: 16
+        memory:
+          type: integer
+          multipleOf: 1024
+          minimum: 1024
+          maximum: 65536
+        disk:
+          type: integer
+          multipleOf: 10
+          minimum: 10
+          maximum: 1000
+        template_id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+      required:
+        - id
+        - project_id
+        - name
+        - cores
+        - memory
+        - disk
+        - template_id
+        - created_at
+    SSHKey:
+      title: SSHKey
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        public_key:
+          type: string
+        created_at:
+          type: string
+      required:
+        - id
+        - project_id
+        - title
+        - public_key
+        - created_at
+    ServerTemplate:
+      title: ServerTemplate
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        legacy_key:
+          type: string
+          deprecated: true
+        title:
+          type: string
+      required:
+        - id
+        - title
+    ServerISO:
+      title: ServerISO
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        created_at:
+          type: string
+      required:
+        - id
+        - project_id
+        - title
+        - created_at
+    ServerVolume:
+      title: ServerVolume
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        size:
+          type: string
+        server_id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+      required:
+        - id
+        - project_id
+        - title
+        - size
+        - created_at
   securitySchemes:
     AuthToken:
       type: http
@@ -2094,6 +2241,186 @@ components:
               - success
               - data
               - messages
+    ServerListResponse:
+      description: Server List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Server'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    ServerSingleResponse:
+      description: Single Server
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Server'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    ServerISOListResponse:
+      description: ServerISO List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerISO'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    ServerISOSingleResponse:
+      description: Single ServerISO
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerISO'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    ServerVolumeListResponse:
+      description: ServerVolume List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerVolume'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    ServerVolumeSingleResponse:
+      description: Single ServerVolume
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerVolume'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    ServerTemplateListResponse:
+      description: ServerTemplate List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerTemplate'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    ServerTemplateSingleResponse:
+      description: Single ServerTemplate
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerTemplate'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    SSHKeyListResponse:
+      description: SSHKey List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSHKey'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
+    SSHKeySingleResponse:
+      description: Single SSHKey
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SSHKey'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
   requestBodies:
     ProjectCreateRequest:
       content:
@@ -2542,5 +2869,64 @@ components:
               - csr
               - validation_method
               - approver_email
+    SSHKeyCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              public_key:
+                type: string
+            required:
+              - project_id
+              - title
+              - public_key
+      description: ''
+    ServerCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              template_id:
+                type: string
+                format: uuid
+              cores:
+                type: integer
+                minimum: 1
+                maximum: 16
+              memory:
+                type: integer
+                multipleOf: 1024
+                maximum: 65536
+                minimum: 1024
+              disk:
+                type: integer
+                minimum: 10
+                maximum: 1000
+                multipleOf: 10
+              ssh_keys:
+                type: array
+                items:
+                  type: string
+                  format: uuid
+            required:
+              - project_id
+              - name
+              - template_id
+              - cores
+              - memory
+              - disk
+              - ssh_keys
 security:
   - AuthToken: []
