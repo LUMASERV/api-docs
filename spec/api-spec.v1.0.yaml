@@ -1256,7 +1256,8 @@ paths:
         description: Server ISO ID
     get:
       summary: getServerISO
-      tags: []
+      tags:
+        - server
       responses:
         '200':
           $ref: '#/components/responses/ServerISOSingleResponse'
