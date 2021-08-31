@@ -1030,7 +1030,9 @@ paths:
       summary: Your GET endpoint
       tags:
         - sshkey
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: get-ssh-keys
     post:
       summary: ''
