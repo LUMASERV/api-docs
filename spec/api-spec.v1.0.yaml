@@ -787,39 +787,6 @@ paths:
       tags:
         - domains
       description: Unscheduled the pending domain deletion
-  /ssl/contacts:
-    get:
-      summary: getSSLContacts
-      tags:
-        - ssl
-      responses:
-        '200':
-          $ref: '#/components/responses/SSLContactListResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getSSLContacts
-      description: Returns all ssl contacts
-    post:
-      summary: createSSLContact
-      operationId: createSSLContact
-      responses:
-        '201':
-          $ref: '#/components/responses/SSLContactSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      tags:
-        - ssl
-      description: Creates a ssl contact
-      requestBody:
-        $ref: '#/components/requestBodies/SSLContactCreateRequest'
   '/ssl/contacts/{id}':
     parameters:
       - schema:
@@ -859,6 +826,39 @@ paths:
       tags:
         - ssl
       description: Deletes a ssl contact
+  /ssl/contacts:
+    get:
+      summary: getSSLContacts
+      tags:
+        - ssl
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLContactListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLContacts
+      description: Returns all ssl contacts
+    post:
+      summary: createSSLContact
+      operationId: createSSLContact
+      responses:
+        '201':
+          $ref: '#/components/responses/SSLContactSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - ssl
+      description: Creates a ssl contact
+      requestBody:
+        $ref: '#/components/requestBodies/SSLContactCreateRequest'
   /ssl/organisations:
     get:
       summary: getSSLOrganisations
