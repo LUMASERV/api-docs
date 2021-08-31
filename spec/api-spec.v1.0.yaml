@@ -18,6 +18,7 @@ tags:
   - name: domains
   - name: ssl
   - name: server
+  - name: sshkeys
 paths:
   /projects:
     get:
@@ -1027,19 +1028,246 @@ paths:
       description: Returns a single ssl certificate
   /ssh-keys:
     get:
-      summary: Your GET endpoint
+      summary: getSSHKeys
+      responses:
+        '200':
+          $ref: '#/components/responses/SSHKeyListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSHKeys
+      description: Returns all ssh keys
       tags:
-        - sshkey
-      responses:
-        '200':
-          description: OK
-      operationId: get-ssh-keys
+        - sshkeys
     post:
-      summary: ''
-      operationId: post-ssh-keys
+      summary: createSSHKey
+      operationId: createSSHKey
+      responses:
+        '201':
+          $ref: '#/components/responses/SSHKeySingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - sshkeys
+      description: Creates a new ssh key
+      requestBody:
+        $ref: '#/components/requestBodies/SSHKeyCreateRequest'
+  '/ssh-keys/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: SSH Key ID
+    get:
+      summary: getSSHKey
+      tags:
+        - sshkeys
       responses:
         '200':
-          description: OK
+          $ref: '#/components/responses/SSHKeySingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSHKey
+      description: Returns a single ssh key
+    delete:
+      summary: deleteSSHKey
+      operationId: deleteSSHKey
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - sshkeys
+      description: Deletes a ssh key
+  /servers:
+    get:
+      summary: getServers
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServers
+      description: Returns all servers
+    post:
+      summary: createServer
+      operationId: createServer
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Creates a new server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerCreateRequest'
+  '/servers/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    get:
+      summary: getServer
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServer
+      description: Returns a single server
+  /server-volumes:
+    get:
+      summary: getServerVolumes
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVolumes
+      description: Returns all server volumes
+  '/server-volumes/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server Volume ID
+    get:
+      summary: getServerVolume
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVolume
+      description: Returns a single volume
+  /server-templates:
+    get:
+      summary: getServerTemplates
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerTemplateListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerTemplates
+      description: Returns all server templates
+  '/server-templates/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server Template ID
+    get:
+      summary: getServerTemplate
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerTemplateSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerTemplate
+      description: Returns a single server template
+  /server-isos:
+    get:
+      summary: getServerISOs
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerISOListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerISOs
+      description: Returns all server iso's
+  '/server-isos/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ISO ID
+    get:
+      summary: getServerISO
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerISOSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerISO
+      description: Returns a single server iso
 components:
   schemas:
     ResponseMessages:
