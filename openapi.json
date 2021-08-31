@@ -32,6 +32,8 @@
     "name" : "ssl"
   }, {
     "name" : "server"
+  }, {
+    "name" : "sshkeys"
   } ],
   "paths" : {
     "/projects" : {
@@ -3146,22 +3148,704 @@
     },
     "/ssh-keys" : {
       "get" : {
-        "operationId" : "get-ssh-keys",
+        "description" : "Returns all ssh keys",
+        "operationId" : "getSSHKeys",
         "responses" : {
           "200" : {
-            "description" : "OK"
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_18"
+                }
+              }
+            },
+            "description" : "SSHKey List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
           }
         },
-        "summary" : "Your GET endpoint",
-        "tags" : [ "sshkey" ]
+        "summary" : "getSSHKeys",
+        "tags" : [ "sshkeys" ]
       },
       "post" : {
-        "operationId" : "post-ssh-keys",
+        "description" : "Creates a new ssh key",
+        "operationId" : "createSSHKey",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/SSHKeyCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_10"
+                }
+              }
+            },
+            "description" : "Single SSHKey"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createSSHKey",
+        "tags" : [ "sshkeys" ]
+      }
+    },
+    "/ssh-keys/{id}" : {
+      "delete" : {
+        "description" : "Deletes a ssh key",
+        "operationId" : "deleteSSHKey",
+        "parameters" : [ {
+          "description" : "SSH Key ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
         "responses" : {
           "200" : {
-            "description" : "OK"
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
           }
-        }
+        },
+        "summary" : "deleteSSHKey",
+        "tags" : [ "sshkeys" ]
+      },
+      "get" : {
+        "description" : "Returns a single ssh key",
+        "operationId" : "getSSHKey",
+        "parameters" : [ {
+          "description" : "SSH Key ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_10"
+                }
+              }
+            },
+            "description" : "Single SSHKey"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSHKey",
+        "tags" : [ "sshkeys" ]
+      }
+    },
+    "/servers" : {
+      "get" : {
+        "description" : "Returns all servers",
+        "operationId" : "getServers",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_19"
+                }
+              }
+            },
+            "description" : "Server List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServers",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new server",
+        "operationId" : "createServer",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_11"
+                }
+              }
+            },
+            "description" : "Single Server"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServer",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}" : {
+      "get" : {
+        "description" : "Returns a single server",
+        "operationId" : "getServer",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_11"
+                }
+              }
+            },
+            "description" : "Single Server"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServer",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-volumes" : {
+      "get" : {
+        "description" : "Returns all server volumes",
+        "operationId" : "getServerVolumes",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_20"
+                }
+              }
+            },
+            "description" : "ServerVolume List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerVolumes",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-volumes/{id}" : {
+      "get" : {
+        "description" : "Returns a single volume",
+        "operationId" : "getServerVolume",
+        "parameters" : [ {
+          "description" : "Server Volume ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_21"
+                }
+              }
+            },
+            "description" : "Single ServerVolume"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerVolume",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-templates" : {
+      "get" : {
+        "description" : "Returns all server templates",
+        "operationId" : "getServerTemplates",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_22"
+                }
+              }
+            },
+            "description" : "ServerTemplate List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerTemplates",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-templates/{id}" : {
+      "get" : {
+        "description" : "Returns a single server template",
+        "operationId" : "getServerTemplate",
+        "parameters" : [ {
+          "description" : "Server Template ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_23"
+                }
+              }
+            },
+            "description" : "Single ServerTemplate"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerTemplate",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-isos" : {
+      "get" : {
+        "description" : "Returns all server iso's",
+        "operationId" : "getServerISOs",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_24"
+                }
+              }
+            },
+            "description" : "ServerISO List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerISOs",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-isos/{id}" : {
+      "get" : {
+        "description" : "Returns a single server iso",
+        "operationId" : "getServerISO",
+        "parameters" : [ {
+          "description" : "Server ISO ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_25"
+                }
+              }
+            },
+            "description" : "Single ServerISO"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerISO",
+        "tags" : [ ]
       }
     }
   },
@@ -4131,22 +4815,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/Server"
-                  },
-                  "type" : "array"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "success" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/inline_response_200_19"
             }
           }
         },
@@ -4156,19 +4825,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "$ref" : "#/components/schemas/Server"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "success" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/inline_response_201_11"
             }
           }
         },
@@ -4178,22 +4835,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/ServerISO"
-                  },
-                  "type" : "array"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "success" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/inline_response_200_24"
             }
           }
         },
@@ -4203,19 +4845,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "$ref" : "#/components/schemas/ServerISO"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "success" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/inline_response_200_25"
             }
           }
         },
@@ -4225,22 +4855,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/ServerVolume"
-                  },
-                  "type" : "array"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "success" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/inline_response_200_20"
             }
           }
         },
@@ -4250,19 +4865,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "$ref" : "#/components/schemas/ServerVolume"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "success" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/inline_response_200_21"
             }
           }
         },
@@ -4272,22 +4875,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/ServerTemplate"
-                  },
-                  "type" : "array"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "success" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/inline_response_200_22"
             }
           }
         },
@@ -4297,19 +4885,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "$ref" : "#/components/schemas/ServerTemplate"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "success" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/inline_response_200_23"
             }
           }
         },
@@ -4319,22 +4895,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/SSHKey"
-                  },
-                  "type" : "array"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "success" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/inline_response_200_18"
             }
           }
         },
@@ -4344,19 +4905,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "$ref" : "#/components/schemas/SSHKey"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "success" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/inline_response_201_10"
             }
           }
         },
@@ -5553,6 +6102,171 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/SSLCertificate"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_18" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSHKey"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_10" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SSHKey"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_19" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Server"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_11" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Server"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_20" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerVolume"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_21" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerVolume"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_22" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerTemplate"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_23" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerTemplate"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_24" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerISO"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_25" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerISO"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"

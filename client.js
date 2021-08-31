@@ -204,10 +204,43 @@ export default class LUMASERVClient {
     getSSLCertificate(id){
         return this.request('get', '/ssl/certificates/' + id, null, null);
     }
-    get-ssh-keys(){
+    getSSHKeys(){
         return this.request('get', '/ssh-keys', null, null);
     }
-    post-ssh-keys(){
-        return this.request('post', '/ssh-keys', null, null);
+    createSSHKey(body = null){
+        return this.request('post', '/ssh-keys', null, body);
+    }
+    deleteSSHKey(id){
+        return this.request('delete', '/ssh-keys/' + id, null, null);
+    }
+    getSSHKey(id){
+        return this.request('get', '/ssh-keys/' + id, null, null);
+    }
+    getServers(){
+        return this.request('get', '/servers', null, null);
+    }
+    createServer(body = null){
+        return this.request('post', '/servers', null, body);
+    }
+    getServer(id){
+        return this.request('get', '/servers/' + id, null, null);
+    }
+    getServerVolumes(){
+        return this.request('get', '/server-volumes', null, null);
+    }
+    getServerVolume(id){
+        return this.request('get', '/server-volumes/' + id, null, null);
+    }
+    getServerTemplates(){
+        return this.request('get', '/server-templates', null, null);
+    }
+    getServerTemplate(id){
+        return this.request('get', '/server-templates/' + id, null, null);
+    }
+    getServerISOs(){
+        return this.request('get', '/server-isos', null, null);
+    }
+    getServerISO(id){
+        return this.request('get', '/server-isos/' + id, null, null);
     }
 }
