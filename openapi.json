@@ -3845,7 +3845,7 @@
           }
         },
         "summary" : "getServerISO",
-        "tags" : [ ]
+        "tags" : [ "server" ]
       }
     }
   },
