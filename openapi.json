@@ -30,6 +30,8 @@
     "name" : "domains"
   }, {
     "name" : "ssl"
+  }, {
+    "name" : "server"
   } ],
   "paths" : {
     "/projects" : {
@@ -3141,6 +3143,22 @@
         "summary" : "getSSLCertificate",
         "tags" : [ "ssl" ]
       }
+    },
+    "/ssh-keys" : {
+      "get" : {
+        "operationId" : "get-ssh-keys",
+        "responses" : { },
+        "summary" : "Your GET endpoint",
+        "tags" : [ "sshkey" ]
+      },
+      "post" : {
+        "operationId" : "post-ssh-keys",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
     }
   },
   "components" : {
@@ -3728,6 +3746,75 @@
             }
           }
         }
+      },
+      "SSHKeyCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "public_key" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "project_id", "public_key", "title" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "name" : {
+                  "type" : "string"
+                },
+                "template_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "cores" : {
+                  "maximum" : 16,
+                  "minimum" : 1,
+                  "type" : "integer"
+                },
+                "memory" : {
+                  "maximum" : 65536,
+                  "minimum" : 1024,
+                  "multipleOf" : 1024,
+                  "type" : "integer"
+                },
+                "disk" : {
+                  "maximum" : 1000,
+                  "minimum" : 10,
+                  "multipleOf" : 10,
+                  "type" : "integer"
+                },
+                "ssh_keys" : {
+                  "items" : {
+                    "format" : "uuid",
+                    "type" : "string"
+                  },
+                  "type" : "array"
+                }
+              },
+              "required" : [ "cores", "disk", "memory", "name", "project_id", "ssh_keys", "template_id" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -4035,6 +4122,241 @@
           }
         },
         "description" : "Single SSLCertificate"
+      },
+      "ServerListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Server"
+                  },
+                  "type" : "array"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "Server List"
+      },
+      "ServerSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "$ref" : "#/components/schemas/Server"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "Single Server"
+      },
+      "ServerISOListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/ServerISO"
+                  },
+                  "type" : "array"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "ServerISO List"
+      },
+      "ServerISOSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "$ref" : "#/components/schemas/ServerISO"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "Single ServerISO"
+      },
+      "ServerVolumeListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/ServerVolume"
+                  },
+                  "type" : "array"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "ServerVolume List"
+      },
+      "ServerVolumeSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "$ref" : "#/components/schemas/ServerVolume"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "Single ServerVolume"
+      },
+      "ServerTemplateListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/ServerTemplate"
+                  },
+                  "type" : "array"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "ServerTemplate List"
+      },
+      "ServerTemplateSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "$ref" : "#/components/schemas/ServerTemplate"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "Single ServerTemplate"
+      },
+      "SSHKeyListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/SSHKey"
+                  },
+                  "type" : "array"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "SSHKey List"
+      },
+      "SSHKeySingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "$ref" : "#/components/schemas/SSHKey"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "Single SSHKey"
       }
     },
     "schemas" : {
@@ -4607,6 +4929,147 @@
         "title" : "SSLType",
         "type" : "object",
         "x-tags" : [ "ssl" ]
+      },
+      "Server" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "legacy_id" : {
+            "deprecated" : true,
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "cores" : {
+            "maximum" : 16,
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "memory" : {
+            "maximum" : 65536,
+            "minimum" : 1024,
+            "multipleOf" : 1024,
+            "type" : "integer"
+          },
+          "disk" : {
+            "maximum" : 1000,
+            "minimum" : 10,
+            "multipleOf" : 10,
+            "type" : "integer"
+          },
+          "template_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "cores", "created_at", "disk", "id", "memory", "name", "project_id", "template_id" ],
+        "title" : "Server",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "SSHKey" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "public_key" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "created_at", "id", "project_id", "public_key", "title" ],
+        "title" : "SSHKey",
+        "type" : "object"
+      },
+      "ServerTemplate" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "legacy_key" : {
+            "deprecated" : true,
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "title" ],
+        "title" : "ServerTemplate",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "ServerISO" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "created_at", "id", "project_id", "title" ],
+        "title" : "ServerISO",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "ServerVolume" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "size" : {
+            "type" : "string"
+          },
+          "server_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "created_at", "id", "project_id", "size", "title" ],
+        "title" : "ServerVolume",
+        "type" : "object",
+        "x-tags" : [ "server" ]
       },
       "inline_response_200" : {
         "properties" : {

@@ -204,4 +204,10 @@ export default class LUMASERVClient {
     getSSLCertificate(id){
         return this.request('get', '/ssl/certificates/' + id, null, null);
     }
+    get-ssh-keys(){
+        return this.request('get', '/ssh-keys', null, null);
+    }
+    post-ssh-keys(){
+        return this.request('post', '/ssh-keys', null, null);
+    }
 }
