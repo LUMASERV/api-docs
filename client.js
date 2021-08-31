@@ -165,17 +165,17 @@ export default class LUMASERVClient {
     unscheduleDomainDelete(name){
         return this.request('post', '/domains/' + name + '/unschedule-delete', null, null);
     }
-    getSSLContacts(){
-        return this.request('get', '/ssl/contacts', null, null);
-    }
-    createSSLContact(body = null){
-        return this.request('post', '/ssl/contacts', null, body);
-    }
     deleteSSLContact(id){
         return this.request('delete', '/ssl/contacts/' + id, null, null);
     }
     getSSLContact(id){
         return this.request('get', '/ssl/contacts/' + id, null, null);
+    }
+    getSSLContacts(){
+        return this.request('get', '/ssl/contacts', null, null);
+    }
+    createSSLContact(body = null){
+        return this.request('post', '/ssl/contacts', null, body);
     }
     getSSLOrganisations(){
         return this.request('get', '/ssl/organisations', null, null);
