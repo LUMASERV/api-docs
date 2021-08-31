@@ -18,7 +18,6 @@ tags:
   - name: domains
   - name: ssl
   - name: server
-  .
 paths:
   /projects:
     get:
