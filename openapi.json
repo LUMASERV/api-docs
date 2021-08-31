@@ -3147,7 +3147,11 @@
     "/ssh-keys" : {
       "get" : {
         "operationId" : "get-ssh-keys",
-        "responses" : { },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
         "summary" : "Your GET endpoint",
         "tags" : [ "sshkey" ]
       },
