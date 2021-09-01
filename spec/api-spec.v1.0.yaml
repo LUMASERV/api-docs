@@ -109,6 +109,36 @@ paths:
       tags:
         - projects
       description: Deletes the project
+  '/projects/{id}/join':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Project ID
+    post:
+      summary: joinProject
+      operationId: joinProject
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - projects
+      description: Joins a project using an invite token
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectJoinRequest'
   /auth/login:
     post:
       summary: login
@@ -787,6 +817,39 @@ paths:
       tags:
         - domains
       description: Unscheduled the pending domain deletion
+  /ssl/contacts:
+    get:
+      summary: getSSLContacts
+      tags:
+        - ssl
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLContactListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLContacts
+      description: Returns all ssl contacts
+    post:
+      summary: createSSLContact
+      operationId: createSSLContact
+      responses:
+        '201':
+          $ref: '#/components/responses/SSLContactSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - ssl
+      description: Creates a ssl contact
+      requestBody:
+        $ref: '#/components/requestBodies/SSLContactCreateRequest'
   '/ssl/contacts/{id}':
     parameters:
       - schema:
@@ -826,39 +889,6 @@ paths:
       tags:
         - ssl
       description: Deletes a ssl contact
-  /ssl/contacts:
-    get:
-      summary: getSSLContacts
-      tags:
-        - ssl
-      responses:
-        '200':
-          $ref: '#/components/responses/SSLContactListResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getSSLContacts
-      description: Returns all ssl contacts
-    post:
-      summary: createSSLContact
-      operationId: createSSLContact
-      responses:
-        '201':
-          $ref: '#/components/responses/SSLContactSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      tags:
-        - ssl
-      description: Creates a ssl contact
-      requestBody:
-        $ref: '#/components/requestBodies/SSLContactCreateRequest'
   /ssl/organisations:
     get:
       summary: getSSLOrganisations
@@ -1269,6 +1299,83 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerISO
       description: Returns a single server iso
+  '/projects/{id}/members':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Project ID
+    get:
+      summary: getProjectMembers
+      tags:
+        - projects
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectMemberListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getProjectMembers
+      description: Returns all members of the project
+    post:
+      summary: inviteProjectMember
+      operationId: inviteProjectMember
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Invites a new member to the project
+      tags:
+        - projects
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectMemberInviteRequest'
+  '/projects/{id}/members/{user_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Project ID
+      - schema:
+          type: integer
+        name: user_id
+        in: path
+        required: true
+        description: User ID
+    delete:
+      summary: deleteProjectMember
+      tags:
+        - projects
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: deleteProjectMember
+      description: Removes a member from the project
 components:
   schemas:
     ResponseMessages:
@@ -1920,6 +2027,23 @@ components:
         - title
         - size
         - created_at
+    ProjectMember:
+      title: ProjectMember
+      type: object
+      properties:
+        user_id:
+          type: integer
+        role:
+          type: string
+          enum:
+            - OWNER
+            - USER
+      required:
+        - user_id
+        - role
+      x-tags:
+        - project
+      description: Member of a Project
   securitySchemes:
     AuthToken:
       type: http
@@ -2651,6 +2775,25 @@ components:
               - success
               - data
               - messages
+    ProjectMemberListResponse:
+      description: ProjectMember List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectMember'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - data
+              - messages
   requestBodies:
     ProjectCreateRequest:
       content:
@@ -3158,5 +3301,26 @@ components:
               - memory
               - disk
               - ssh_keys
+    ProjectMemberInviteRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+            required:
+              - email
+    ProjectJoinRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+            required:
+              - token
 security:
   - AuthToken: []
