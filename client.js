@@ -60,6 +60,9 @@ export default class LUMASERVClient {
     updateProject(id, body = null){
         return this.request('put', '/projects/' + id, null, body);
     }
+    joinProject(id, body = null){
+        return this.request('post', '/projects/' + id + '/join', null, body);
+    }
     login(body = null){
         return this.request('post', '/auth/login', null, body);
     }
@@ -165,17 +168,17 @@ export default class LUMASERVClient {
     unscheduleDomainDelete(name){
         return this.request('post', '/domains/' + name + '/unschedule-delete', null, null);
     }
-    deleteSSLContact(id){
-        return this.request('delete', '/ssl/contacts/' + id, null, null);
-    }
-    getSSLContact(id){
-        return this.request('get', '/ssl/contacts/' + id, null, null);
-    }
     getSSLContacts(){
         return this.request('get', '/ssl/contacts', null, null);
     }
     createSSLContact(body = null){
         return this.request('post', '/ssl/contacts', null, body);
+    }
+    deleteSSLContact(id){
+        return this.request('delete', '/ssl/contacts/' + id, null, null);
+    }
+    getSSLContact(id){
+        return this.request('get', '/ssl/contacts/' + id, null, null);
     }
     getSSLOrganisations(){
         return this.request('get', '/ssl/organisations', null, null);
@@ -242,5 +245,14 @@ export default class LUMASERVClient {
     }
     getServerISO(id){
         return this.request('get', '/server-isos/' + id, null, null);
+    }
+    getProjectMembers(id){
+        return this.request('get', '/projects/' + id + '/members', null, null);
+    }
+    inviteProjectMember(id, body = null){
+        return this.request('post', '/projects/' + id + '/members', null, body);
+    }
+    deleteProjectMember(id, user_id){
+        return this.request('delete', '/projects/' + id + '/members/' + user_id, null, null);
     }
 }

@@ -332,6 +332,96 @@
         "tags" : [ "projects" ]
       }
     },
+    "/projects/{id}/join" : {
+      "post" : {
+        "description" : "Joins a project using an invite token",
+        "operationId" : "joinProject",
+        "parameters" : [ {
+          "description" : "Project ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ProjectJoinRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "joinProject",
+        "tags" : [ "projects" ]
+      }
+    },
     "/auth/login" : {
       "post" : {
         "description" : "Exchanges user credentials for an auth token",
@@ -2420,6 +2510,112 @@
         "tags" : [ "domains" ]
       }
     },
+    "/ssl/contacts" : {
+      "get" : {
+        "description" : "Returns all ssl contacts",
+        "operationId" : "getSSLContacts",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_13"
+                }
+              }
+            },
+            "description" : "SSLContact List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLContacts",
+        "tags" : [ "ssl" ]
+      },
+      "post" : {
+        "description" : "Creates a ssl contact",
+        "operationId" : "createSSLContact",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/SSLContactCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_7"
+                }
+              }
+            },
+            "description" : "Single SSLContact"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createSSLContact",
+        "tags" : [ "ssl" ]
+      }
+    },
     "/ssl/contacts/{id}" : {
       "delete" : {
         "description" : "Deletes a ssl contact",
@@ -2501,7 +2697,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_13"
+                  "$ref" : "#/components/schemas/inline_response_201_7"
                 }
               }
             },
@@ -2542,112 +2738,6 @@
         "tags" : [ "ssl" ]
       }
     },
-    "/ssl/contacts" : {
-      "get" : {
-        "description" : "Returns all ssl contacts",
-        "operationId" : "getSSLContacts",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_14"
-                }
-              }
-            },
-            "description" : "SSLContact List"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "getSSLContacts",
-        "tags" : [ "ssl" ]
-      },
-      "post" : {
-        "description" : "Creates a ssl contact",
-        "operationId" : "createSSLContact",
-        "requestBody" : {
-          "$ref" : "#/components/requestBodies/SSLContactCreateRequest"
-        },
-        "responses" : {
-          "201" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_13"
-                }
-              }
-            },
-            "description" : "Single SSLContact"
-          },
-          "400" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
-                }
-              }
-            },
-            "description" : "Response for validation errors"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "createSSLContact",
-        "tags" : [ "ssl" ]
-      }
-    },
     "/ssl/organisations" : {
       "get" : {
         "description" : "Returns all ssl organisations",
@@ -2657,7 +2747,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_15"
+                  "$ref" : "#/components/schemas/inline_response_200_14"
                 }
               }
             },
@@ -2698,7 +2788,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_7"
+                  "$ref" : "#/components/schemas/inline_response_201_8"
                 }
               }
             },
@@ -2835,7 +2925,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_7"
+                  "$ref" : "#/components/schemas/inline_response_201_8"
                 }
               }
             },
@@ -2885,7 +2975,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_16"
+                  "$ref" : "#/components/schemas/inline_response_200_15"
                 }
               }
             },
@@ -2937,7 +3027,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_17"
+                  "$ref" : "#/components/schemas/inline_response_200_16"
                 }
               }
             },
@@ -2987,7 +3077,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_18"
+                  "$ref" : "#/components/schemas/inline_response_200_17"
                 }
               }
             },
@@ -3028,7 +3118,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_8"
+                  "$ref" : "#/components/schemas/inline_response_201_9"
                 }
               }
             },
@@ -3105,7 +3195,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_8"
+                  "$ref" : "#/components/schemas/inline_response_201_9"
                 }
               }
             },
@@ -3155,7 +3245,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_19"
+                  "$ref" : "#/components/schemas/inline_response_200_18"
                 }
               }
             },
@@ -3196,7 +3286,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_9"
+                  "$ref" : "#/components/schemas/inline_response_201_10"
                 }
               }
             },
@@ -3333,7 +3423,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_9"
+                  "$ref" : "#/components/schemas/inline_response_201_10"
                 }
               }
             },
@@ -3383,7 +3473,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_20"
+                  "$ref" : "#/components/schemas/inline_response_200_19"
                 }
               }
             },
@@ -3424,7 +3514,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_10"
+                  "$ref" : "#/components/schemas/inline_response_201_11"
                 }
               }
             },
@@ -3501,7 +3591,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_10"
+                  "$ref" : "#/components/schemas/inline_response_201_11"
                 }
               }
             },
@@ -3551,7 +3641,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_21"
+                  "$ref" : "#/components/schemas/inline_response_200_20"
                 }
               }
             },
@@ -3603,7 +3693,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_22"
+                  "$ref" : "#/components/schemas/inline_response_200_21"
                 }
               }
             },
@@ -3653,7 +3743,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_23"
+                  "$ref" : "#/components/schemas/inline_response_200_22"
                 }
               }
             },
@@ -3705,7 +3795,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_24"
+                  "$ref" : "#/components/schemas/inline_response_200_23"
                 }
               }
             },
@@ -3755,7 +3845,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_25"
+                  "$ref" : "#/components/schemas/inline_response_200_24"
                 }
               }
             },
@@ -3807,7 +3897,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_26"
+                  "$ref" : "#/components/schemas/inline_response_200_25"
                 }
               }
             },
@@ -3846,6 +3936,238 @@
         },
         "summary" : "getServerISO",
         "tags" : [ "server" ]
+      }
+    },
+    "/projects/{id}/members" : {
+      "get" : {
+        "description" : "Returns all members of the project",
+        "operationId" : "getProjectMembers",
+        "parameters" : [ {
+          "description" : "Project ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_26"
+                }
+              }
+            },
+            "description" : "ProjectMember List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getProjectMembers",
+        "tags" : [ "projects" ]
+      },
+      "post" : {
+        "description" : "Invites a new member to the project",
+        "operationId" : "inviteProjectMember",
+        "parameters" : [ {
+          "description" : "Project ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ProjectMemberInviteRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "inviteProjectMember",
+        "tags" : [ "projects" ]
+      }
+    },
+    "/projects/{id}/members/{user_id}" : {
+      "delete" : {
+        "description" : "Removes a member from the project",
+        "operationId" : "deleteProjectMember",
+        "parameters" : [ {
+          "description" : "Project ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "User ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "user_id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteProjectMember",
+        "tags" : [ "projects" ]
       }
     }
   },
@@ -4503,6 +4825,37 @@
             }
           }
         }
+      },
+      "ProjectMemberInviteRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "email" : {
+                  "format" : "email",
+                  "type" : "string"
+                }
+              },
+              "required" : [ "email" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ProjectJoinRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "token" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "token" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -4735,7 +5088,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_16"
+              "$ref" : "#/components/schemas/inline_response_200_15"
             }
           }
         },
@@ -4745,7 +5098,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_17"
+              "$ref" : "#/components/schemas/inline_response_200_16"
             }
           }
         },
@@ -4755,7 +5108,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_14"
+              "$ref" : "#/components/schemas/inline_response_200_13"
             }
           }
         },
@@ -4765,7 +5118,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_13"
+              "$ref" : "#/components/schemas/inline_response_201_7"
             }
           }
         },
@@ -4775,7 +5128,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_15"
+              "$ref" : "#/components/schemas/inline_response_200_14"
             }
           }
         },
@@ -4785,7 +5138,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_7"
+              "$ref" : "#/components/schemas/inline_response_201_8"
             }
           }
         },
@@ -4795,7 +5148,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_18"
+              "$ref" : "#/components/schemas/inline_response_200_17"
             }
           }
         },
@@ -4805,7 +5158,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_8"
+              "$ref" : "#/components/schemas/inline_response_201_9"
             }
           }
         },
@@ -4815,7 +5168,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_20"
+              "$ref" : "#/components/schemas/inline_response_200_19"
             }
           }
         },
@@ -4825,7 +5178,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_10"
+              "$ref" : "#/components/schemas/inline_response_201_11"
             }
           }
         },
@@ -4835,7 +5188,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_25"
+              "$ref" : "#/components/schemas/inline_response_200_24"
             }
           }
         },
@@ -4845,7 +5198,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_26"
+              "$ref" : "#/components/schemas/inline_response_200_25"
             }
           }
         },
@@ -4855,7 +5208,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_21"
+              "$ref" : "#/components/schemas/inline_response_200_20"
             }
           }
         },
@@ -4865,7 +5218,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_22"
+              "$ref" : "#/components/schemas/inline_response_200_21"
             }
           }
         },
@@ -4875,7 +5228,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_23"
+              "$ref" : "#/components/schemas/inline_response_200_22"
             }
           }
         },
@@ -4885,7 +5238,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_24"
+              "$ref" : "#/components/schemas/inline_response_200_23"
             }
           }
         },
@@ -4895,7 +5248,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_19"
+              "$ref" : "#/components/schemas/inline_response_200_18"
             }
           }
         },
@@ -4905,11 +5258,21 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_9"
+              "$ref" : "#/components/schemas/inline_response_201_10"
             }
           }
         },
         "description" : "Single SSHKey"
+      },
+      "ProjectMemberListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_26"
+            }
+          }
+        },
+        "description" : "ProjectMember List"
       }
     },
     "schemas" : {
@@ -5624,6 +5987,22 @@
         "type" : "object",
         "x-tags" : [ "server" ]
       },
+      "ProjectMember" : {
+        "description" : "Member of a Project",
+        "properties" : {
+          "user_id" : {
+            "type" : "integer"
+          },
+          "role" : {
+            "enum" : [ "OWNER", "USER" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "role", "user_id" ],
+        "title" : "ProjectMember",
+        "type" : "object",
+        "x-tags" : [ "project" ]
+      },
       "inline_response_200" : {
         "properties" : {
           "success" : {
@@ -5984,21 +6363,6 @@
             "type" : "boolean"
           },
           "data" : {
-            "$ref" : "#/components/schemas/SSLContact"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "success" ],
-        "type" : "object"
-      },
-      "inline_response_200_14" : {
-        "properties" : {
-          "success" : {
-            "type" : "boolean"
-          },
-          "data" : {
             "items" : {
               "$ref" : "#/components/schemas/SSLContact"
             },
@@ -6011,7 +6375,22 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_15" : {
+      "inline_response_201_7" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SSLContact"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_14" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6029,7 +6408,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_201_7" : {
+      "inline_response_201_8" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6044,7 +6423,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_16" : {
+      "inline_response_200_15" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6062,7 +6441,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_17" : {
+      "inline_response_200_16" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6077,7 +6456,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_18" : {
+      "inline_response_200_17" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6095,7 +6474,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_201_8" : {
+      "inline_response_201_9" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6110,7 +6489,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_19" : {
+      "inline_response_200_18" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6128,7 +6507,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_201_9" : {
+      "inline_response_201_10" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6143,7 +6522,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_20" : {
+      "inline_response_200_19" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6161,7 +6540,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_201_10" : {
+      "inline_response_201_11" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6176,7 +6555,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_21" : {
+      "inline_response_200_20" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6194,7 +6573,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_22" : {
+      "inline_response_200_21" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6209,7 +6588,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_23" : {
+      "inline_response_200_22" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6227,7 +6606,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_24" : {
+      "inline_response_200_23" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6242,7 +6621,7 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_25" : {
+      "inline_response_200_24" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6260,13 +6639,31 @@
         "required" : [ "data", "messages", "success" ],
         "type" : "object"
       },
-      "inline_response_200_26" : {
+      "inline_response_200_25" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
           },
           "data" : {
             "$ref" : "#/components/schemas/ServerISO"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_26" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ProjectMember"
+            },
+            "type" : "array"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
