@@ -12,7 +12,6 @@ export default class LUMASERVClient {
         })
         this.headers = {};
         this.setToken(undefined);
-        this.setImpersonation(undefined);
     }
     setToken(token) {
         this.token = token || null;
