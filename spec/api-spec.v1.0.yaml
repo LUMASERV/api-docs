@@ -34,6 +34,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getProjects
       description: Returns all projects
+      parameters: []
     post:
       summary: createProject
       operationId: createProject
@@ -206,6 +207,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getS3Buckets
       description: Returns all s3 buckets
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
     post:
       summary: createS3Bucket
       operationId: createS3Bucket
@@ -278,6 +281,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getS3AccessKeys
       description: Returns all access keys
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
     post:
       summary: createS3AccessKey
       operationId: createS3AccessKey
@@ -350,6 +355,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
     post:
       summary: createPleskLicense
       operationId: createPleskLicense
@@ -536,6 +543,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getDomainHandles
       description: Returns all domain handles
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
     post:
       summary: createDomainHandle
       operationId: createDomainHandle
@@ -623,6 +632,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getDomains
       description: Returns all domains
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
     post:
       summary: createDomain
       operationId: createDomain
@@ -831,6 +842,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getSSLContacts
       description: Returns all ssl contacts
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
     post:
       summary: createSSLContact
       operationId: createSSLContact
@@ -903,6 +916,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getSSLOrganisations
       description: Returns all ssl organisations
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
     post:
       summary: createSSLOrganisation
       operationId: createSSLOrganisation
@@ -1013,6 +1028,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getSSLCertificates
       description: Returns all ssl certificates
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
     post:
       summary: createSSLCertificate
       operationId: createSSLCertificate
@@ -1070,6 +1087,8 @@ paths:
       description: Returns all ssh keys
       tags:
         - sshkeys
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
     post:
       summary: createSSHKey
       operationId: createSSHKey
@@ -1142,6 +1161,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServers
       description: Returns all servers
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
     post:
       summary: createServer
       operationId: createServer
@@ -1199,6 +1220,14 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerVolumes
       description: Returns all server volumes
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[server_id]'
+          description: Server ID Filter
   '/server-volumes/{id}':
     parameters:
       - schema:
@@ -1275,6 +1304,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerISOs
       description: Returns all server iso's
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
   '/server-isos/{id}':
     parameters:
       - schema:
@@ -3392,5 +3423,14 @@ components:
             required:
               - token
               - password
+  parameters:
+    ProjectIDFilter:
+      name: 'filter[project_id]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: uuid
+      description: Project ID Filter
 security:
   - AuthToken: []
