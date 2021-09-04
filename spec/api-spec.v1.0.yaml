@@ -1376,6 +1376,53 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: deleteProjectMember
       description: Removes a member from the project
+  /auth/me:
+    get:
+      summary: getOwnUser
+      tags:
+        - auth
+      responses:
+        '200':
+          $ref: '#/components/responses/UserSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getOwnUser
+      description: Returns the user that the current session belongs to
+  /auth/password-reset:
+    put:
+      summary: executePasswordReset
+      operationId: executePasswordReset
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - auth
+      description: Executes the password reset with the token from the email
+      requestBody:
+        $ref: '#/components/requestBodies/ExecutePasswordResetRequest'
+    post:
+      summary: requestPasswordReset
+      operationId: requestPasswordReset
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Requests a password reset email for the given username
+      tags:
+        - auth
+      requestBody:
+        $ref: '#/components/requestBodies/RequestPasswordResetRequest'
 components:
   schemas:
     ResponseMessages:
@@ -3322,5 +3369,28 @@ components:
                 type: string
             required:
               - token
+    RequestPasswordResetRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+            required:
+              - username
+    ExecutePasswordResetRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+              password:
+                type: string
+            required:
+              - token
+              - password
 security:
   - AuthToken: []
