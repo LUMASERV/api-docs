@@ -4169,6 +4169,150 @@
         "summary" : "deleteProjectMember",
         "tags" : [ "projects" ]
       }
+    },
+    "/auth/me" : {
+      "get" : {
+        "description" : "Returns the user that the current session belongs to",
+        "operationId" : "getOwnUser",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_3"
+                }
+              }
+            },
+            "description" : "Single User"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getOwnUser",
+        "tags" : [ "auth" ]
+      }
+    },
+    "/auth/password-reset" : {
+      "post" : {
+        "description" : "Requests a password reset email for the given username",
+        "operationId" : "requestPasswordReset",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/RequestPasswordResetRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "requestPasswordReset",
+        "tags" : [ "auth" ]
+      },
+      "put" : {
+        "description" : "Executes the password reset with the token from the email",
+        "operationId" : "executePasswordReset",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ExecutePasswordResetRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "executePasswordReset",
+        "tags" : [ "auth" ]
+      }
     }
   },
   "components" : {
@@ -4852,6 +4996,39 @@
                 }
               },
               "required" : [ "token" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "RequestPasswordResetRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "username" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "username" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ExecutePasswordResetRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "token" : {
+                  "type" : "string"
+                },
+                "password" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "password", "token" ],
               "type" : "object"
             }
           }
