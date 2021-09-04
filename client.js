@@ -36,8 +36,8 @@ export default class LUMASERVClient {
             })
         });
     }
-    getProjects(){
-        return this.request('get', '/projects', null, null);
+    getProjects(query = null){
+        return this.request('get', '/projects', query, null);
     }
     createProject(body = null){
         return this.request('post', '/projects', null, body);
@@ -57,8 +57,8 @@ export default class LUMASERVClient {
     login(body = null){
         return this.request('post', '/auth/login', null, body);
     }
-    getUsers(){
-        return this.request('get', '/users', null, null);
+    getUsers(query = null){
+        return this.request('get', '/users', query, null);
     }
     getUser(id){
         return this.request('get', '/users/' + id, null, null);
@@ -99,14 +99,14 @@ export default class LUMASERVClient {
     updatePleskLicense(id, body = null){
         return this.request('put', '/licenses/plesk/' + id, null, body);
     }
-    getPleskLicenseTypes(){
-        return this.request('get', '/licenses/plesk-types', null, null);
+    getPleskLicenseTypes(query = null){
+        return this.request('get', '/licenses/plesk-types', query, null);
     }
     getPleskLicenseType(id){
         return this.request('get', '/licenses/plesk-types/' + id, null, null);
     }
-    getS3AccessKeyGrants(access_key_id){
-        return this.request('get', '/storage/s3/access-keys/' + access_key_id + '/grants', null, null);
+    getS3AccessKeyGrants(access_key_id, query = null){
+        return this.request('get', '/storage/s3/access-keys/' + access_key_id + '/grants', query, null);
     }
     createS3AccessKeyGrant(access_key_id, body = null){
         return this.request('post', '/storage/s3/access-keys/' + access_key_id + '/grants', null, body);
@@ -183,8 +183,8 @@ export default class LUMASERVClient {
     getSSLOrganisation(id){
         return this.request('get', '/ssl/organisations/' + id, null, null);
     }
-    getSSLTypes(){
-        return this.request('get', '/ssl/types', null, null);
+    getSSLTypes(query = null){
+        return this.request('get', '/ssl/types', query, null);
     }
     getSSLType(id){
         return this.request('get', '/ssl/types/' + id, null, null);
@@ -225,8 +225,8 @@ export default class LUMASERVClient {
     getServerVolume(id){
         return this.request('get', '/server-volumes/' + id, null, null);
     }
-    getServerTemplates(){
-        return this.request('get', '/server-templates', null, null);
+    getServerTemplates(query = null){
+        return this.request('get', '/server-templates', query, null);
     }
     getServerTemplate(id){
         return this.request('get', '/server-templates/' + id, null, null);
@@ -237,8 +237,8 @@ export default class LUMASERVClient {
     getServerISO(id){
         return this.request('get', '/server-isos/' + id, null, null);
     }
-    getProjectMembers(id){
-        return this.request('get', '/projects/' + id + '/members', null, null);
+    getProjectMembers(id, query = null){
+        return this.request('get', '/projects/' + id + '/members', query, null);
     }
     inviteProjectMember(id, body = null){
         return this.request('post', '/projects/' + id + '/members', null, body);

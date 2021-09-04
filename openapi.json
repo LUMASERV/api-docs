@@ -40,7 +40,39 @@
       "get" : {
         "description" : "Returns all projects",
         "operationId" : "getProjects",
-        "parameters" : [ ],
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -475,6 +507,39 @@
       "get" : {
         "description" : "Returns all users",
         "operationId" : "getUsers",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -584,6 +649,38 @@
           "required" : false,
           "schema" : {
             "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
             "type" : "string"
           },
           "style" : "form"
@@ -827,6 +924,38 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -1064,6 +1193,49 @@
           "required" : false,
           "schema" : {
             "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Plesk License Type ID",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[type_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
             "type" : "string"
           },
           "style" : "form"
@@ -1314,6 +1486,39 @@
       "get" : {
         "description" : "Return all plesk license types",
         "operationId" : "getPleskLicenseTypes",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -1427,6 +1632,38 @@
             "type" : "string"
           },
           "style" : "simple"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -1627,6 +1864,38 @@
           "required" : false,
           "schema" : {
             "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
             "type" : "string"
           },
           "style" : "form"
@@ -1929,6 +2198,88 @@
           "required" : false,
           "schema" : {
             "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Handle Code of Owner Handle",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[owner_handle_code]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Handle Code of Admin Handle",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[admin_handle_code]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Handle Code of Tech Handle",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[tech_handle_code]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Handle Code of Zone Handle",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[zone_handle_code]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "TLD",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[tld]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
             "type" : "string"
           },
           "style" : "form"
@@ -2586,6 +2937,38 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -2826,6 +3209,38 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -3055,6 +3470,39 @@
       "get" : {
         "description" : "Returns all ssl types",
         "operationId" : "getSSLTypes",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -3165,6 +3613,82 @@
           "required" : false,
           "schema" : {
             "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "SSL Type ID",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[type_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Organisation ID",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[organisation_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "ID of Admin Contact",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[admin_contact_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "ID of Tech Contact",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[tech_contact_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
             "type" : "string"
           },
           "style" : "form"
@@ -3345,6 +3869,38 @@
           "required" : false,
           "schema" : {
             "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
             "type" : "string"
           },
           "style" : "form"
@@ -3588,6 +4144,38 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -3769,6 +4357,28 @@
           },
           "style" : "form"
         }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
           "description" : "Server ID Filter",
           "explode" : true,
           "in" : "query",
@@ -3776,6 +4386,16 @@
           "required" : false,
           "schema" : {
             "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
             "type" : "string"
           },
           "style" : "form"
@@ -3882,6 +4502,39 @@
       "get" : {
         "description" : "Returns all server templates",
         "operationId" : "getServerTemplates",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -3992,6 +4645,38 @@
           "required" : false,
           "schema" : {
             "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
             "type" : "string"
           },
           "style" : "form"
@@ -4109,6 +4794,38 @@
             "type" : "string"
           },
           "style" : "simple"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -4481,6 +5198,41 @@
         "required" : false,
         "schema" : {
           "format" : "uuid",
+          "type" : "string"
+        },
+        "style" : "form"
+      },
+      "PaginationPage" : {
+        "description" : "Page",
+        "explode" : true,
+        "in" : "query",
+        "name" : "page",
+        "required" : false,
+        "schema" : {
+          "minimum" : 1,
+          "type" : "integer"
+        },
+        "style" : "form"
+      },
+      "PaginationPageSize" : {
+        "description" : "Page Size",
+        "explode" : true,
+        "in" : "query",
+        "name" : "page_size",
+        "required" : false,
+        "schema" : {
+          "default" : 10,
+          "type" : "integer"
+        },
+        "style" : "form"
+      },
+      "Search" : {
+        "description" : "Search",
+        "explode" : true,
+        "in" : "query",
+        "name" : "search",
+        "required" : false,
+        "schema" : {
           "type" : "string"
         },
         "style" : "form"
