@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default class LUMASERVClient {
-    constructor(baseURL = 'https://api.lumaserv.cloud'){
+    constructor(baseURL = 'https://api.lumaserv.cloud') {
         this.axios = axios.create({
             baseURL,
             headers: {
@@ -14,7 +14,7 @@ export default class LUMASERVClient {
         this.setToken(undefined);
         this.setImpersonation(undefined);
     }
-    setToken(token){
+    setToken(token) {
         this.token = token || null;
         if(this.token){
             this.headers['Authorization'] = 'Bearer '+this.token;
@@ -22,15 +22,7 @@ export default class LUMASERVClient {
             delete this.headers['Authorization'];
         }
     }
-    setImpersonation(user){
-        this.impersonation = user || null;
-        if(this.impersonation){
-            this.headers['X-Impersonate'] = this.impersonation;
-        }else{
-            delete this.headers['X-Impersonate'];
-        }
-    }
-    request(method,path,queryParams,body){
+    request(method,path,queryParams,body) {
         return new Promise((resolve, reject) => {
             this.axios.request({
                 method,
@@ -41,7 +33,7 @@ export default class LUMASERVClient {
             }).then(response => {
                 resolve(response.data);
             }, error => {
-                reject(error);
+                reject({ ...error.response.data, status: error.response.status });
             })
         });
     }
