@@ -40,6 +40,7 @@
       "get" : {
         "description" : "Returns all projects",
         "operationId" : "getProjects",
+        "parameters" : [ ],
         "responses" : {
           "200" : {
             "content" : {
@@ -575,6 +576,18 @@
       "get" : {
         "description" : "Returns all s3 buckets",
         "operationId" : "getS3Buckets",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -803,6 +816,18 @@
       "get" : {
         "description" : "Returns all access keys",
         "operationId" : "getS3AccessKeys",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -1031,6 +1056,18 @@
       "get" : {
         "description" : "Returns all plesk licenses",
         "operationId" : "getPleskLicenses",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -1582,6 +1619,18 @@
       "get" : {
         "description" : "Returns all domain handles",
         "operationId" : "getDomainHandles",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -1872,6 +1921,18 @@
       "get" : {
         "description" : "Returns all domains",
         "operationId" : "getDomains",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -2514,6 +2575,18 @@
       "get" : {
         "description" : "Returns all ssl contacts",
         "operationId" : "getSSLContacts",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -2742,6 +2815,18 @@
       "get" : {
         "description" : "Returns all ssl organisations",
         "operationId" : "getSSLOrganisations",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -3072,6 +3157,18 @@
       "get" : {
         "description" : "Returns all ssl certificates",
         "operationId" : "getSSLCertificates",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -3240,6 +3337,18 @@
       "get" : {
         "description" : "Returns all ssh keys",
         "operationId" : "getSSHKeys",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -3468,6 +3577,18 @@
       "get" : {
         "description" : "Returns all servers",
         "operationId" : "getServers",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -3636,6 +3757,29 @@
       "get" : {
         "description" : "Returns all server volumes",
         "operationId" : "getServerVolumes",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Server ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[server_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -3840,6 +3984,18 @@
       "get" : {
         "description" : "Returns all server iso's",
         "operationId" : "getServerISOs",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -4316,6 +4472,20 @@
     }
   },
   "components" : {
+    "parameters" : {
+      "ProjectIDFilter" : {
+        "description" : "Project ID Filter",
+        "explode" : true,
+        "in" : "query",
+        "name" : "filter[project_id]",
+        "required" : false,
+        "schema" : {
+          "format" : "uuid",
+          "type" : "string"
+        },
+        "style" : "form"
+      }
+    },
     "requestBodies" : {
       "ProjectCreateRequest" : {
         "content" : {
