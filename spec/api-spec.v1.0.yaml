@@ -34,7 +34,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getProjects
       description: Returns all projects
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createProject
       operationId: createProject
@@ -170,6 +173,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getUsers
       description: Returns all users
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
   '/users/{id}':
     parameters:
       - schema:
@@ -209,6 +216,9 @@ paths:
       description: Returns all s3 buckets
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createS3Bucket
       operationId: createS3Bucket
@@ -283,6 +293,9 @@ paths:
       description: Returns all access keys
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createS3AccessKey
       operationId: createS3AccessKey
@@ -357,6 +370,15 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[type_id]'
+          description: Plesk License Type ID
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createPleskLicense
       operationId: createPleskLicense
@@ -433,6 +455,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getPleskLicenseTypes
       description: Return all plesk license types
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
   '/licenses/plesk-types/{id}':
     parameters:
       - schema:
@@ -479,6 +505,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getS3AccessKeyGrants
       description: Returns all grants for the s3 access key
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createS3AccessKeyGrant
       operationId: createS3AccessKeyGrant
@@ -545,6 +575,9 @@ paths:
       description: Returns all domain handles
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createDomainHandle
       operationId: createDomainHandle
@@ -634,6 +667,34 @@ paths:
       description: Returns all domains
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[owner_handle_code]'
+          description: Handle Code of Owner Handle
+        - schema:
+            type: string
+          in: query
+          name: 'filter[admin_handle_code]'
+          description: Handle Code of Admin Handle
+        - schema:
+            type: string
+          in: query
+          name: 'filter[tech_handle_code]'
+          description: Handle Code of Tech Handle
+        - schema:
+            type: string
+          in: query
+          name: 'filter[zone_handle_code]'
+          description: Handle Code of Zone Handle
+        - schema:
+            type: string
+          in: query
+          name: 'filter[tld]'
+          description: TLD
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createDomain
       operationId: createDomain
@@ -844,6 +905,9 @@ paths:
       description: Returns all ssl contacts
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createSSLContact
       operationId: createSSLContact
@@ -918,6 +982,9 @@ paths:
       description: Returns all ssl organisations
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createSSLOrganisation
       operationId: createSSLOrganisation
@@ -990,6 +1057,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getSSLTypes
       description: Returns all ssl types
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
   '/ssl/types/{id}':
     parameters:
       - schema:
@@ -1030,6 +1101,33 @@ paths:
       description: Returns all ssl certificates
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[type_id]'
+          description: SSL Type ID
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[organisation_id]'
+          description: Organisation ID
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[admin_contact_id]'
+          description: ID of Admin Contact
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[tech_contact_id]'
+          description: ID of Tech Contact
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createSSLCertificate
       operationId: createSSLCertificate
@@ -1089,6 +1187,9 @@ paths:
         - sshkeys
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createSSHKey
       operationId: createSSHKey
@@ -1163,6 +1264,9 @@ paths:
       description: Returns all servers
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createServer
       operationId: createServer
@@ -1222,12 +1326,15 @@ paths:
       description: Returns all server volumes
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
         - schema:
             type: string
             format: uuid
           in: query
           name: 'filter[server_id]'
           description: Server ID Filter
+        - $ref: '#/components/parameters/Search'
   '/server-volumes/{id}':
     parameters:
       - schema:
@@ -1266,6 +1373,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerTemplates
       description: Returns all server templates
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
   '/server-templates/{id}':
     parameters:
       - schema:
@@ -1306,6 +1417,9 @@ paths:
       description: Returns all server iso's
       parameters:
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
   '/server-isos/{id}':
     parameters:
       - schema:
@@ -1354,6 +1468,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getProjectMembers
       description: Returns all members of the project
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: inviteProjectMember
       operationId: inviteProjectMember
@@ -3432,5 +3550,27 @@ components:
         type: string
         format: uuid
       description: Project ID Filter
+    PaginationPage:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+      description: Page
+    PaginationPageSize:
+      name: page_size
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+      description: Page Size
+    Search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Search
 security:
   - AuthToken: []
