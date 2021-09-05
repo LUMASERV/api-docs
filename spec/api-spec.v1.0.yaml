@@ -19,6 +19,7 @@ tags:
   - name: ssl
   - name: server
   - name: sshkeys
+  - name: pricing
 paths:
   /projects:
     get:
@@ -1581,6 +1582,22 @@ paths:
         - auth
       requestBody:
         $ref: '#/components/requestBodies/RequestPasswordResetRequest'
+  /pricing/domains:
+    get:
+      summary: getDomainPricingList
+      tags:
+        - pricing
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainPriceListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomainPricingList
+      description: Returns the price list for all top-level-domains
 components:
   schemas:
     ResponseMessages:
@@ -2292,6 +2309,22 @@ components:
         - page
         - page_size
         - total
+    DomainPricing:
+      title: DomainPricing
+      type: object
+      properties:
+        tld:
+          type: string
+        create:
+          type: number
+        renew:
+          type: number
+        restore:
+          type: number
+      required:
+        - tld
+      x-tags:
+        - pricing
   securitySchemes:
     AuthToken:
       type: http
@@ -3203,6 +3236,23 @@ components:
               - data
               - messages
               - metadata
+    DomainPriceListResponse:
+      description: DomainPrice List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainPricing'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
   requestBodies:
     ProjectCreateRequest:
       content:
@@ -3754,6 +3804,27 @@ components:
             required:
               - token
               - password
+    DomainPricingListResponse:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainPricing'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
