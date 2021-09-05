@@ -38,6 +38,10 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - schema: {}
+          in: query
+          name: detail
+          description: Detail Flag
     post:
       summary: createProject
       operationId: createProject
@@ -79,6 +83,11 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getProject
       description: Returns a single project
+      parameters:
+        - schema: {}
+          in: query
+          name: detail
+          description: Detail Flag
     put:
       summary: updateProject
       operationId: updateProject
@@ -1632,6 +1641,26 @@ components:
           format: uuid
         title:
           type: string
+        detail:
+          type: object
+          description: Only available if the "detail" query parameter is present
+          properties:
+            domain_count:
+              type: integer
+            server_count:
+              type: integer
+            s3_bucket_count:
+              type: integer
+            plesk_license_count:
+              type: integer
+            ssl_certificate_count:
+              type: integer
+          required:
+            - domain_count
+            - server_count
+            - s3_bucket_count
+            - plesk_license_count
+            - ssl_certificate_count
       required:
         - id
         - title
