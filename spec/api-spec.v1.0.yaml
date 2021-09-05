@@ -1955,6 +1955,23 @@ components:
           type: string
         zone_handle_code:
           type: string
+        nameserver:
+          type: array
+          minItems: 2
+          maxItems: 5
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                format: hostname
+              addresses:
+                type: array
+                items:
+                  type: string
+            required:
+              - name
+              - addresses
         created_at:
           type: string
       required:
@@ -1964,6 +1981,7 @@ components:
         - admin_handle_code
         - tech_handle_code
         - zone_handle_code
+        - nameserver
         - created_at
     DomainAuthinfo:
       title: DomainAuthinfo
