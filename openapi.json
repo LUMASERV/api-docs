@@ -6854,11 +6854,19 @@
           "zone_handle_code" : {
             "type" : "string"
           },
+          "nameserver" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Domain_nameserver"
+            },
+            "maxItems" : 5,
+            "minItems" : 2,
+            "type" : "array"
+          },
           "created_at" : {
             "type" : "string"
           }
         },
-        "required" : [ "admin_handle_code", "created_at", "name", "owner_handle_code", "project_id", "tech_handle_code", "zone_handle_code" ],
+        "required" : [ "admin_handle_code", "created_at", "name", "nameserver", "owner_handle_code", "project_id", "tech_handle_code", "zone_handle_code" ],
         "title" : "Domain",
         "type" : "object",
         "x-tags" : [ "domains" ]
@@ -8146,6 +8154,22 @@
           }
         },
         "required" : [ "domain_count", "plesk_license_count", "s3_bucket_count", "server_count", "ssl_certificate_count" ],
+        "type" : "object"
+      },
+      "Domain_nameserver" : {
+        "properties" : {
+          "name" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "addresses" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "addresses", "name" ],
         "type" : "object"
       }
     },
