@@ -1623,6 +1623,15 @@ components:
       required:
         - key
         - message
+    ResponseMetadata:
+      title: ResponseMetadata
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          format: uuid
+      required:
+        - transaction_id
     Project:
       title: Project
       type: object
@@ -2269,6 +2278,20 @@ components:
       x-tags:
         - project
       description: Member of a Project
+    ResponsePagination:
+      title: ResponsePagination
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total:
+          type: integer
+      required:
+        - page
+        - page_size
+        - total
   securitySchemes:
     AuthToken:
       type: http
@@ -2288,9 +2311,12 @@ components:
                 type: object
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - messages
+              - metadata
         application/xml:
           schema:
             type: object
@@ -2315,9 +2341,12 @@ components:
                 type: boolean
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - messages
+              - metadata
     ProjectListResponse:
       description: Project List
       content:
@@ -2333,10 +2362,15 @@ components:
                   $ref: '#/components/schemas/Project'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     ProjectSingleResponse:
       description: Single Project
       content:
@@ -2350,10 +2384,13 @@ components:
                 $ref: '#/components/schemas/Project'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     LoginResponse:
       description: Login Response
       content:
@@ -2367,10 +2404,13 @@ components:
                 $ref: '#/components/schemas/Token'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     UserListResponse:
       description: User List
       content:
@@ -2386,10 +2426,15 @@ components:
                   $ref: '#/components/schemas/User'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     UserSingleResponse:
       description: Single User
       content:
@@ -2403,10 +2448,13 @@ components:
                 $ref: '#/components/schemas/User'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     S3BucketSingleResponse:
       description: Single S3 Bucket
       content:
@@ -2420,10 +2468,13 @@ components:
                 $ref: '#/components/schemas/S3Bucket'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     S3BucketListResponse:
       description: S3 Bucket List
       content:
@@ -2439,10 +2490,15 @@ components:
                   $ref: '#/components/schemas/S3Bucket'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     S3AccessKeySingleResponse:
       description: Single S3 Access Key
       content:
@@ -2456,10 +2512,13 @@ components:
                 $ref: '#/components/schemas/S3AccessKey'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     S3AccessKeyListResponse:
       description: S3 Access Key List
       content:
@@ -2475,10 +2534,15 @@ components:
                   $ref: '#/components/schemas/S3AccessKey'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     PleskLicenseSingleResponse:
       description: Single Plesk License
       content:
@@ -2492,10 +2556,13 @@ components:
                 $ref: '#/components/schemas/PleskLicense'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     PleskLicenseListResponse:
       description: Plesk License List
       content:
@@ -2511,10 +2578,15 @@ components:
                   $ref: '#/components/schemas/PleskLicense'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     PleskLicenseTypeSingleResponse:
       description: Single Plesk License Type
       content:
@@ -2528,10 +2600,13 @@ components:
                 $ref: '#/components/schemas/PleskLicenseType'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     PleskLicenseTypeListResponse:
       description: Plesk License Type List
       content:
@@ -2547,10 +2622,15 @@ components:
                   $ref: '#/components/schemas/PleskLicenseType'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     S3AccessGrantListResponse:
       description: S3 Access Grant List
       content:
@@ -2566,10 +2646,15 @@ components:
                   $ref: '#/components/schemas/S3AccessGrant'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: ''
             required:
               - success
               - data
               - messages
+              - metadata
     S3AccessGrantSingleResponse:
       description: Single S3 Access Grant
       content:
@@ -2583,10 +2668,13 @@ components:
                 $ref: '#/components/schemas/S3AccessGrant'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     DomainHandleSingleResponse:
       description: Single Domain Handle
       content:
@@ -2600,10 +2688,13 @@ components:
                 $ref: '#/components/schemas/DomainHandle'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     DomainHandleListResponse:
       description: Domain Handle List
       content:
@@ -2619,10 +2710,15 @@ components:
                   $ref: '#/components/schemas/DomainHandle'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     DomainSingleResponse:
       description: Single Domain
       content:
@@ -2636,10 +2732,13 @@ components:
                 $ref: '#/components/schemas/Domain'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     DomainListResponse:
       description: Domain List
       content:
@@ -2655,10 +2754,15 @@ components:
                   $ref: '#/components/schemas/Domain'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     DomainAuthinfoResponse:
       description: Authinfo
       content:
@@ -2672,10 +2776,13 @@ components:
                 $ref: '#/components/schemas/DomainAuthinfo'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     SSLTypeListResponse:
       description: SSLType List
       content:
@@ -2691,10 +2798,15 @@ components:
                   $ref: '#/components/schemas/SSLType'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     SSLTypeSingleResponse:
       description: Single SSLType
       content:
@@ -2708,10 +2820,13 @@ components:
                 $ref: '#/components/schemas/SSLType'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     SSLContactListResponse:
       description: SSLContact List
       content:
@@ -2727,10 +2842,15 @@ components:
                   $ref: '#/components/schemas/SSLContact'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: ''
             required:
               - success
               - data
               - messages
+              - metadata
     SSLContactSingleResponse:
       description: Single SSLContact
       content:
@@ -2744,10 +2864,13 @@ components:
                 $ref: '#/components/schemas/SSLContact'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     SSLOrganisationListResponse:
       description: SSLOrganisation List
       content:
@@ -2763,10 +2886,15 @@ components:
                   $ref: '#/components/schemas/SSLOrganisation'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     SSLOrganisationSingleResponse:
       description: Single SSLOrganisation
       content:
@@ -2780,10 +2908,13 @@ components:
                 $ref: '#/components/schemas/SSLOrganisation'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     SSLCertificateListResponse:
       description: SSLCertificate List
       content:
@@ -2799,10 +2930,15 @@ components:
                   $ref: '#/components/schemas/SSLCertificate'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     SSLCertificateSingleResponse:
       description: Single SSLCertificate
       content:
@@ -2816,10 +2952,13 @@ components:
                 $ref: '#/components/schemas/SSLCertificate'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     ServerListResponse:
       description: Server List
       content:
@@ -2835,10 +2974,15 @@ components:
                   $ref: '#/components/schemas/Server'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     ServerSingleResponse:
       description: Single Server
       content:
@@ -2852,10 +2996,13 @@ components:
                 $ref: '#/components/schemas/Server'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     ServerISOListResponse:
       description: ServerISO List
       content:
@@ -2871,10 +3018,15 @@ components:
                   $ref: '#/components/schemas/ServerISO'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     ServerISOSingleResponse:
       description: Single ServerISO
       content:
@@ -2888,10 +3040,13 @@ components:
                 $ref: '#/components/schemas/ServerISO'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     ServerVolumeListResponse:
       description: ServerVolume List
       content:
@@ -2907,10 +3062,15 @@ components:
                   $ref: '#/components/schemas/ServerVolume'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     ServerVolumeSingleResponse:
       description: Single ServerVolume
       content:
@@ -2924,10 +3084,13 @@ components:
                 $ref: '#/components/schemas/ServerVolume'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     ServerTemplateListResponse:
       description: ServerTemplate List
       content:
@@ -2943,10 +3106,15 @@ components:
                   $ref: '#/components/schemas/ServerTemplate'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     ServerTemplateSingleResponse:
       description: Single ServerTemplate
       content:
@@ -2960,10 +3128,13 @@ components:
                 $ref: '#/components/schemas/ServerTemplate'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     SSHKeyListResponse:
       description: SSHKey List
       content:
@@ -2979,10 +3150,15 @@ components:
                   $ref: '#/components/schemas/SSHKey'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
     SSHKeySingleResponse:
       description: Single SSHKey
       content:
@@ -2996,10 +3172,13 @@ components:
                 $ref: '#/components/schemas/SSHKey'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
             required:
               - success
               - data
               - messages
+              - metadata
     ProjectMemberListResponse:
       description: ProjectMember List
       content:
@@ -3015,10 +3194,15 @@ components:
                   $ref: '#/components/schemas/ProjectMember'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
               - messages
+              - metadata
   requestBodies:
     ProjectCreateRequest:
       content:
