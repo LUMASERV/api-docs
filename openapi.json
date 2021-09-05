@@ -34,6 +34,8 @@
     "name" : "server"
   }, {
     "name" : "sshkeys"
+  }, {
+    "name" : "pricing"
   } ],
   "paths" : {
     "/projects" : {
@@ -5202,6 +5204,56 @@
         "summary" : "executePasswordReset",
         "tags" : [ "auth" ]
       }
+    },
+    "/pricing/domains" : {
+      "get" : {
+        "description" : "Returns the price list for all top-level-domains",
+        "operationId" : "getDomainPricingList",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_27"
+                }
+              }
+            },
+            "description" : "DomainPrice List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomainPricingList",
+        "tags" : [ "pricing" ]
+      }
     }
   },
   "components" : {
@@ -5971,6 +6023,33 @@
             }
           }
         }
+      },
+      "DomainPricingListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "metadata" : {
+                  "$ref" : "#/components/schemas/ResponseMetadata"
+                },
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/DomainPricing"
+                  },
+                  "type" : "array"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "metadata", "success" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -6388,6 +6467,16 @@
           }
         },
         "description" : "ProjectMember List"
+      },
+      "DomainPriceListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_27"
+            }
+          }
+        },
+        "description" : "DomainPrice List"
       }
     },
     "schemas" : {
@@ -7147,6 +7236,26 @@
         "required" : [ "page", "page_size", "total" ],
         "title" : "ResponsePagination",
         "type" : "object"
+      },
+      "DomainPricing" : {
+        "properties" : {
+          "tld" : {
+            "type" : "string"
+          },
+          "create" : {
+            "type" : "number"
+          },
+          "renew" : {
+            "type" : "number"
+          },
+          "restore" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "tld" ],
+        "title" : "DomainPricing",
+        "type" : "object",
+        "x-tags" : [ "pricing" ]
       },
       "inline_response_200" : {
         "properties" : {
@@ -7995,6 +8104,26 @@
           }
         },
         "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_27" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DomainPricing"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
         "type" : "object"
       },
       "Project_detail" : {

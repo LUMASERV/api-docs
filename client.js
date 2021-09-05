@@ -255,4 +255,7 @@ export default class LUMASERVClient {
     executePasswordReset(body = null){
         return this.request('put', '/auth/password-reset', null, body);
     }
+    getDomainPricingList(){
+        return this.request('get', '/pricing/domains', null, null);
+    }
 }
