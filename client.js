@@ -45,8 +45,8 @@ export default class LUMASERVClient {
     deleteProject(id){
         return this.request('delete', '/projects/' + id, null, null);
     }
-    getProject(id){
-        return this.request('get', '/projects/' + id, null, null);
+    getProject(id, query = null){
+        return this.request('get', '/projects/' + id, query, null);
     }
     updateProject(id, body = null){
         return this.request('put', '/projects/' + id, null, body);
