@@ -6535,10 +6535,32 @@
           "transaction_id" : {
             "format" : "uuid",
             "type" : "string"
+          },
+          "build_commit" : {
+            "type" : "string"
+          },
+          "build_timestamp" : {
+            "type" : "string"
           }
         },
-        "required" : [ "transaction_id" ],
+        "required" : [ "build_commit", "build_timestamp", "transaction_id" ],
         "title" : "ResponseMetadata",
+        "type" : "object"
+      },
+      "ResponsePagination" : {
+        "properties" : {
+          "page" : {
+            "type" : "integer"
+          },
+          "page_size" : {
+            "type" : "integer"
+          },
+          "total" : {
+            "type" : "integer"
+          }
+        },
+        "required" : [ "page", "page_size", "total" ],
+        "title" : "ResponsePagination",
         "type" : "object"
       },
       "Project" : {
@@ -6854,19 +6876,11 @@
           "zone_handle_code" : {
             "type" : "string"
           },
-          "nameserver" : {
-            "items" : {
-              "$ref" : "#/components/schemas/Domain_nameserver"
-            },
-            "maxItems" : 5,
-            "minItems" : 2,
-            "type" : "array"
-          },
           "created_at" : {
             "type" : "string"
           }
         },
-        "required" : [ "admin_handle_code", "created_at", "name", "nameserver", "owner_handle_code", "project_id", "tech_handle_code", "zone_handle_code" ],
+        "required" : [ "admin_handle_code", "created_at", "name", "owner_handle_code", "project_id", "tech_handle_code", "zone_handle_code" ],
         "title" : "Domain",
         "type" : "object",
         "x-tags" : [ "domains" ]
@@ -7228,22 +7242,6 @@
         "title" : "ProjectMember",
         "type" : "object",
         "x-tags" : [ "project" ]
-      },
-      "ResponsePagination" : {
-        "properties" : {
-          "page" : {
-            "type" : "integer"
-          },
-          "page_size" : {
-            "type" : "integer"
-          },
-          "total" : {
-            "type" : "integer"
-          }
-        },
-        "required" : [ "page", "page_size", "total" ],
-        "title" : "ResponsePagination",
-        "type" : "object"
       },
       "DomainPricing" : {
         "properties" : {
@@ -8154,22 +8152,6 @@
           }
         },
         "required" : [ "domain_count", "plesk_license_count", "s3_bucket_count", "server_count", "ssl_certificate_count" ],
-        "type" : "object"
-      },
-      "Domain_nameserver" : {
-        "properties" : {
-          "name" : {
-            "format" : "hostname",
-            "type" : "string"
-          },
-          "addresses" : {
-            "items" : {
-              "type" : "string"
-            },
-            "type" : "array"
-          }
-        },
-        "required" : [ "addresses", "name" ],
         "type" : "object"
       }
     },
