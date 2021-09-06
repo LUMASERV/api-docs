@@ -3810,27 +3810,6 @@ components:
             required:
               - token
               - password
-    DomainPricingListResponse:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/DomainPricing'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
