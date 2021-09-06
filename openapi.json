@@ -6023,33 +6023,6 @@
             }
           }
         }
-      },
-      "DomainPricingListResponse" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "properties" : {
-                "metadata" : {
-                  "$ref" : "#/components/schemas/ResponseMetadata"
-                },
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/DomainPricing"
-                  },
-                  "type" : "array"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "metadata", "success" ],
-              "type" : "object"
-            }
-          }
-        }
       }
     },
     "responses" : {
