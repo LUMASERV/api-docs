@@ -1647,8 +1647,28 @@ components:
         transaction_id:
           type: string
           format: uuid
+        build_commit:
+          type: string
+        build_timestamp:
+          type: string
       required:
         - transaction_id
+        - build_commit
+        - build_timestamp
+    ResponsePagination:
+      title: ResponsePagination
+      type: object
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total:
+          type: integer
+      required:
+        - page
+        - page_size
+        - total
     Project:
       title: Project
       type: object
@@ -1955,23 +1975,6 @@ components:
           type: string
         zone_handle_code:
           type: string
-        nameserver:
-          type: array
-          minItems: 2
-          maxItems: 5
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                format: hostname
-              addresses:
-                type: array
-                items:
-                  type: string
-            required:
-              - name
-              - addresses
         created_at:
           type: string
       required:
@@ -1981,7 +1984,6 @@ components:
         - admin_handle_code
         - tech_handle_code
         - zone_handle_code
-        - nameserver
         - created_at
     DomainAuthinfo:
       title: DomainAuthinfo
@@ -2313,20 +2315,6 @@ components:
       x-tags:
         - project
       description: Member of a Project
-    ResponsePagination:
-      title: ResponsePagination
-      type: object
-      properties:
-        page:
-          type: integer
-        page_size:
-          type: integer
-        total:
-          type: integer
-      required:
-        - page
-        - page_size
-        - total
     DomainPricing:
       title: DomainPricing
       type: object
