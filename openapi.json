@@ -5254,6 +5254,67 @@
         "summary" : "getDomainPricingList",
         "tags" : [ "pricing" ]
       }
+    },
+    "/search" : {
+      "get" : {
+        "description" : "Search for multiple resource types at once. Possible resource types are: projects, domains, domain_handles",
+        "operationId" : "search",
+        "parameters" : [ {
+          "description" : "Comma seperated list of types",
+          "explode" : true,
+          "in" : "query",
+          "name" : "resources",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_28"
+                }
+              }
+            },
+            "description" : "Search Results"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "search",
+        "tags" : [ ]
+      }
     }
   },
   "components" : {
@@ -6450,6 +6511,16 @@
           }
         },
         "description" : "DomainPrice List"
+      },
+      "SearchResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_28"
+            }
+          }
+        },
+        "description" : "Search Results"
       }
     },
     "schemas" : {
@@ -7235,6 +7306,30 @@
         "title" : "DomainPricing",
         "type" : "object",
         "x-tags" : [ "pricing" ]
+      },
+      "SearchResults" : {
+        "properties" : {
+          "domains" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Domain"
+            },
+            "type" : "array"
+          },
+          "domain_handles" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DomainHandle"
+            },
+            "type" : "array"
+          },
+          "projects" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Project"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "SearchResults",
+        "type" : "object"
       },
       "inline_response_200" : {
         "properties" : {
@@ -8103,6 +8198,24 @@
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
+        "type" : "object"
+      },
+      "inline_response_200_28" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SearchResults"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
       "Project_detail" : {

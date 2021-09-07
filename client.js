@@ -258,4 +258,7 @@ export default class LUMASERVClient {
     getDomainPricingList(){
         return this.request('get', '/pricing/domains', null, null);
     }
+    search(query = null){
+        return this.request('get', '/search', query, null);
+    }
 }
