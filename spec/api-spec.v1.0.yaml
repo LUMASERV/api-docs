@@ -1598,6 +1598,30 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getDomainPricingList
       description: Returns the price list for all top-level-domains
+  /search:
+    get:
+      summary: search
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: search
+      description: 'Search for multiple resource types at once. Possible resource types are: projects, domains, domain_handles'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: resources
+          description: Comma seperated list of types
+        - schema:
+            type: string
+          in: query
+          name: search
+          description: Search
 components:
   schemas:
     ResponseMessages:
@@ -2331,6 +2355,22 @@ components:
         - tld
       x-tags:
         - pricing
+    SearchResults:
+      title: SearchResults
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain'
+        domain_handles:
+          type: array
+          items:
+            $ref: '#/components/schemas/DomainHandle'
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
   securitySchemes:
     AuthToken:
       type: http
@@ -3259,6 +3299,26 @@ components:
                   $ref: '#/components/schemas/DomainPricing'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+    SearchResponse:
+      description: Search Results
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SearchResults'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     ProjectCreateRequest:
       content:
