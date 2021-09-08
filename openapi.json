@@ -5422,6 +5422,7 @@
             "schema" : {
               "properties" : {
                 "project_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -5441,6 +5442,7 @@
             "schema" : {
               "properties" : {
                 "project_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -5463,10 +5465,12 @@
             "schema" : {
               "properties" : {
                 "project_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
                 "type_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -5502,6 +5506,7 @@
             "schema" : {
               "properties" : {
                 "bucket_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -5525,6 +5530,7 @@
             "schema" : {
               "properties" : {
                 "project_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -5712,6 +5718,7 @@
                   "type" : "string"
                 },
                 "project_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -5906,14 +5913,17 @@
             "schema" : {
               "properties" : {
                 "project_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
                 "type_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
                 "organisation_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -5921,6 +5931,7 @@
                   "type" : "object"
                 },
                 "admin_contact_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -5928,6 +5939,7 @@
                   "type" : "object"
                 },
                 "tech_contact_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -5958,6 +5970,7 @@
             "schema" : {
               "properties" : {
                 "project_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -5980,6 +5993,7 @@
             "schema" : {
               "properties" : {
                 "project_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -5987,6 +6001,7 @@
                   "type" : "string"
                 },
                 "template_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
                   "format" : "uuid",
                   "type" : "string"
                 },
@@ -6577,13 +6592,16 @@
       "ResponseMetadata" : {
         "properties" : {
           "transaction_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "build_commit" : {
+            "example" : "master-a0b1c2d3",
             "type" : "string"
           },
           "build_timestamp" : {
+            "example" : "2021-09-01 13:37:00",
             "type" : "string"
           }
         },
@@ -6594,12 +6612,15 @@
       "ResponsePagination" : {
         "properties" : {
           "page" : {
+            "example" : 1,
             "type" : "integer"
           },
           "page_size" : {
+            "example" : 25,
             "type" : "integer"
           },
           "total" : {
+            "example" : 1500,
             "type" : "integer"
           }
         },
@@ -6610,10 +6631,12 @@
       "Project" : {
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "title" : {
+            "example" : "Example Project",
             "type" : "string"
           },
           "detail" : {
@@ -6639,9 +6662,15 @@
         "properties" : {
           "token" : {
             "type" : "string"
+          },
+          "user_id" : {
+            "type" : "integer"
+          },
+          "created_at" : {
+            "type" : "string"
           }
         },
-        "required" : [ "token" ],
+        "required" : [ "created_at", "token", "user_id" ],
         "title" : "Token",
         "type" : "object",
         "x-tags" : [ "users" ]
@@ -6698,6 +6727,7 @@
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
@@ -6720,10 +6750,12 @@
         "description" : "A Plesk License Type",
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "title" : {
+            "example" : "Web Admin",
             "type" : "string"
           }
         },
@@ -6736,14 +6768,17 @@
         "description" : "A S3 Bucket",
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "title" : {
+            "example" : "Example Bucket",
             "type" : "string"
           }
         },
@@ -6756,14 +6791,17 @@
         "description" : "A S3 Access Key",
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "title" : {
+            "example" : "Example Access Key",
             "type" : "string"
           }
         },
@@ -6775,14 +6813,17 @@
       "S3AccessGrant" : {
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "bucket_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "path" : {
+            "example" : "/videos",
             "type" : "string"
           },
           "role" : {
@@ -6801,6 +6842,7 @@
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
@@ -6905,6 +6947,7 @@
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
@@ -6965,26 +7008,32 @@
       "SSLCertificate" : {
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "type_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "organisation_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "admin_contact_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "tech_contact_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
@@ -7006,10 +7055,12 @@
       "SSLContact" : {
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "type" : "string"
           },
           "title" : {
@@ -7063,10 +7114,12 @@
       "SSLOrganisation" : {
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
@@ -7118,10 +7171,12 @@
       "SSLType" : {
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "title" : {
+            "example" : "PositiveSSL",
             "type" : "string"
           }
         },
@@ -7133,6 +7188,7 @@
       "Server" : {
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
@@ -7141,6 +7197,7 @@
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
@@ -7165,6 +7222,7 @@
             "type" : "integer"
           },
           "template_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
@@ -7180,10 +7238,12 @@
       "SSHKey" : {
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
@@ -7204,14 +7264,17 @@
       "ServerTemplate" : {
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "legacy_key" : {
             "deprecated" : true,
+            "example" : "DEBIAN_10",
             "type" : "string"
           },
           "title" : {
+            "example" : "Debian 10",
             "type" : "string"
           }
         },
@@ -7223,14 +7286,17 @@
       "ServerISO" : {
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "title" : {
+            "example" : "GRML 2020 Full",
             "type" : "string"
           },
           "created_at" : {
@@ -7245,20 +7311,24 @@
       "ServerVolume" : {
         "properties" : {
           "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
           "title" : {
+            "example" : "Example Volume",
             "type" : "string"
           },
           "size" : {
-            "type" : "string"
+            "type" : "integer"
           },
           "server_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
             "type" : "string"
           },
