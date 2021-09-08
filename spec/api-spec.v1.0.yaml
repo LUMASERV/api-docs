@@ -1671,10 +1671,13 @@ components:
         transaction_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         build_commit:
           type: string
+          example: master-a0b1c2d3
         build_timestamp:
           type: string
+          example: '2021-09-01 13:37:00'
       required:
         - transaction_id
         - build_commit
@@ -1685,10 +1688,13 @@ components:
       properties:
         page:
           type: integer
+          example: 1
         page_size:
           type: integer
+          example: 25
         total:
           type: integer
+          example: 1500
       required:
         - page
         - page_size
@@ -1709,8 +1715,10 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         title:
           type: string
+          example: Example Project
         detail:
           type: object
           description: Only available if the "detail" query parameter is present
@@ -1743,8 +1751,14 @@ components:
       properties:
         token:
           type: string
+        user_id:
+          type: integer
+        created_at:
+          type: string
       required:
         - token
+        - user_id
+        - created_at
     User:
       title: User
       type: object
@@ -1800,6 +1814,7 @@ components:
         project_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         license:
           type: string
         key:
@@ -1822,8 +1837,10 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         title:
           type: string
+          example: Web Admin
       required:
         - id
         - title
@@ -1837,11 +1854,14 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         project_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         title:
           type: string
+          example: Example Bucket
       required:
         - id
         - project_id
@@ -1856,11 +1876,14 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         project_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         title:
           type: string
+          example: Example Access Key
       required:
         - id
         - project_id
@@ -1875,11 +1898,14 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         bucket_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         path:
           type: string
+          example: /videos
         role:
           type: string
           enum:
@@ -1899,6 +1925,7 @@ components:
         project_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         type:
           type: string
           enum:
@@ -1991,6 +2018,7 @@ components:
         project_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         owner_handle_code:
           type: string
         admin_handle_code:
@@ -2040,25 +2068,33 @@ components:
     SSLCertificate:
       title: SSLCertificate
       type: object
+      x-tags:
+        - ssl
       properties:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         project_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         type_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         organisation_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         admin_contact_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         tech_contact_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         approver_email:
           type: string
         valid_until:
@@ -2074,8 +2110,6 @@ components:
         - tech_contact_id
         - approver_email
         - created_at
-      x-tags:
-        - ssl
     SSLContact:
       title: SSLContact
       type: object
@@ -2085,8 +2119,10 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         project_id:
           type: string
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         title:
           type: string
         first_name:
@@ -2137,9 +2173,11 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         project_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         name:
           type: string
         division:
@@ -2179,17 +2217,19 @@ components:
     SSLType:
       title: SSLType
       type: object
+      x-tags:
+        - ssl
       properties:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         title:
           type: string
+          example: PositiveSSL
       required:
         - id
         - title
-      x-tags:
-        - ssl
     Server:
       title: Server
       type: object
@@ -2199,12 +2239,14 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         legacy_id:
           type: string
           deprecated: true
         project_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         name:
           type: string
         cores:
@@ -2224,6 +2266,7 @@ components:
         template_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         created_at:
           type: string
       required:
@@ -2242,9 +2285,11 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         project_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         title:
           type: string
         public_key:
@@ -2266,11 +2311,14 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         legacy_key:
           type: string
           deprecated: true
+          example: DEBIAN_10
         title:
           type: string
+          example: Debian 10
       required:
         - id
         - title
@@ -2283,11 +2331,14 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         project_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         title:
           type: string
+          example: GRML 2020 Full
         created_at:
           type: string
       required:
@@ -2304,16 +2355,20 @@ components:
         id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         project_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         title:
           type: string
+          example: Example Volume
         size:
-          type: string
+          type: integer
         server_id:
           type: string
           format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         created_at:
           type: string
       required:
@@ -3361,6 +3416,7 @@ components:
               project_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               title:
                 type: string
             required:
@@ -3376,6 +3432,7 @@ components:
               project_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               title:
                 type: string
               secret_key:
@@ -3393,9 +3450,11 @@ components:
               project_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               type_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               address:
                 type: string
                 format: ipv4
@@ -3421,6 +3480,7 @@ components:
               bucket_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               path:
                 type: string
               role:
@@ -3439,6 +3499,7 @@ components:
               project_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               type:
                 type: string
                 enum:
@@ -3581,6 +3642,7 @@ components:
               project_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               duration:
                 type: integer
                 minimum: 1
@@ -3733,22 +3795,27 @@ components:
               project_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               type_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               organisation_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               organisation:
                 type: object
               admin_contact_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               admin_contact:
                 type: object
               tech_contact_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               tech_contact:
                 type: object
               csr:
@@ -3776,6 +3843,7 @@ components:
               project_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               title:
                 type: string
               public_key:
@@ -3794,11 +3862,13 @@ components:
               project_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               name:
                 type: string
               template_id:
                 type: string
                 format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               cores:
                 type: integer
                 minimum: 1
