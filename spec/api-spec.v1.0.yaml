@@ -1622,6 +1622,27 @@ paths:
           in: query
           name: search
           description: Search
+  '/domains/{name}/check':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    get:
+      summary: checkDomain
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainCheckResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: checkDomain
+      description: Checks if the domain is available for registration
 components:
   schemas:
     ResponseMessages:
@@ -2426,6 +2447,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Project'
+    DomainCheckResult:
+      title: DomainCheckResult
+      type: object
+      properties:
+        available:
+          type: boolean
+      required:
+        - available
+      x-tags:
+        - domains
   securitySchemes:
     AuthToken:
       type: http
@@ -3367,6 +3398,26 @@ components:
                 type: boolean
               data:
                 $ref: '#/components/schemas/SearchResults'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DomainCheckResponse:
+      description: Domain Check
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DomainCheckResult'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
