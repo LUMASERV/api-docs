@@ -5315,6 +5315,57 @@
         "summary" : "search",
         "tags" : [ ]
       }
+    },
+    "/domains/{name}/check" : {
+      "get" : {
+        "description" : "Checks if the domain is available for registration",
+        "operationId" : "checkDomain",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_29"
+                }
+              }
+            },
+            "description" : "Domain Check"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "checkDomain",
+        "tags" : [ "domains" ]
+      }
     }
   },
   "components" : {
@@ -6536,6 +6587,16 @@
           }
         },
         "description" : "Search Results"
+      },
+      "DomainCheckResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_29"
+            }
+          }
+        },
+        "description" : "Domain Check"
       }
     },
     "schemas" : {
@@ -7400,6 +7461,17 @@
         },
         "title" : "SearchResults",
         "type" : "object"
+      },
+      "DomainCheckResult" : {
+        "properties" : {
+          "available" : {
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "available" ],
+        "title" : "DomainCheckResult",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
       },
       "inline_response_200" : {
         "properties" : {
@@ -8280,6 +8352,24 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/SearchResults"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_29" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/DomainCheckResult"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"

@@ -261,4 +261,7 @@ export default class LUMASERVClient {
     search(query = null){
         return this.request('get', '/search', query, null);
     }
+    checkDomain(name){
+        return this.request('get', '/domains/' + name + '/check', null, null);
+    }
 }
