@@ -20,6 +20,7 @@ tags:
   - name: server
   - name: sshkeys
   - name: pricing
+  - name: dns
 paths:
   /projects:
     get:
@@ -1643,6 +1644,83 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: checkDomain
       description: Checks if the domain is available for registration
+  /dns/zones:
+    get:
+      summary: getDNSZones
+      tags:
+        - dns
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSZoneListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDNSZones
+      description: Returns all dns zones
+  '/dns/zones/{name}':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+        description: Zone Name
+    get:
+      summary: getDNSZone
+      tags:
+        - dns
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSZoneSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDNSZone
+      description: Returns a single dns zone
+    put:
+      summary: updateDNSZone
+      operationId: updateDNSZone
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSZoneSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the dns zone
+      tags:
+        - dns
+  '/dns/zones/{name}/records':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+        description: Zone Name
+    get:
+      summary: getDNSZoneRecords
+      tags:
+        - dns
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSRecordListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDNSZoneRecords
+      description: Returns all records in the zone
 components:
   schemas:
     ResponseMessages:
@@ -2457,6 +2535,65 @@ components:
         - available
       x-tags:
         - domains
+    DNSZone:
+      title: DNSZone
+      type: object
+      x-tags:
+        - dns
+      properties:
+        project_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - DOMAIN
+            - RDNS
+        name:
+          type: string
+        hostmaster:
+          type: string
+          format: email
+        ns1:
+          type: string
+        ns2:
+          type: string
+        created_at:
+          type: string
+      required:
+        - project_id
+        - type
+        - name
+        - hostmaster
+        - ns1
+        - ns2
+        - created_at
+    DNSRecord:
+      title: DNSRecord
+      type: object
+      x-tags:
+        - dns
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - A
+            - AAAA
+            - MX
+            - CNAME
+            - SRV
+            - TXT
+            - PTR
+        ttl:
+          type: integer
+        data:
+          type: string
+      required:
+        - name
+        - type
+        - data
   securitySchemes:
     AuthToken:
       type: http
@@ -3425,6 +3562,74 @@ components:
               - success
               - data
               - messages
+    DNSZoneListResponse:
+      description: DNSZone List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DNSZone'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DNSZoneSingleResponse:
+      description: Single DNSZone
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DNSZone'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DNSRecordListResponse:
+      description: DNSRecord List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DNSRecord'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     ProjectCreateRequest:
       content:
@@ -3991,6 +4196,19 @@ components:
             required:
               - token
               - password
+    DNSZoneUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              hostmaster:
+                type: string
+                format: email
+              ns1:
+                type: string
+              ns2:
+                type: string
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
