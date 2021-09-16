@@ -264,4 +264,16 @@ export default class LUMASERVClient {
     checkDomain(name){
         return this.request('get', '/domains/' + name + '/check', null, null);
     }
+    getDNSZones(){
+        return this.request('get', '/dns/zones', null, null);
+    }
+    getDNSZone(name){
+        return this.request('get', '/dns/zones/' + name, null, null);
+    }
+    updateDNSZone(name){
+        return this.request('put', '/dns/zones/' + name, null, null);
+    }
+    getDNSZoneRecords(name){
+        return this.request('get', '/dns/zones/' + name + '/records', null, null);
+    }
 }

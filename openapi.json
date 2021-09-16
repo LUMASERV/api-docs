@@ -36,6 +36,8 @@
     "name" : "sshkeys"
   }, {
     "name" : "pricing"
+  }, {
+    "name" : "dns"
   } ],
   "paths" : {
     "/projects" : {
@@ -5366,6 +5368,242 @@
         "summary" : "checkDomain",
         "tags" : [ "domains" ]
       }
+    },
+    "/dns/zones" : {
+      "get" : {
+        "description" : "Returns all dns zones",
+        "operationId" : "getDNSZones",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_30"
+                }
+              }
+            },
+            "description" : "DNSZone List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDNSZones",
+        "tags" : [ "dns" ]
+      }
+    },
+    "/dns/zones/{name}" : {
+      "get" : {
+        "description" : "Returns a single dns zone",
+        "operationId" : "getDNSZone",
+        "parameters" : [ {
+          "description" : "Zone Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_31"
+                }
+              }
+            },
+            "description" : "Single DNSZone"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDNSZone",
+        "tags" : [ "dns" ]
+      },
+      "put" : {
+        "description" : "Updates the dns zone",
+        "operationId" : "updateDNSZone",
+        "parameters" : [ {
+          "description" : "Zone Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_31"
+                }
+              }
+            },
+            "description" : "Single DNSZone"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateDNSZone",
+        "tags" : [ "dns" ]
+      }
+    },
+    "/dns/zones/{name}/records" : {
+      "get" : {
+        "description" : "Returns all records in the zone",
+        "operationId" : "getDNSZoneRecords",
+        "parameters" : [ {
+          "description" : "Zone Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_32"
+                }
+              }
+            },
+            "description" : "DNSRecord List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDNSZoneRecords",
+        "tags" : [ "dns" ]
+      }
     }
   },
   "components" : {
@@ -6150,6 +6388,27 @@
             }
           }
         }
+      },
+      "DNSZoneUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "hostmaster" : {
+                  "format" : "email",
+                  "type" : "string"
+                },
+                "ns1" : {
+                  "type" : "string"
+                },
+                "ns2" : {
+                  "type" : "string"
+                }
+              },
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -6597,6 +6856,36 @@
           }
         },
         "description" : "Domain Check"
+      },
+      "DNSZoneListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_30"
+            }
+          }
+        },
+        "description" : "DNSZone List"
+      },
+      "DNSZoneSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_31"
+            }
+          }
+        },
+        "description" : "Single DNSZone"
+      },
+      "DNSRecordListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_32"
+            }
+          }
+        },
+        "description" : "DNSRecord List"
       }
     },
     "schemas" : {
@@ -7472,6 +7761,59 @@
         "title" : "DomainCheckResult",
         "type" : "object",
         "x-tags" : [ "domains" ]
+      },
+      "DNSZone" : {
+        "properties" : {
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "DOMAIN", "RDNS" ],
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "hostmaster" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "ns1" : {
+            "type" : "string"
+          },
+          "ns2" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "created_at", "hostmaster", "name", "ns1", "ns2", "project_id", "type" ],
+        "title" : "DNSZone",
+        "type" : "object",
+        "x-tags" : [ "dns" ]
+      },
+      "DNSRecord" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "A", "AAAA", "MX", "CNAME", "SRV", "TXT", "PTR" ],
+            "type" : "string"
+          },
+          "ttl" : {
+            "type" : "integer"
+          },
+          "data" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "data", "name", "type" ],
+        "title" : "DNSRecord",
+        "type" : "object",
+        "x-tags" : [ "dns" ]
       },
       "inline_response_200" : {
         "properties" : {
@@ -8373,6 +8715,72 @@
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_30" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DNSZone"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_31" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/DNSZone"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_32" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DNSRecord"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
           }
         },
         "required" : [ "data", "messages", "metadata", "success" ],
