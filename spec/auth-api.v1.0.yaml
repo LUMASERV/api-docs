@@ -116,37 +116,7 @@ paths:
       tags:
         - projects
       description: Deletes the project
-  '/projects/{id}/join':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: Project ID
-    post:
-      summary: joinProject
-      operationId: joinProject
-      responses:
-        '200':
-          $ref: '#/components/responses/EmptyResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      tags:
-        - projects
-      description: Joins a project using an invite token
-      requestBody:
-        $ref: '#/components/requestBodies/ProjectJoinRequest'
-  /auth/login:
+  /login:
     post:
       summary: login
       operationId: login
@@ -162,6 +132,7 @@ paths:
       description: Exchanges user credentials for an auth token
       requestBody:
         $ref: '#/components/requestBodies/LoginRequest'
+    parameters: []
   /users:
     get:
       summary: getUsers
@@ -231,27 +202,6 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-    post:
-      summary: inviteProjectMember
-      operationId: inviteProjectMember
-      responses:
-        '200':
-          $ref: '#/components/responses/EmptyResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      description: Invites a new member to the project
-      tags:
-        - projects
-      requestBody:
-        $ref: '#/components/requestBodies/ProjectMemberInviteRequest'
   '/projects/{id}/members/{user_id}':
     parameters:
       - schema:
@@ -268,7 +218,7 @@ paths:
         required: true
         description: User ID
     delete:
-      summary: deleteProjectMember
+      summary: removeProjectMember
       tags:
         - projects
       responses:
@@ -282,9 +232,9 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      operationId: deleteProjectMember
+      operationId: removeProjectMember
       description: Removes a member from the project
-  /auth/me:
+  /me:
     get:
       summary: getOwnUser
       tags:
@@ -298,7 +248,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getOwnUser
       description: Returns the user that the current session belongs to
-  /auth/password-reset:
+    parameters: []
+  /password-reset:
     put:
       summary: executePasswordReset
       operationId: executePasswordReset
@@ -331,6 +282,7 @@ paths:
         - auth
       requestBody:
         $ref: '#/components/requestBodies/RequestPasswordResetRequest'
+    parameters: []
 components:
   schemas:
     ResponseMessages:
@@ -747,27 +699,6 @@ components:
               - username
               - password
       description: Login Request
-    ProjectMemberInviteRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              email:
-                type: string
-                format: email
-            required:
-              - email
-    ProjectJoinRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              token:
-                type: string
-            required:
-              - token
     RequestPasswordResetRequest:
       content:
         application/json:
