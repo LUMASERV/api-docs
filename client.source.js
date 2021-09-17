@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default class LUMASERVClient {
+export default class LUMASERV{API_NAME}Client {
     constructor(baseURL = 'https://api.lumaserv.cloud') {
         this.axios = axios.create({
             baseURL,
@@ -36,5 +36,5 @@ export default class LUMASERVClient {
             })
         });
     }
-    GENERATED_METHODS
+    {GENERATED_METHODS}
 }

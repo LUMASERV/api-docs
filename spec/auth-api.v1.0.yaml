@@ -1,0 +1,818 @@
+openapi: 3.0.0
+info:
+  title: LUMASERV Auth API
+  version: '1.0'
+  contact:
+    name: LUMASERV Support Team
+    email: support@lumaserv.com
+  description: LUMASERV Auth API
+servers:
+  - url: 'https://auth.lumaserv.cloud'
+    description: Live
+tags:
+  - name: projects
+  - name: auth
+  - name: users
+paths:
+  /projects:
+    get:
+      summary: getProjects
+      tags:
+        - projects
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getProjects
+      description: Returns all projects
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - schema: {}
+          in: query
+          name: detail
+          description: Detail Flag
+    post:
+      summary: createProject
+      operationId: createProject
+      responses:
+        '201':
+          $ref: '#/components/responses/ProjectSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - projects
+      description: Create a new project
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectCreateRequest'
+  '/projects/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ID of the project
+    get:
+      summary: getProject
+      tags:
+        - projects
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getProject
+      description: Returns a single project
+      parameters:
+        - schema: {}
+          in: query
+          name: detail
+          description: Detail Flag
+    put:
+      summary: updateProject
+      operationId: updateProject
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - projects
+      description: Updates the project
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectUpdateRequest'
+    delete:
+      summary: deleteProject
+      operationId: deleteProject
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - projects
+      description: Deletes the project
+  '/projects/{id}/join':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Project ID
+    post:
+      summary: joinProject
+      operationId: joinProject
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - projects
+      description: Joins a project using an invite token
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectJoinRequest'
+  /auth/login:
+    post:
+      summary: login
+      operationId: login
+      responses:
+        '200':
+          $ref: '#/components/responses/LoginResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - auth
+      description: Exchanges user credentials for an auth token
+      requestBody:
+        $ref: '#/components/requestBodies/LoginRequest'
+  /users:
+    get:
+      summary: getUsers
+      tags:
+        - users
+      responses:
+        '200':
+          $ref: '#/components/responses/UserListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getUsers
+      description: Returns all users
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+  '/users/{id}':
+    parameters:
+      - schema:
+          type: integer
+        name: id
+        in: path
+        required: true
+        description: User ID
+    get:
+      summary: getUser
+      tags:
+        - users
+      responses:
+        '200':
+          $ref: '#/components/responses/UserSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getUser
+      description: Returns a single user
+  '/projects/{id}/members':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Project ID
+    get:
+      summary: getProjectMembers
+      tags:
+        - projects
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectMemberListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getProjectMembers
+      description: Returns all members of the project
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+    post:
+      summary: inviteProjectMember
+      operationId: inviteProjectMember
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Invites a new member to the project
+      tags:
+        - projects
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectMemberInviteRequest'
+  '/projects/{id}/members/{user_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Project ID
+      - schema:
+          type: integer
+        name: user_id
+        in: path
+        required: true
+        description: User ID
+    delete:
+      summary: deleteProjectMember
+      tags:
+        - projects
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: deleteProjectMember
+      description: Removes a member from the project
+  /auth/me:
+    get:
+      summary: getOwnUser
+      tags:
+        - auth
+      responses:
+        '200':
+          $ref: '#/components/responses/UserSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getOwnUser
+      description: Returns the user that the current session belongs to
+  /auth/password-reset:
+    put:
+      summary: executePasswordReset
+      operationId: executePasswordReset
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - auth
+      description: Executes the password reset with the token from the email
+      requestBody:
+        $ref: '#/components/requestBodies/ExecutePasswordResetRequest'
+    post:
+      summary: requestPasswordReset
+      operationId: requestPasswordReset
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Requests a password reset email for the given username
+      tags:
+        - auth
+      requestBody:
+        $ref: '#/components/requestBodies/RequestPasswordResetRequest'
+components:
+  schemas:
+    ResponseMessages:
+      title: ResponseMessages
+      type: object
+      properties:
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        success:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+      required:
+        - warnings
+        - errors
+        - success
+      x-examples:
+        example:
+          warnings: []
+          errors: []
+          success:
+            - code: 10000
+              message: Action successfully executed.
+    ResponseMessage:
+      title: ResponseMessage
+      type: object
+      properties:
+        key:
+          type: string
+          example: general.serverError
+        message:
+          type: string
+          example: Action successfully executed.
+      required:
+        - key
+        - message
+    ResponseMetadata:
+      title: ResponseMetadata
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        build_commit:
+          type: string
+          example: master-a0b1c2d3
+        build_timestamp:
+          type: string
+          example: '2021-09-01 13:37:00'
+      required:
+        - transaction_id
+        - build_commit
+        - build_timestamp
+    ResponsePagination:
+      title: ResponsePagination
+      type: object
+      properties:
+        page:
+          type: integer
+          example: 1
+        page_size:
+          type: integer
+          example: 25
+        total:
+          type: integer
+          example: 1500
+      required:
+        - page
+        - page_size
+        - total
+    Project:
+      title: Project
+      type: object
+      x-tags:
+        - projects
+      x-examples:
+        example:
+          uuid: 095be615-a8ad-4c33-8e9c-c7612fbf6c9f
+          title: Nice App
+          description: A really nice app
+          created_at: '2020-01-30 00:00:00'
+          updated_at: '2020-01-30 00:00:00'
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        title:
+          type: string
+          example: Example Project
+        detail:
+          type: object
+          description: Only available if the "detail" query parameter is present
+          properties:
+            domain_count:
+              type: integer
+            server_count:
+              type: integer
+            s3_bucket_count:
+              type: integer
+            plesk_license_count:
+              type: integer
+            ssl_certificate_count:
+              type: integer
+          required:
+            - domain_count
+            - server_count
+            - s3_bucket_count
+            - plesk_license_count
+            - ssl_certificate_count
+      required:
+        - id
+        - title
+    Token:
+      title: Token
+      type: object
+      x-tags:
+        - users
+      description: API / Session Token
+      properties:
+        token:
+          type: string
+        user_id:
+          type: integer
+        created_at:
+          type: string
+      required:
+        - token
+        - user_id
+        - created_at
+    User:
+      title: User
+      type: object
+      x-tags:
+        - users
+      description: ''
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+          format: email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        gender:
+          type: string
+          enum:
+            - MALE
+            - FEMALE
+        street:
+          type: string
+        street_number:
+          type: string
+        additional_address:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        state:
+          type: string
+          enum:
+            - PENDING
+            - ACTIVATED
+            - LOCKED
+      required:
+        - id
+        - email
+        - first_name
+        - last_name
+    ProjectMember:
+      title: ProjectMember
+      type: object
+      properties:
+        user_id:
+          type: integer
+        role:
+          type: string
+          enum:
+            - OWNER
+            - USER
+      required:
+        - user_id
+        - role
+      x-tags:
+        - project
+      description: Member of a Project
+  securitySchemes:
+    AuthToken:
+      type: http
+      scheme: bearer
+      description: ''
+  responses:
+    InvalidRequestResponse:
+      description: Response for validation errors
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - messages
+              - metadata
+        application/xml:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - messages
+    EmptyResponse:
+      description: Empty Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - messages
+              - metadata
+    ProjectListResponse:
+      description: Project List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    ProjectSingleResponse:
+      description: Single Project
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Project'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    LoginResponse:
+      description: Login Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Token'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    UserListResponse:
+      description: User List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    UserSingleResponse:
+      description: Single User
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/User'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    ProjectMemberListResponse:
+      description: ProjectMember List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectMember'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+  requestBodies:
+    ProjectCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+            required:
+              - title
+    ProjectUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+    LoginRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+            required:
+              - username
+              - password
+      description: Login Request
+    ProjectMemberInviteRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+            required:
+              - email
+    ProjectJoinRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+            required:
+              - token
+    RequestPasswordResetRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+            required:
+              - username
+    ExecutePasswordResetRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+              password:
+                type: string
+            required:
+              - token
+              - password
+  parameters:
+    PaginationPage:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+      description: Page
+    PaginationPageSize:
+      name: page_size
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+      description: Page Size
+    Search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Search
+security:
+  - AuthToken: []

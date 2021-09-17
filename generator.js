@@ -1,8 +1,12 @@
 // Imports
 const fs = require("fs")
 
+const API_NAME = process.argv[2];
+const SOURCE_FILE = process.argv[3];
+const DEST_FILE = process.argv[4];
+
 // Load OpenAPI Spec
-const spec = JSON.parse(fs.readFileSync('build/openapi.json', 'utf8'))
+const spec = JSON.parse(fs.readFileSync(SOURCE_FILE, 'utf8'))
 
 // Generate Methods
 let generatedMethods = [];
@@ -43,4 +47,4 @@ methods.forEach(m => generatedMethods.push(m.name + '(' + m.params.join(', ') + 
 
 // Write client.js
 const source = fs.readFileSync('client.source.js', 'utf8')
-fs.writeFileSync('build/client.js', source.replace('GENERATED_METHODS', generatedMethods.join('\n    ')))
+fs.writeFileSync(DEST_FILE, source.replace('{API_NAME}', API_NAME).replace('{GENERATED_METHODS}', generatedMethods.join('\n    ')))
