@@ -66,13 +66,16 @@ export default class LUMASERVAuthClient {
     removeProjectMember(id, user_id){
         return this.request('delete', '/projects/' + id + '/members/' + user_id, null, null);
     }
-    getOwnUser(){
-        return this.request('get', '/me', null, null);
+    validateOwnToken(){
+        return this.request('get', '/validate/me', null, null);
     }
     requestPasswordReset(body = null){
         return this.request('post', '/password-reset', null, body);
     }
     executePasswordReset(body = null){
         return this.request('put', '/password-reset', null, body);
+    }
+    validateToken(token){
+        return this.request('get', '/validate/' + token, null, null);
     }
 }

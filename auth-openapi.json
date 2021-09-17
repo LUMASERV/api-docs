@@ -727,22 +727,32 @@
         "tags" : [ "projects" ]
       }
     },
-    "/me" : {
+    "/validate/me" : {
       "get" : {
-        "description" : "Returns the user that the current session belongs to",
-        "operationId" : "getOwnUser",
+        "description" : "Validates the current token",
+        "operationId" : "validateOwnToken",
         "responses" : {
           "200" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_3"
+                  "$ref" : "#/components/schemas/inline_response_200_5"
                 }
               }
             },
-            "description" : "Single User"
+            "description" : "Token Validation"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -763,7 +773,7 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "getOwnUser",
+        "summary" : "validateOwnToken",
         "tags" : [ "auth" ]
       }
     },
@@ -868,6 +878,66 @@
           }
         },
         "summary" : "executePasswordReset",
+        "tags" : [ "auth" ]
+      }
+    },
+    "/validate/{token}" : {
+      "get" : {
+        "description" : "Validates the token",
+        "operationId" : "validateToken",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_5"
+                }
+              }
+            },
+            "description" : "Token Validation"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "validateToken",
         "tags" : [ "auth" ]
       }
     }
@@ -1078,6 +1148,16 @@
           }
         },
         "description" : "ProjectMember List"
+      },
+      "TokenValidationResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_5"
+            }
+          }
+        },
+        "description" : "Token Validation"
       }
     },
     "schemas" : {
@@ -1277,6 +1357,16 @@
         "type" : "object",
         "x-tags" : [ "project" ]
       },
+      "TokenValidationInfo" : {
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          }
+        },
+        "title" : "TokenValidationInfo",
+        "type" : "object",
+        "x-tags" : [ "auth" ]
+      },
       "inline_response_200" : {
         "properties" : {
           "success" : {
@@ -1434,6 +1524,23 @@
           }
         },
         "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_5" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/TokenValidationInfo"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
         "type" : "object"
       },
       "Project_detail" : {
