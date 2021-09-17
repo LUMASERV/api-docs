@@ -22,6 +22,8 @@
     "name" : "auth"
   }, {
     "name" : "users"
+  }, {
+    "name" : "tokens"
   } ],
   "paths" : {
     "/projects" : {
@@ -727,10 +729,10 @@
         "tags" : [ "projects" ]
       }
     },
-    "/validate/me" : {
+    "/validate/self" : {
       "get" : {
         "description" : "Validates the current token",
-        "operationId" : "validateOwnToken",
+        "operationId" : "validateSelf",
         "responses" : {
           "200" : {
             "content" : {
@@ -773,7 +775,7 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "validateOwnToken",
+        "summary" : "validateSelf",
         "tags" : [ "auth" ]
       }
     },
@@ -939,6 +941,229 @@
         },
         "summary" : "validateToken",
         "tags" : [ "auth" ]
+      }
+    },
+    "/users/{id}/project_memberships" : {
+      "get" : {
+        "description" : "Returns all project memberships of the user",
+        "operationId" : "getUserProjectMemberships",
+        "parameters" : [ {
+          "description" : "User ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_4"
+                }
+              }
+            },
+            "description" : "ProjectMember List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getUserProjectMemberships",
+        "tags" : [ "users" ]
+      }
+    },
+    "/tokens" : {
+      "get" : {
+        "description" : "Returns all tokens",
+        "operationId" : "getTokens",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_6"
+                }
+              }
+            },
+            "description" : "Token List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getTokens",
+        "tags" : [ "tokens" ]
+      }
+    },
+    "/tokens/{id}" : {
+      "delete" : {
+        "description" : "Deletes a token",
+        "operationId" : "deleteToken",
+        "parameters" : [ {
+          "description" : "Token ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteToken",
+        "tags" : [ "tokens" ]
+      },
+      "get" : {
+        "description" : "Returns a single token",
+        "operationId" : "getToken",
+        "parameters" : [ {
+          "description" : "Token ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_7"
+                }
+              }
+            },
+            "description" : "Single Token"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getToken",
+        "tags" : [ "tokens" ]
       }
     }
   },
@@ -1158,6 +1383,26 @@
           }
         },
         "description" : "Token Validation"
+      },
+      "TokenListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_6"
+            }
+          }
+        },
+        "description" : "Token List"
+      },
+      "TokenSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_7"
+            }
+          }
+        },
+        "description" : "Single Token"
       }
     },
     "schemas" : {
@@ -1350,17 +1595,30 @@
           "role" : {
             "enum" : [ "OWNER", "USER" ],
             "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
           }
         },
-        "required" : [ "role", "user_id" ],
+        "required" : [ "role" ],
         "title" : "ProjectMember",
         "type" : "object",
         "x-tags" : [ "project" ]
       },
       "TokenValidationInfo" : {
         "properties" : {
-          "id" : {
+          "user" : {
             "type" : "string"
+          },
+          "token" : {
+            "type" : "string"
+          },
+          "project_memberships" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ProjectMember"
+            },
+            "type" : "array"
           }
         },
         "title" : "TokenValidationInfo",
@@ -1541,6 +1799,48 @@
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
+        "type" : "object"
+      },
+      "inline_response_200_6" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Token"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_7" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Token"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
       "Project_detail" : {
