@@ -1,0 +1,1678 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "contact" : {
+      "email" : "support@lumaserv.com",
+      "name" : "LUMASERV Support Team"
+    },
+    "description" : "LUMASERV Auth API",
+    "title" : "LUMASERV Auth API",
+    "version" : "1.0"
+  },
+  "servers" : [ {
+    "description" : "Live",
+    "url" : "https://auth.lumaserv.cloud"
+  } ],
+  "security" : [ {
+    "AuthToken" : [ ]
+  } ],
+  "tags" : [ {
+    "name" : "projects"
+  }, {
+    "name" : "auth"
+  }, {
+    "name" : "users"
+  } ],
+  "paths" : {
+    "/projects" : {
+      "get" : {
+        "description" : "Returns all projects",
+        "operationId" : "getProjects",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Detail Flag",
+          "explode" : true,
+          "in" : "query",
+          "name" : "detail",
+          "required" : false,
+          "schema" : { },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200"
+                }
+              }
+            },
+            "description" : "Project List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getProjects",
+        "tags" : [ "projects" ]
+      },
+      "post" : {
+        "description" : "Create a new project",
+        "operationId" : "createProject",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ProjectCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201"
+                }
+              }
+            },
+            "description" : "Single Project"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createProject",
+        "tags" : [ "projects" ]
+      }
+    },
+    "/projects/{id}" : {
+      "delete" : {
+        "description" : "Deletes the project",
+        "operationId" : "deleteProject",
+        "parameters" : [ {
+          "description" : "ID of the project",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteProject",
+        "tags" : [ "projects" ]
+      },
+      "get" : {
+        "description" : "Returns a single project",
+        "operationId" : "getProject",
+        "parameters" : [ {
+          "description" : "ID of the project",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Detail Flag",
+          "explode" : true,
+          "in" : "query",
+          "name" : "detail",
+          "required" : false,
+          "schema" : { },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201"
+                }
+              }
+            },
+            "description" : "Single Project"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getProject",
+        "tags" : [ "projects" ]
+      },
+      "put" : {
+        "description" : "Updates the project",
+        "operationId" : "updateProject",
+        "parameters" : [ {
+          "description" : "ID of the project",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ProjectUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201"
+                }
+              }
+            },
+            "description" : "Single Project"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateProject",
+        "tags" : [ "projects" ]
+      }
+    },
+    "/projects/{id}/join" : {
+      "post" : {
+        "description" : "Joins a project using an invite token",
+        "operationId" : "joinProject",
+        "parameters" : [ {
+          "description" : "Project ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ProjectJoinRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "joinProject",
+        "tags" : [ "projects" ]
+      }
+    },
+    "/auth/login" : {
+      "post" : {
+        "description" : "Exchanges user credentials for an auth token",
+        "operationId" : "login",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/LoginRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_1"
+                }
+              }
+            },
+            "description" : "Login Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "login",
+        "tags" : [ "auth" ]
+      }
+    },
+    "/users" : {
+      "get" : {
+        "description" : "Returns all users",
+        "operationId" : "getUsers",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_2"
+                }
+              }
+            },
+            "description" : "User List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getUsers",
+        "tags" : [ "users" ]
+      }
+    },
+    "/users/{id}" : {
+      "get" : {
+        "description" : "Returns a single user",
+        "operationId" : "getUser",
+        "parameters" : [ {
+          "description" : "User ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_3"
+                }
+              }
+            },
+            "description" : "Single User"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getUser",
+        "tags" : [ "users" ]
+      }
+    },
+    "/projects/{id}/members" : {
+      "get" : {
+        "description" : "Returns all members of the project",
+        "operationId" : "getProjectMembers",
+        "parameters" : [ {
+          "description" : "Project ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_4"
+                }
+              }
+            },
+            "description" : "ProjectMember List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getProjectMembers",
+        "tags" : [ "projects" ]
+      },
+      "post" : {
+        "description" : "Invites a new member to the project",
+        "operationId" : "inviteProjectMember",
+        "parameters" : [ {
+          "description" : "Project ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ProjectMemberInviteRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "inviteProjectMember",
+        "tags" : [ "projects" ]
+      }
+    },
+    "/projects/{id}/members/{user_id}" : {
+      "delete" : {
+        "description" : "Removes a member from the project",
+        "operationId" : "deleteProjectMember",
+        "parameters" : [ {
+          "description" : "Project ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "User ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "user_id",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteProjectMember",
+        "tags" : [ "projects" ]
+      }
+    },
+    "/auth/me" : {
+      "get" : {
+        "description" : "Returns the user that the current session belongs to",
+        "operationId" : "getOwnUser",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_3"
+                }
+              }
+            },
+            "description" : "Single User"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getOwnUser",
+        "tags" : [ "auth" ]
+      }
+    },
+    "/auth/password-reset" : {
+      "post" : {
+        "description" : "Requests a password reset email for the given username",
+        "operationId" : "requestPasswordReset",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/RequestPasswordResetRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "requestPasswordReset",
+        "tags" : [ "auth" ]
+      },
+      "put" : {
+        "description" : "Executes the password reset with the token from the email",
+        "operationId" : "executePasswordReset",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ExecutePasswordResetRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "executePasswordReset",
+        "tags" : [ "auth" ]
+      }
+    }
+  },
+  "components" : {
+    "parameters" : {
+      "PaginationPage" : {
+        "description" : "Page",
+        "explode" : true,
+        "in" : "query",
+        "name" : "page",
+        "required" : false,
+        "schema" : {
+          "minimum" : 1,
+          "type" : "integer"
+        },
+        "style" : "form"
+      },
+      "PaginationPageSize" : {
+        "description" : "Page Size",
+        "explode" : true,
+        "in" : "query",
+        "name" : "page_size",
+        "required" : false,
+        "schema" : {
+          "default" : 10,
+          "type" : "integer"
+        },
+        "style" : "form"
+      },
+      "Search" : {
+        "description" : "Search",
+        "explode" : true,
+        "in" : "query",
+        "name" : "search",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "style" : "form"
+      }
+    },
+    "requestBodies" : {
+      "ProjectCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "title" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "title" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ProjectUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "title" : {
+                  "type" : "string"
+                }
+              },
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "LoginRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "username" : {
+                  "type" : "string"
+                },
+                "password" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "password", "username" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "Login Request"
+      },
+      "ProjectMemberInviteRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "email" : {
+                  "format" : "email",
+                  "type" : "string"
+                }
+              },
+              "required" : [ "email" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ProjectJoinRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "token" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "token" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "RequestPasswordResetRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "username" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "username" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ExecutePasswordResetRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "token" : {
+                  "type" : "string"
+                },
+                "password" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "password", "token" ],
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "responses" : {
+      "InvalidRequestResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_400"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_400"
+            }
+          }
+        },
+        "description" : "Response for validation errors"
+      },
+      "EmptyResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_401"
+            }
+          }
+        },
+        "description" : "Empty Response"
+      },
+      "ProjectListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200"
+            }
+          }
+        },
+        "description" : "Project List"
+      },
+      "ProjectSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201"
+            }
+          }
+        },
+        "description" : "Single Project"
+      },
+      "LoginResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_1"
+            }
+          }
+        },
+        "description" : "Login Response"
+      },
+      "UserListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_2"
+            }
+          }
+        },
+        "description" : "User List"
+      },
+      "UserSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_3"
+            }
+          }
+        },
+        "description" : "Single User"
+      },
+      "ProjectMemberListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_4"
+            }
+          }
+        },
+        "description" : "ProjectMember List"
+      }
+    },
+    "schemas" : {
+      "ResponseMessages" : {
+        "properties" : {
+          "warnings" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          },
+          "errors" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          },
+          "success" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "errors", "success", "warnings" ],
+        "title" : "ResponseMessages",
+        "type" : "object",
+        "x-examples" : {
+          "example" : {
+            "warnings" : [ ],
+            "errors" : [ ],
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          }
+        }
+      },
+      "ResponseMessage" : {
+        "properties" : {
+          "key" : {
+            "example" : "general.serverError",
+            "type" : "string"
+          },
+          "message" : {
+            "example" : "Action successfully executed.",
+            "type" : "string"
+          }
+        },
+        "required" : [ "key", "message" ],
+        "title" : "ResponseMessage",
+        "type" : "object"
+      },
+      "ResponseMetadata" : {
+        "properties" : {
+          "transaction_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "build_commit" : {
+            "example" : "master-a0b1c2d3",
+            "type" : "string"
+          },
+          "build_timestamp" : {
+            "example" : "2021-09-01 13:37:00",
+            "type" : "string"
+          }
+        },
+        "required" : [ "build_commit", "build_timestamp", "transaction_id" ],
+        "title" : "ResponseMetadata",
+        "type" : "object"
+      },
+      "ResponsePagination" : {
+        "properties" : {
+          "page" : {
+            "example" : 1,
+            "type" : "integer"
+          },
+          "page_size" : {
+            "example" : 25,
+            "type" : "integer"
+          },
+          "total" : {
+            "example" : 1500,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "page", "page_size", "total" ],
+        "title" : "ResponsePagination",
+        "type" : "object"
+      },
+      "Project" : {
+        "properties" : {
+          "id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "example" : "Example Project",
+            "type" : "string"
+          },
+          "detail" : {
+            "$ref" : "#/components/schemas/Project_detail"
+          }
+        },
+        "required" : [ "id", "title" ],
+        "title" : "Project",
+        "type" : "object",
+        "x-tags" : [ "projects" ],
+        "x-examples" : {
+          "example" : {
+            "uuid" : "095be615-a8ad-4c33-8e9c-c7612fbf6c9f",
+            "title" : "Nice App",
+            "description" : "A really nice app",
+            "created_at" : "2020-01-30 00:00:00",
+            "updated_at" : "2020-01-30 00:00:00"
+          }
+        }
+      },
+      "Token" : {
+        "description" : "API / Session Token",
+        "properties" : {
+          "token" : {
+            "type" : "string"
+          },
+          "user_id" : {
+            "type" : "integer"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "created_at", "token", "user_id" ],
+        "title" : "Token",
+        "type" : "object",
+        "x-tags" : [ "users" ]
+      },
+      "User" : {
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "email" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "gender" : {
+            "enum" : [ "MALE", "FEMALE" ],
+            "type" : "string"
+          },
+          "street" : {
+            "type" : "string"
+          },
+          "street_number" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "state" : {
+            "enum" : [ "PENDING", "ACTIVATED", "LOCKED" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "email", "first_name", "id", "last_name" ],
+        "title" : "User",
+        "type" : "object",
+        "x-tags" : [ "users" ]
+      },
+      "ProjectMember" : {
+        "description" : "Member of a Project",
+        "properties" : {
+          "user_id" : {
+            "type" : "integer"
+          },
+          "role" : {
+            "enum" : [ "OWNER", "USER" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "role", "user_id" ],
+        "title" : "ProjectMember",
+        "type" : "object",
+        "x-tags" : [ "project" ]
+      },
+      "inline_response_200" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Project"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_401" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Project"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_400" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "type" : "object"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_1" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Token"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_2" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/User"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_3" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/User"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_4" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ProjectMember"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "Project_detail" : {
+        "description" : "Only available if the \"detail\" query parameter is present",
+        "properties" : {
+          "domain_count" : {
+            "type" : "integer"
+          },
+          "server_count" : {
+            "type" : "integer"
+          },
+          "s3_bucket_count" : {
+            "type" : "integer"
+          },
+          "plesk_license_count" : {
+            "type" : "integer"
+          },
+          "ssl_certificate_count" : {
+            "type" : "integer"
+          }
+        },
+        "required" : [ "domain_count", "plesk_license_count", "s3_bucket_count", "server_count", "ssl_certificate_count" ],
+        "type" : "object"
+      }
+    },
+    "securitySchemes" : {
+      "AuthToken" : {
+        "scheme" : "bearer",
+        "type" : "http"
+      }
+    }
+  }
+}

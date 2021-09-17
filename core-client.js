@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default class LUMASERVClient {
+export default class LUMASERVCoreClient {
     constructor(baseURL = 'https://api.lumaserv.cloud') {
         this.axios = axios.create({
             baseURL,
@@ -35,33 +35,6 @@ export default class LUMASERVClient {
                 reject({ ...error.response.data, status: error.response.status });
             })
         });
-    }
-    getProjects(query = null){
-        return this.request('get', '/projects', query, null);
-    }
-    createProject(body = null){
-        return this.request('post', '/projects', null, body);
-    }
-    deleteProject(id){
-        return this.request('delete', '/projects/' + id, null, null);
-    }
-    getProject(id, query = null){
-        return this.request('get', '/projects/' + id, query, null);
-    }
-    updateProject(id, body = null){
-        return this.request('put', '/projects/' + id, null, body);
-    }
-    joinProject(id, body = null){
-        return this.request('post', '/projects/' + id + '/join', null, body);
-    }
-    login(body = null){
-        return this.request('post', '/auth/login', null, body);
-    }
-    getUsers(query = null){
-        return this.request('get', '/users', query, null);
-    }
-    getUser(id){
-        return this.request('get', '/users/' + id, null, null);
     }
     getS3Buckets(query = null){
         return this.request('get', '/storage/s3/buckets', query, null);
@@ -237,24 +210,6 @@ export default class LUMASERVClient {
     getServerISO(id){
         return this.request('get', '/server-isos/' + id, null, null);
     }
-    getProjectMembers(id, query = null){
-        return this.request('get', '/projects/' + id + '/members', query, null);
-    }
-    inviteProjectMember(id, body = null){
-        return this.request('post', '/projects/' + id + '/members', null, body);
-    }
-    deleteProjectMember(id, user_id){
-        return this.request('delete', '/projects/' + id + '/members/' + user_id, null, null);
-    }
-    getOwnUser(){
-        return this.request('get', '/auth/me', null, null);
-    }
-    requestPasswordReset(body = null){
-        return this.request('post', '/auth/password-reset', null, body);
-    }
-    executePasswordReset(body = null){
-        return this.request('put', '/auth/password-reset', null, body);
-    }
     getDomainPricingList(){
         return this.request('get', '/pricing/domains', null, null);
     }
@@ -270,8 +225,8 @@ export default class LUMASERVClient {
     getDNSZone(name){
         return this.request('get', '/dns/zones/' + name, null, null);
     }
-    updateDNSZone(name){
-        return this.request('put', '/dns/zones/' + name, null, null);
+    updateDNSZone(name, body = null){
+        return this.request('put', '/dns/zones/' + name, null, body);
     }
     getDNSZoneRecords(name){
         return this.request('get', '/dns/zones/' + name + '/records', null, null);
