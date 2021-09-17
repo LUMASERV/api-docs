@@ -51,11 +51,8 @@ export default class LUMASERVAuthClient {
     updateProject(id, body = null){
         return this.request('put', '/projects/' + id, null, body);
     }
-    joinProject(id, body = null){
-        return this.request('post', '/projects/' + id + '/join', null, body);
-    }
     login(body = null){
-        return this.request('post', '/auth/login', null, body);
+        return this.request('post', '/login', null, body);
     }
     getUsers(query = null){
         return this.request('get', '/users', query, null);
@@ -66,19 +63,16 @@ export default class LUMASERVAuthClient {
     getProjectMembers(id, query = null){
         return this.request('get', '/projects/' + id + '/members', query, null);
     }
-    inviteProjectMember(id, body = null){
-        return this.request('post', '/projects/' + id + '/members', null, body);
-    }
-    deleteProjectMember(id, user_id){
+    removeProjectMember(id, user_id){
         return this.request('delete', '/projects/' + id + '/members/' + user_id, null, null);
     }
     getOwnUser(){
-        return this.request('get', '/auth/me', null, null);
+        return this.request('get', '/me', null, null);
     }
     requestPasswordReset(body = null){
-        return this.request('post', '/auth/password-reset', null, body);
+        return this.request('post', '/password-reset', null, body);
     }
     executePasswordReset(body = null){
-        return this.request('put', '/auth/password-reset', null, body);
+        return this.request('put', '/password-reset', null, body);
     }
 }

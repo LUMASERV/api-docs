@@ -369,97 +369,7 @@
         "tags" : [ "projects" ]
       }
     },
-    "/projects/{id}/join" : {
-      "post" : {
-        "description" : "Joins a project using an invite token",
-        "operationId" : "joinProject",
-        "parameters" : [ {
-          "description" : "Project ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "$ref" : "#/components/requestBodies/ProjectJoinRequest"
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "400" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
-                }
-              }
-            },
-            "description" : "Response for validation errors"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "joinProject",
-        "tags" : [ "projects" ]
-      }
-    },
-    "/auth/login" : {
+    "/login" : {
       "post" : {
         "description" : "Exchanges user credentials for an auth token",
         "operationId" : "login",
@@ -733,100 +643,12 @@
         },
         "summary" : "getProjectMembers",
         "tags" : [ "projects" ]
-      },
-      "post" : {
-        "description" : "Invites a new member to the project",
-        "operationId" : "inviteProjectMember",
-        "parameters" : [ {
-          "description" : "Project ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "$ref" : "#/components/requestBodies/ProjectMemberInviteRequest"
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "400" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
-                }
-              }
-            },
-            "description" : "Response for validation errors"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "inviteProjectMember",
-        "tags" : [ "projects" ]
       }
     },
     "/projects/{id}/members/{user_id}" : {
       "delete" : {
         "description" : "Removes a member from the project",
-        "operationId" : "deleteProjectMember",
+        "operationId" : "removeProjectMember",
         "parameters" : [ {
           "description" : "Project ID",
           "explode" : false,
@@ -901,11 +723,11 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "deleteProjectMember",
+        "summary" : "removeProjectMember",
         "tags" : [ "projects" ]
       }
     },
-    "/auth/me" : {
+    "/me" : {
       "get" : {
         "description" : "Returns the user that the current session belongs to",
         "operationId" : "getOwnUser",
@@ -945,7 +767,7 @@
         "tags" : [ "auth" ]
       }
     },
-    "/auth/password-reset" : {
+    "/password-reset" : {
       "post" : {
         "description" : "Requests a password reset email for the given username",
         "operationId" : "requestPasswordReset",
@@ -1136,37 +958,6 @@
           }
         },
         "description" : "Login Request"
-      },
-      "ProjectMemberInviteRequest" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "properties" : {
-                "email" : {
-                  "format" : "email",
-                  "type" : "string"
-                }
-              },
-              "required" : [ "email" ],
-              "type" : "object"
-            }
-          }
-        }
-      },
-      "ProjectJoinRequest" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "properties" : {
-                "token" : {
-                  "type" : "string"
-                }
-              },
-              "required" : [ "token" ],
-              "type" : "object"
-            }
-          }
-        }
       },
       "RequestPasswordResetRequest" : {
         "content" : {
