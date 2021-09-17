@@ -13,6 +13,7 @@ tags:
   - name: projects
   - name: auth
   - name: users
+  - name: tokens
 paths:
   /projects:
     get:
@@ -234,9 +235,9 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: removeProjectMember
       description: Removes a member from the project
-  /validate/me:
+  /validate/self:
     get:
-      summary: validateOwnToken
+      summary: validateSelf
       tags:
         - auth
       responses:
@@ -248,7 +249,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      operationId: validateOwnToken
+      operationId: validateSelf
       description: Validates the current token
     parameters: []
   /password-reset:
@@ -307,6 +308,82 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: validateToken
       description: Validates the token
+  '/users/{id}/project_memberships':
+    parameters:
+      - schema:
+          type: integer
+        name: id
+        in: path
+        required: true
+        description: User ID
+    get:
+      summary: getUserProjectMemberships
+      tags:
+        - users
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectMemberListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getUserProjectMemberships
+      description: Returns all project memberships of the user
+  /tokens:
+    get:
+      summary: getTokens
+      tags:
+        - tokens
+      responses:
+        '200':
+          $ref: '#/components/responses/TokenListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getTokens
+      description: Returns all tokens
+  '/tokens/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Token ID
+    get:
+      summary: getToken
+      tags:
+        - tokens
+      responses:
+        '200':
+          $ref: '#/components/responses/TokenSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getToken
+      description: Returns a single token
+    delete:
+      summary: deleteToken
+      operationId: deleteToken
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - tokens
+      description: Deletes a token
 components:
   schemas:
     ResponseMessages:
@@ -489,6 +566,9 @@ components:
     ProjectMember:
       title: ProjectMember
       type: object
+      x-tags:
+        - project
+      description: Member of a Project
       properties:
         user_id:
           type: integer
@@ -497,20 +577,25 @@ components:
           enum:
             - OWNER
             - USER
+        project_id:
+          type: string
+          format: uuid
       required:
-        - user_id
         - role
-      x-tags:
-        - project
-      description: Member of a Project
     TokenValidationInfo:
       title: TokenValidationInfo
       type: object
-      properties:
-        id:
-          type: string
       x-tags:
         - auth
+      properties:
+        user:
+          type: string
+        token:
+          type: string
+        project_memberships:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectMember'
   securitySchemes:
     AuthToken:
       type: http
@@ -713,6 +798,50 @@ components:
                 $ref: '#/components/schemas/TokenValidationInfo'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+    TokenListResponse:
+      description: Token List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Token'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    TokenSingleResponse:
+      description: Single Token
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Token'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     ProjectCreateRequest:
       content:
