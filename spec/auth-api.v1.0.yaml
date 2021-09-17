@@ -234,20 +234,22 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: removeProjectMember
       description: Removes a member from the project
-  /me:
+  /validate/me:
     get:
-      summary: getOwnUser
+      summary: validateOwnToken
       tags:
         - auth
       responses:
         '200':
-          $ref: '#/components/responses/UserSingleResponse'
+          $ref: '#/components/responses/TokenValidationResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      operationId: getOwnUser
-      description: Returns the user that the current session belongs to
+      operationId: validateOwnToken
+      description: Validates the current token
     parameters: []
   /password-reset:
     put:
@@ -283,6 +285,28 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/RequestPasswordResetRequest'
     parameters: []
+  '/validate/{token}':
+    parameters:
+      - schema:
+          type: string
+        name: token
+        in: path
+        required: true
+    get:
+      summary: validateToken
+      tags:
+        - auth
+      responses:
+        '200':
+          $ref: '#/components/responses/TokenValidationResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: validateToken
+      description: Validates the token
 components:
   schemas:
     ResponseMessages:
@@ -479,6 +503,14 @@ components:
       x-tags:
         - project
       description: Member of a Project
+    TokenValidationInfo:
+      title: TokenValidationInfo
+      type: object
+      properties:
+        id:
+          type: string
+      x-tags:
+        - auth
   securitySchemes:
     AuthToken:
       type: http
@@ -666,6 +698,21 @@ components:
               - data
               - messages
               - metadata
+    TokenValidationResponse:
+      description: Token Validation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/TokenValidationInfo'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
   requestBodies:
     ProjectCreateRequest:
       content:
