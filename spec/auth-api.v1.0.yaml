@@ -589,13 +589,17 @@ components:
         - auth
       properties:
         user:
-          type: string
+          $ref: '#/components/schemas/User'
         token:
-          type: string
+          $ref: '#/components/schemas/Token'
         project_memberships:
           type: array
           items:
             $ref: '#/components/schemas/ProjectMember'
+      required:
+        - user
+        - token
+        - project_memberships
   securitySchemes:
     AuthToken:
       type: http
