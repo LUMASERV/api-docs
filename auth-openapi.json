@@ -1609,10 +1609,10 @@
       "TokenValidationInfo" : {
         "properties" : {
           "user" : {
-            "type" : "string"
+            "$ref" : "#/components/schemas/User"
           },
           "token" : {
-            "type" : "string"
+            "$ref" : "#/components/schemas/Token"
           },
           "project_memberships" : {
             "items" : {
@@ -1621,6 +1621,7 @@
             "type" : "array"
           }
         },
+        "required" : [ "project_memberships", "token", "user" ],
         "title" : "TokenValidationInfo",
         "type" : "object",
         "x-tags" : [ "auth" ]
