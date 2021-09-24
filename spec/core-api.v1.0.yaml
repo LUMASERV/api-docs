@@ -1408,6 +1408,13 @@ components:
     ResponseMessages:
       title: ResponseMessages
       type: object
+      x-examples:
+        example:
+          warnings: []
+          errors: []
+          success:
+            - code: 10000
+              message: Action successfully executed.
       properties:
         warnings:
           type: array
@@ -1417,21 +1424,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResponseMessage'
-        success:
+        infos:
           type: array
           items:
             $ref: '#/components/schemas/ResponseMessage'
       required:
         - warnings
         - errors
-        - success
-      x-examples:
-        example:
-          warnings: []
-          errors: []
-          success:
-            - code: 10000
-              message: Action successfully executed.
+        - infos
     ResponseMessage:
       title: ResponseMessage
       type: object
