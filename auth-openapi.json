@@ -1420,14 +1420,14 @@
             },
             "type" : "array"
           },
-          "success" : {
+          "infos" : {
             "items" : {
               "$ref" : "#/components/schemas/ResponseMessage"
             },
             "type" : "array"
           }
         },
-        "required" : [ "errors", "success", "warnings" ],
+        "required" : [ "errors", "infos", "warnings" ],
         "title" : "ResponseMessages",
         "type" : "object",
         "x-examples" : {
