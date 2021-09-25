@@ -210,8 +210,8 @@ export default class LUMASERVCoreClient {
     getServerISO(id){
         return this.request('get', '/server-isos/' + id, null, null);
     }
-    getDomainPricingList(){
-        return this.request('get', '/pricing/domains', null, null);
+    getDomainPricingList(query = null){
+        return this.request('get', '/pricing/domains', query, null);
     }
     search(query = null){
         return this.request('get', '/search', query, null);

@@ -4180,6 +4180,18 @@
       "get" : {
         "description" : "Returns the price list for all top-level-domains",
         "operationId" : "getDomainPricingList",
+        "parameters" : [ {
+          "description" : "Project ID",
+          "explode" : true,
+          "in" : "query",
+          "name" : "project_id",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
