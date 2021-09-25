@@ -1298,7 +1298,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: search
-      description: 'Search for multiple resource types at once. Possible resource types are: projects, domains, domain_handles'
+      description: 'Search for multiple resource types at once. Possible resource types are: domains, domain_handles'
       parameters:
         - schema:
             type: string
@@ -1310,6 +1310,17 @@ paths:
           in: query
           name: search
           description: Search
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: Limit per Resource Type
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: project_id
+          description: Project ID
   '/domains/{name}/check':
     parameters:
       - schema:
@@ -1345,6 +1356,11 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getDNSZones
       description: Returns all dns zones
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
   '/dns/zones/{name}':
     parameters:
       - schema:
@@ -1400,7 +1416,7 @@ paths:
       tags:
         - dns
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/DNSRecordListResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
@@ -1410,6 +1426,66 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getDNSZoneRecords
       description: Returns all records in the zone
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+    put:
+      summary: updateDNSZoneRecords
+      operationId: updateDNSZoneRecords
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSRecordListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - dns
+      description: Updates the records in the zone
+      requestBody:
+        $ref: '#/components/requestBodies/DNSRecordsUpdateRequest'
+    post:
+      summary: createDNSZoneRecord
+      operationId: createDNSZoneRecord
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSRecordSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - dns
+      description: Creates a new record in the zone
+      requestBody:
+        $ref: '#/components/requestBodies/DNSRecordCreateRequest'
+    delete:
+      summary: deleteDNSZoneRecord
+      operationId: deleteDNSZoneRecord
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a record in the zone
+      requestBody:
+        $ref: '#/components/requestBodies/DNSRecordDeleteRequest'
+      tags:
+        - dns
 components:
   schemas:
     ResponseMessages:
@@ -3064,6 +3140,26 @@ components:
               - success
               - data
               - messages
+    DNSRecordSingleResponse:
+      description: Single DNSRecord
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DNSRecord'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     S3BucketCreateRequest:
       content:
@@ -3567,6 +3663,86 @@ components:
                 type: string
               ns2:
                 type: string
+    DNSRecordCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+                enum:
+                  - A
+                  - AAAA
+                  - CNAME
+                  - SRV
+                  - MX
+                  - TXT
+                  - PTR
+              ttl:
+                type: integer
+                minimum: 300
+                maximum: 86400
+              data:
+                type: string
+            required:
+              - name
+              - type
+              - data
+    DNSRecordDeleteRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+                enum:
+                  - A
+                  - AAAA
+                  - CNAME
+                  - SRV
+                  - MX
+                  - TXT
+                  - PTR
+              data:
+                type: string
+            required:
+              - name
+              - type
+              - data
+    DNSRecordsUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                    - A
+                    - AAAA
+                    - CNAME
+                    - SRV
+                    - MX
+                    - TXT
+                    - PTR
+                ttl:
+                  type: integer
+                data:
+                  type: string
+              required:
+                - name
+                - type
+                - data
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
