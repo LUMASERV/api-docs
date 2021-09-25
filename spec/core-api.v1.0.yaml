@@ -1279,6 +1279,13 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getDomainPricingList
       description: Returns the price list for all top-level-domains
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: project_id
+          description: Project ID
   /search:
     get:
       summary: search
