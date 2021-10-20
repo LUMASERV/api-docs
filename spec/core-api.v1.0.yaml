@@ -1467,12 +1467,25 @@ paths:
       description: Creates a new record in the zone
       requestBody:
         $ref: '#/components/requestBodies/DNSRecordCreateRequest'
-    delete:
-      summary: deleteDNSZoneRecord
-      operationId: deleteDNSZoneRecord
+  '/dns/zones/{name}/records/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+    put:
+      summary: updateDNSRecord
+      operationId: updateDNSRecord
       responses:
         '200':
-          $ref: '#/components/responses/EmptyResponse'
+          $ref: '#/components/responses/DNSRecordSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
@@ -1481,9 +1494,24 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      description: Deletes a record in the zone
+      description: Updates the dns record
+      tags:
+        - dns
       requestBody:
-        $ref: '#/components/requestBodies/DNSRecordDeleteRequest'
+        $ref: '#/components/requestBodies/DNSRecordUpdateRequest'
+    delete:
+      summary: deleteDNSRecord
+      operationId: deleteDNSRecord
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes the dns record
       tags:
         - dns
 components:
@@ -2216,6 +2244,9 @@ components:
       x-tags:
         - dns
       properties:
+        id:
+          type: string
+          format: uuid
         name:
           type: string
         type:
@@ -2233,6 +2264,7 @@ components:
         data:
           type: string
       required:
+        - id
         - name
         - type
         - data
@@ -3691,30 +3723,6 @@ components:
               - name
               - type
               - data
-    DNSRecordDeleteRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-                enum:
-                  - A
-                  - AAAA
-                  - CNAME
-                  - SRV
-                  - MX
-                  - TXT
-                  - PTR
-              data:
-                type: string
-            required:
-              - name
-              - type
-              - data
     DNSRecordsUpdateRequest:
       content:
         application/json:
@@ -3743,6 +3751,34 @@ components:
                 - name
                 - type
                 - data
+    DNSRecordUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+                enum:
+                  - A
+                  - AAAA
+                  - CNAME
+                  - SRV
+                  - MX
+                  - TXT
+                  - PTR
+              ttl:
+                type: integer
+                maximum: 86400
+                minimum: 300
+              data:
+                type: string
+            required:
+              - name
+              - type
+              - data
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
