@@ -228,9 +228,6 @@ export default class LUMASERVCoreClient {
     updateDNSZone(name, body = null){
         return this.request('put', '/dns/zones/' + name, null, body);
     }
-    deleteDNSZoneRecord(name, body = null){
-        return this.request('delete', '/dns/zones/' + name + '/records', null, body);
-    }
     getDNSZoneRecords(name, query = null){
         return this.request('get', '/dns/zones/' + name + '/records', query, null);
     }
@@ -239,5 +236,11 @@ export default class LUMASERVCoreClient {
     }
     updateDNSZoneRecords(name, body = null){
         return this.request('put', '/dns/zones/' + name + '/records', null, body);
+    }
+    deleteDNSRecord(name, id){
+        return this.request('delete', '/dns/zones/' + name + '/records/' + id, null, null);
+    }
+    updateDNSRecord(name, id, body = null){
+        return this.request('put', '/dns/zones/' + name + '/records/' + id, null, body);
     }
 }
