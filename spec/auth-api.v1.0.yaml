@@ -534,6 +534,9 @@ components:
         id:
           type: string
           format: uuid
+        customer_id:
+          type: integer
+          minimum: 1
         email:
           type: string
           format: email
