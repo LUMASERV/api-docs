@@ -1557,6 +1557,10 @@
             "format" : "uuid",
             "type" : "string"
           },
+          "customer_id" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
           "email" : {
             "format" : "email",
             "type" : "string"
