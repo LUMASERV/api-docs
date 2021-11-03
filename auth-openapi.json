@@ -503,7 +503,8 @@
           "name" : "id",
           "required" : true,
           "schema" : {
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "style" : "simple"
         } ],
@@ -669,7 +670,8 @@
           "name" : "user_id",
           "required" : true,
           "schema" : {
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "style" : "simple"
         } ],
@@ -954,7 +956,8 @@
           "name" : "id",
           "required" : true,
           "schema" : {
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "style" : "simple"
         } ],
@@ -1213,6 +1216,9 @@
               "properties" : {
                 "title" : {
                   "type" : "string"
+                },
+                "customer_reference" : {
+                  "type" : "string"
                 }
               },
               "required" : [ "title" ],
@@ -1227,6 +1233,9 @@
             "schema" : {
               "properties" : {
                 "title" : {
+                  "type" : "string"
+                },
+                "customer_reference" : {
                   "type" : "string"
                 }
               },
@@ -1545,7 +1554,8 @@
       "User" : {
         "properties" : {
           "id" : {
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "email" : {
             "format" : "email",
@@ -1590,7 +1600,8 @@
         "description" : "Member of a Project",
         "properties" : {
           "user_id" : {
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "role" : {
             "enum" : [ "OWNER", "USER" ],

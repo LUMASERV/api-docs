@@ -81,6 +81,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -348,6 +358,16 @@
           "explode" : true,
           "in" : "query",
           "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -631,6 +651,16 @@
           "explode" : true,
           "in" : "query",
           "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -1061,6 +1091,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -1291,6 +1331,16 @@
           "explode" : true,
           "in" : "query",
           "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -1675,6 +1725,16 @@
           "explode" : true,
           "in" : "query",
           "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -2366,6 +2426,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -2633,6 +2703,16 @@
           "explode" : true,
           "in" : "query",
           "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -3089,6 +3169,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -3296,6 +3386,16 @@
           "explode" : true,
           "in" : "query",
           "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -3573,6 +3673,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -3791,6 +3901,16 @@
           "explode" : true,
           "in" : "query",
           "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -4072,6 +4192,16 @@
           "explode" : true,
           "in" : "query",
           "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -4413,6 +4543,16 @@
           "explode" : true,
           "in" : "query",
           "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Customer Reference Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_reference]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -5035,6 +5175,17 @@
           "type" : "string"
         },
         "style" : "form"
+      },
+      "CustomerReferenceFilter" : {
+        "description" : "Customer Reference Filter",
+        "explode" : true,
+        "in" : "query",
+        "name" : "filter[customer_reference]",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "style" : "form"
       }
     },
     "requestBodies" : {
@@ -5049,6 +5200,9 @@
                   "type" : "string"
                 },
                 "title" : {
+                  "type" : "string"
+                },
+                "customer_reference" : {
                   "type" : "string"
                 }
               },
@@ -5072,6 +5226,9 @@
                   "type" : "string"
                 },
                 "secret_key" : {
+                  "type" : "string"
+                },
+                "customer_reference" : {
                   "type" : "string"
                 }
               },
@@ -5099,6 +5256,9 @@
                 "address" : {
                   "format" : "ipv4",
                   "type" : "string"
+                },
+                "customer_reference" : {
+                  "type" : "string"
                 }
               },
               "required" : [ "project_id", "type_id" ],
@@ -5114,6 +5274,9 @@
               "properties" : {
                 "address" : {
                   "format" : "ipv4",
+                  "type" : "string"
+                },
+                "customer_reference" : {
                   "type" : "string"
                 }
               },
@@ -5137,6 +5300,9 @@
                 },
                 "role" : {
                   "enum" : [ "READ_ONLY", "READ_WRITE" ],
+                  "type" : "string"
+                },
+                "customer_reference" : {
                   "type" : "string"
                 }
               },
@@ -5240,6 +5406,9 @@
                 },
                 "privacy_protection" : {
                   "type" : "boolean"
+                },
+                "customer_reference" : {
+                  "type" : "string"
                 }
               },
               "required" : [ "city", "country_code", "email", "first_name", "gender", "last_name", "postal_code", "project_id", "street", "street_number", "type" ],
@@ -5320,6 +5489,9 @@
                 },
                 "privacy_protection" : {
                   "type" : "boolean"
+                },
+                "customer_reference" : {
+                  "type" : "string"
                 }
               },
               "type" : "object"
@@ -5368,6 +5540,9 @@
                   },
                   "minItems" : 2,
                   "type" : "array"
+                },
+                "customer_reference" : {
+                  "type" : "string"
                 }
               },
               "required" : [ "admin_handle_code", "name", "nameserver", "owner_handle_code", "project_id", "tech_handle_code", "zone_handle_code" ],
@@ -5399,6 +5574,9 @@
                   },
                   "minItems" : 2,
                   "type" : "array"
+                },
+                "customer_reference" : {
+                  "type" : "string"
                 }
               },
               "type" : "object"
@@ -5469,6 +5647,9 @@
                 },
                 "country_code" : {
                   "type" : "string"
+                },
+                "customer_reference" : {
+                  "type" : "string"
                 }
               },
               "required" : [ "address", "city", "country_code", "email", "first_name", "last_name", "organisation", "phone", "postal_code", "project_id" ],
@@ -5520,6 +5701,9 @@
                   "type" : "string"
                 },
                 "duns" : {
+                  "type" : "string"
+                },
+                "customer_reference" : {
                   "type" : "string"
                 }
               },
@@ -5578,6 +5762,9 @@
                 "approver_email" : {
                   "format" : "email",
                   "type" : "string"
+                },
+                "customer_reference" : {
+                  "type" : "string"
                 }
               },
               "required" : [ "approver_email", "csr", "project_id", "type_id", "validation_method" ],
@@ -5600,6 +5787,9 @@
                   "type" : "string"
                 },
                 "public_key" : {
+                  "type" : "string"
+                },
+                "customer_reference" : {
                   "type" : "string"
                 }
               },
@@ -5650,6 +5840,9 @@
                     "type" : "string"
                   },
                   "type" : "array"
+                },
+                "customer_reference" : {
+                  "type" : "string"
                 }
               },
               "required" : [ "cores", "disk", "memory", "name", "project_id", "ssh_keys", "template_id" ],
@@ -5671,6 +5864,9 @@
                   "type" : "string"
                 },
                 "ns2" : {
+                  "type" : "string"
+                },
+                "customer_reference" : {
                   "type" : "string"
                 }
               },
@@ -6291,6 +6487,9 @@
             "format" : "uuid",
             "type" : "string"
           },
+          "customer_reference" : {
+            "type" : "string"
+          },
           "license" : {
             "type" : "string"
           },
@@ -6340,6 +6539,9 @@
           "title" : {
             "example" : "Example Bucket",
             "type" : "string"
+          },
+          "customer_reference" : {
+            "type" : "string"
           }
         },
         "required" : [ "id", "project_id", "title" ],
@@ -6363,6 +6565,9 @@
           "title" : {
             "example" : "Example Access Key",
             "type" : "string"
+          },
+          "customer_reference" : {
+            "type" : "string"
           }
         },
         "required" : [ "id", "project_id", "title" ],
@@ -6375,6 +6580,9 @@
           "id" : {
             "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
+            "type" : "string"
+          },
+          "customer_reference" : {
             "type" : "string"
           },
           "bucket_id" : {
@@ -6404,6 +6612,9 @@
           "project_id" : {
             "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
+            "type" : "string"
+          },
+          "customer_reference" : {
             "type" : "string"
           },
           "type" : {
@@ -6511,6 +6722,9 @@
             "format" : "uuid",
             "type" : "string"
           },
+          "customer_reference" : {
+            "type" : "string"
+          },
           "owner_handle_code" : {
             "type" : "string"
           },
@@ -6577,6 +6791,9 @@
             "format" : "uuid",
             "type" : "string"
           },
+          "customer_reference" : {
+            "type" : "string"
+          },
           "type_id" : {
             "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
@@ -6621,6 +6838,9 @@
           },
           "project_id" : {
             "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+            "type" : "string"
+          },
+          "customer_reference" : {
             "type" : "string"
           },
           "title" : {
@@ -6681,6 +6901,9 @@
           "project_id" : {
             "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
+            "type" : "string"
+          },
+          "customer_reference" : {
             "type" : "string"
           },
           "name" : {
@@ -6764,6 +6987,9 @@
           "name" : {
             "type" : "string"
           },
+          "customer_reference" : {
+            "type" : "string"
+          },
           "cores" : {
             "maximum" : 16,
             "minimum" : 1,
@@ -6808,6 +7034,9 @@
             "type" : "string"
           },
           "title" : {
+            "type" : "string"
+          },
+          "customer_reference" : {
             "type" : "string"
           },
           "public_key" : {
@@ -6859,6 +7088,9 @@
             "example" : "GRML 2020 Full",
             "type" : "string"
           },
+          "customer_reference" : {
+            "type" : "string"
+          },
           "created_at" : {
             "type" : "string"
           }
@@ -6882,6 +7114,9 @@
           },
           "title" : {
             "example" : "Example Volume",
+            "type" : "string"
+          },
+          "customer_reference" : {
             "type" : "string"
           },
           "size" : {
@@ -6961,6 +7196,9 @@
             "type" : "string"
           },
           "name" : {
+            "type" : "string"
+          },
+          "customer_reference" : {
             "type" : "string"
           },
           "hostmaster" : {
