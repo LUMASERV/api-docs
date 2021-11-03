@@ -155,7 +155,8 @@ paths:
   '/users/{id}':
     parameters:
       - schema:
-          type: integer
+          type: string
+          format: uuid
         name: id
         in: path
         required: true
@@ -213,7 +214,8 @@ paths:
         required: true
         description: Project ID
       - schema:
-          type: integer
+          type: string
+          format: uuid
         name: user_id
         in: path
         required: true
@@ -311,7 +313,8 @@ paths:
   '/users/{id}/project_memberships':
     parameters:
       - schema:
-          type: integer
+          type: string
+          format: uuid
         name: id
         in: path
         required: true
@@ -529,7 +532,8 @@ components:
       description: ''
       properties:
         id:
-          type: integer
+          type: string
+          format: uuid
         email:
           type: string
           format: email
@@ -571,7 +575,8 @@ components:
       description: Member of a Project
       properties:
         user_id:
-          type: integer
+          type: string
+          format: uuid
         role:
           type: string
           enum:
@@ -855,6 +860,8 @@ components:
             properties:
               title:
                 type: string
+              customer_reference:
+                type: string
             required:
               - title
     ProjectUpdateRequest:
@@ -864,6 +871,8 @@ components:
             type: object
             properties:
               title:
+                type: string
+              customer_reference:
                 type: string
     LoginRequest:
       content:
