@@ -1528,6 +1528,44 @@ paths:
       description: Deletes the dns record
       tags:
         - dns
+  '/domains/{name}/verification':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    get:
+      summary: checkDomainVerification
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainCheckVerificationResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: checkDomainVerification
+      description: Checks whether the owner contact is unverified
+    post:
+      summary: sendDomainVerification
+      operationId: sendDomainVerification
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Resends the verification email in case the owner is unverified
 components:
   schemas:
     ResponseMessages:
@@ -2310,6 +2348,16 @@ components:
         - name
         - type
         - data
+    DomainVerificationStatus:
+      title: DomainVerificationStatus
+      type: object
+      x-tags:
+        - domains
+      properties:
+        unverified:
+          type: boolean
+      required:
+        - unverified
   securitySchemes:
     AuthToken:
       type: http
@@ -3227,6 +3275,26 @@ components:
                 type: boolean
               data:
                 $ref: '#/components/schemas/DNSRecord'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DomainCheckVerificationResponse:
+      description: Domain Verification Status Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DomainVerificationStatus'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
