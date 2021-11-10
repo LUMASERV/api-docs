@@ -5125,6 +5125,126 @@
         "summary" : "updateDNSRecord",
         "tags" : [ "dns" ]
       }
+    },
+    "/domains/{name}/verification" : {
+      "get" : {
+        "description" : "Checks whether the owner contact is unverified",
+        "operationId" : "checkDomainVerification",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_28"
+                }
+              }
+            },
+            "description" : "Domain Verification Status Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "checkDomainVerification",
+        "tags" : [ "domains" ]
+      },
+      "post" : {
+        "description" : "Resends the verification email in case the owner is unverified",
+        "operationId" : "sendDomainVerification",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "sendDomainVerification",
+        "tags" : [ "domains" ]
+      }
     }
   },
   "components" : {
@@ -6383,6 +6503,16 @@
           }
         },
         "description" : "Single DNSRecord"
+      },
+      "DomainCheckVerificationResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_28"
+            }
+          }
+        },
+        "description" : "Domain Verification Status Response"
       }
     },
     "schemas" : {
@@ -7245,6 +7375,17 @@
         "type" : "object",
         "x-tags" : [ "dns" ]
       },
+      "DomainVerificationStatus" : {
+        "properties" : {
+          "unverified" : {
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "unverified" ],
+        "title" : "DomainVerificationStatus",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
+      },
       "inline_response_200" : {
         "properties" : {
           "success" : {
@@ -8100,6 +8241,24 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/DNSRecord"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_28" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/DomainVerificationStatus"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"

@@ -243,4 +243,10 @@ export default class LUMASERVCoreClient {
     updateDNSRecord(name, id, body = null){
         return this.request('put', '/dns/zones/' + name + '/records/' + id, null, body);
     }
+    checkDomainVerification(name){
+        return this.request('get', '/domains/' + name + '/verification', null, null);
+    }
+    sendDomainVerification(name){
+        return this.request('post', '/domains/' + name + '/verification', null, null);
+    }
 }
