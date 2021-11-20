@@ -1,0 +1,170 @@
+openapi: 3.0.0
+info:
+  title: LUMASERV Billing API
+  version: '1.0'
+  contact:
+    name: LUMASERV Support Team
+    email: support@lumaserv.com
+  description: LUMASERV Billing API
+servers:
+  - url: 'https://billing.lumaserv.com'
+    description: Live
+paths: {}
+components:
+  schemas:
+    ResponseMessages:
+      title: ResponseMessages
+      type: object
+      x-examples:
+        example:
+          warnings: []
+          errors: []
+          success:
+            - code: 10000
+              message: Action successfully executed.
+      properties:
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        infos:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+      required:
+        - warnings
+        - errors
+        - infos
+    ResponseMessage:
+      title: ResponseMessage
+      type: object
+      properties:
+        key:
+          type: string
+          example: general.serverError
+        message:
+          type: string
+          example: Action successfully executed.
+      required:
+        - key
+        - message
+    ResponseMetadata:
+      title: ResponseMetadata
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        build_commit:
+          type: string
+          example: master-a0b1c2d3
+        build_timestamp:
+          type: string
+          example: '2021-09-01 13:37:00'
+      required:
+        - transaction_id
+        - build_commit
+        - build_timestamp
+    ResponsePagination:
+      title: ResponsePagination
+      type: object
+      properties:
+        page:
+          type: integer
+          example: 1
+        page_size:
+          type: integer
+          example: 25
+        total:
+          type: integer
+          example: 1500
+      required:
+        - page
+        - page_size
+        - total
+  securitySchemes:
+    AuthToken:
+      type: http
+      scheme: bearer
+      description: ''
+  responses:
+    InvalidRequestResponse:
+      description: Response for validation errors
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - messages
+              - metadata
+        application/xml:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - messages
+    EmptyResponse:
+      description: Empty Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - messages
+              - metadata
+  requestBodies: {}
+  parameters:
+    PaginationPage:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+      description: Page
+    PaginationPageSize:
+      name: page_size
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+      description: Page Size
+    Search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Search
+security:
+  - AuthToken: []
