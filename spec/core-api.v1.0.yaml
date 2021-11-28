@@ -38,7 +38,6 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
     post:
       summary: createS3Bucket
       operationId: createS3Bucket
@@ -116,7 +115,6 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
     post:
       summary: createS3AccessKey
       operationId: createS3AccessKey
@@ -200,7 +198,6 @@ paths:
           name: 'filter[type_id]'
           description: Plesk License Type ID
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
     post:
       summary: createPleskLicense
       operationId: createPleskLicense
@@ -331,7 +328,6 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
     post:
       summary: createS3AccessKeyGrant
       operationId: createS3AccessKeyGrant
@@ -401,7 +397,6 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
     post:
       summary: createDomainHandle
       operationId: createDomainHandle
@@ -519,7 +514,6 @@ paths:
           name: 'filter[tld]'
           description: TLD
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
     post:
       summary: createDomain
       operationId: createDomain
@@ -733,7 +727,6 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
     post:
       summary: createSSLContact
       operationId: createSSLContact
@@ -811,7 +804,6 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
     post:
       summary: createSSLOrganisation
       operationId: createSSLOrganisation
@@ -955,7 +947,6 @@ paths:
           name: 'filter[tech_contact_id]'
           description: ID of Tech Contact
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
     post:
       summary: createSSLCertificate
       operationId: createSSLCertificate
@@ -1018,7 +1009,6 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
     post:
       summary: createSSHKey
       operationId: createSSHKey
@@ -1096,7 +1086,6 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
     post:
       summary: createServer
       operationId: createServer
@@ -1165,7 +1154,6 @@ paths:
           name: 'filter[server_id]'
           description: Server ID Filter
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
   '/server-volumes/{id}':
     parameters:
       - schema:
@@ -1251,7 +1239,6 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
   '/server-isos/{id}':
     parameters:
       - schema:
@@ -1374,7 +1361,6 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/CustomerReferenceFilter'
   '/dns/zones/{name}':
     parameters:
       - schema:
@@ -1657,8 +1643,6 @@ components:
           type: string
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-        customer_reference:
-          type: string
         license:
           type: string
         key:
@@ -1706,8 +1690,6 @@ components:
         title:
           type: string
           example: Example Bucket
-        customer_reference:
-          type: string
       required:
         - id
         - project_id
@@ -1730,8 +1712,6 @@ components:
         title:
           type: string
           example: Example Access Key
-        customer_reference:
-          type: string
       required:
         - id
         - project_id
@@ -1747,8 +1727,6 @@ components:
           type: string
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-        customer_reference:
-          type: string
         bucket_id:
           type: string
           format: uuid
@@ -1776,8 +1754,6 @@ components:
           type: string
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-        customer_reference:
-          type: string
         type:
           type: string
           enum:
@@ -1871,8 +1847,6 @@ components:
           type: string
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-        customer_reference:
-          type: string
         owner_handle_code:
           type: string
         admin_handle_code:
@@ -1933,8 +1907,6 @@ components:
           type: string
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-        customer_reference:
-          type: string
         type_id:
           type: string
           format: uuid
@@ -1979,8 +1951,6 @@ components:
         project_id:
           type: string
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-        customer_reference:
-          type: string
         title:
           type: string
         first_name:
@@ -2036,8 +2006,6 @@ components:
           type: string
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-        customer_reference:
-          type: string
         name:
           type: string
         division:
@@ -2109,8 +2077,6 @@ components:
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         name:
           type: string
-        customer_reference:
-          type: string
         cores:
           type: integer
           minimum: 1
@@ -2153,8 +2119,6 @@ components:
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         title:
-          type: string
-        customer_reference:
           type: string
         public_key:
           type: string
@@ -2203,8 +2167,6 @@ components:
         title:
           type: string
           example: GRML 2020 Full
-        customer_reference:
-          type: string
         created_at:
           type: string
       required:
@@ -2229,8 +2191,6 @@ components:
         title:
           type: string
           example: Example Volume
-        customer_reference:
-          type: string
         size:
           type: integer
         server_id:
@@ -2298,8 +2258,6 @@ components:
             - DOMAIN
             - RDNS
         name:
-          type: string
-        customer_reference:
           type: string
         hostmaster:
           type: string
@@ -3315,8 +3273,6 @@ components:
                 example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               title:
                 type: string
-              customer_reference:
-                type: string
             required:
               - project_id
               - title
@@ -3334,8 +3290,6 @@ components:
               title:
                 type: string
               secret_key:
-                type: string
-              customer_reference:
                 type: string
             required:
               - project_id
@@ -3358,8 +3312,6 @@ components:
               address:
                 type: string
                 format: ipv4
-              customer_reference:
-                type: string
             required:
               - project_id
               - type_id
@@ -3373,8 +3325,6 @@ components:
               address:
                 type: string
                 format: ipv4
-              customer_reference:
-                type: string
     S3AccessGrantCreateRequest:
       content:
         application/json:
@@ -3392,8 +3342,6 @@ components:
                 enum:
                   - READ_ONLY
                   - READ_WRITE
-              customer_reference:
-                type: string
             required:
               - role
     DomainHandleCreateRequest:
@@ -3469,8 +3417,6 @@ components:
                 type: string
               privacy_protection:
                 type: boolean
-              customer_reference:
-                type: string
             required:
               - project_id
               - type
@@ -3536,8 +3482,6 @@ components:
                 type: string
               privacy_protection:
                 type: boolean
-              customer_reference:
-                type: string
     DomainCreateRequest:
       content:
         application/json:
@@ -3571,8 +3515,6 @@ components:
                 minItems: 2
                 items:
                   $ref: '#/components/schemas/DomainRequestNameserver'
-              customer_reference:
-                type: string
             required:
               - name
               - project_id
@@ -3600,8 +3542,6 @@ components:
                 minItems: 2
                 items:
                   $ref: '#/components/schemas/DomainRequestNameserver'
-              customer_reference:
-                type: string
     DomainScheduleDeleteRequest:
       content:
         application/json:
@@ -3648,8 +3588,6 @@ components:
                 type: string
               country_code:
                 type: string
-              customer_reference:
-                type: string
             required:
               - project_id
               - first_name
@@ -3693,8 +3631,6 @@ components:
               registration_number:
                 type: string
               duns:
-                type: string
-              customer_reference:
                 type: string
             required:
               - project_id
@@ -3746,8 +3682,6 @@ components:
               approver_email:
                 type: string
                 format: email
-              customer_reference:
-                type: string
             required:
               - project_id
               - type_id
@@ -3767,8 +3701,6 @@ components:
               title:
                 type: string
               public_key:
-                type: string
-              customer_reference:
                 type: string
             required:
               - project_id
@@ -3791,27 +3723,15 @@ components:
                 type: string
                 format: uuid
                 example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-              cores:
-                type: integer
-                minimum: 1
-                maximum: 16
-              memory:
-                type: integer
-                multipleOf: 1024
-                maximum: 65536
-                minimum: 1024
-              disk:
-                type: integer
-                minimum: 10
-                maximum: 1000
-                multipleOf: 10
+              variant_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               ssh_keys:
                 type: array
                 items:
                   type: string
                   format: uuid
-              customer_reference:
-                type: string
             required:
               - project_id
               - name
@@ -3832,8 +3752,6 @@ components:
               ns1:
                 type: string
               ns2:
-                type: string
-              customer_reference:
                 type: string
     DNSRecordCreateRequest:
       content:
@@ -3950,12 +3868,5 @@ components:
       schema:
         type: string
       description: Search
-    CustomerReferenceFilter:
-      name: 'filter[customer_reference]'
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Customer Reference Filter
 security:
   - AuthToken: []
