@@ -84,6 +84,9 @@ export default class LUMASERVAuthClient {
     getTokens(){
         return this.request('get', '/tokens', null, null);
     }
+    createToken(body = null){
+        return this.request('post', '/tokens', null, body);
+    }
     deleteToken(id){
         return this.request('delete', '/tokens/' + id, null, null);
     }

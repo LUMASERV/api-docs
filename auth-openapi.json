@@ -148,6 +148,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -415,6 +425,7 @@
             "description" : "Empty Response"
           }
         },
+        "security" : [ ],
         "summary" : "login",
         "tags" : [ "auth" ]
       }
@@ -477,6 +488,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -520,6 +541,16 @@
             "description" : "Single User"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -1032,6 +1063,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -1044,6 +1085,82 @@
           }
         },
         "summary" : "getTokens",
+        "tags" : [ "tokens" ]
+      },
+      "post" : {
+        "description" : "Creates a new api token",
+        "operationId" : "createToken",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/TokenCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_7"
+                }
+              }
+            },
+            "description" : "Single Token"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createToken",
         "tags" : [ "tokens" ]
       }
     },
@@ -1075,6 +1192,16 @@
             "description" : "Empty Response"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -1135,6 +1262,16 @@
             "description" : "Single Token"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -1291,6 +1428,28 @@
                 }
               },
               "required" : [ "password", "token" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "TokenCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "user_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "scope" : {
+                  "$ref" : "#/components/schemas/TokenScope"
+                }
+              },
+              "required" : [ "title" ],
               "type" : "object"
             }
           }
@@ -1542,11 +1701,21 @@
           "user_id" : {
             "type" : "integer"
           },
+          "type" : {
+            "enum" : [ "SESSION", "API" ],
+            "type" : "string"
+          },
+          "scope" : {
+            "$ref" : "#/components/schemas/TokenScope"
+          },
+          "validUntil" : {
+            "type" : "string"
+          },
           "created_at" : {
             "type" : "string"
           }
         },
-        "required" : [ "created_at", "token", "user_id" ],
+        "required" : [ "created_at", "scope", "token", "type", "user_id" ],
         "title" : "Token",
         "type" : "object",
         "x-tags" : [ "users" ]
@@ -1640,6 +1809,16 @@
         "title" : "TokenValidationInfo",
         "type" : "object",
         "x-tags" : [ "auth" ]
+      },
+      "TokenScope" : {
+        "properties" : {
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "title" : "TokenScope",
+        "type" : "object"
       },
       "inline_response_200" : {
         "properties" : {
