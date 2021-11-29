@@ -81,6 +81,26 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -351,6 +371,26 @@
           "required" : false,
           "schema" : {
             "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
           },
           "style" : "form"
         } ],
@@ -634,6 +674,26 @@
           "required" : false,
           "schema" : {
             "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
           },
           "style" : "form"
         } ],
@@ -1061,6 +1121,26 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -1294,6 +1374,26 @@
           "required" : false,
           "schema" : {
             "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
           },
           "style" : "form"
         } ],
@@ -1678,6 +1778,26 @@
           "required" : false,
           "schema" : {
             "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
           },
           "style" : "form"
         } ],
@@ -2366,6 +2486,26 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -2636,6 +2776,26 @@
           "required" : false,
           "schema" : {
             "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
           },
           "style" : "form"
         } ],
@@ -3089,6 +3249,26 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -3299,6 +3479,26 @@
           "required" : false,
           "schema" : {
             "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
           },
           "style" : "form"
         } ],
@@ -3573,6 +3773,26 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -3794,6 +4014,26 @@
           "required" : false,
           "schema" : {
             "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
           },
           "style" : "form"
         } ],
@@ -4077,6 +4317,26 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -4283,6 +4543,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "labels[:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -4416,6 +4686,26 @@
           "required" : false,
           "schema" : {
             "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
           },
           "style" : "form"
         } ],
@@ -5155,6 +5445,28 @@
           "type" : "string"
         },
         "style" : "form"
+      },
+      "LabelsFilter" : {
+        "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+        "explode" : true,
+        "in" : "query",
+        "name" : "filter[labels][:name]",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "style" : "form"
+      },
+      "WithLabels" : {
+        "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+        "explode" : true,
+        "in" : "query",
+        "name" : "with_labels",
+        "required" : false,
+        "schema" : {
+          "type" : "boolean"
+        },
+        "style" : "form"
       }
     },
     "requestBodies" : {
@@ -5170,6 +5482,9 @@
                 },
                 "title" : {
                   "type" : "string"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "required" : [ "project_id", "title" ],
@@ -5193,6 +5508,9 @@
                 },
                 "secret_key" : {
                   "type" : "string"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "required" : [ "project_id", "secret_key", "title" ],
@@ -5219,6 +5537,9 @@
                 "address" : {
                   "format" : "ipv4",
                   "type" : "string"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "required" : [ "project_id", "type_id" ],
@@ -5235,6 +5556,9 @@
                 "address" : {
                   "format" : "ipv4",
                   "type" : "string"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "type" : "object"
@@ -5258,6 +5582,9 @@
                 "role" : {
                   "enum" : [ "READ_ONLY", "READ_WRITE" ],
                   "type" : "string"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "required" : [ "role" ],
@@ -5360,6 +5687,9 @@
                 },
                 "privacy_protection" : {
                   "type" : "boolean"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "required" : [ "city", "country_code", "email", "first_name", "gender", "last_name", "postal_code", "project_id", "street", "street_number", "type" ],
@@ -5440,6 +5770,9 @@
                 },
                 "privacy_protection" : {
                   "type" : "boolean"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "type" : "object"
@@ -5488,6 +5821,9 @@
                   },
                   "minItems" : 2,
                   "type" : "array"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "required" : [ "admin_handle_code", "name", "nameserver", "owner_handle_code", "project_id", "tech_handle_code", "zone_handle_code" ],
@@ -5519,6 +5855,9 @@
                   },
                   "minItems" : 2,
                   "type" : "array"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "type" : "object"
@@ -5589,6 +5928,9 @@
                 },
                 "country_code" : {
                   "type" : "string"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "required" : [ "address", "city", "country_code", "email", "first_name", "last_name", "organisation", "phone", "postal_code", "project_id" ],
@@ -5641,6 +5983,9 @@
                 },
                 "duns" : {
                   "type" : "string"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "required" : [ "address", "city", "country_code", "name", "phone", "postal_code", "project_id" ],
@@ -5698,6 +6043,9 @@
                 "approver_email" : {
                   "format" : "email",
                   "type" : "string"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "required" : [ "approver_email", "csr", "project_id", "type_id", "validation_method" ],
@@ -5721,6 +6069,9 @@
                 },
                 "public_key" : {
                   "type" : "string"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "required" : [ "project_id", "public_key", "title" ],
@@ -5758,9 +6109,12 @@
                     "type" : "string"
                   },
                   "type" : "array"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
-              "required" : [ "cores", "disk", "memory", "name", "project_id", "ssh_keys", "template_id" ],
+              "required" : [ "name", "project_id", "ssh_keys", "template_id" ],
               "type" : "object"
             }
           }
@@ -5780,6 +6134,9 @@
                 },
                 "ns2" : {
                   "type" : "string"
+                },
+                "labels" : {
+                  "type" : "object"
                 }
               },
               "type" : "object"
@@ -6417,6 +6774,9 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "created_at", "id", "key", "license", "project_id" ],
@@ -6458,6 +6818,9 @@
           "title" : {
             "example" : "Example Bucket",
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "id", "project_id", "title" ],
@@ -6481,6 +6844,9 @@
           "title" : {
             "example" : "Example Access Key",
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "id", "project_id", "title" ],
@@ -6507,6 +6873,9 @@
           "role" : {
             "enum" : [ "READ_ONLY", "READ_WRITE" ],
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "id", "role" ],
@@ -6611,6 +6980,9 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "city", "code", "country_code", "created_at", "email", "first_name", "gender", "last_name", "postal_code", "privacy_protection", "project_id", "street", "street_number", "type" ],
@@ -6643,6 +7015,9 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "admin_handle_code", "created_at", "name", "owner_handle_code", "project_id", "tech_handle_code", "zone_handle_code" ],
@@ -6723,6 +7098,9 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "admin_contact_id", "approver_email", "created_at", "id", "organisation_id", "project_id", "tech_contact_id", "type_id" ],
@@ -6782,6 +7160,9 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "address", "city", "country_code", "created_at", "email", "first_name", "id", "last_name", "organisation", "phone", "postal_code", "project_id" ],
@@ -6839,6 +7220,9 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "address", "city", "country_code", "created_at", "id", "name", "phone", "postal_code", "project_id" ],
@@ -6906,6 +7290,9 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "cores", "created_at", "disk", "id", "memory", "name", "project_id", "template_id" ],
@@ -6933,6 +7320,9 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "created_at", "id", "project_id", "public_key", "title" ],
@@ -6979,6 +7369,9 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "created_at", "id", "project_id", "title" ],
@@ -7012,6 +7405,9 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "created_at", "id", "project_id", "size", "title" ],
@@ -7093,6 +7489,9 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
           }
         },
         "required" : [ "created_at", "hostmaster", "name", "ns1", "ns2", "project_id", "type" ],
