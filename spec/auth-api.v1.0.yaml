@@ -47,6 +47,8 @@ paths:
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
       tags:
@@ -133,6 +135,7 @@ paths:
       description: Exchanges user credentials for an auth token
       requestBody:
         $ref: '#/components/requestBodies/LoginRequest'
+      security: []
     parameters: []
   /users:
     get:
@@ -143,6 +146,8 @@ paths:
         '200':
           $ref: '#/components/responses/UserListResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -169,6 +174,8 @@ paths:
         '200':
           $ref: '#/components/responses/UserSingleResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -344,10 +351,33 @@ paths:
           $ref: '#/components/responses/TokenListResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getTokens
       description: Returns all tokens
+    post:
+      summary: createToken
+      operationId: createToken
+      responses:
+        '200':
+          $ref: '#/components/responses/TokenSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - tokens
+      description: Creates a new api token
+      requestBody:
+        $ref: '#/components/requestBodies/TokenCreateRequest'
   '/tokens/{id}':
     parameters:
       - schema:
@@ -366,6 +396,8 @@ paths:
           $ref: '#/components/responses/TokenSingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -379,6 +411,8 @@ paths:
         '200':
           $ref: '#/components/responses/EmptyResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -518,11 +552,22 @@ components:
           type: string
         user_id:
           type: integer
+        type:
+          type: string
+          enum:
+            - SESSION
+            - API
+        scope:
+          $ref: '#/components/schemas/TokenScope'
+        validUntil:
+          type: string
         created_at:
           type: string
       required:
         - token
         - user_id
+        - type
+        - scope
         - created_at
     User:
       title: User
@@ -608,6 +653,13 @@ components:
         - user
         - token
         - project_memberships
+    TokenScope:
+      title: TokenScope
+      type: object
+      properties:
+        project_id:
+          type: string
+          format: uuid
   securitySchemes:
     AuthToken:
       type: http
@@ -914,6 +966,21 @@ components:
             required:
               - token
               - password
+    TokenCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              scope:
+                $ref: '#/components/schemas/TokenScope'
+            required:
+              - title
   parameters:
     PaginationPage:
       name: page
