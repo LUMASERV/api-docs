@@ -1352,6 +1352,7 @@ paths:
           in: query
           name: 'labels[:name]'
           description: Filters for the label with the given name. Only checks the value if it's length is greater than 0.
+        - $ref: '#/components/parameters/WithLabels'
   '/domains/{name}/check':
     parameters:
       - schema:
