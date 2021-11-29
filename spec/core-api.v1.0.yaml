@@ -38,6 +38,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
     post:
       summary: createS3Bucket
       operationId: createS3Bucket
@@ -115,6 +117,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
     post:
       summary: createS3AccessKey
       operationId: createS3AccessKey
@@ -198,6 +202,8 @@ paths:
           name: 'filter[type_id]'
           description: Plesk License Type ID
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
     post:
       summary: createPleskLicense
       operationId: createPleskLicense
@@ -328,6 +334,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
     post:
       summary: createS3AccessKeyGrant
       operationId: createS3AccessKeyGrant
@@ -397,6 +405,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
     post:
       summary: createDomainHandle
       operationId: createDomainHandle
@@ -514,6 +524,8 @@ paths:
           name: 'filter[tld]'
           description: TLD
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
     post:
       summary: createDomain
       operationId: createDomain
@@ -727,6 +739,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
     post:
       summary: createSSLContact
       operationId: createSSLContact
@@ -804,6 +818,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
     post:
       summary: createSSLOrganisation
       operationId: createSSLOrganisation
@@ -947,6 +963,8 @@ paths:
           name: 'filter[tech_contact_id]'
           description: ID of Tech Contact
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
     post:
       summary: createSSLCertificate
       operationId: createSSLCertificate
@@ -1009,6 +1027,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
     post:
       summary: createSSHKey
       operationId: createSSHKey
@@ -1086,6 +1106,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
     post:
       summary: createServer
       operationId: createServer
@@ -1154,6 +1176,8 @@ paths:
           name: 'filter[server_id]'
           description: Server ID Filter
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
   '/server-volumes/{id}':
     parameters:
       - schema:
@@ -1239,6 +1263,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
   '/server-isos/{id}':
     parameters:
       - schema:
@@ -1315,12 +1341,17 @@ paths:
           in: query
           name: limit
           description: Limit per Resource Type
-        - schema:
+        - in: query
+          description: Project ID
+          name: project_id
+          schema:
             type: string
             format: uuid
+        - schema:
+            type: string
           in: query
-          name: project_id
-          description: Project ID
+          name: 'labels[:name]'
+          description: Filters for the label with the given name. Only checks the value if it's length is greater than 0.
   '/domains/{name}/check':
     parameters:
       - schema:
@@ -1361,6 +1392,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
   '/dns/zones/{name}':
     parameters:
       - schema:
@@ -1649,6 +1682,8 @@ components:
           type: string
         created_at:
           type: string
+        labels:
+          type: object
       required:
         - id
         - project_id
@@ -1690,6 +1725,8 @@ components:
         title:
           type: string
           example: Example Bucket
+        labels:
+          type: object
       required:
         - id
         - project_id
@@ -1712,6 +1749,8 @@ components:
         title:
           type: string
           example: Example Access Key
+        labels:
+          type: object
       required:
         - id
         - project_id
@@ -1739,6 +1778,8 @@ components:
           enum:
             - READ_ONLY
             - READ_WRITE
+        labels:
+          type: object
       required:
         - id
         - role
@@ -1819,6 +1860,8 @@ components:
           type: boolean
         created_at:
           type: string
+        labels:
+          type: object
       required:
         - code
         - project_id
@@ -1857,6 +1900,8 @@ components:
           type: string
         created_at:
           type: string
+        labels:
+          type: object
       required:
         - name
         - project_id
@@ -1929,6 +1974,8 @@ components:
           type: string
         created_at:
           type: string
+        labels:
+          type: object
       required:
         - id
         - project_id
@@ -1979,6 +2026,8 @@ components:
           type: string
         created_at:
           type: string
+        labels:
+          type: object
       required:
         - id
         - project_id
@@ -2032,6 +2081,8 @@ components:
           type: string
         created_at:
           type: string
+        labels:
+          type: object
       required:
         - id
         - project_id
@@ -2097,6 +2148,8 @@ components:
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         created_at:
           type: string
+        labels:
+          type: object
       required:
         - id
         - project_id
@@ -2124,6 +2177,8 @@ components:
           type: string
         created_at:
           type: string
+        labels:
+          type: object
       required:
         - id
         - project_id
@@ -2169,6 +2224,8 @@ components:
           example: GRML 2020 Full
         created_at:
           type: string
+        labels:
+          type: object
       required:
         - id
         - project_id
@@ -2199,6 +2256,8 @@ components:
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         created_at:
           type: string
+        labels:
+          type: object
       required:
         - id
         - project_id
@@ -2268,6 +2327,8 @@ components:
           type: string
         created_at:
           type: string
+        labels:
+          type: object
       required:
         - project_id
         - type
@@ -3273,6 +3334,8 @@ components:
                 example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               title:
                 type: string
+              labels:
+                type: object
             required:
               - project_id
               - title
@@ -3291,6 +3354,8 @@ components:
                 type: string
               secret_key:
                 type: string
+              labels:
+                type: object
             required:
               - project_id
               - title
@@ -3312,6 +3377,8 @@ components:
               address:
                 type: string
                 format: ipv4
+              labels:
+                type: object
             required:
               - project_id
               - type_id
@@ -3325,6 +3392,8 @@ components:
               address:
                 type: string
                 format: ipv4
+              labels:
+                type: object
     S3AccessGrantCreateRequest:
       content:
         application/json:
@@ -3342,6 +3411,8 @@ components:
                 enum:
                   - READ_ONLY
                   - READ_WRITE
+              labels:
+                type: object
             required:
               - role
     DomainHandleCreateRequest:
@@ -3417,6 +3488,8 @@ components:
                 type: string
               privacy_protection:
                 type: boolean
+              labels:
+                type: object
             required:
               - project_id
               - type
@@ -3482,6 +3555,8 @@ components:
                 type: string
               privacy_protection:
                 type: boolean
+              labels:
+                type: object
     DomainCreateRequest:
       content:
         application/json:
@@ -3515,6 +3590,8 @@ components:
                 minItems: 2
                 items:
                   $ref: '#/components/schemas/DomainRequestNameserver'
+              labels:
+                type: object
             required:
               - name
               - project_id
@@ -3542,6 +3619,8 @@ components:
                 minItems: 2
                 items:
                   $ref: '#/components/schemas/DomainRequestNameserver'
+              labels:
+                type: object
     DomainScheduleDeleteRequest:
       content:
         application/json:
@@ -3588,6 +3667,8 @@ components:
                 type: string
               country_code:
                 type: string
+              labels:
+                type: object
             required:
               - project_id
               - first_name
@@ -3632,6 +3713,8 @@ components:
                 type: string
               duns:
                 type: string
+              labels:
+                type: object
             required:
               - project_id
               - name
@@ -3682,6 +3765,8 @@ components:
               approver_email:
                 type: string
                 format: email
+              labels:
+                type: object
             required:
               - project_id
               - type_id
@@ -3702,6 +3787,8 @@ components:
                 type: string
               public_key:
                 type: string
+              labels:
+                type: object
             required:
               - project_id
               - title
@@ -3732,13 +3819,12 @@ components:
                 items:
                   type: string
                   format: uuid
+              labels:
+                type: object
             required:
               - project_id
               - name
               - template_id
-              - cores
-              - memory
-              - disk
               - ssh_keys
     DNSZoneUpdateRequest:
       content:
@@ -3753,6 +3839,8 @@ components:
                 type: string
               ns2:
                 type: string
+              labels:
+                type: object
     DNSRecordCreateRequest:
       content:
         application/json:
@@ -3868,5 +3956,19 @@ components:
       schema:
         type: string
       description: Search
+    LabelsFilter:
+      name: 'filter[labels][:name]'
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filters for the label with the given name. Only checks the value if it's length is greater than 0.
+    WithLabels:
+      name: with_labels
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: 'If length 0, true or 1 is given, the labels will be added to the response objects.'
 security:
   - AuthToken: []
