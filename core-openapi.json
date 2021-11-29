@@ -4553,6 +4553,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
