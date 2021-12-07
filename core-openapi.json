@@ -123,6 +123,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -170,6 +180,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -241,6 +261,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -292,6 +322,16 @@
             "description" : "Single S3 Bucket"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -415,6 +455,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -462,6 +512,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -533,6 +593,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -584,6 +654,16 @@
             "description" : "Single S3 Access Key"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -718,6 +798,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -765,6 +855,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -827,6 +927,16 @@
             "description" : "Single Plesk License"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -905,6 +1015,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -1163,6 +1283,26 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -1222,6 +1362,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -1295,6 +1445,16 @@
             "description" : "Empty Response"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -1418,6 +1578,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -1465,6 +1635,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -1524,6 +1704,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -1573,6 +1763,16 @@
             "description" : "Single Domain Handle"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -1649,6 +1849,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -1822,6 +2032,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -1869,6 +2089,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -1940,6 +2170,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -1991,6 +2231,16 @@
             "description" : "Single Domain"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2078,6 +2328,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -2131,6 +2391,16 @@
             "description" : "Empty Response"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2200,6 +2470,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -2253,6 +2533,16 @@
             "description" : "Empty Response"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2342,6 +2632,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -2405,6 +2705,16 @@
             "description" : "Empty Response"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2528,6 +2838,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -2575,6 +2895,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2646,6 +2976,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -2697,6 +3037,16 @@
             "description" : "Single SSLContact"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2820,6 +3170,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -2867,6 +3227,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2938,6 +3308,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -2989,6 +3369,16 @@
             "description" : "Single SSLOrganisation"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3291,6 +3681,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -3338,6 +3738,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3400,6 +3810,16 @@
             "description" : "Single SSLCertificate"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3523,6 +3943,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -3570,6 +4000,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3641,6 +4081,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -3692,6 +4142,16 @@
             "description" : "Single SSHKey"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3815,6 +4275,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -3862,6 +4332,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3924,6 +4404,16 @@
             "description" : "Single Server"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -4058,6 +4548,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -4101,6 +4601,16 @@
             "description" : "Single ServerVolume"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -4270,7 +4780,7 @@
         "tags" : [ "server" ]
       }
     },
-    "/server-isos" : {
+    "/server-medias" : {
       "get" : {
         "description" : "Returns all server iso's",
         "operationId" : "getServerISOs",
@@ -4347,9 +4857,19 @@
                 }
               }
             },
-            "description" : "ServerISO List"
+            "description" : "ServerMedia List"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -4374,12 +4894,12 @@
         "tags" : [ "server" ]
       }
     },
-    "/server-isos/{id}" : {
+    "/server-medias/{id}" : {
       "get" : {
         "description" : "Returns a single server iso",
-        "operationId" : "getServerISO",
+        "operationId" : "getServerMedia",
         "parameters" : [ {
-          "description" : "Server ISO ID",
+          "description" : "Server Media ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -4399,9 +4919,19 @@
                 }
               }
             },
-            "description" : "Single ServerISO"
+            "description" : "Single ServerMedia"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -4432,7 +4962,7 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "getServerISO",
+        "summary" : "getServerMedia",
         "tags" : [ "server" ]
       }
     },
@@ -4576,6 +5106,16 @@
             "description" : "Search Results"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -4740,6 +5280,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "500" : {
             "content" : {
               "application/json" : {
@@ -4782,6 +5332,16 @@
             "description" : "Single DNSZone"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -4859,6 +5419,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -4951,6 +5521,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -5019,6 +5599,16 @@
             "description" : "Response for validation errors"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -5105,6 +5695,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -5166,6 +5766,16 @@
             "description" : "Empty Response"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -5261,6 +5871,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -5313,6 +5933,16 @@
             "description" : "Domain Verification Status Response"
           },
           "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -5381,6 +6011,16 @@
             },
             "description" : "Empty Response"
           },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
           "404" : {
             "content" : {
               "application/json" : {
@@ -5404,6 +6044,729 @@
         },
         "summary" : "sendDomainVerification",
         "tags" : [ "domains" ]
+      }
+    },
+    "/availability-zones" : {
+      "get" : {
+        "description" : "Returns all availability zones",
+        "operationId" : "getAvailabilityZones",
+        "parameters" : [ {
+          "description" : "Page",
+          "in" : "query",
+          "name" : "page",
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Page Size",
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Search",
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_29"
+                }
+              }
+            },
+            "description" : "AvailabilityZone List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getAvailabilityZones",
+        "tags" : [ "server" ]
+      }
+    },
+    "/availability-zones/{id}" : {
+      "get" : {
+        "description" : "Returns a single availability zone",
+        "operationId" : "getAvailabilityZone",
+        "parameters" : [ {
+          "description" : "Availability Zone ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_30"
+                }
+              }
+            },
+            "description" : "Single AvailabilityZone"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getAvailabilityZone",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-variants" : {
+      "get" : {
+        "description" : "Returns all server variants",
+        "operationId" : "getServerVariants",
+        "parameters" : [ {
+          "description" : "Page",
+          "in" : "query",
+          "name" : "page",
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Page Size",
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Search",
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_31"
+                }
+              }
+            },
+            "description" : "ServerVariant List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerVariants",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-variants/{id}" : {
+      "get" : {
+        "description" : "Returns a single server variant",
+        "operationId" : "getServerVariant",
+        "parameters" : [ {
+          "description" : "Server Variant ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_32"
+                }
+              }
+            },
+            "description" : "Single ServerVariant"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerVariant",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-volume-classes" : {
+      "get" : {
+        "description" : "Returns all volume classes",
+        "operationId" : "getServerVolumeClasses",
+        "parameters" : [ {
+          "description" : "Page",
+          "in" : "query",
+          "name" : "page",
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Page Size",
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Search",
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_33"
+                }
+              }
+            },
+            "description" : "ServerVolumeClass List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerVolumeClasses",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-volume-classes/{id}" : {
+      "get" : {
+        "description" : "Returns a single volume class",
+        "operationId" : "getServerVolumeClass",
+        "parameters" : [ {
+          "description" : "Server Volume Class ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_34"
+                }
+              }
+            },
+            "description" : "Single ServerVolumeClass"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerVolumeClass",
+        "tags" : [ "server" ]
+      }
+    },
+    "/networks" : {
+      "get" : {
+        "description" : "Returns all networks",
+        "operationId" : "getNetworks",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "in" : "query",
+          "name" : "page",
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Page Size",
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Search",
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_35"
+                }
+              }
+            },
+            "description" : "Network List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getNetworks",
+        "tags" : [ "server" ]
+      }
+    },
+    "/networks/{id}" : {
+      "get" : {
+        "description" : "Returns a single network",
+        "operationId" : "getNetwork",
+        "parameters" : [ {
+          "description" : "Network ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_36"
+                }
+              }
+            },
+            "description" : "Single Network"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getNetwork",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}/networks" : {
+      "get" : {
+        "description" : "Returns all server networks",
+        "operationId" : "getServerNetworks",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Page",
+          "in" : "query",
+          "name" : "page",
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Page Size",
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "Search",
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_37"
+                }
+              }
+            },
+            "description" : "ServerNetwork List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerNetworks",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}/networks/{network_id}" : {
+      "get" : {
+        "description" : "Returns a single server network",
+        "operationId" : "getServerNetwork",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Server Network ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "network_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_38"
+                }
+              }
+            },
+            "description" : "Single ServerNetwork"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerNetwork",
+        "tags" : [ "server" ]
       }
     }
   },
@@ -6113,6 +7476,9 @@
                   "format" : "uuid",
                   "type" : "string"
                 },
+                "custom_variant" : {
+                  "$ref" : "#/components/schemas/CustomVariant"
+                },
                 "ssh_keys" : {
                   "items" : {
                     "format" : "uuid",
@@ -6513,7 +7879,7 @@
         },
         "description" : "Single Server"
       },
-      "ServerISOListResponse" : {
+      "ServerMediaListResponse" : {
         "content" : {
           "application/json" : {
             "schema" : {
@@ -6521,9 +7887,9 @@
             }
           }
         },
-        "description" : "ServerISO List"
+        "description" : "ServerMedia List"
       },
-      "ServerISOSingleResponse" : {
+      "ServerMediaSingleResponse" : {
         "content" : {
           "application/json" : {
             "schema" : {
@@ -6531,7 +7897,7 @@
             }
           }
         },
-        "description" : "Single ServerISO"
+        "description" : "Single ServerMedia"
       },
       "ServerVolumeListResponse" : {
         "content" : {
@@ -6672,6 +8038,106 @@
           }
         },
         "description" : "Domain Verification Status Response"
+      },
+      "NetworkListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_35"
+            }
+          }
+        },
+        "description" : "Network List"
+      },
+      "NetworkSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_36"
+            }
+          }
+        },
+        "description" : "Single Network"
+      },
+      "AvailabilityZoneListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_29"
+            }
+          }
+        },
+        "description" : "AvailabilityZone List"
+      },
+      "AvailabilityZoneSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_30"
+            }
+          }
+        },
+        "description" : "Single AvailabilityZone"
+      },
+      "ServerVolumeClassListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_33"
+            }
+          }
+        },
+        "description" : "ServerVolumeClass List"
+      },
+      "ServerVolumeClassSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_34"
+            }
+          }
+        },
+        "description" : "Single ServerVolumeClass"
+      },
+      "ServerVariantListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_31"
+            }
+          }
+        },
+        "description" : "ServerVariant List"
+      },
+      "ServerVariantSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_32"
+            }
+          }
+        },
+        "description" : "Single ServerVariant"
+      },
+      "ServerNetworkListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_37"
+            }
+          }
+        },
+        "description" : "ServerNetwork List"
+      },
+      "ServerNetworkSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_38"
+            }
+          }
+        },
+        "description" : "Single ServerNetwork"
       }
     },
     "schemas" : {
@@ -7264,10 +8730,6 @@
             "format" : "uuid",
             "type" : "string"
           },
-          "legacy_id" : {
-            "deprecated" : true,
-            "type" : "string"
-          },
           "project_id" : {
             "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
@@ -7276,25 +8738,15 @@
           "name" : {
             "type" : "string"
           },
-          "cores" : {
-            "maximum" : 16,
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "memory" : {
-            "maximum" : 65536,
-            "minimum" : 1024,
-            "multipleOf" : 1024,
-            "type" : "integer"
-          },
-          "disk" : {
-            "maximum" : 1000,
-            "minimum" : 10,
-            "multipleOf" : 10,
+          "variant_id" : {
             "type" : "integer"
           },
           "template_id" : {
             "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "media_id" : {
             "format" : "uuid",
             "type" : "string"
           },
@@ -7303,9 +8755,13 @@
           },
           "labels" : {
             "type" : "object"
+          },
+          "legacy_id" : {
+            "deprecated" : true,
+            "type" : "integer"
           }
         },
-        "required" : [ "cores", "created_at", "disk", "id", "memory", "name", "project_id", "template_id" ],
+        "required" : [ "created_at", "id", "name", "project_id", "template_id", "variant_id" ],
         "title" : "Server",
         "type" : "object",
         "x-tags" : [ "server" ]
@@ -7346,11 +8802,6 @@
             "format" : "uuid",
             "type" : "string"
           },
-          "legacy_key" : {
-            "deprecated" : true,
-            "example" : "DEBIAN_10",
-            "type" : "string"
-          },
           "title" : {
             "example" : "Debian 10",
             "type" : "string"
@@ -7361,7 +8812,7 @@
         "type" : "object",
         "x-tags" : [ "server" ]
       },
-      "ServerISO" : {
+      "ServerMedia" : {
         "properties" : {
           "id" : {
             "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
@@ -7385,7 +8836,7 @@
           }
         },
         "required" : [ "created_at", "id", "project_id", "title" ],
-        "title" : "ServerISO",
+        "title" : "ServerMedia",
         "type" : "object",
         "x-tags" : [ "server" ]
       },
@@ -7405,11 +8856,15 @@
             "example" : "Example Volume",
             "type" : "string"
           },
+          "server_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+            "format" : "uuid",
+            "type" : "string"
+          },
           "size" : {
             "type" : "integer"
           },
-          "server_id" : {
-            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+          "class_id" : {
             "format" : "uuid",
             "type" : "string"
           },
@@ -7544,6 +8999,138 @@
         "title" : "DomainVerificationStatus",
         "type" : "object",
         "x-tags" : [ "domains" ]
+      },
+      "ServerVolumeClass" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "replication" : {
+            "type" : "integer"
+          }
+        },
+        "required" : [ "id", "replication" ],
+        "title" : "ServerVolumeClass",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "AvailabilityZone" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "title" ],
+        "title" : "AvailabilityZone",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "ServerVariant" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "cores" : {
+            "type" : "integer"
+          },
+          "memory" : {
+            "type" : "integer"
+          },
+          "disk" : {
+            "type" : "integer"
+          }
+        },
+        "required" : [ "cores", "disk", "id", "memory", "title" ],
+        "title" : "ServerVariant",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "Network" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "availability_zone_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
+          }
+        },
+        "required" : [ "availability_zone_id", "created_at", "id", "project_id", "title" ],
+        "title" : "Network",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "ServerNetwork" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "default" : {
+            "type" : "boolean"
+          },
+          "network_id" : {
+            "type" : "string"
+          },
+          "address_v4_id" : {
+            "type" : "string"
+          },
+          "address_v6_id" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          },
+          "labels" : {
+            "type" : "object"
+          }
+        },
+        "required" : [ "created_at", "default", "id", "network_id" ],
+        "title" : "ServerNetwork",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "CustomVariant" : {
+        "deprecated" : true,
+        "description" : "This adds backwards compatibility for custom configurations but is deprecated and will be removed in the future.",
+        "properties" : {
+          "cores" : {
+            "type" : "integer"
+          },
+          "memory" : {
+            "type" : "integer"
+          },
+          "disk" : {
+            "type" : "integer"
+          }
+        },
+        "required" : [ "cores", "disk", "memory" ],
+        "title" : "CustomVariant",
+        "type" : "object",
+        "x-tags" : [ "server" ]
       },
       "inline_response_200" : {
         "properties" : {
@@ -8233,7 +9820,7 @@
           },
           "data" : {
             "items" : {
-              "$ref" : "#/components/schemas/ServerISO"
+              "$ref" : "#/components/schemas/ServerMedia"
             },
             "type" : "array"
           },
@@ -8256,7 +9843,7 @@
             "type" : "boolean"
           },
           "data" : {
-            "$ref" : "#/components/schemas/ServerISO"
+            "$ref" : "#/components/schemas/ServerMedia"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
@@ -8424,6 +10011,219 @@
           }
         },
         "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_29" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/AvailabilityZone"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_30" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/AvailabilityZone"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_31" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerVariant"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_32" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerVariant"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_33" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerVolumeClass"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_34" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerVolumeClass"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_35" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Network"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_36" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Network"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_37" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerNetwork"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_38" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerNetwork"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
         "type" : "object"
       }
     },

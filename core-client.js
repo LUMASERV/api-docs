@@ -205,10 +205,10 @@ export default class LUMASERVCoreClient {
         return this.request('get', '/server-templates/' + id, null, null);
     }
     getServerISOs(query = null){
-        return this.request('get', '/server-isos', query, null);
+        return this.request('get', '/server-medias', query, null);
     }
-    getServerISO(id){
-        return this.request('get', '/server-isos/' + id, null, null);
+    getServerMedia(id){
+        return this.request('get', '/server-medias/' + id, null, null);
     }
     getDomainPricingList(query = null){
         return this.request('get', '/pricing/domains', query, null);
@@ -248,5 +248,35 @@ export default class LUMASERVCoreClient {
     }
     sendDomainVerification(name){
         return this.request('post', '/domains/' + name + '/verification', null, null);
+    }
+    getAvailabilityZones(query = null){
+        return this.request('get', '/availability-zones', query, null);
+    }
+    getAvailabilityZone(id){
+        return this.request('get', '/availability-zones/' + id, null, null);
+    }
+    getServerVariants(query = null){
+        return this.request('get', '/server-variants', query, null);
+    }
+    getServerVariant(id){
+        return this.request('get', '/server-variants/' + id, null, null);
+    }
+    getServerVolumeClasses(query = null){
+        return this.request('get', '/server-volume-classes', query, null);
+    }
+    getServerVolumeClass(id){
+        return this.request('get', '/server-volume-classes/' + id, null, null);
+    }
+    getNetworks(query = null){
+        return this.request('get', '/networks', query, null);
+    }
+    getNetwork(id){
+        return this.request('get', '/networks/' + id, null, null);
+    }
+    getServerNetworks(id, query = null){
+        return this.request('get', '/servers/' + id + '/networks', query, null);
+    }
+    getServerNetwork(id, network_id){
+        return this.request('get', '/servers/' + id + '/networks/' + network_id, null, null);
     }
 }
