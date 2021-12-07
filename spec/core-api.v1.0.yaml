@@ -29,6 +29,8 @@ paths:
           $ref: '#/components/responses/S3BucketListResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getS3Buckets
@@ -49,6 +51,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -77,6 +81,8 @@ paths:
           $ref: '#/components/responses/S3BucketSingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -90,6 +96,8 @@ paths:
         '200':
           $ref: '#/components/responses/EmptyResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -107,6 +115,8 @@ paths:
         '200':
           $ref: '#/components/responses/S3AccessKeyListResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -128,6 +138,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -156,6 +168,8 @@ paths:
           $ref: '#/components/responses/S3AccessKeySingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -169,6 +183,8 @@ paths:
         '200':
           $ref: '#/components/responses/EmptyResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -188,6 +204,8 @@ paths:
         '200':
           $ref: '#/components/responses/PleskLicenseListResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -213,6 +231,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -241,6 +261,8 @@ paths:
           $ref: '#/components/responses/PleskLicenseSingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -256,6 +278,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -326,6 +350,10 @@ paths:
           $ref: '#/components/responses/S3AccessGrantListResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getS3AccessKeyGrants
@@ -345,6 +373,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -379,6 +409,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -395,6 +427,8 @@ paths:
         '200':
           $ref: '#/components/responses/DomainHandleListResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -416,6 +450,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -440,6 +476,8 @@ paths:
           $ref: '#/components/responses/DomainHandleSingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -455,6 +493,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -473,6 +513,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -489,6 +531,8 @@ paths:
         '200':
           $ref: '#/components/responses/DomainListResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -536,6 +580,8 @@ paths:
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -563,6 +609,8 @@ paths:
           $ref: '#/components/responses/DomainSingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -578,6 +626,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -595,6 +645,8 @@ paths:
         '200':
           $ref: '#/components/responses/EmptyResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -621,6 +673,8 @@ paths:
           $ref: '#/components/responses/DomainAuthinfoResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -634,6 +688,8 @@ paths:
         '200':
           $ref: '#/components/responses/EmptyResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -658,6 +714,8 @@ paths:
         '200':
           $ref: '#/components/responses/EmptyResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -684,6 +742,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -713,6 +773,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -729,6 +791,8 @@ paths:
         '200':
           $ref: '#/components/responses/SSLContactListResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -750,6 +814,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -778,6 +844,8 @@ paths:
           $ref: '#/components/responses/SSLContactSingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -791,6 +859,8 @@ paths:
         '200':
           $ref: '#/components/responses/EmptyResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -808,6 +878,8 @@ paths:
         '200':
           $ref: '#/components/responses/SSLOrganisationListResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -829,6 +901,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -857,6 +931,8 @@ paths:
           $ref: '#/components/responses/SSLOrganisationSingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -870,6 +946,8 @@ paths:
         '200':
           $ref: '#/components/responses/EmptyResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -930,6 +1008,8 @@ paths:
           $ref: '#/components/responses/SSLCertificateListResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getSSLCertificates
@@ -975,6 +1055,8 @@ paths:
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -1002,6 +1084,8 @@ paths:
           $ref: '#/components/responses/SSLCertificateSingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -1015,6 +1099,8 @@ paths:
         '200':
           $ref: '#/components/responses/SSHKeyListResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -1038,6 +1124,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -1066,6 +1154,8 @@ paths:
           $ref: '#/components/responses/SSHKeySingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -1079,6 +1169,8 @@ paths:
         '200':
           $ref: '#/components/responses/EmptyResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -1096,6 +1188,8 @@ paths:
         '200':
           $ref: '#/components/responses/ServerListResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -1117,6 +1211,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -1145,6 +1241,8 @@ paths:
           $ref: '#/components/responses/ServerSingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -1160,6 +1258,8 @@ paths:
         '200':
           $ref: '#/components/responses/ServerVolumeListResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -1195,6 +1295,8 @@ paths:
         '200':
           $ref: '#/components/responses/ServerVolumeSingleResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -1244,15 +1346,17 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerTemplate
       description: Returns a single server template
-  /server-isos:
+  /server-medias:
     get:
       summary: getServerISOs
       tags:
         - server
       responses:
         '200':
-          $ref: '#/components/responses/ServerISOListResponse'
+          $ref: '#/components/responses/ServerMediaListResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -1265,7 +1369,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
-  '/server-isos/{id}':
+    parameters: []
+  '/server-medias/{id}':
     parameters:
       - schema:
           type: string
@@ -1273,21 +1378,23 @@ paths:
         name: id
         in: path
         required: true
-        description: Server ISO ID
+        description: Server Media ID
     get:
-      summary: getServerISO
+      summary: getServerMedia
       tags:
         - server
       responses:
         '200':
-          $ref: '#/components/responses/ServerISOSingleResponse'
+          $ref: '#/components/responses/ServerMediaSingleResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      operationId: getServerISO
+      operationId: getServerMedia
       description: Returns a single server iso
   /pricing/domains:
     get:
@@ -1320,6 +1427,8 @@ paths:
         '200':
           $ref: '#/components/responses/SearchResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
@@ -1384,6 +1493,8 @@ paths:
           $ref: '#/components/responses/DNSZoneListResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getDNSZones
@@ -1412,6 +1523,8 @@ paths:
           $ref: '#/components/responses/DNSZoneSingleResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -1427,6 +1540,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -1454,6 +1569,8 @@ paths:
           $ref: '#/components/responses/DNSRecordListResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -1473,6 +1590,8 @@ paths:
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -1491,6 +1610,8 @@ paths:
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -1524,6 +1645,8 @@ paths:
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -1540,6 +1663,8 @@ paths:
         '200':
           $ref: '#/components/responses/EmptyResponse'
         '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
           $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
@@ -1565,6 +1690,8 @@ paths:
           $ref: '#/components/responses/DomainCheckVerificationResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -1579,6 +1706,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
         '404':
           $ref: '#/components/responses/EmptyResponse'
         '500':
@@ -1586,6 +1715,242 @@ paths:
       tags:
         - domains
       description: Resends the verification email in case the owner is unverified
+  /availability-zones:
+    get:
+      summary: getAvailabilityZones
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/AvailabilityZoneListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getAvailabilityZones
+      description: Returns all availability zones
+      parameters:
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+  '/availability-zones/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Availability Zone ID
+    get:
+      summary: getAvailabilityZone
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/AvailabilityZoneSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getAvailabilityZone
+      description: Returns a single availability zone
+  /server-variants:
+    get:
+      summary: getServerVariants
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVariants
+      description: Returns all server variants
+      parameters:
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+  '/server-variants/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server Variant ID
+    get:
+      summary: getServerVariant
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVariant
+      description: Returns a single server variant
+  /server-volume-classes:
+    get:
+      summary: getServerVolumeClasses
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeClassListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVolumeClasses
+      description: Returns all volume classes
+      parameters:
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+  '/server-volume-classes/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server Volume Class ID
+    get:
+      summary: getServerVolumeClass
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeClassSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVolumeClass
+      description: Returns a single volume class
+  /networks:
+    get:
+      summary: getNetworks
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/NetworkListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getNetworks
+      description: Returns all networks
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+  '/networks/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Network ID
+    get:
+      summary: getNetwork
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/NetworkSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getNetwork
+      description: Returns a single network
+  '/servers/{id}/networks':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    get:
+      summary: getServerNetworks
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerNetworkListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerNetworks
+      description: Returns all server networks
+      parameters:
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+  '/servers/{id}/networks/{network_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+      - schema:
+          type: string
+          format: uuid
+        name: network_id
+        in: path
+        required: true
+        description: Server Network ID
+    get:
+      summary: getServerNetwork
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerNetworkSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerNetwork
+      description: Returns a single server network
 components:
   schemas:
     ResponseMessages:
@@ -2120,44 +2485,33 @@ components:
           type: string
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-        legacy_id:
-          type: string
-          deprecated: true
         project_id:
           type: string
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         name:
           type: string
-        cores:
+        variant_id:
           type: integer
-          minimum: 1
-          maximum: 16
-        memory:
-          type: integer
-          multipleOf: 1024
-          minimum: 1024
-          maximum: 65536
-        disk:
-          type: integer
-          multipleOf: 10
-          minimum: 10
-          maximum: 1000
         template_id:
           type: string
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        media_id:
+          type: string
+          format: uuid
         created_at:
           type: string
         labels:
           type: object
+        legacy_id:
+          type: integer
+          deprecated: true
       required:
         - id
         - project_id
         - name
-        - cores
-        - memory
-        - disk
+        - variant_id
         - template_id
         - created_at
     SSHKey:
@@ -2196,18 +2550,14 @@ components:
           type: string
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-        legacy_key:
-          type: string
-          deprecated: true
-          example: DEBIAN_10
         title:
           type: string
           example: Debian 10
       required:
         - id
         - title
-    ServerISO:
-      title: ServerISO
+    ServerMedia:
+      title: ServerMedia
       type: object
       x-tags:
         - server
@@ -2249,12 +2599,15 @@ components:
         title:
           type: string
           example: Example Volume
-        size:
-          type: integer
         server_id:
           type: string
           format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        size:
+          type: integer
+        class_id:
+          type: string
+          format: uuid
         created_at:
           type: string
         labels:
@@ -2378,6 +2731,128 @@ components:
           type: boolean
       required:
         - unverified
+    ServerVolumeClass:
+      title: ServerVolumeClass
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        replication:
+          type: integer
+      required:
+        - id
+        - replication
+    AvailabilityZone:
+      title: AvailabilityZone
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+      required:
+        - id
+        - title
+    ServerVariant:
+      title: ServerVariant
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        cores:
+          type: integer
+        memory:
+          type: integer
+        disk:
+          type: integer
+      required:
+        - id
+        - title
+        - cores
+        - memory
+        - disk
+    Network:
+      title: Network
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        availability_zone_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        created_at:
+          type: string
+        labels:
+          type: object
+      required:
+        - id
+        - project_id
+        - availability_zone_id
+        - title
+        - created_at
+    ServerNetwork:
+      title: ServerNetwork
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        default:
+          type: boolean
+        network_id:
+          type: string
+        address_v4_id:
+          type: string
+        address_v6_id:
+          type: string
+        created_at:
+          type: string
+        labels:
+          type: object
+      required:
+        - id
+        - default
+        - network_id
+        - created_at
+    CustomVariant:
+      type: object
+      title: CustomVariant
+      x-tags:
+        - server
+      description: This adds backwards compatibility for custom configurations but is deprecated and will be removed in the future.
+      deprecated: true
+      properties:
+        cores:
+          type: integer
+        memory:
+          type: integer
+        disk:
+          type: integer
+      required:
+        - cores
+        - memory
+        - disk
   securitySchemes:
     AuthToken:
       type: http
@@ -2981,8 +3456,8 @@ components:
               - data
               - messages
               - metadata
-    ServerISOListResponse:
-      description: ServerISO List
+    ServerMediaListResponse:
+      description: ServerMedia List
       content:
         application/json:
           schema:
@@ -2993,7 +3468,7 @@ components:
               data:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ServerISO'
+                  $ref: '#/components/schemas/ServerMedia'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
               metadata:
@@ -3005,8 +3480,8 @@ components:
               - data
               - messages
               - metadata
-    ServerISOSingleResponse:
-      description: Single ServerISO
+    ServerMediaSingleResponse:
+      description: Single ServerMedia
       content:
         application/json:
           schema:
@@ -3015,7 +3490,7 @@ components:
               success:
                 type: boolean
               data:
-                $ref: '#/components/schemas/ServerISO'
+                $ref: '#/components/schemas/ServerMedia'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
               metadata:
@@ -3321,6 +3796,234 @@ components:
               - metadata
               - success
               - data
+              - messages
+    NetworkListResponse:
+      description: Network List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Network'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - pagination
+              - messages
+    NetworkSingleResponse:
+      description: Single Network
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Network'
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    AvailabilityZoneListResponse:
+      description: AvailabilityZone List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AvailabilityZone'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - pagination
+              - messages
+    AvailabilityZoneSingleResponse:
+      description: Single AvailabilityZone
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/AvailabilityZone'
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerVolumeClassListResponse:
+      description: ServerVolumeClass List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerVolumeClass'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - pagination
+              - messages
+    ServerVolumeClassSingleResponse:
+      description: Single ServerVolumeClass
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerVolumeClass'
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerVariantListResponse:
+      description: ServerVariant List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerVariant'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - pagination
+              - messages
+    ServerVariantSingleResponse:
+      description: Single ServerVariant
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerVariant'
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerNetworkListResponse:
+      description: ServerNetwork List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerNetwork'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - pagination
+              - messages
+    ServerNetworkSingleResponse:
+      description: Single ServerNetwork
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerNetwork'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - pagination
               - messages
   requestBodies:
     S3BucketCreateRequest:
@@ -3815,6 +4518,8 @@ components:
                 type: string
                 format: uuid
                 example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              custom_variant:
+                $ref: '#/components/schemas/CustomVariant'
               ssh_keys:
                 type: array
                 items:
