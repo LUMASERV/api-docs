@@ -17,21 +17,23 @@
     "AuthToken" : [ ]
   } ],
   "tags" : [ {
-    "name" : "plesk-licenses"
+    "name" : "address"
   }, {
-    "name" : "s3-storage"
+    "name" : "dns"
   }, {
     "name" : "domains"
   }, {
-    "name" : "ssl"
+    "name" : "plesk-licenses"
+  }, {
+    "name" : "pricing"
+  }, {
+    "name" : "s3-storage"
   }, {
     "name" : "server"
   }, {
     "name" : "sshkeys"
   }, {
-    "name" : "pricing"
-  }, {
-    "name" : "dns"
+    "name" : "ssl"
   } ],
   "paths" : {
     "/storage/s3/buckets" : {
@@ -4716,6 +4718,82 @@
         },
         "summary" : "getServerTemplates",
         "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new server template",
+        "operationId" : "createServerTemplate",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerTemplateCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_19"
+                }
+              }
+            },
+            "description" : "Single ServerTemplate"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerTemplate",
+        "tags" : [ "server" ]
       }
     },
     "/server-templates/{id}" : {
@@ -4782,8 +4860,8 @@
     },
     "/server-medias" : {
       "get" : {
-        "description" : "Returns all server iso's",
-        "operationId" : "getServerISOs",
+        "description" : "Returns all server media's",
+        "operationId" : "getServerMedias",
         "parameters" : [ {
           "description" : "Project ID Filter",
           "explode" : true,
@@ -4890,13 +4968,159 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "getServerISOs",
+        "summary" : "getServerMedias",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new server media",
+        "operationId" : "createServerMedia",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerMediaCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_21"
+                }
+              }
+            },
+            "description" : "Single ServerMedia"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerMedia",
         "tags" : [ "server" ]
       }
     },
     "/server-medias/{id}" : {
+      "delete" : {
+        "description" : "Deletes the server media",
+        "operationId" : "deleteServerMedia",
+        "parameters" : [ {
+          "description" : "Server Media ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteServerMedia",
+        "tags" : [ "server" ]
+      },
       "get" : {
-        "description" : "Returns a single server iso",
+        "description" : "Returns a single server media",
         "operationId" : "getServerMedia",
         "parameters" : [ {
           "description" : "Server Media ID",
@@ -6110,6 +6334,82 @@
         },
         "summary" : "getAvailabilityZones",
         "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new availability zone",
+        "operationId" : "createAvailabilityZone",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/AvailabilityZoneCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_30"
+                }
+              }
+            },
+            "description" : "Single AvailabilityZone"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createAvailabilityZone",
+        "tags" : [ "server" ]
       }
     },
     "/availability-zones/{id}" : {
@@ -6171,6 +6471,91 @@
           }
         },
         "summary" : "getAvailabilityZone",
+        "tags" : [ "server" ]
+      },
+      "put" : {
+        "description" : "Updates the availability zone",
+        "operationId" : "updateAvailabilityZone",
+        "parameters" : [ {
+          "description" : "Availability Zone ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_30"
+                }
+              }
+            },
+            "description" : "Single AvailabilityZone"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateAvailabilityZone",
         "tags" : [ "server" ]
       }
     },
@@ -6238,9 +6623,155 @@
         },
         "summary" : "getServerVariants",
         "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new server variant",
+        "operationId" : "createServerVariant",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerVariantCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_32"
+                }
+              }
+            },
+            "description" : "Single ServerVariant"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerVariant",
+        "tags" : [ "server" ]
       }
     },
     "/server-variants/{id}" : {
+      "delete" : {
+        "description" : "Deletes the server variant",
+        "operationId" : "deleteServerVariant",
+        "parameters" : [ {
+          "description" : "Server Variant ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteServerVariant",
+        "tags" : [ "server" ]
+      },
       "get" : {
         "description" : "Returns a single server variant",
         "operationId" : "getServerVariant",
@@ -6302,9 +6833,9 @@
         "tags" : [ "server" ]
       }
     },
-    "/server-volume-classes" : {
+    "/server-storage-classes" : {
       "get" : {
-        "description" : "Returns all volume classes",
+        "description" : "Returns all storage classes",
         "operationId" : "getServerVolumeClasses",
         "parameters" : [ {
           "description" : "Page",
@@ -6341,7 +6872,7 @@
                 }
               }
             },
-            "description" : "ServerVolumeClass List"
+            "description" : "ServerStorageClass List"
           },
           "401" : {
             "content" : {
@@ -6364,14 +6895,90 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "getServerVolumeClasses",
+        "summary" : "getServerStorageClasses",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new storage class",
+        "operationId" : "createServerStorageClass",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerStorageClassCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_34"
+                }
+              }
+            },
+            "description" : "Single ServerStorageClass"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerStorageClass",
         "tags" : [ "server" ]
       }
     },
-    "/server-volume-classes/{id}" : {
+    "/server-storage-classes/{id}" : {
       "get" : {
-        "description" : "Returns a single volume class",
-        "operationId" : "getServerVolumeClass",
+        "description" : "Returns a single storage class",
+        "operationId" : "getServerStorageClass",
         "parameters" : [ {
           "description" : "Server Volume Class ID",
           "explode" : false,
@@ -6393,7 +7000,7 @@
                 }
               }
             },
-            "description" : "Single ServerVolumeClass"
+            "description" : "Single ServerStorageClass"
           },
           "401" : {
             "content" : {
@@ -6426,7 +7033,7 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "getServerVolumeClass",
+        "summary" : "getServerStorageClass",
         "tags" : [ "server" ]
       }
     },
@@ -6470,6 +7077,26 @@
           "schema" : {
             "type" : "string"
           }
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -6514,6 +7141,82 @@
           }
         },
         "summary" : "getNetworks",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new network",
+        "operationId" : "createNetwork",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/NetworkCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_36"
+                }
+              }
+            },
+            "description" : "Single Network"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createNetwork",
         "tags" : [ "server" ]
       }
     },
@@ -6766,6 +7469,753 @@
           }
         },
         "summary" : "getServerNetwork",
+        "tags" : [ "server" ]
+      }
+    },
+    "/subnets" : {
+      "get" : {
+        "description" : "Returns all subnets",
+        "operationId" : "getSubnets",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_39"
+                }
+              }
+            },
+            "description" : "Subnet List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSubnets",
+        "tags" : [ "address" ]
+      },
+      "post" : {
+        "description" : "Creates a new subnet",
+        "operationId" : "createSubnet",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/SubnetCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_40"
+                }
+              }
+            },
+            "description" : "Single Subnet"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createSubnet",
+        "tags" : [ "address" ]
+      }
+    },
+    "/subnets/{id}" : {
+      "delete" : {
+        "description" : "Deletes a subnet",
+        "operationId" : "deleteSubnet",
+        "parameters" : [ {
+          "description" : "Subnet ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteSubnet",
+        "tags" : [ "address" ]
+      },
+      "get" : {
+        "description" : "Returns a single subnet",
+        "operationId" : "getSubnet",
+        "parameters" : [ {
+          "description" : "Subnet ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_40"
+                }
+              }
+            },
+            "description" : "Single Subnet"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSubnet",
+        "tags" : [ "address" ]
+      }
+    },
+    "/server-hosts" : {
+      "get" : {
+        "description" : "Returns all server hosts",
+        "operationId" : "getServerHosts",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_41"
+                }
+              }
+            },
+            "description" : "ServerHost List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerHosts",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new server host",
+        "operationId" : "createServerHost",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerHostCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_42"
+                }
+              }
+            },
+            "description" : "Single ServerHost"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerHost",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-hosts/{id}" : {
+      "get" : {
+        "description" : "Returns a single host",
+        "operationId" : "getServerHost",
+        "parameters" : [ {
+          "description" : "ServerHost ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_42"
+                }
+              }
+            },
+            "description" : "Single ServerHost"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerHost",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-storages" : {
+      "get" : {
+        "description" : "Returns all server storages",
+        "operationId" : "getServerStorages",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_43"
+                }
+              }
+            },
+            "description" : "ServerStorage List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerStorages",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new server storage",
+        "operationId" : "createServerStorage",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerStorageCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_44"
+                }
+              }
+            },
+            "description" : "Single ServerStorage"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerStorage",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-storages/{id}" : {
+      "get" : {
+        "description" : "Returns a single server storage",
+        "operationId" : "getServerStorage",
+        "parameters" : [ {
+          "description" : "ServerStorage ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_44"
+                }
+              }
+            },
+            "description" : "Single ServerStorage"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerStorage",
         "tags" : [ "server" ]
       }
     }
@@ -7463,12 +8913,11 @@
                   "format" : "uuid",
                   "type" : "string"
                 },
-                "name" : {
+                "zone_id" : {
+                  "format" : "uuid",
                   "type" : "string"
                 },
-                "template_id" : {
-                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
-                  "format" : "uuid",
+                "name" : {
                   "type" : "string"
                 },
                 "variant_id" : {
@@ -7476,8 +8925,10 @@
                   "format" : "uuid",
                   "type" : "string"
                 },
-                "custom_variant" : {
-                  "$ref" : "#/components/schemas/CustomVariant"
+                "template_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+                  "format" : "uuid",
+                  "type" : "string"
                 },
                 "ssh_keys" : {
                   "items" : {
@@ -7490,7 +8941,7 @@
                   "type" : "object"
                 }
               },
-              "required" : [ "name", "project_id", "ssh_keys", "template_id" ],
+              "required" : [ "name", "project_id", "ssh_keys", "template_id", "zone_id" ],
               "type" : "object"
             }
           }
@@ -7597,6 +9048,245 @@
                 }
               },
               "required" : [ "data", "name", "type" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "SubnetCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "network_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "address" : {
+                  "type" : "string"
+                },
+                "prefix" : {
+                  "type" : "integer"
+                },
+                "public" : {
+                  "type" : "boolean"
+                }
+              },
+              "required" : [ "address", "network_id", "prefix" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "NetworkCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "zone_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "type" : {
+                  "$ref" : "#/components/schemas/NetworkType"
+                },
+                "tag" : {
+                  "type" : "integer"
+                }
+              },
+              "required" : [ "title", "zone_id" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerHostCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "zone_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "external_id" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "external_id", "title", "zone_id" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerMediaCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "zone_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "external_id" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "external_id", "title", "zone_id" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerStorageClassCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "storage_ids" : {
+                  "items" : {
+                    "format" : "uuid",
+                    "type" : "string"
+                  },
+                  "type" : "array"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "replication" : {
+                  "type" : "integer"
+                }
+              },
+              "required" : [ "replication", "storage_ids", "title" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerStorageCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "zone_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "external_id" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "external_id", "zone_id" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerTemplateCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "zones" : {
+                  "type" : "object"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "root_slot" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "root_slot", "title", "zones" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerVariantCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "zone_ids" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "cores" : {
+                  "type" : "integer"
+                },
+                "memory" : {
+                  "type" : "integer"
+                },
+                "disk" : {
+                  "type" : "integer"
+                },
+                "storage_class_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "legacy" : {
+                  "default" : false,
+                  "deprecated" : true,
+                  "type" : "boolean"
+                }
+              },
+              "required" : [ "cores", "disk", "memory", "storage_class_id", "title", "zone_ids" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "AvailabilityZoneCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "title" : {
+                  "type" : "string"
+                },
+                "config" : {
+                  "type" : "object"
+                }
+              },
+              "required" : [ "config", "title" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "AvailabilityZoneUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "title" : {
+                  "type" : "string"
+                },
+                "config" : {
+                  "type" : "object"
+                }
+              },
               "type" : "object"
             }
           }
@@ -8079,7 +9769,7 @@
         },
         "description" : "Single AvailabilityZone"
       },
-      "ServerVolumeClassListResponse" : {
+      "ServerStorageClassListResponse" : {
         "content" : {
           "application/json" : {
             "schema" : {
@@ -8087,9 +9777,9 @@
             }
           }
         },
-        "description" : "ServerVolumeClass List"
+        "description" : "ServerStorageClass List"
       },
-      "ServerVolumeClassSingleResponse" : {
+      "ServerStorageClassSingleResponse" : {
         "content" : {
           "application/json" : {
             "schema" : {
@@ -8097,7 +9787,7 @@
             }
           }
         },
-        "description" : "Single ServerVolumeClass"
+        "description" : "Single ServerStorageClass"
       },
       "ServerVariantListResponse" : {
         "content" : {
@@ -8138,6 +9828,66 @@
           }
         },
         "description" : "Single ServerNetwork"
+      },
+      "ServerHostListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_41"
+            }
+          }
+        },
+        "description" : "ServerHost List"
+      },
+      "ServerHostSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_42"
+            }
+          }
+        },
+        "description" : "Single ServerHost"
+      },
+      "ServerStorageListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_43"
+            }
+          }
+        },
+        "description" : "ServerStorage List"
+      },
+      "SubnetListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_39"
+            }
+          }
+        },
+        "description" : "Subnet List"
+      },
+      "SubnetSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_40"
+            }
+          }
+        },
+        "description" : "Single Subnet"
+      },
+      "ServerStorageSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_44"
+            }
+          }
+        },
+        "description" : "Single ServerStorage"
       }
     },
     "schemas" : {
@@ -8819,6 +10569,10 @@
             "format" : "uuid",
             "type" : "string"
           },
+          "zone_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
           "project_id" : {
             "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
             "format" : "uuid",
@@ -8833,6 +10587,9 @@
           },
           "labels" : {
             "type" : "object"
+          },
+          "external_id" : {
+            "type" : "string"
           }
         },
         "required" : [ "created_at", "id", "project_id", "title" ],
@@ -8873,6 +10630,9 @@
           },
           "labels" : {
             "type" : "object"
+          },
+          "root" : {
+            "type" : "boolean"
           }
         },
         "required" : [ "created_at", "id", "project_id", "size", "title" ],
@@ -9000,18 +10760,21 @@
         "type" : "object",
         "x-tags" : [ "domains" ]
       },
-      "ServerVolumeClass" : {
+      "ServerStorageClass" : {
         "properties" : {
           "id" : {
             "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
             "type" : "string"
           },
           "replication" : {
             "type" : "integer"
           }
         },
-        "required" : [ "id", "replication" ],
-        "title" : "ServerVolumeClass",
+        "required" : [ "id", "replication", "title" ],
+        "title" : "ServerStorageClass",
         "type" : "object",
         "x-tags" : [ "server" ]
       },
@@ -9023,6 +10786,9 @@
           },
           "title" : {
             "type" : "string"
+          },
+          "config" : {
+            "type" : "object"
           }
         },
         "required" : [ "id", "title" ],
@@ -9047,9 +10813,13 @@
           },
           "disk" : {
             "type" : "integer"
+          },
+          "storage_class_id" : {
+            "format" : "uuid",
+            "type" : "string"
           }
         },
-        "required" : [ "cores", "disk", "id", "memory", "title" ],
+        "required" : [ "cores", "disk", "id", "memory", "storage_class_id", "title" ],
         "title" : "ServerVariant",
         "type" : "object",
         "x-tags" : [ "server" ]
@@ -9064,12 +10834,18 @@
             "format" : "uuid",
             "type" : "string"
           },
-          "availability_zone_id" : {
+          "zone_id" : {
             "format" : "uuid",
             "type" : "string"
           },
           "title" : {
             "type" : "string"
+          },
+          "type" : {
+            "$ref" : "#/components/schemas/NetworkType"
+          },
+          "tag" : {
+            "type" : "integer"
           },
           "created_at" : {
             "type" : "string"
@@ -9078,7 +10854,7 @@
             "type" : "object"
           }
         },
-        "required" : [ "availability_zone_id", "created_at", "id", "project_id", "title" ],
+        "required" : [ "created_at", "id", "project_id", "title", "zone_id" ],
         "title" : "Network",
         "type" : "object",
         "x-tags" : [ "server" ]
@@ -9093,12 +10869,15 @@
             "type" : "boolean"
           },
           "network_id" : {
+            "format" : "uuid",
             "type" : "string"
           },
           "address_v4_id" : {
+            "format" : "uuid",
             "type" : "string"
           },
           "address_v6_id" : {
+            "format" : "uuid",
             "type" : "string"
           },
           "created_at" : {
@@ -9106,6 +10885,13 @@
           },
           "labels" : {
             "type" : "object"
+          },
+          "host_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "external_id" : {
+            "type" : "string"
           }
         },
         "required" : [ "created_at", "default", "id", "network_id" ],
@@ -9113,23 +10899,76 @@
         "type" : "object",
         "x-tags" : [ "server" ]
       },
-      "CustomVariant" : {
-        "deprecated" : true,
-        "description" : "This adds backwards compatibility for custom configurations but is deprecated and will be removed in the future.",
+      "ServerHost" : {
         "properties" : {
-          "cores" : {
-            "type" : "integer"
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
           },
-          "memory" : {
-            "type" : "integer"
+          "zone_id" : {
+            "format" : "uuid",
+            "type" : "string"
           },
-          "disk" : {
-            "type" : "integer"
+          "title" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
           }
         },
-        "required" : [ "cores", "disk", "memory" ],
-        "title" : "CustomVariant",
+        "required" : [ "created_at", "id", "title", "zone_id" ],
+        "title" : "ServerHost",
         "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "ServerStorage" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "zone_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "external_id" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "external_id", "id", "zone_id" ],
+        "title" : "ServerStorage",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "Subnet" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "network_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "prefix" : {
+            "type" : "integer"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "address", "created_at", "id", "network_id", "prefix" ],
+        "title" : "Subnet",
+        "type" : "object",
+        "x-tags" : [ "address" ]
+      },
+      "NetworkType" : {
+        "enum" : [ "VLAN", "VXLAN" ],
+        "title" : "NetworkType",
+        "type" : "string",
         "x-tags" : [ "server" ]
       },
       "inline_response_200" : {
@@ -10034,7 +11873,7 @@
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
       "inline_response_200_30" : {
@@ -10076,7 +11915,7 @@
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
       "inline_response_200_32" : {
@@ -10107,7 +11946,7 @@
           },
           "data" : {
             "items" : {
-              "$ref" : "#/components/schemas/ServerVolumeClass"
+              "$ref" : "#/components/schemas/ServerStorageClass"
             },
             "type" : "array"
           },
@@ -10118,7 +11957,7 @@
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
       "inline_response_200_34" : {
@@ -10130,7 +11969,7 @@
             "type" : "boolean"
           },
           "data" : {
-            "$ref" : "#/components/schemas/ServerVolumeClass"
+            "$ref" : "#/components/schemas/ServerStorageClass"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
@@ -10160,7 +11999,7 @@
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
       "inline_response_200_36" : {
@@ -10202,7 +12041,7 @@
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
       "inline_response_200_38" : {
@@ -10224,6 +12063,135 @@
           }
         },
         "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_39" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Subnet"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_40" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Subnet"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_41" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerHost"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_42" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerHost"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_43" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerStorage"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "pagination", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_44" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerStorage"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       }
     },
