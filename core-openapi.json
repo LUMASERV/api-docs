@@ -8221,6 +8221,87 @@
         "summary" : "getServerStorage",
         "tags" : [ "server" ]
       }
+    },
+    "/subnets/{id}/addresses" : {
+      "post" : {
+        "description" : "Creates a new address in the subnet",
+        "operationId" : "createSubnetAddress",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/SubnetAddressCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_45"
+                }
+              }
+            },
+            "description" : "Single Address"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createSubnetAddress",
+        "tags" : [ "address" ]
+      }
     }
   },
   "components" : {
@@ -9294,6 +9375,21 @@
             }
           }
         }
+      },
+      "SubnetAddressCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "address" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "address" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -9891,6 +9987,47 @@
           }
         },
         "description" : "Single ServerStorage"
+      },
+      "AddressListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "metadata" : {
+                  "$ref" : "#/components/schemas/ResponseMetadata"
+                },
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Address"
+                  },
+                  "type" : "array"
+                },
+                "pagination" : {
+                  "$ref" : "#/components/schemas/ResponsePagination"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "metadata", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "Address List"
+      },
+      "AddressSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_45"
+            }
+          }
+        },
+        "description" : "Single Address"
       }
     },
     "schemas" : {
@@ -10973,6 +11110,32 @@
         "title" : "NetworkType",
         "type" : "string",
         "x-tags" : [ "server" ]
+      },
+      "Address" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "subnet_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "address", "created_at", "id", "subnet_id" ],
+        "title" : "Address",
+        "type" : "object",
+        "x-tags" : [ "address" ]
       },
       "inline_response_200" : {
         "properties" : {
@@ -12189,6 +12352,24 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/ServerStorage"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_45" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Address"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
