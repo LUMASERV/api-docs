@@ -264,8 +264,8 @@ export default class LUMASERVCoreClient {
     createAvailabilityZone(body = null){
         return this.request('post', '/availability-zones', null, body);
     }
-    getAvailabilityZone(id){
-        return this.request('get', '/availability-zones/' + id, null, null);
+    getAvailabilityZone(id, body = null){
+        return this.request('get', '/availability-zones/' + id, null, body);
     }
     updateAvailabilityZone(id){
         return this.request('put', '/availability-zones/' + id, null, null);

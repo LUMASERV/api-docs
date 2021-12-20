@@ -6428,6 +6428,9 @@
           },
           "style" : "simple"
         } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/AvailabilityZoneUpdateRequest"
+        },
         "responses" : {
           "200" : {
             "content" : {
