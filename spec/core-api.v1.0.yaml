@@ -2353,6 +2353,34 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerStorage
       description: Returns a single server storage
+  '/subnets/{id}/addresses':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: createSubnetAddress
+      operationId: createSubnetAddress
+      responses:
+        '200':
+          $ref: '#/components/responses/AddressSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          description: Forbidden
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new address in the subnet
+      requestBody:
+        $ref: '#/components/requestBodies/SubnetAddressCreateRequest'
+      tags:
+        - address
 components:
   schemas:
     ResponseMessages:
@@ -3336,6 +3364,30 @@ components:
         - VXLAN
       x-tags:
         - server
+    Address:
+      title: Address
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        subnet_id:
+          type: string
+          format: uuid
+        address:
+          type: string
+        created_at:
+          type: string
+      required:
+        - id
+        - subnet_id
+        - address
+        - created_at
+      x-tags:
+        - address
   securitySchemes:
     AuthToken:
       type: http
@@ -4638,6 +4690,50 @@ components:
               - success
               - data
               - messages
+    AddressListResponse:
+      description: Address List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    AddressSingleResponse:
+      description: Single Address
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Address'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     S3BucketCreateRequest:
       content:
@@ -5426,6 +5522,16 @@ components:
                 type: string
               config:
                 type: object
+    SubnetAddressCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              address:
+                type: string
+            required:
+              - address
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
