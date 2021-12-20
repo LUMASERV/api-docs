@@ -1838,6 +1838,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getAvailabilityZone
       description: Returns a single availability zone
+      requestBody:
+        $ref: '#/components/requestBodies/AvailabilityZoneUpdateRequest'
     put:
       summary: updateAvailabilityZone
       operationId: updateAvailabilityZone
