@@ -1250,6 +1250,23 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServer
       description: Returns a single server
+    delete:
+      summary: deleteServer
+      operationId: deleteServer
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Deletes the server
   /server-volumes:
     get:
       summary: getServerVolumes
