@@ -189,6 +189,9 @@ export default class LUMASERVCoreClient {
     createServer(body = null){
         return this.request('post', '/servers', null, body);
     }
+    deleteServer(id){
+        return this.request('delete', '/servers/' + id, null, null);
+    }
     getServer(id){
         return this.request('get', '/servers/' + id, null, null);
     }
