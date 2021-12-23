@@ -1744,19 +1744,8 @@
             "enum" : [ "MALE", "FEMALE" ],
             "type" : "string"
           },
-          "street" : {
-            "type" : "string"
-          },
-          "street_number" : {
-            "type" : "string"
-          },
-          "additional_address" : {
-            "type" : "string"
-          },
-          "city" : {
-            "type" : "string"
-          },
-          "postal_code" : {
+          "type" : {
+            "enum" : [ "CUSTOMER", "ADMIN" ],
             "type" : "string"
           },
           "state" : {
