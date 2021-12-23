@@ -594,16 +594,11 @@ components:
           enum:
             - MALE
             - FEMALE
-        street:
+        type:
           type: string
-        street_number:
-          type: string
-        additional_address:
-          type: string
-        city:
-          type: string
-        postal_code:
-          type: string
+          enum:
+            - CUSTOMER
+            - ADMIN
         state:
           type: string
           enum:
