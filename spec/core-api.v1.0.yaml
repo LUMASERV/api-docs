@@ -2120,6 +2120,27 @@ paths:
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+    post:
+      summary: createServerNetwork
+      operationId: createServerNetwork
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerNetworkSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Adds a new network adapter to the server
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerNetworkCreateRequest'
   '/servers/{id}/networks/{network_id}':
     parameters:
       - schema:
@@ -2136,13 +2157,14 @@ paths:
         in: path
         required: true
         description: Server Network ID
-    get:
-      summary: getServerNetwork
-      tags:
-        - server
+    delete:
+      summary: deleteServerNetwork
+      operationId: deleteServerNetwork
       responses:
         '200':
-          $ref: '#/components/responses/ServerNetworkSingleResponse'
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
         '403':
@@ -2151,8 +2173,9 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      operationId: getServerNetwork
-      description: Returns a single server network
+      description: Removes the network adapter
+      tags:
+        - server
   /subnets:
     get:
       summary: getSubnets
@@ -2374,9 +2397,11 @@ paths:
     parameters:
       - schema:
           type: string
+          format: uuid
         name: id
         in: path
         required: true
+        description: Subnet ID
     post:
       summary: createSubnetAddress
       operationId: createSubnetAddress
@@ -2398,6 +2423,142 @@ paths:
         $ref: '#/components/requestBodies/SubnetAddressCreateRequest'
       tags:
         - address
+  '/servers/{id}/start':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        description: Server ID
+        required: true
+    post:
+      summary: startServer
+      operationId: startServer
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Starts the server
+  '/servers/{id}/shutdown':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    post:
+      summary: shutdownServer
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: shutdownServer
+      description: Shuts the server down using a soft shutdown (ACPI Signal)
+      parameters:
+        - schema:
+            type: boolean
+          in: query
+          name: force
+          description: Optionally force the poweroff when the server doesn't respond to the signal in a reasonable amount of time
+  '/servers/{id}/stop':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    post:
+      summary: stopServer
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: stopServer
+      description: Stops the server forcefully (see shutdownServer for soft shutdown)
+  '/servers/{id}/recreate':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    post:
+      summary: recreateServer
+      operationId: recreateServer
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Recreates the server. This will delete all data on the root disk and the server will be freshly reinstalled.
+      tags:
+        - server
+  '/servers/{id}/vnc':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    get:
+      summary: getServerVNC
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVNCResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVNC
+      description: Returns vnc websocket credentials
 components:
   schemas:
     ResponseMessages:
@@ -3405,6 +3566,22 @@ components:
         - created_at
       x-tags:
         - address
+    ServerVNC:
+      title: ServerVNC
+      type: object
+      properties:
+        host:
+          type: string
+        port:
+          type: integer
+        password:
+          type: string
+      required:
+        - host
+        - port
+        - password
+      x-tags:
+        - server
   securitySchemes:
     AuthToken:
       type: http
@@ -4751,6 +4928,26 @@ components:
               - success
               - data
               - messages
+    ServerVNCResponse:
+      description: ServerVNC
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerVNC'
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     S3BucketCreateRequest:
       content:
@@ -5549,6 +5746,17 @@ components:
                 type: string
             required:
               - address
+    ServerNetworkCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              network_id:
+                type: string
+                format: uuid
+            required:
+              - network_id
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
