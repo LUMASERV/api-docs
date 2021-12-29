@@ -306,8 +306,11 @@ export default class LUMASERVCoreClient {
     getServerNetworks(id, query = null){
         return this.request('get', '/servers/' + id + '/networks', query, null);
     }
-    getServerNetwork(id, network_id){
-        return this.request('get', '/servers/' + id + '/networks/' + network_id, null, null);
+    createServerNetwork(id, body = null){
+        return this.request('post', '/servers/' + id + '/networks', null, body);
+    }
+    deleteServerNetwork(id, network_id){
+        return this.request('delete', '/servers/' + id + '/networks/' + network_id, null, null);
     }
     getSubnets(query = null){
         return this.request('get', '/subnets', query, null);
@@ -341,5 +344,20 @@ export default class LUMASERVCoreClient {
     }
     createSubnetAddress(id, body = null){
         return this.request('post', '/subnets/' + id + '/addresses', null, body);
+    }
+    startServer(id){
+        return this.request('post', '/servers/' + id + '/start', null, null);
+    }
+    shutdownServer(id, query = null){
+        return this.request('post', '/servers/' + id + '/shutdown', query, null);
+    }
+    stopServer(id){
+        return this.request('post', '/servers/' + id + '/stop', null, null);
+    }
+    recreateServer(id){
+        return this.request('post', '/servers/' + id + '/recreate', null, null);
+    }
+    getServerVNC(id){
+        return this.request('get', '/servers/' + id + '/vnc', null, null);
     }
 }

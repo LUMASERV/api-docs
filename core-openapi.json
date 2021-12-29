@@ -7460,12 +7460,10 @@
         },
         "summary" : "getServerNetworks",
         "tags" : [ "server" ]
-      }
-    },
-    "/servers/{id}/networks/{network_id}" : {
-      "get" : {
-        "description" : "Returns a single server network",
-        "operationId" : "getServerNetwork",
+      },
+      "post" : {
+        "description" : "Adds a new network adapter to the server",
+        "operationId" : "createServerNetwork",
         "parameters" : [ {
           "description" : "Server ID",
           "explode" : false,
@@ -7477,18 +7475,10 @@
             "type" : "string"
           },
           "style" : "simple"
-        }, {
-          "description" : "Server Network ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "network_id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
         } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerNetworkCreateRequest"
+        },
         "responses" : {
           "200" : {
             "content" : {
@@ -7499,6 +7489,21 @@
               }
             },
             "description" : "Single ServerNetwork"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
           },
           "401" : {
             "content" : {
@@ -7541,7 +7546,100 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "getServerNetwork",
+        "summary" : "createServerNetwork",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}/networks/{network_id}" : {
+      "delete" : {
+        "description" : "Removes the network adapter",
+        "operationId" : "deleteServerNetwork",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Server Network ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "network_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteServerNetwork",
         "tags" : [ "server" ]
       }
     },
@@ -8297,11 +8395,13 @@
         "description" : "Creates a new address in the subnet",
         "operationId" : "createSubnetAddress",
         "parameters" : [ {
+          "description" : "Subnet ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
           "required" : true,
           "schema" : {
+            "format" : "uuid",
             "type" : "string"
           },
           "style" : "simple"
@@ -8371,6 +8471,376 @@
         },
         "summary" : "createSubnetAddress",
         "tags" : [ "address" ]
+      }
+    },
+    "/servers/{id}/start" : {
+      "post" : {
+        "description" : "Starts the server",
+        "operationId" : "startServer",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "startServer",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}/shutdown" : {
+      "post" : {
+        "description" : "Shuts the server down using a soft shutdown (ACPI Signal)",
+        "operationId" : "shutdownServer",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Optionally force the poweroff when the server doesn't respond to the signal in a reasonable amount of time",
+          "explode" : true,
+          "in" : "query",
+          "name" : "force",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "shutdownServer",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}/stop" : {
+      "post" : {
+        "description" : "Stops the server forcefully (see shutdownServer for soft shutdown)",
+        "operationId" : "stopServer",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "stopServer",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}/recreate" : {
+      "post" : {
+        "description" : "Recreates the server. This will delete all data on the root disk and the server will be freshly reinstalled.",
+        "operationId" : "recreateServer",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "recreateServer",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}/vnc" : {
+      "get" : {
+        "description" : "Returns vnc websocket credentials",
+        "operationId" : "getServerVNC",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_46"
+                }
+              }
+            },
+            "description" : "ServerVNC"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerVNC",
+        "tags" : [ "server" ]
       }
     }
   },
@@ -9460,6 +9930,22 @@
             }
           }
         }
+      },
+      "ServerNetworkCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "network_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                }
+              },
+              "required" : [ "network_id" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -10098,6 +10584,16 @@
           }
         },
         "description" : "Single Address"
+      },
+      "ServerVNCResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_46"
+            }
+          }
+        },
+        "description" : "ServerVNC"
       }
     },
     "schemas" : {
@@ -11206,6 +11702,23 @@
         "title" : "Address",
         "type" : "object",
         "x-tags" : [ "address" ]
+      },
+      "ServerVNC" : {
+        "properties" : {
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer"
+          },
+          "password" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "host", "password", "port" ],
+        "title" : "ServerVNC",
+        "type" : "object",
+        "x-tags" : [ "server" ]
       },
       "inline_response_200" : {
         "properties" : {
@@ -12440,6 +12953,24 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/Address"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_46" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerVNC"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
