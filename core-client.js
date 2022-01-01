@@ -366,4 +366,10 @@ export default class LUMASERVCoreClient {
     getServerAction(id, action_id){
         return this.request('get', '/servers/' + id + '/actions/' + action_id, null, null);
     }
+    attachServerVolume(id, body = null){
+        return this.request('post', '/server-volumes/' + id + '/attach', null, body);
+    }
+    detachServerVolume(id){
+        return this.request('post', '/server-volumes/' + id + '/detach', null, null);
+    }
 }

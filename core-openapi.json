@@ -9029,6 +9029,178 @@
         "summary" : "getServerAction",
         "tags" : [ "server" ]
       }
+    },
+    "/server-volumes/{id}/attach" : {
+      "post" : {
+        "description" : "Attaches the volume to the provided server",
+        "operationId" : "attachServerVolume",
+        "parameters" : [ {
+          "description" : "Volume ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerVolumeAttachRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_17"
+                }
+              }
+            },
+            "description" : "Single ServerVolume"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "attachServerVolume",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-volumes/{id}/detach" : {
+      "post" : {
+        "description" : "Detaches the volume from the current server",
+        "operationId" : "detachServerVolume",
+        "parameters" : [ {
+          "description" : "Volume ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_17"
+                }
+              }
+            },
+            "description" : "Single ServerVolume"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "detachServerVolume",
+        "tags" : [ "server" ]
+      }
     }
   },
   "components" : {
@@ -10129,6 +10301,22 @@
                 }
               },
               "required" : [ "network_id" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerVolumeAttachRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "server_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                }
+              },
+              "required" : [ "server_id" ],
               "type" : "object"
             }
           }
