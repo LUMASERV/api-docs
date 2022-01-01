@@ -360,4 +360,10 @@ export default class LUMASERVCoreClient {
     getServerVNC(id){
         return this.request('get', '/servers/' + id + '/vnc', null, null);
     }
+    getServerActions(id, query = null){
+        return this.request('get', '/servers/' + id + '/actions', query, null);
+    }
+    getServerAction(id, action_id){
+        return this.request('get', '/servers/' + id + '/actions/' + action_id, null, null);
+    }
 }
