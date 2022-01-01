@@ -2622,6 +2622,64 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerAction
       description: Returns a single server action
+  '/server-volumes/{id}/attach':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Volume ID
+    post:
+      summary: attachServerVolume
+      operationId: attachServerVolume
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Attaches the volume to the provided server
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVolumeAttachRequest'
+  '/server-volumes/{id}/detach':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Volume ID
+    post:
+      summary: detachServerVolume
+      operationId: detachServerVolume
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeSingleResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Detaches the volume from the current server
+      tags:
+        - server
 components:
   schemas:
     ResponseMessages:
@@ -5898,6 +5956,17 @@ components:
                 format: uuid
             required:
               - network_id
+    ServerVolumeAttachRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              server_id:
+                type: string
+                format: uuid
+            required:
+              - server_id
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
