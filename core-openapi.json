@@ -11933,8 +11933,16 @@
             "format" : "uuid",
             "type" : "string"
           },
-          "success" : {
+          "type" : {
+            "enum" : [ "START", "SHUTDOWN", "STOP" ],
+            "type" : "string"
+          },
+          "cancellable" : {
             "type" : "boolean"
+          },
+          "state" : {
+            "enum" : [ "STARTED", "CANCELLED", "FAILED", "SUCCESS" ],
+            "type" : "string"
           },
           "started_at" : {
             "type" : "string"
@@ -11943,7 +11951,7 @@
             "type" : "string"
           }
         },
-        "required" : [ "id", "started_at", "success" ],
+        "required" : [ "cancellable", "id", "started_at", "state", "type" ],
         "title" : "ServerAction",
         "type" : "object",
         "x-tags" : [ "server" ]
