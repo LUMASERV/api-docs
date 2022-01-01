@@ -2559,6 +2559,69 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerVNC
       description: Returns vnc websocket credentials
+  '/servers/{id}/actions':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    get:
+      summary: getServerActions
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerActionListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerActions
+      description: Returns all actions for the server
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+  '/servers/{id}/actions/{action_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+      - schema:
+          type: string
+          format: uuid
+        name: action_id
+        in: path
+        required: true
+        description: ServerAction ID
+    get:
+      summary: getServerAction
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerActionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerAction
+      description: Returns a single server action
 components:
   schemas:
     ResponseMessages:
@@ -3580,6 +3643,25 @@ components:
         - host
         - port
         - password
+      x-tags:
+        - server
+    ServerAction:
+      title: ServerAction
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        success:
+          type: boolean
+        started_at:
+          type: string
+        ended_at:
+          type: string
+      required:
+        - id
+        - success
+        - started_at
       x-tags:
         - server
   securitySchemes:
@@ -4943,6 +5025,50 @@ components:
                 $ref: '#/components/schemas/ServerVNC'
               messages:
                 $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerActionSingleResponse:
+      description: Single ServerAction
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerAction'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerActionListResponse:
+      description: ServerAction List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerAction'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
             required:
               - metadata
               - success
