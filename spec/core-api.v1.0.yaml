@@ -3648,22 +3648,37 @@ components:
     ServerAction:
       title: ServerAction
       type: object
+      x-tags:
+        - server
       properties:
         id:
           type: string
           format: uuid
-        success:
+        type:
+          type: string
+          enum:
+            - START
+            - SHUTDOWN
+            - STOP
+        cancellable:
           type: boolean
+        state:
+          type: string
+          enum:
+            - STARTED
+            - CANCELLED
+            - FAILED
+            - SUCCESS
         started_at:
           type: string
         ended_at:
           type: string
       required:
         - id
-        - success
+        - type
+        - cancellable
+        - state
         - started_at
-      x-tags:
-        - server
   securitySchemes:
     AuthToken:
       type: http
