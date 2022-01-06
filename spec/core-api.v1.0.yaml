@@ -2680,6 +2680,32 @@ paths:
       description: Detaches the volume from the current server
       tags:
         - server
+  '/servers/{id}/status':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    get:
+      summary: getServerStatus
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerStatusResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerStatus
+      description: Fetches the current server status
 components:
   schemas:
     ResponseMessages:
@@ -3737,6 +3763,22 @@ components:
         - cancellable
         - state
         - started_at
+    ServerStatus:
+      title: ServerStatus
+      type: object
+      x-tags:
+        - server
+      properties:
+        online:
+          type: boolean
+        cpu_usage:
+          type: number
+        memory:
+          type: integer
+        memory_usage:
+          type: number
+      required:
+        - online
   securitySchemes:
     AuthToken:
       type: http
@@ -5140,6 +5182,26 @@ components:
                   $ref: '#/components/schemas/ServerAction'
               pagination:
                 $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerStatusResponse:
+      description: ServerStatus
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerStatus'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
