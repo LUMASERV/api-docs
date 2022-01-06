@@ -1715,7 +1715,7 @@
             "type" : "string"
           }
         },
-        "required" : [ "created_at", "scope", "token", "type", "user_id" ],
+        "required" : [ "created_at", "scope", "type", "user_id" ],
         "title" : "Token",
         "type" : "object",
         "x-tags" : [ "users" ]
