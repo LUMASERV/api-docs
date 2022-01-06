@@ -372,4 +372,7 @@ export default class LUMASERVCoreClient {
     detachServerVolume(id){
         return this.request('post', '/server-volumes/' + id + '/detach', null, null);
     }
+    getServerStatus(id){
+        return this.request('get', '/servers/' + id + '/status', null, null);
+    }
 }

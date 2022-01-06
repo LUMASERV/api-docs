@@ -9201,6 +9201,78 @@
         "summary" : "detachServerVolume",
         "tags" : [ "server" ]
       }
+    },
+    "/servers/{id}/status" : {
+      "get" : {
+        "description" : "Fetches the current server status",
+        "operationId" : "getServerStatus",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_49"
+                }
+              }
+            },
+            "description" : "ServerStatus"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerStatus",
+        "tags" : [ "server" ]
+      }
     }
   },
   "components" : {
@@ -10989,6 +11061,16 @@
           }
         },
         "description" : "ServerAction List"
+      },
+      "ServerStatusResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_49"
+            }
+          }
+        },
+        "description" : "ServerStatus"
       }
     },
     "schemas" : {
@@ -12141,6 +12223,26 @@
         },
         "required" : [ "cancellable", "id", "started_at", "state", "type" ],
         "title" : "ServerAction",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "ServerStatus" : {
+        "properties" : {
+          "online" : {
+            "type" : "boolean"
+          },
+          "cpu_usage" : {
+            "type" : "number"
+          },
+          "memory" : {
+            "type" : "integer"
+          },
+          "memory_usage" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "online" ],
+        "title" : "ServerStatus",
         "type" : "object",
         "x-tags" : [ "server" ]
       },
@@ -13437,6 +13539,24 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/ServerAction"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_49" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerStatus"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
