@@ -3771,6 +3771,8 @@ components:
       properties:
         online:
           type: boolean
+        uptime:
+          type: integer
         cpu_usage:
           type: number
         memory:

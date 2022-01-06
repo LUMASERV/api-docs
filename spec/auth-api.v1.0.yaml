@@ -564,7 +564,6 @@ components:
         created_at:
           type: string
       required:
-        - token
         - user_id
         - type
         - scope
