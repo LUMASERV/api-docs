@@ -68,7 +68,9 @@
           "in" : "query",
           "name" : "detail",
           "required" : false,
-          "schema" : { },
+          "schema" : {
+            "type" : "boolean"
+          },
           "style" : "form"
         } ],
         "responses" : {
@@ -254,7 +256,9 @@
           "in" : "query",
           "name" : "detail",
           "required" : false,
-          "schema" : { },
+          "schema" : {
+            "type" : "boolean"
+          },
           "style" : "form"
         } ],
         "responses" : {
