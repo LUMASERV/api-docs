@@ -12468,7 +12468,7 @@
             "$ref" : "#/components/schemas/ResponseMetadata"
           },
           "pagination" : {
-            "$ref" : "#/components/schemas/"
+            "$ref" : "#/components/schemas/ResponsePagination"
           }
         },
         "required" : [ "data", "messages", "metadata", "success" ],
