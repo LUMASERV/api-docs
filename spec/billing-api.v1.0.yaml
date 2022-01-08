@@ -87,6 +87,505 @@ components:
         - page
         - page_size
         - total
+    BankAccount:
+      title: BankAccount
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        bank_account_number:
+          type: string
+        bank_url:
+          type: string
+        bank_port:
+          type: integer
+        bank_code:
+          type: string
+        username:
+          type: string
+      required:
+        - id
+    BankTransaction:
+      title: BankTransaction
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        bank_account_id:
+          type: string
+          format: uuid
+        booking_text:
+          type: string
+        depositor:
+          type: string
+        reference:
+          type: string
+        extended_reference:
+          type: string
+        type:
+          type: string
+          enum:
+            - DEBIT
+            - CREDIT
+        booking_date:
+          type: string
+        amount:
+          type: string
+        bank_code:
+          type: string
+        account_number:
+          type: string
+        value_date:
+          type: string
+        debit_id:
+          type: string
+          format: uuid
+      required:
+        - id
+    BillingPosition:
+      title: BillingPosition
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        customer_id:
+          type: string
+          format: uuid
+        invoice_position_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        amount:
+          type: string
+        price:
+          type: string
+        vat_rate:
+          type: string
+        group_key:
+          type: string
+        available_at:
+          type: string
+      required:
+        - id
+        - customer_id
+    Customer:
+      title: Customer
+      type: object
+      description: ''
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: string
+          format: uuid
+        company_name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        street:
+          type: string
+        street_number:
+          type: string
+        additional_address:
+          type: string
+        postal_code:
+          type: string
+        city:
+          type: string
+        country_code:
+          type: string
+        email:
+          type: string
+        invoice_shipping_type:
+          $ref: '#/components/schemas/InvoiceShippingType'
+        balance:
+          type: number
+        credit_limit:
+          type: number
+        vat_id:
+          type: string
+        custom_vat_rate:
+          type: number
+        next_billing_date:
+          type: string
+        billing_interval:
+          $ref: '#/components/schemas/BillingInterval'
+      required:
+        - id
+        - user_id
+    InvoiceShippingType:
+      type: string
+      title: InvoiceShippingType
+      enum:
+        - EMAIL
+        - MAIL
+    BillingInterval:
+      type: string
+      title: BillingInterval
+      enum:
+        - MONTHLY
+        - QUARTERLY
+        - SEMI_ANNUAL
+        - ANNUAL
+    CustomerTransaction:
+      title: CustomerTransaction
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        customer_id:
+          type: integer
+        title:
+          type: string
+        amount:
+          type: number
+        type:
+          type: string
+          enum:
+            - INVOICE
+            - REMINDER_FEE
+            - ONLINE_PAYMENT
+            - BANK
+        object_id:
+          type: string
+          format: uuid
+        date:
+          type: string
+      required:
+        - id
+        - customer_id
+    DebitMandate:
+      title: DebitMandate
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        customer_id:
+          type: integer
+        depositor:
+          type: string
+        street:
+          type: string
+        street_number:
+          type: string
+        additional_address:
+          type: string
+        postal_code:
+          type: string
+        city:
+          type: string
+        country_code:
+          type: string
+        bank_code:
+          type: string
+        bank_name:
+          type: string
+        account_number:
+          type: string
+        signed_at:
+          type: string
+        valid_until:
+          type: string
+      required:
+        - id
+        - customer_id
+    Debit:
+      title: Debit
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        date:
+          type: string
+        due_date:
+          type: string
+      required:
+        - id
+    FileDownload:
+      title: FileDownload
+      type: object
+      properties:
+        file_id:
+          type: string
+          format: uuid
+        url:
+          type: string
+      required:
+        - file_id
+        - url
+    File:
+      title: File
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        state:
+          type: string
+          enum:
+            - DRAFT
+            - GENERATED
+        type:
+          type: string
+          enum:
+            - CUSTOM
+            - INVOICE
+            - SERVICE_CONTRACT
+            - OFFER
+            - PAYMENT_REMINDER
+            - DEBIT
+        object_id:
+          type: string
+          format: uuid
+      required:
+        - id
+    InvoicePosition:
+      title: InvoicePosition
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        customer_id:
+          type: integer
+        invoice_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        amount:
+          type: number
+        unit:
+          type: string
+        price:
+          type: number
+        vat_rate:
+          type: number
+        group_key:
+          type: string
+      required:
+        - id
+    Invoice:
+      title: Invoice
+      type: object
+      properties:
+        id:
+          type: string
+        customer_id:
+          type: integer
+        number:
+          type: string
+        due_at:
+          type: string
+        state:
+          type: string
+          enum:
+            - DRAFT
+            - PENDING
+            - PAID
+            - CANCELLED
+            - FAILED
+        net_amount:
+          type: number
+        paid_at:
+          type: string
+        cancelled_at:
+          type: string
+    OfferPosition:
+      title: OfferPosition
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        offer_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        interval:
+          type: string
+          enum:
+            - WEEKLY
+            - MONTHLY
+            - QUARTERLY
+            - SEMI_ANNUAL
+            - ANNUAL
+        amount:
+          type: number
+        price:
+          type: number
+        purchasing_price:
+          type: number
+        note:
+          type: string
+        vat_rate:
+          type: number
+      required:
+        - id
+        - offer_id
+    Offer:
+      title: Offer
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        customer_id:
+          type: integer
+        number:
+          type: string
+        net_amount:
+          type: number
+        amount:
+          type: number
+        state:
+          type: string
+          enum:
+            - DRAFT
+            - SENT
+            - ACCEPTED
+            - DENIED
+      required:
+        - id
+        - customer_id
+    OnlinePayment:
+      title: OnlinePayment
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        customer_id:
+          type: integer
+        provider:
+          type: string
+          enum:
+            - PAYPAL
+        state:
+          type: string
+          enum:
+            - PENDING
+            - SUCCESS
+            - FAILED
+            - CANCELLED
+        amount:
+          type: number
+        external_id:
+          type: string
+      required:
+        - id
+    PaymentReminder:
+      title: PaymentReminder
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        customer_id:
+          type: integer
+        invoice_id:
+          type: string
+          format: uuid
+        stage:
+          type: string
+          enum:
+            - STAGE1
+            - STAGE2
+            - STAGE3
+        state:
+          type: string
+          enum:
+            - DRAFT
+            - PENDING
+            - PAID
+            - CANCELLED
+            - FAILED
+        date:
+          type: string
+        due_date:
+          type: string
+      required:
+        - id
+        - invoice_id
+    ServiceContractPosition:
+      title: ServiceContractPosition
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        service_contract_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        amount:
+          type: number
+        price:
+          type: number
+        vat_rate:
+          type: number
+      required:
+        - id
+        - service_contract_id
+    ServiceContract:
+      title: ServiceContract
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        customer_id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        runtime:
+          type: string
+          enum:
+            - WEEKLY
+            - MONTHLY
+            - QUARTERLY
+            - SEMI_ANNUAL
+            - ANNUAL
+        cancellation_period:
+          type: integer
+        accounting_period:
+          type: string
+          enum:
+            - WEEKLY
+            - MONTHLY
+            - QUARTERLY
+            - SEMI_ANNUAL
+            - ANNUAL
+      required:
+        - id
+        - customer_id
   securitySchemes:
     AuthToken:
       type: http
