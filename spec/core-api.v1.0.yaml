@@ -4226,7 +4226,7 @@ components:
               metadata:
                 $ref: '#/components/schemas/ResponseMetadata'
               pagination:
-                $ref: ''
+                $ref: '#/components/schemas/ResponsePagination'
             required:
               - success
               - data
