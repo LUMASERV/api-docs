@@ -33,7 +33,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-        - schema: {}
+        - schema:
+            type: boolean
           in: query
           name: detail
           description: Detail Flag
@@ -81,7 +82,8 @@ paths:
       operationId: getProject
       description: Returns a single project
       parameters:
-        - schema: {}
+        - schema:
+            type: boolean
           in: query
           name: detail
           description: Detail Flag
