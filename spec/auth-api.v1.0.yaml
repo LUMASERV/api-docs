@@ -37,6 +37,7 @@ paths:
           in: query
           name: detail
           description: Detail Flag
+          type: boolean
     post:
       summary: createProject
       operationId: createProject
@@ -85,6 +86,7 @@ paths:
           in: query
           name: detail
           description: Detail Flag
+          type: boolean
     put:
       summary: updateProject
       operationId: updateProject
