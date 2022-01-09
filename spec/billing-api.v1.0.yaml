@@ -251,12 +251,7 @@ components:
         amount:
           type: number
         type:
-          type: string
-          enum:
-            - INVOICE
-            - REMINDER_FEE
-            - ONLINE_PAYMENT
-            - BANK
+          $ref: '#/components/schemas/CustomerTransactionType'
         object_id:
           type: string
           format: uuid
@@ -397,13 +392,7 @@ components:
         due_at:
           type: string
         state:
-          type: string
-          enum:
-            - DRAFT
-            - PENDING
-            - PAID
-            - CANCELLED
-            - FAILED
+          $ref: '#/components/schemas/InvoiceState'
         net_amount:
           type: number
         paid_at:
@@ -461,12 +450,7 @@ components:
         amount:
           type: number
         state:
-          type: string
-          enum:
-            - DRAFT
-            - SENT
-            - ACCEPTED
-            - DENIED
+          $ref: '#/components/schemas/OfferState'
       required:
         - id
         - customer_id
@@ -509,19 +493,9 @@ components:
           type: string
           format: uuid
         stage:
-          type: string
-          enum:
-            - STAGE1
-            - STAGE2
-            - STAGE3
+          $ref: '#/components/schemas/PaymentReminderStage'
         state:
-          type: string
-          enum:
-            - DRAFT
-            - PENDING
-            - PAID
-            - CANCELLED
-            - FAILED
+          $ref: '#/components/schemas/PaymentReminderState'
         date:
           type: string
         due_date:
@@ -578,14 +552,140 @@ components:
         accounting_period:
           type: string
           enum:
-            - WEEKLY
-            - MONTHLY
             - QUARTERLY
             - SEMI_ANNUAL
             - ANNUAL
       required:
         - id
         - customer_id
+    CustomerTransactionType:
+      type: string
+      title: CustomerTransactionType
+      enum:
+        - INVOICE
+        - REMINDER_FEE
+        - ONLINE_PAYMENT
+        - BANK
+    InvoiceState:
+      type: string
+      title: InvoiceState
+      enum:
+        - DRAFT
+        - PENDING
+        - PAID
+        - CANCELLED
+        - FAILED
+    InvoiceCreateRequestPosition:
+      title: InvoiceCreateRequestPosition
+      type: object
+      properties:
+        invoice_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        amount:
+          type: number
+        unit:
+          type: string
+        price:
+          type: number
+        vat_rate:
+          type: number
+        group_key:
+          type: string
+      required:
+        - title
+        - description
+        - amount
+        - unit
+        - price
+    OfferState:
+      type: string
+      title: OfferState
+      enum:
+        - DRAFT
+        - SENT
+        - ACCEPTED
+        - DENIED
+    OfferCreateRequestPosition:
+      title: OfferCreateRequestPosition
+      type: object
+      properties:
+        offer_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        interval:
+          type: string
+        amount:
+          type: string
+        price:
+          type: string
+        purchasing_price:
+          type: string
+        note:
+          type: string
+        vat_rate:
+          type: string
+    OfferPositionInterval:
+      type: string
+      title: OfferPositionInterval
+      enum:
+        - WEEKLY
+        - MONTHLY
+        - QUARTERLY
+        - SEMI_ANNUAL
+        - ANNUAL
+    PaymentReminderStage:
+      type: string
+      title: PaymentReminderStage
+      enum:
+        - STAGE1
+        - STAGE2
+        - STAGE3
+    PaymentReminderState:
+      type: string
+      title: PaymentReminderState
+      enum:
+        - DRAFT
+        - PENDING
+        - PAID
+        - CANCELLED
+        - FAILED
+    ServiceContractInterval:
+      type: string
+      title: ServiceContractInterval
+      enum:
+        - WEEKLY
+        - MONTHLY
+        - QUARTERLY
+        - SEMI_ANNUAL
+        - ANNUAL
+    ServiceContractCreateRequestPosition:
+      title: ServiceContractCreateRequestPosition
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        amount:
+          type: number
+        price:
+          type: number
+        vat_rate:
+          type: number
+      required:
+        - title
+        - description
+        - amount
+        - price
   securitySchemes:
     AuthToken:
       type: http
@@ -641,7 +741,1321 @@ components:
               - success
               - messages
               - metadata
-  requestBodies: {}
+    BankAccountListResponse:
+      description: BankAccount List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BankAccount'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    BankAccountSingleResponse:
+      description: Single BankAccount
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/BankAccount'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    BankTransactionListResponse:
+      description: BankTransaction List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BankTransaction'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - pagination
+              - messages
+    BankTransactionSingleResponse:
+      description: Single BankTransaction
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/BankTransaction'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    BillingPositionListResponse:
+      description: BillingPosition List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BillingPosition'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    BillingPositionSingleResponse:
+      description: Single BillingPosition
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/BillingPosition'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    CustomerListResponse:
+      description: Customer List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    CustomerSingleResponse:
+      description: Single Customer
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Customer'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    CustomerTransactionListResponse:
+      description: CustomerTransaction List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerTransaction'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    CustomerTransactionSingleResponse:
+      description: Single CustomerTransaction
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/CustomerTransaction'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DebitListResponse:
+      description: Debit List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Debit'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DebitSingleResponse:
+      description: Single Debit
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Debit'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DebitMandateListResponse:
+      description: DebitMandate List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DebitMandate'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DebitMandateSingleResponse:
+      description: Single DebitMandate
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DebitMandate'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    FileListResponse:
+      description: File List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/File'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - pagination
+              - messages
+    FileSingleResponse:
+      description: Single File
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: string
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    FileDownloadResponse:
+      description: FileDownload
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/FileDownload'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    InvoiceListResponse:
+      description: Invoice List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Invoice'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    InvoiceSingleResponse:
+      description: Single Invoice
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Invoice'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    InvoicePositionListResponse:
+      description: InvoicePosition List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvoicePosition'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    InvoicePositionSingleResponse:
+      description: Single InvoicePosition
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/InvoicePosition'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    OfferListResponse:
+      description: Offer List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Offer'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    OfferSingleResponse:
+      description: Single Offer
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Offer'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    OfferPositionListResponse:
+      description: OfferPosition List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OfferPosition'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    OfferPositionSingleResponse:
+      description: Single OfferPosition
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/OfferPosition'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    OnlinePaymentListResponse:
+      description: OnlinePayment List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OnlinePayment'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    OnlinePaymentSingleResponse:
+      description: Single OnlinePayment
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/OnlinePayment'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    PaymentReminderListResponse:
+      description: PaymentReminder List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentReminder'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    PaymentReminderSingleResponse:
+      description: Single PaymentReminder
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/PaymentReminder'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServiceContractListResponse:
+      description: ServiceContract List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceContract'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServiceContractSingleResponse:
+      description: Single ServiceContract
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServiceContract'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServiceContractPositionListResponse:
+      description: ServiceContractPosition List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceContractPosition'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServiceContractPositionSingleResponse:
+      description: Single ServiceContractPosition
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServiceContractPosition'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+  requestBodies:
+    BankAccountCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              bank_account_number:
+                type: string
+              bank_url:
+                type: string
+              bank_port:
+                type: integer
+              bank_code:
+                type: string
+              username:
+                type: string
+              password:
+                type: string
+            required:
+              - title
+              - bank_account_number
+              - bank_url
+              - bank_port
+              - bank_code
+              - username
+              - password
+    BankAccountUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              bank_account_number:
+                type: string
+              bank_url:
+                type: string
+              bank_port:
+                type: integer
+              bank_code:
+                type: string
+              username:
+                type: string
+              password:
+                type: string
+    BillingPositionCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: integer
+              invoice_position_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              description:
+                type: string
+              amount:
+                type: number
+              price:
+                type: number
+              vat_rate:
+                type: number
+              group_key:
+                type: string
+              available_at:
+                type: string
+            required:
+              - customer_id
+              - title
+              - description
+              - amount
+              - price
+    BillingPositionUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: integer
+              invoice_position_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              description:
+                type: string
+              amount:
+                type: number
+              price:
+                type: number
+              vat_rate:
+                type: number
+              group_key:
+                type: string
+              available_at:
+                type: string
+    CustomerCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+                format: uuid
+              company_name:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              street:
+                type: string
+              street_number:
+                type: string
+              additional_address:
+                type: string
+              postal_code:
+                type: string
+              city:
+                type: string
+              country_code:
+                type: string
+              email:
+                type: string
+              invoice_shipping_type:
+                $ref: '#/components/schemas/InvoiceShippingType'
+              balance:
+                type: number
+              credit_limit:
+                type: number
+              vat_id:
+                type: string
+              custom_vat_rate:
+                type: number
+              billing_interval:
+                $ref: '#/components/schemas/BillingInterval'
+              payment_period:
+                type: integer
+            required:
+              - user_id
+              - first_name
+              - last_name
+              - street
+              - street_number
+              - postal_code
+              - city
+              - country_code
+              - email
+              - credit_limit
+              - vat_id
+              - custom_vat_rate
+              - billing_interval
+              - payment_period
+    CustomerTransactionCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: integer
+              title:
+                type: string
+              amount:
+                type: number
+              type:
+                $ref: '#/components/schemas/CustomerTransactionType'
+              object_id:
+                type: string
+                format: uuid
+              date:
+                type: string
+            required:
+              - customer_id
+              - title
+              - amount
+              - type
+              - object_id
+    CustomerTransactionUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: integer
+              title:
+                type: string
+              amount:
+                type: number
+              type:
+                $ref: '#/components/schemas/CustomerTransactionType'
+              object_id:
+                type: string
+                format: uuid
+              date:
+                type: string
+    CustomerUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              company_name:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              street:
+                type: string
+              street_number:
+                type: string
+              additional_address:
+                type: string
+              postal_code:
+                type: string
+              city:
+                type: string
+              country_code:
+                type: string
+              email:
+                type: string
+              invoice_shipping_type:
+                $ref: '#/components/schemas/InvoiceShippingType'
+              balance:
+                type: number
+              credit_limit:
+                type: number
+              vat_id:
+                type: string
+              custom_vat_rate:
+                type: number
+              billing_interval:
+                $ref: '#/components/schemas/BillingInterval'
+              payment_period:
+                type: integer
+    DebitMandateCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: integer
+              depositor:
+                type: string
+              street:
+                type: string
+              street_number:
+                type: string
+              additional_address:
+                type: string
+              postal_code:
+                type: string
+              city:
+                type: string
+              country_code:
+                type: string
+              bank_code:
+                type: string
+              bank_name:
+                type: string
+              account_number:
+                type: string
+              signed_at:
+                type: string
+              valid_until:
+                type: string
+            required:
+              - customer_id
+              - depositor
+              - street
+              - street_number
+              - additional_address
+              - postal_code
+              - city
+              - country_code
+              - bank_code
+              - bank_name
+              - account_number
+    InvoiceCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: integer
+              due_at:
+                type: string
+              state:
+                $ref: '#/components/schemas/InvoiceState'
+              paid_at:
+                type: string
+              cancelled_at:
+                type: string
+              positions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvoiceCreateRequestPosition'
+            required:
+              - customer_id
+              - due_at
+    InvoicePositionCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              invoice_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              description:
+                type: string
+              amount:
+                type: number
+              unit:
+                type: string
+              price:
+                type: number
+              vat_rate:
+                type: number
+              group_key:
+                type: string
+            required:
+              - invoice_id
+              - title
+              - description
+              - amount
+              - unit
+              - price
+    InvoicePositionUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              invoice_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              description:
+                type: string
+              amount:
+                type: number
+              unit:
+                type: string
+              price:
+                type: number
+              vat_rate:
+                type: number
+              group_key:
+                type: string
+    InvoiceUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: integer
+              due_at:
+                type: string
+              state:
+                $ref: '#/components/schemas/InvoiceState'
+              paid_at:
+                type: string
+              cancelled_at:
+                type: string
+    OfferCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: integer
+              number:
+                type: string
+              net_amount:
+                type: number
+              amount:
+                type: number
+              state:
+                $ref: '#/components/schemas/OfferState'
+            required:
+              - customer_id
+    OfferPositionCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              offer_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              description:
+                type: string
+              interval:
+                $ref: '#/components/schemas/OfferPositionInterval'
+              amount:
+                type: number
+              price:
+                type: number
+              purchasing_price:
+                type: number
+              note:
+                type: string
+              vat_rate:
+                type: number
+            required:
+              - offer_id
+              - title
+              - description
+              - amount
+              - price
+    OfferPositionUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              interval:
+                $ref: '#/components/schemas/OfferPositionInterval'
+              amount:
+                type: number
+              price:
+                type: number
+              purchasing_price:
+                type: number
+              note:
+                type: string
+              vat_rate:
+                type: number
+    OfferUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: integer
+              net_amount:
+                type: number
+              amount:
+                type: number
+              state:
+                $ref: '#/components/schemas/OfferState'
+    PaymentReminderCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: integer
+              invoice_id:
+                type: string
+                format: uuid
+              stage:
+                type: string
+              state:
+                type: string
+              date:
+                type: string
+              due_date:
+                type: string
+            required:
+              - customer_id
+              - invoice_id
+    PaymentReminderUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              stage:
+                $ref: '#/components/schemas/PaymentReminderStage'
+              state:
+                $ref: '#/components/schemas/PaymentReminderState'
+              date:
+                type: string
+              due_date:
+                type: string
+    ServiceContractCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: integer
+              title:
+                type: string
+              description:
+                type: string
+              runtime:
+                $ref: '#/components/schemas/ServiceContractInterval'
+              cancellation_period:
+                type: integer
+              accounting_period:
+                $ref: '#/components/schemas/ServiceContractInterval'
+              positions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceContractCreateRequestPosition'
+            required:
+              - customer_id
+              - title
+              - description
+              - runtime
+              - cancellation_period
+              - accounting_period
+    ServiceContractPositionCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              service_contract_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              description:
+                type: string
+              amount:
+                type: number
+              price:
+                type: number
+              vat_rate:
+                type: number
+            required:
+              - service_contract_id
+              - title
+              - description
+              - amount
+              - price
+              - vat_rate
+    ServiceContractPositionUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              amount:
+                type: number
+              price:
+                type: number
+              vat_rate:
+                type: number
+    ServiceContractUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              runtime:
+                $ref: '#/components/schemas/ServiceContractInterval'
+              cancellation_period:
+                type: integer
+              accounting_period:
+                $ref: '#/components/schemas/ServiceContractInterval'
   parameters:
     PaginationPage:
       name: page
