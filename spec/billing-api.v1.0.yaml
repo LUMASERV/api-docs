@@ -9,7 +9,380 @@ info:
 servers:
   - url: 'https://billing.lumaserv.com'
     description: Live
-paths: {}
+paths:
+  /bank-accounts:
+    get:
+      summary: getBankAccounts
+      tags:
+        - payment
+      responses:
+        '200':
+          $ref: '#/components/responses/BankAccountListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getBankAccounts
+      description: Returns all bank accounts
+    post:
+      summary: createBankAccount
+      operationId: createBankAccount
+      responses:
+        '200':
+          $ref: '#/components/responses/BankAccountSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Adds a new bank account
+      requestBody:
+        $ref: '#/components/requestBodies/BankAccountCreateRequest'
+      tags:
+        - payment
+  '/bank-accounts/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: BankAccount ID
+    get:
+      summary: getBankAccount
+      tags:
+        - payment
+      responses:
+        '200':
+          $ref: '#/components/responses/BankAccountSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getBankAccount
+      description: Returns a single bank account
+    put:
+      summary: updateBankAccount
+      operationId: updateBankAccount
+      responses:
+        '200':
+          $ref: '#/components/responses/BankAccountSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the bank account
+      requestBody:
+        $ref: '#/components/requestBodies/BankAccountUpdateRequest'
+      tags:
+        - payment
+    delete:
+      summary: deleteBankAccount
+      operationId: deleteBankAccount
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a bank account
+      tags:
+        - payment
+  /bank-transactions:
+    get:
+      summary: getBankTransactions
+      tags:
+        - payment
+      responses:
+        '200':
+          $ref: '#/components/responses/BankTransactionListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getBankTransactions
+      description: Returns all bank transactions
+  '/bank-transactions/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: BankTransaction ID
+    get:
+      summary: getBankTransaction
+      tags:
+        - payment
+      responses:
+        '200':
+          $ref: '#/components/responses/BankTransactionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getBankTransaction
+      description: Returns a single bank transaction
+  /billing-positions:
+    get:
+      summary: getBillingPositions
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/BillingPositionListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getBillingPositions
+      description: Returns all billing positions
+    post:
+      summary: createBillingPosition
+      operationId: createBillingPosition
+      responses:
+        '200':
+          $ref: '#/components/responses/BillingPositionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new billing position
+      requestBody:
+        $ref: '#/components/requestBodies/BillingPositionCreateRequest'
+      tags:
+        - billing
+  '/billing-positions/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: BillingPosition ID
+    get:
+      summary: getBillingPosition
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/BillingPositionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getBillingPosition
+      description: Returns a single billing position
+    put:
+      summary: updateBillingPosition
+      operationId: updateBillingPosition
+      responses:
+        '200':
+          $ref: '#/components/responses/BillingPositionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates a billing position
+      tags:
+        - billing
+    delete:
+      summary: deleteBillingPosition
+      operationId: deleteBillingPosition
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a billing position
+      tags:
+        - billing
+  /customers:
+    get:
+      summary: getCustomers
+      tags:
+        - customers
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getCustomers
+      description: Returns a list of customers
+    post:
+      summary: createCustomer
+      operationId: createCustomer
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new customer
+      tags:
+        - customers
+  '/customers/{id}':
+    parameters:
+      - schema:
+          type: integer
+        name: id
+        in: path
+        required: true
+        description: Customer ID
+    get:
+      summary: getCustomer
+      tags:
+        - customers
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getCustomer
+      description: Returns a single customer
+    put:
+      summary: updateCustomer
+      operationId: updateCustomer
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the customer
+      tags:
+        - customers
+      requestBody:
+        $ref: '#/components/requestBodies/CustomerUpdateRequest'
+  /customer-transactions:
+    get:
+      summary: getCustomerTransactions
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getCustomerTransactions
+      description: Returns all customer transactions
+  '/customer-transactions/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: CustomerTransaction ID
+    get:
+      summary: getCustomerTransaction
+      tags:
+        - customers
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerTransactionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getCustomerTransaction
+      description: Returns a single customer transaction
 components:
   schemas:
     ResponseMessages:
@@ -2081,3 +2454,7 @@ components:
       description: Search
 security:
   - AuthToken: []
+tags:
+  - name: billing
+  - name: customers
+  - name: payment
