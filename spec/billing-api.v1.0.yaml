@@ -28,6 +28,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getBankAccounts
       description: Returns all bank accounts
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createBankAccount
       operationId: createBankAccount
@@ -131,6 +135,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getBankTransactions
       description: Returns all bank transactions
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
   '/bank-transactions/{id}':
     parameters:
       - schema:
@@ -175,6 +183,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getBillingPositions
       description: Returns all billing positions
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createBillingPosition
       operationId: createBillingPosition
@@ -239,6 +251,8 @@ paths:
       description: Updates a billing position
       tags:
         - billing
+      requestBody:
+        $ref: '#/components/requestBodies/BillingPositionUpdateRequest'
     delete:
       summary: deleteBillingPosition
       operationId: deleteBillingPosition
@@ -274,6 +288,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getCustomers
       description: Returns a list of customers
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createCustomer
       operationId: createCustomer
@@ -293,6 +311,8 @@ paths:
       description: Creates a new customer
       tags:
         - customers
+      requestBody:
+        $ref: '#/components/requestBodies/CustomerCreateRequest'
   '/customers/{id}':
     parameters:
       - schema:
@@ -346,7 +366,7 @@ paths:
         - billing
       responses:
         '200':
-          $ref: '#/components/responses/CustomerListResponse'
+          $ref: '#/components/responses/CustomerTransactionListResponse'
         '401':
           $ref: '#/components/responses/EmptyResponse'
         '403':
@@ -357,6 +377,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getCustomerTransactions
       description: Returns all customer transactions
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
   '/customer-transactions/{id}':
     parameters:
       - schema:
@@ -401,6 +425,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getDebits
       description: Returns all debits
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
   '/debits/{id}':
     parameters:
       - schema:
@@ -445,6 +473,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getDebitMandates
       description: Returns all debit mandates
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createDebitMandate
       operationId: createDebitMandate
@@ -510,6 +542,10 @@ paths:
       description: Returns all files
       tags:
         - general
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
   '/files/{id}':
     parameters:
       - schema:
@@ -580,6 +616,10 @@ paths:
           description: Internal Server Error
       operationId: getInvoices
       description: Returns all invoices
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createInvoice
       operationId: createInvoice
@@ -692,6 +732,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getInvoicePositions
       description: Returns all invoice positions
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createInvoicePosition
       operationId: createInvoicePosition
@@ -758,6 +802,8 @@ paths:
       description: Updates the invoice position
       tags:
         - billing
+      requestBody:
+        $ref: '#/components/requestBodies/InvoicePositionUpdateRequest'
     delete:
       summary: deleteInvoicePosition
       operationId: deleteInvoicePosition
@@ -793,6 +839,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getOffers
       description: Returns all offers
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createOffer
       operationId: createOffer
@@ -879,6 +929,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getOfferPositions
       description: Returns all offer positions
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createOfferPosition
       operationId: createOfferPosition
@@ -982,6 +1036,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getOnlinePayments
       description: Returns all online payments
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
   '/online-payments/{id}':
     parameters:
       - schema:
@@ -1026,6 +1084,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getPaymentReminders
       description: Returns all payment reminders
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
     post:
       summary: createPaymentReminder
       operationId: createPaymentReminder
@@ -1073,6 +1135,241 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getPaymentReminder
       description: Returns a single payment reminder
+    put:
+      summary: updatePaymentReminder
+      operationId: updatePaymentReminder
+      responses:
+        '200':
+          $ref: '#/components/responses/PaymentReminderSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the payment reminder
+      tags:
+        - billing
+      requestBody:
+        $ref: '#/components/requestBodies/PaymentReminderUpdateRequest'
+  /service-contracts:
+    get:
+      summary: getServiceContracts
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/ServiceContractListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServiceContracts
+      description: Returns all service contracts
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+    post:
+      summary: createServiceContract
+      operationId: createServiceContract
+      responses:
+        '201':
+          $ref: '#/components/responses/ServiceContractSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new service contract
+      tags:
+        - billing
+      requestBody:
+        $ref: '#/components/requestBodies/ServiceContractCreateRequest'
+  '/service-contracts/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServiceContract ID
+    get:
+      summary: getServiceContract
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/ServiceContractSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServiceContract
+      description: Returns a single service contract
+    put:
+      summary: updateServiceContract
+      operationId: updateServiceContract
+      responses:
+        '200':
+          $ref: '#/components/responses/ServiceContractSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the service contract
+      tags:
+        - billing
+      requestBody:
+        $ref: '#/components/requestBodies/ServiceContractUpdateRequest'
+    delete:
+      summary: deleteServiceContract
+      operationId: deleteServiceContract
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes the service contract
+      tags:
+        - billing
+  /service-contract-positions:
+    get:
+      summary: getServiceContractPositions
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/ServiceContractPositionListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServiceContractPositions
+      description: Returns all service contract positions
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+    post:
+      summary: createServiceContractPosition
+      operationId: createServiceContractPosition
+      responses:
+        '201':
+          $ref: '#/components/responses/ServiceContractPositionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new position for the service contract
+      tags:
+        - billing
+      requestBody:
+        $ref: '#/components/requestBodies/ServiceContractPositionCreateRequest'
+  '/service-contract-positions/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServiceContractPosition ID
+    get:
+      summary: getServiceContractPosition
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/ServiceContractPositionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServiceContractPosition
+      description: Returns a single service contract position
+    put:
+      summary: updateServiceContractPosition
+      operationId: updateServiceContractPosition
+      responses:
+        '200':
+          $ref: '#/components/responses/ServiceContractPositionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the service contract position
+      tags:
+        - billing
+      requestBody:
+        $ref: '#/components/requestBodies/ServiceContractPositionUpdateRequest'
+    delete:
+      summary: deleteServiceContractPosition
+      operationId: deleteServiceContractPosition
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - billing
+      description: Deletes the service contract position
 components:
   schemas:
     ResponseMessages:
@@ -2691,50 +2988,6 @@ components:
               - custom_vat_rate
               - billing_interval
               - payment_period
-    CustomerTransactionCreateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              customer_id:
-                type: integer
-              title:
-                type: string
-              amount:
-                type: number
-              type:
-                $ref: '#/components/schemas/CustomerTransactionType'
-              object_id:
-                type: string
-                format: uuid
-              date:
-                type: string
-            required:
-              - customer_id
-              - title
-              - amount
-              - type
-              - object_id
-    CustomerTransactionUpdateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              customer_id:
-                type: integer
-              title:
-                type: string
-              amount:
-                type: number
-              type:
-                $ref: '#/components/schemas/CustomerTransactionType'
-              object_id:
-                type: string
-                format: uuid
-              date:
-                type: string
     CustomerUpdateRequest:
       content:
         application/json:
@@ -2927,6 +3180,10 @@ components:
                 type: number
               state:
                 $ref: '#/components/schemas/OfferState'
+              positions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OfferCreateRequestPosition'
             required:
               - customer_id
     OfferPositionCreateRequest:
