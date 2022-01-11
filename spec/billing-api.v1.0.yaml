@@ -32,7 +32,7 @@ paths:
       summary: createBankAccount
       operationId: createBankAccount
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/BankAccountSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -179,7 +179,7 @@ paths:
       summary: createBillingPosition
       operationId: createBillingPosition
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/BillingPositionSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -278,7 +278,7 @@ paths:
       summary: createCustomer
       operationId: createCustomer
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/CustomerSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -383,6 +383,696 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getCustomerTransaction
       description: Returns a single customer transaction
+  /debits:
+    get:
+      summary: getDebits
+      tags:
+        - payment
+      responses:
+        '200':
+          $ref: '#/components/responses/DebitListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDebits
+      description: Returns all debits
+  '/debits/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Debit ID
+    get:
+      summary: getDebit
+      tags:
+        - payment
+      responses:
+        '200':
+          $ref: '#/components/responses/DebitSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDebit
+      description: Returns a single debit
+  /debit-mandates:
+    get:
+      summary: getDebitMandates
+      tags:
+        - payment
+      responses:
+        '200':
+          $ref: '#/components/responses/DebitMandateListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDebitMandates
+      description: Returns all debit mandates
+    post:
+      summary: createDebitMandate
+      operationId: createDebitMandate
+      responses:
+        '201':
+          $ref: '#/components/responses/DebitMandateSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new debit mandate
+      tags:
+        - payment
+      requestBody:
+        $ref: '#/components/requestBodies/DebitMandateCreateRequest'
+  '/debit-mandates/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: DebitMandate ID
+    get:
+      summary: getDebitMandate
+      tags:
+        - payment
+      responses:
+        '200':
+          $ref: '#/components/responses/DebitMandateSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDebitMandate
+      description: Returns a single debit mandate
+  /files:
+    get:
+      summary: getFiles
+      responses:
+        '200':
+          $ref: '#/components/responses/FileListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getFiles
+      description: Returns all files
+      tags:
+        - general
+  '/files/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: File ID
+    get:
+      summary: getFile
+      responses:
+        '200':
+          $ref: '#/components/responses/FileSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getFile
+      description: Returns a single file
+      tags:
+        - general
+  '/files/{id}/download':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: File ID
+    get:
+      summary: getFileDownload
+      responses:
+        '200':
+          $ref: '#/components/responses/FileDownloadResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getFileDownload
+      description: Returns a download url for the file that is valid for 5 minutes
+      tags:
+        - general
+  /invoices:
+    get:
+      summary: getInvoices
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoiceListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          description: Internal Server Error
+      operationId: getInvoices
+      description: Returns all invoices
+    post:
+      summary: createInvoice
+      operationId: createInvoice
+      responses:
+        '201':
+          $ref: '#/components/responses/InvoiceSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new invoice
+      tags:
+        - billing
+      requestBody:
+        $ref: '#/components/requestBodies/InvoiceCreateRequest'
+  '/invoices/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Invoice ID
+    get:
+      summary: getInvoice
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoiceSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getInvoice
+      description: Returns a single invoice
+    put:
+      summary: updateInvoice
+      operationId: updateInvoice
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoiceSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - billing
+      description: Updates an invoice draft
+      requestBody:
+        $ref: '#/components/requestBodies/InvoiceUpdateRequest'
+  '/invoices/{id}/file':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Invoice ID
+    get:
+      summary: getInvoiceFile
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/FileSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getInvoiceFile
+      description: Returns the file for the invoice
+  /invoice-positions:
+    get:
+      summary: getInvoicePositions
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoicePositionListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getInvoicePositions
+      description: Returns all invoice positions
+    post:
+      summary: createInvoicePosition
+      operationId: createInvoicePosition
+      responses:
+        '201':
+          $ref: '#/components/responses/InvoicePositionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new invoice position
+      tags:
+        - billing
+      requestBody:
+        $ref: '#/components/requestBodies/InvoicePositionCreateRequest'
+  '/invoice-positions/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: InvoicePosition ID
+    get:
+      summary: getInvoicePosition
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoicePositionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getInvoicePosition
+      description: Returns a single invoice position
+    put:
+      summary: updateInvoicePosition
+      operationId: updateInvoicePosition
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoicePositionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the invoice position
+      tags:
+        - billing
+    delete:
+      summary: deleteInvoicePosition
+      operationId: deleteInvoicePosition
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a position for an invoice draft
+      tags:
+        - billing
+  /offers:
+    get:
+      summary: getOffers
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/OfferListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getOffers
+      description: Returns all offers
+    post:
+      summary: createOffer
+      operationId: createOffer
+      responses:
+        '201':
+          $ref: '#/components/responses/OfferSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - billing
+      description: Creates a new offer
+      requestBody:
+        $ref: '#/components/requestBodies/OfferCreateRequest'
+  '/offers/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Offer ID
+    get:
+      summary: getOffer
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/OfferSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getOffer
+      description: Returns a single offer
+    put:
+      summary: updateOffer
+      operationId: updateOffer
+      responses:
+        '200':
+          $ref: '#/components/responses/OfferSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the offer
+      tags:
+        - billing
+      requestBody:
+        $ref: '#/components/requestBodies/OfferUpdateRequest'
+  /offer-positions:
+    get:
+      summary: getOfferPositions
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/OfferPositionListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getOfferPositions
+      description: Returns all offer positions
+    post:
+      summary: createOfferPosition
+      operationId: createOfferPosition
+      responses:
+        '201':
+          $ref: '#/components/responses/OfferPositionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new offer position
+      tags:
+        - billing
+      requestBody:
+        $ref: '#/components/requestBodies/OfferPositionCreateRequest'
+  '/offer-positions/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: OfferPosition ID
+    get:
+      summary: getOfferPosition
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/OfferPositionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getOfferPosition
+      description: Returns a single offer position
+    put:
+      summary: updateOfferPosition
+      operationId: updateOfferPosition
+      responses:
+        '200':
+          $ref: '#/components/responses/OfferPositionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the offer position
+      tags:
+        - billing
+      requestBody:
+        $ref: '#/components/requestBodies/OfferPositionUpdateRequest'
+    delete:
+      summary: deleteOfferPosition
+      operationId: deleteOfferPosition
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes an offer position
+      tags:
+        - billing
+  /online-payments:
+    get:
+      summary: getOnlinePayments
+      tags:
+        - payment
+      responses:
+        '200':
+          $ref: '#/components/responses/OnlinePaymentListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getOnlinePayments
+      description: Returns all online payments
+  '/online-payments/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: OnlinePayment ID
+    get:
+      summary: getOnlinePayment
+      tags:
+        - payment
+      responses:
+        '200':
+          $ref: '#/components/responses/OnlinePaymentSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getOnlinePayment
+      description: Returns a single online payment
+  /payment-reminders:
+    get:
+      summary: getPaymentReminders
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/PaymentReminderListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPaymentReminders
+      description: Returns all payment reminders
+    post:
+      summary: createPaymentReminder
+      operationId: createPaymentReminder
+      responses:
+        '201':
+          $ref: '#/components/responses/PaymentReminderSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new payment reminder
+      tags:
+        - billing
+      requestBody:
+        $ref: '#/components/requestBodies/PaymentReminderCreateRequest'
+  '/payment-reminders/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: PaymentReminder ID
+    get:
+      summary: getPaymentReminder
+      tags:
+        - billing
+      responses:
+        '200':
+          $ref: '#/components/responses/PaymentReminderSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPaymentReminder
+      description: Returns a single payment reminder
 components:
   schemas:
     ResponseMessages:
@@ -2457,4 +3147,5 @@ security:
 tags:
   - name: billing
   - name: customers
+  - name: general
   - name: payment
