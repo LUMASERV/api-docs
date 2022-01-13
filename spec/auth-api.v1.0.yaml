@@ -553,7 +553,7 @@ components:
         token:
           type: string
         user_id:
-          type: integer
+          type: string
         type:
           type: string
           enum:
