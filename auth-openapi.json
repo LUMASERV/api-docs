@@ -1703,7 +1703,7 @@
             "type" : "string"
           },
           "user_id" : {
-            "type" : "integer"
+            "type" : "string"
           },
           "type" : {
             "enum" : [ "SESSION", "API" ],
