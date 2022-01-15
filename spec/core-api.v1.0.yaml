@@ -1116,6 +1116,11 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
     post:
       summary: createSSHKey
       operationId: createSSHKey
@@ -1203,6 +1208,11 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[name]'
+          description: Name Filter
     post:
       summary: createServer
       operationId: createServer
@@ -1340,6 +1350,11 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
     post:
       summary: createServerTemplate
       operationId: createServerTemplate
@@ -1408,6 +1423,11 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
     parameters: []
     post:
       summary: createServerMedia
@@ -1810,6 +1830,11 @@ paths:
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
     post:
       summary: createAvailabilityZone
       operationId: createAvailabilityZone
@@ -1894,6 +1919,11 @@ paths:
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
     post:
       summary: createServerVariant
       operationId: createServerVariant
@@ -2043,6 +2073,11 @@ paths:
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
     post:
       summary: createNetwork
       operationId: createNetwork
