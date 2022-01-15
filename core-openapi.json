@@ -3923,6 +3923,16 @@
             "type" : "boolean"
           },
           "style" : "form"
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -4253,6 +4263,16 @@
           "required" : false,
           "schema" : {
             "type" : "boolean"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Name Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           },
           "style" : "form"
         } ],
@@ -4753,6 +4773,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -4993,6 +5023,16 @@
           "required" : false,
           "schema" : {
             "type" : "boolean"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           },
           "style" : "form"
         } ],
@@ -6369,6 +6409,16 @@
           "schema" : {
             "type" : "string"
           }
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -6661,6 +6711,16 @@
           "schema" : {
             "type" : "string"
           }
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -7168,6 +7228,16 @@
           "required" : false,
           "schema" : {
             "type" : "boolean"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           },
           "style" : "form"
         } ],
