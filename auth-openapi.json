@@ -1987,6 +1987,7 @@
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
+        "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
       "inline_response_200_6" : {
