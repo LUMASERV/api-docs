@@ -10066,7 +10066,7 @@
                   "type" : "object"
                 }
               },
-              "required" : [ "name", "project_id", "ssh_keys", "template_id", "zone_id" ],
+              "required" : [ "name", "project_id", "ssh_keys", "template_id", "variant_id", "zone_id" ],
               "type" : "object"
             }
           }
