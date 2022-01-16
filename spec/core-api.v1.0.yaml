@@ -3296,6 +3296,11 @@ components:
           type: string
         labels:
           type: object
+        state:
+          type: string
+          enum:
+            - INSTALLATION
+            - READY
       required:
         - id
         - project_id
@@ -3303,6 +3308,7 @@ components:
         - variant_id
         - template_id
         - created_at
+        - state
     SSHKey:
       title: SSHKey
       type: object
