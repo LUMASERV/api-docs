@@ -11760,10 +11760,6 @@
           },
           "labels" : {
             "type" : "object"
-          },
-          "legacy_id" : {
-            "deprecated" : true,
-            "type" : "integer"
           }
         },
         "required" : [ "created_at", "id", "name", "project_id", "template_id", "variant_id" ],
