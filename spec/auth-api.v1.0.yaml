@@ -858,6 +858,11 @@ components:
                 $ref: '#/components/schemas/TokenValidationInfo'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
     TokenListResponse:
       description: Token List
       content:
