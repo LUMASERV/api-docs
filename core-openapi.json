@@ -11760,9 +11760,13 @@
           },
           "labels" : {
             "type" : "object"
+          },
+          "state" : {
+            "enum" : [ "INSTALLATION", "READY" ],
+            "type" : "string"
           }
         },
-        "required" : [ "created_at", "id", "name", "project_id", "template_id", "variant_id" ],
+        "required" : [ "created_at", "id", "name", "project_id", "state", "template_id", "variant_id" ],
         "title" : "Server",
         "type" : "object",
         "x-tags" : [ "server" ]
