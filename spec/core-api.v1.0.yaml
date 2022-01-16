@@ -4612,6 +4612,11 @@ components:
                   $ref: '#/components/schemas/DomainPricing'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
     SearchResponse:
       description: Search Results
       content:
