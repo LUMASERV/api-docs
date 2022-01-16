@@ -5757,6 +5757,7 @@ components:
               - project_id
               - zone_id
               - name
+              - variant_id
               - template_id
               - ssh_keys
     DNSZoneUpdateRequest:
