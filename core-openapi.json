@@ -9432,6 +9432,9 @@
                   "type" : "string"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -9458,6 +9461,9 @@
                   "type" : "string"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -9487,6 +9493,9 @@
                   "type" : "string"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -9506,6 +9515,9 @@
                   "type" : "string"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -9532,6 +9544,9 @@
                   "type" : "string"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -9637,6 +9652,9 @@
                   "type" : "boolean"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -9720,6 +9738,9 @@
                   "type" : "boolean"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -9771,6 +9792,9 @@
                   "type" : "array"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -9805,6 +9829,9 @@
                   "type" : "array"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -9878,6 +9905,9 @@
                   "type" : "string"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -9933,6 +9963,9 @@
                   "type" : "string"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -9993,6 +10026,9 @@
                   "type" : "string"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -10019,6 +10055,9 @@
                   "type" : "string"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -10063,6 +10102,9 @@
                   "type" : "array"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -10088,6 +10130,9 @@
                   "type" : "string"
                 },
                 "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
                   "type" : "object"
                 }
               },
@@ -11255,6 +11300,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -11299,6 +11347,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -11325,6 +11376,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -11354,6 +11408,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -11461,6 +11518,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -11496,6 +11556,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -11579,6 +11642,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -11641,6 +11707,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -11701,6 +11770,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -11759,6 +11831,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           },
           "state" : {
@@ -11793,6 +11868,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -11841,6 +11919,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           },
           "external_id" : {
@@ -11884,6 +11965,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           },
           "root" : {
@@ -11971,6 +12055,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -12106,6 +12193,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           }
         },
@@ -12139,6 +12229,9 @@
             "type" : "string"
           },
           "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
             "type" : "object"
           },
           "host_id" : {
