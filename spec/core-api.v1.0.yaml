@@ -2840,6 +2840,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - id
         - project_id
@@ -2883,6 +2885,8 @@ components:
           example: Example Bucket
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - id
         - project_id
@@ -2907,6 +2911,8 @@ components:
           example: Example Access Key
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - id
         - project_id
@@ -2936,6 +2942,8 @@ components:
             - READ_WRITE
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - id
         - role
@@ -3018,6 +3026,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - code
         - project_id
@@ -3058,6 +3068,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - name
         - project_id
@@ -3132,6 +3144,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - id
         - project_id
@@ -3184,6 +3198,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - id
         - project_id
@@ -3239,6 +3255,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - id
         - project_id
@@ -3296,6 +3314,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
         state:
           type: string
           enum:
@@ -3329,6 +3349,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - id
         - project_id
@@ -3375,6 +3397,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
         external_id:
           type: string
       required:
@@ -3412,6 +3436,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
         root:
           type: boolean
       required:
@@ -3485,6 +3511,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - project_id
         - type
@@ -3618,6 +3646,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
       required:
         - id
         - project_id
@@ -3648,6 +3678,8 @@ components:
           type: string
         labels:
           type: object
+          additionalProperties:
+            type: string
         host_id:
           type: string
           format: uuid
@@ -5271,6 +5303,8 @@ components:
                 type: string
               labels:
                 type: object
+                additionalProperties:
+                  type: string
             required:
               - project_id
               - title
@@ -5291,6 +5325,8 @@ components:
                 type: string
               labels:
                 type: object
+                additionalProperties:
+                  type: string
             required:
               - project_id
               - title
@@ -5314,6 +5350,8 @@ components:
                 format: ipv4
               labels:
                 type: object
+                additionalProperties:
+                  type: string
             required:
               - project_id
               - type_id
@@ -5329,6 +5367,8 @@ components:
                 format: ipv4
               labels:
                 type: object
+                additionalProperties:
+                  type: string
     S3AccessGrantCreateRequest:
       content:
         application/json:
@@ -5348,6 +5388,8 @@ components:
                   - READ_WRITE
               labels:
                 type: object
+                additionalProperties:
+                  type: string
             required:
               - role
     DomainHandleCreateRequest:
@@ -5425,6 +5467,8 @@ components:
                 type: boolean
               labels:
                 type: object
+                additionalProperties:
+                  type: string
             required:
               - project_id
               - type
@@ -5492,6 +5536,8 @@ components:
                 type: boolean
               labels:
                 type: object
+                additionalProperties:
+                  type: string
     DomainCreateRequest:
       content:
         application/json:
@@ -5527,6 +5573,8 @@ components:
                   $ref: '#/components/schemas/DomainRequestNameserver'
               labels:
                 type: object
+                additionalProperties:
+                  type: string
             required:
               - name
               - project_id
@@ -5556,6 +5604,8 @@ components:
                   $ref: '#/components/schemas/DomainRequestNameserver'
               labels:
                 type: object
+                additionalProperties:
+                  type: string
     DomainScheduleDeleteRequest:
       content:
         application/json:
@@ -5604,6 +5654,8 @@ components:
                 type: string
               labels:
                 type: object
+                additionalProperties:
+                  type: string
             required:
               - project_id
               - first_name
@@ -5650,6 +5702,8 @@ components:
                 type: string
               labels:
                 type: object
+                additionalProperties:
+                  type: string
             required:
               - project_id
               - name
@@ -5702,6 +5756,8 @@ components:
                 format: email
               labels:
                 type: object
+                additionalProperties:
+                  type: string
             required:
               - project_id
               - type_id
@@ -5724,6 +5780,8 @@ components:
                 type: string
               labels:
                 type: object
+                additionalProperties:
+                  type: string
             required:
               - project_id
               - title
@@ -5759,6 +5817,8 @@ components:
                   format: uuid
               labels:
                 type: object
+                additionalProperties:
+                  type: string
             required:
               - project_id
               - zone_id
@@ -5781,6 +5841,8 @@ components:
                 type: string
               labels:
                 type: object
+                additionalProperties:
+                  type: string
     DNSRecordCreateRequest:
       content:
         application/json:
