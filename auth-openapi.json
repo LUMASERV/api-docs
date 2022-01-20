@@ -1430,9 +1430,6 @@
               "properties" : {
                 "title" : {
                   "type" : "string"
-                },
-                "customer_reference" : {
-                  "type" : "string"
                 }
               },
               "required" : [ "title" ],
@@ -1447,9 +1444,6 @@
             "schema" : {
               "properties" : {
                 "title" : {
-                  "type" : "string"
-                },
-                "customer_reference" : {
                   "type" : "string"
                 }
               },
@@ -1784,9 +1778,6 @@
           "title" : {
             "example" : "Example Project",
             "type" : "string"
-          },
-          "detail" : {
-            "$ref" : "#/components/schemas/Project_detail"
           }
         },
         "required" : [ "id", "title" ],
@@ -2149,28 +2140,6 @@
           }
         },
         "required" : [ "data", "messages", "metadata", "success" ],
-        "type" : "object"
-      },
-      "Project_detail" : {
-        "description" : "Only available if the \"detail\" query parameter is present",
-        "properties" : {
-          "domain_count" : {
-            "type" : "integer"
-          },
-          "server_count" : {
-            "type" : "integer"
-          },
-          "s3_bucket_count" : {
-            "type" : "integer"
-          },
-          "plesk_license_count" : {
-            "type" : "integer"
-          },
-          "ssl_certificate_count" : {
-            "type" : "integer"
-          }
-        },
-        "required" : [ "domain_count", "plesk_license_count", "s3_bucket_count", "server_count", "ssl_certificate_count" ],
         "type" : "object"
       }
     },
