@@ -539,26 +539,6 @@ components:
         title:
           type: string
           example: Example Project
-        detail:
-          type: object
-          description: Only available if the "detail" query parameter is present
-          properties:
-            domain_count:
-              type: integer
-            server_count:
-              type: integer
-            s3_bucket_count:
-              type: integer
-            plesk_license_count:
-              type: integer
-            ssl_certificate_count:
-              type: integer
-          required:
-            - domain_count
-            - server_count
-            - s3_bucket_count
-            - plesk_license_count
-            - ssl_certificate_count
       required:
         - id
         - title
@@ -945,8 +925,6 @@ components:
             properties:
               title:
                 type: string
-              customer_reference:
-                type: string
             required:
               - title
     ProjectUpdateRequest:
@@ -956,8 +934,6 @@ components:
             type: object
             properties:
               title:
-                type: string
-              customer_reference:
                 type: string
     LoginRequest:
       content:
