@@ -515,6 +515,79 @@
         },
         "summary" : "getUsers",
         "tags" : [ "users" ]
+      },
+      "post" : {
+        "description" : "Creates a new user",
+        "operationId" : "createUser",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_3"
+                }
+              }
+            },
+            "description" : "Single User"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createUser",
+        "tags" : [ "users" ]
       }
     },
     "/users/{id}" : {
@@ -1458,6 +1531,40 @@
             }
           }
         }
+      },
+      "UserCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "gender" : {
+                  "$ref" : "#/components/schemas/Gender"
+                },
+                "first_name" : {
+                  "type" : "string"
+                },
+                "last_name" : {
+                  "type" : "string"
+                },
+                "company" : {
+                  "type" : "string"
+                },
+                "email" : {
+                  "format" : "email",
+                  "type" : "string"
+                },
+                "password" : {
+                  "type" : "string"
+                },
+                "type" : {
+                  "$ref" : "#/components/schemas/UserType"
+                }
+              },
+              "required" : [ "email", "first_name", "gender", "last_name", "password" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -1745,16 +1852,13 @@
             "type" : "string"
           },
           "gender" : {
-            "enum" : [ "MALE", "FEMALE" ],
-            "type" : "string"
+            "$ref" : "#/components/schemas/Gender"
           },
           "type" : {
-            "enum" : [ "CUSTOMER", "ADMIN" ],
-            "type" : "string"
+            "$ref" : "#/components/schemas/UserType"
           },
           "state" : {
-            "enum" : [ "PENDING", "ACTIVATED", "LOCKED" ],
-            "type" : "string"
+            "$ref" : "#/components/schemas/UserState"
           }
         },
         "required" : [ "email", "first_name", "id", "last_name" ],
@@ -1812,6 +1916,21 @@
         },
         "title" : "TokenScope",
         "type" : "object"
+      },
+      "UserType" : {
+        "enum" : [ "CUSTOMER", "ADMIN" ],
+        "title" : "UserType",
+        "type" : "string"
+      },
+      "Gender" : {
+        "enum" : [ "MALE", "FEMALE", "OTHER" ],
+        "title" : "Gender",
+        "type" : "string"
+      },
+      "UserState" : {
+        "enum" : [ "PENDING", "ACTIVATED", "LOCKED" ],
+        "title" : "UserState",
+        "type" : "string"
       },
       "inline_response_200" : {
         "properties" : {

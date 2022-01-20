@@ -10101,6 +10101,12 @@
                   },
                   "type" : "array"
                 },
+                "networks" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/ServerCreateRequestNetwork"
+                  },
+                  "type" : "array"
+                },
                 "labels" : {
                   "additionalProperties" : {
                     "type" : "string"
@@ -12411,6 +12417,18 @@
         },
         "required" : [ "online" ],
         "title" : "ServerStatus",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "ServerCreateRequestNetwork" : {
+        "properties" : {
+          "network_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "required" : [ "network_id" ],
+        "title" : "ServerCreateRequestNetwork",
         "type" : "object",
         "x-tags" : [ "server" ]
       },

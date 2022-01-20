@@ -57,6 +57,9 @@ export default class LUMASERVAuthClient {
     getUsers(query = null){
         return this.request('get', '/users', query, null);
     }
+    createUser(){
+        return this.request('post', '/users', null, null);
+    }
     getUser(id){
         return this.request('get', '/users/' + id, null, null);
     }
