@@ -3853,6 +3853,17 @@ components:
           type: number
       required:
         - online
+    ServerCreateRequestNetwork:
+      title: ServerCreateRequestNetwork
+      type: object
+      properties:
+        network_id:
+          type: string
+          format: uuid
+      required:
+        - network_id
+      x-tags:
+        - server
   securitySchemes:
     AuthToken:
       type: http
@@ -5815,6 +5826,10 @@ components:
                 items:
                   type: string
                   format: uuid
+              networks:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerCreateRequestNetwork'
               labels:
                 type: object
                 additionalProperties:

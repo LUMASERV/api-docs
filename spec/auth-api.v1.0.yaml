@@ -159,6 +159,25 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+    post:
+      summary: createUser
+      operationId: createUser
+      responses:
+        '200':
+          $ref: '#/components/responses/UserSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - users
+      description: Creates a new user
   '/users/{id}':
     parameters:
       - schema:
@@ -591,21 +610,11 @@ components:
         last_name:
           type: string
         gender:
-          type: string
-          enum:
-            - MALE
-            - FEMALE
+          $ref: '#/components/schemas/Gender'
         type:
-          type: string
-          enum:
-            - CUSTOMER
-            - ADMIN
+          $ref: '#/components/schemas/UserType'
         state:
-          type: string
-          enum:
-            - PENDING
-            - ACTIVATED
-            - LOCKED
+          $ref: '#/components/schemas/UserState'
       required:
         - id
         - email
@@ -656,6 +665,26 @@ components:
         project_id:
           type: string
           format: uuid
+    UserType:
+      type: string
+      title: UserType
+      enum:
+        - CUSTOMER
+        - ADMIN
+    Gender:
+      type: string
+      title: Gender
+      enum:
+        - MALE
+        - FEMALE
+        - OTHER
+    UserState:
+      type: string
+      title: UserState
+      enum:
+        - PENDING
+        - ACTIVATED
+        - LOCKED
   securitySchemes:
     AuthToken:
       type: http
@@ -982,6 +1011,33 @@ components:
                 $ref: '#/components/schemas/TokenScope'
             required:
               - title
+    UserCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              gender:
+                $ref: '#/components/schemas/Gender'
+              first_name:
+                type: string
+              last_name:
+                type: string
+              company:
+                type: string
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+              type:
+                $ref: '#/components/schemas/UserType'
+            required:
+              - gender
+              - first_name
+              - last_name
+              - email
+              - password
   parameters:
     PaginationPage:
       name: page
