@@ -1277,6 +1277,27 @@ paths:
       tags:
         - server
       description: Deletes the server
+    put:
+      summary: updateServer
+      operationId: updateServer
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the server
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerUpdateRequest'
   /server-volumes:
     get:
       summary: getServerVolumes
@@ -6154,6 +6175,18 @@ components:
                 format: uuid
             required:
               - server_id
+    ServerUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
