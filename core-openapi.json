@@ -6636,9 +6636,6 @@
           },
           "style" : "simple"
         } ],
-        "requestBody" : {
-          "$ref" : "#/components/requestBodies/AvailabilityZoneUpdateRequest"
-        },
         "responses" : {
           "200" : {
             "content" : {
@@ -6699,6 +6696,9 @@
           },
           "style" : "simple"
         } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/AvailabilityZoneUpdateRequest"
+        },
         "responses" : {
           "200" : {
             "content" : {
@@ -11953,9 +11953,13 @@
           "state" : {
             "enum" : [ "INSTALLATION", "READY" ],
             "type" : "string"
+          },
+          "zone_id" : {
+            "format" : "uuid",
+            "type" : "string"
           }
         },
-        "required" : [ "created_at", "id", "name", "project_id", "state", "template_id", "variant_id" ],
+        "required" : [ "created_at", "id", "name", "project_id", "state", "template_id", "variant_id", "zone_id" ],
         "title" : "Server",
         "type" : "object",
         "x-tags" : [ "server" ]
