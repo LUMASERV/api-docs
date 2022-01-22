@@ -1901,8 +1901,6 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getAvailabilityZone
       description: Returns a single availability zone
-      requestBody:
-        $ref: '#/components/requestBodies/AvailabilityZoneUpdateRequest'
     put:
       summary: updateAvailabilityZone
       operationId: updateAvailabilityZone
@@ -1922,6 +1920,8 @@ paths:
       description: Updates the availability zone
       tags:
         - server
+      requestBody:
+        $ref: '#/components/requestBodies/AvailabilityZoneUpdateRequest'
   /server-variants:
     get:
       summary: getServerVariants
@@ -3342,6 +3342,9 @@ components:
           enum:
             - INSTALLATION
             - READY
+        zone_id:
+          type: string
+          format: uuid
       required:
         - id
         - project_id
@@ -3350,6 +3353,7 @@ components:
         - template_id
         - created_at
         - state
+        - zone_id
     SSHKey:
       title: SSHKey
       type: object
