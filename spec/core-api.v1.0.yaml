@@ -2762,6 +2762,53 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerStatus
       description: Fetches the current server status
+  /addresses:
+    get:
+      summary: getAddresses
+      tags:
+        - address
+      responses:
+        '200':
+          $ref: '#/components/responses/AddressListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getAddresses
+      description: Returns all addresses
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+  '/addresses/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getAddress
+      tags:
+        - address
+      responses:
+        '200':
+          $ref: '#/components/responses/AddressSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getAddress
+      description: Returns a single address
 components:
   schemas:
     ResponseMessages:
