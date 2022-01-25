@@ -378,4 +378,10 @@ export default class LUMASERVCoreClient {
     getServerStatus(id){
         return this.request('get', '/servers/' + id + '/status', null, null);
     }
+    getAddresses(query = null){
+        return this.request('get', '/addresses', query, null);
+    }
+    getAddress(id){
+        return this.request('get', '/addresses/' + id, null, null);
+    }
 }
