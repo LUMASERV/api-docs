@@ -384,4 +384,7 @@ export default class LUMASERVCoreClient {
     getAddress(id){
         return this.request('get', '/addresses/' + id, null, null);
     }
+    resizeServer(id, body = null){
+        return this.request('post', '/servers/' + id + '/resize', null, body);
+    }
 }

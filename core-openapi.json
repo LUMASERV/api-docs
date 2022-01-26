@@ -9605,6 +9605,104 @@
         "summary" : "getAddress",
         "tags" : [ "address" ]
       }
+    },
+    "/servers/{id}/resize" : {
+      "post" : {
+        "description" : "Resizes the server to the specified variant",
+        "operationId" : "resizeServer",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerResizeRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "409" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "resizeServer",
+        "tags" : [ "server" ]
+      }
     }
   },
   "components" : {
@@ -10792,6 +10890,25 @@
                   "type" : "object"
                 }
               },
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerResizeRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "variant_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "resize_disk" : {
+                  "type" : "boolean"
+                }
+              },
+              "required" : [ "variant_id" ],
               "type" : "object"
             }
           }
@@ -12640,15 +12757,13 @@
             "type" : "string"
           },
           "type" : {
-            "enum" : [ "START", "SHUTDOWN", "STOP" ],
-            "type" : "string"
+            "$ref" : "#/components/schemas/ServerActionType"
           },
           "cancellable" : {
             "type" : "boolean"
           },
           "state" : {
-            "enum" : [ "STARTED", "CANCELLED", "FAILED", "SUCCESS" ],
-            "type" : "string"
+            "$ref" : "#/components/schemas/ServerActionState"
           },
           "started_at" : {
             "type" : "string"
@@ -12695,6 +12810,18 @@
         "required" : [ "network_id" ],
         "title" : "ServerCreateRequestNetwork",
         "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "ServerActionType" : {
+        "enum" : [ "START", "SHUTDOWN", "STOP", "RESIZE" ],
+        "title" : "ServerActionType",
+        "type" : "string",
+        "x-tags" : [ "server" ]
+      },
+      "ServerActionState" : {
+        "enum" : [ "STARTED", "CANCELLED", "FAILED", "SUCCESS" ],
+        "title" : "ServerActionState",
+        "type" : "string",
         "x-tags" : [ "server" ]
       },
       "inline_response_200" : {
