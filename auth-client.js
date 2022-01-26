@@ -57,8 +57,8 @@ export default class LUMASERVAuthClient {
     getUsers(query = null){
         return this.request('get', '/users', query, null);
     }
-    createUser(){
-        return this.request('post', '/users', null, null);
+    createUser(body = null){
+        return this.request('post', '/users', null, body);
     }
     getUser(id){
         return this.request('get', '/users/' + id, null, null);
@@ -95,5 +95,11 @@ export default class LUMASERVAuthClient {
     }
     getToken(id){
         return this.request('get', '/tokens/' + id, null, null);
+    }
+    getCountries(){
+        return this.request('get', '/countries', null, null);
+    }
+    getCountry(code){
+        return this.request('get', '/countries/' + code, null, null);
     }
 }

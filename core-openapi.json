@@ -10803,9 +10803,15 @@
                 },
                 "config" : {
                   "type" : "object"
+                },
+                "country_code" : {
+                  "type" : "string"
+                },
+                "city" : {
+                  "type" : "string"
                 }
               },
-              "required" : [ "config", "title" ],
+              "required" : [ "city", "config", "country_code", "title" ],
               "type" : "object"
             }
           }
@@ -10821,6 +10827,12 @@
                 },
                 "config" : {
                   "type" : "object"
+                },
+                "country_code" : {
+                  "type" : "string"
+                },
+                "city" : {
+                  "type" : "string"
                 }
               },
               "type" : "object"
@@ -12519,9 +12531,15 @@
           },
           "config" : {
             "type" : "object"
+          },
+          "country_code" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
           }
         },
-        "required" : [ "id", "title" ],
+        "required" : [ "city", "country_code", "id", "title" ],
         "title" : "AvailabilityZone",
         "type" : "object",
         "x-tags" : [ "server" ]

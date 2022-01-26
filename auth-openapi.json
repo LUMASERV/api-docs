@@ -17,13 +17,15 @@
     "AuthToken" : [ ]
   } ],
   "tags" : [ {
-    "name" : "projects"
-  }, {
     "name" : "auth"
   }, {
-    "name" : "users"
+    "name" : "countries"
+  }, {
+    "name" : "projects"
   }, {
     "name" : "tokens"
+  }, {
+    "name" : "users"
   } ],
   "paths" : {
     "/projects" : {
@@ -519,6 +521,9 @@
       "post" : {
         "description" : "Creates a new user",
         "operationId" : "createUser",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/UserCreateRequest"
+        },
         "responses" : {
           "200" : {
             "content" : {
@@ -1382,6 +1387,86 @@
         "summary" : "getToken",
         "tags" : [ "tokens" ]
       }
+    },
+    "/countries" : {
+      "get" : {
+        "description" : "Returns all countries",
+        "operationId" : "getCountries",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_8"
+                }
+              }
+            },
+            "description" : "Country List"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getCountries",
+        "tags" : [ "countries" ]
+      }
+    },
+    "/countries/{code}" : {
+      "get" : {
+        "description" : "Returns a single country",
+        "operationId" : "getCountry",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_9"
+                }
+              }
+            },
+            "description" : "Single Country"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getCountry",
+        "tags" : [ "countries" ]
+      }
     }
   },
   "components" : {
@@ -1676,6 +1761,26 @@
           }
         },
         "description" : "Single Token"
+      },
+      "CountryListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_8"
+            }
+          }
+        },
+        "description" : "Country List"
+      },
+      "CountrySingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_9"
+            }
+          }
+        },
+        "description" : "Single Country"
       }
     },
     "schemas" : {
@@ -1923,6 +2028,19 @@
         "title" : "UserState",
         "type" : "string"
       },
+      "Country" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "code", "title" ],
+        "title" : "Country",
+        "type" : "object"
+      },
       "inline_response_200" : {
         "properties" : {
           "success" : {
@@ -2134,6 +2252,48 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/Token"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_8" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Country"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_9" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Country"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
