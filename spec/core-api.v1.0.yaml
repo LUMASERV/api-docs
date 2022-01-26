@@ -2809,6 +2809,36 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getAddress
       description: Returns a single address
+  '/servers/{id}/resize':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: resizeServer
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '409':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: resizeServer
+      description: Resizes the server to the specified variant
+      requestBody:
+        $ref: '#/components/requestBodies/ServerResizeRequest'
 components:
   schemas:
     ResponseMessages:
@@ -3883,20 +3913,11 @@ components:
           type: string
           format: uuid
         type:
-          type: string
-          enum:
-            - START
-            - SHUTDOWN
-            - STOP
+          $ref: '#/components/schemas/ServerActionType'
         cancellable:
           type: boolean
         state:
-          type: string
-          enum:
-            - STARTED
-            - CANCELLED
-            - FAILED
-            - SUCCESS
+          $ref: '#/components/schemas/ServerActionState'
         started_at:
           type: string
         ended_at:
@@ -3934,6 +3955,26 @@ components:
           format: uuid
       required:
         - network_id
+      x-tags:
+        - server
+    ServerActionType:
+      type: string
+      title: ServerActionType
+      enum:
+        - START
+        - SHUTDOWN
+        - STOP
+        - RESIZE
+      x-tags:
+        - server
+    ServerActionState:
+      type: string
+      title: ServerActionState
+      enum:
+        - STARTED
+        - CANCELLED
+        - FAILED
+        - SUCCESS
       x-tags:
         - server
   securitySchemes:
@@ -6238,6 +6279,19 @@ components:
                 type: object
                 additionalProperties:
                   type: string
+    ServerResizeRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              variant_id:
+                type: string
+                format: uuid
+              resize_disk:
+                type: boolean
+            required:
+              - variant_id
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
