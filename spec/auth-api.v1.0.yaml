@@ -10,10 +10,11 @@ servers:
   - url: 'https://auth.lumaserv.cloud'
     description: Live
 tags:
-  - name: projects
   - name: auth
-  - name: users
+  - name: countries
+  - name: projects
   - name: tokens
+  - name: users
 paths:
   /projects:
     get:
@@ -178,6 +179,8 @@ paths:
       tags:
         - users
       description: Creates a new user
+      requestBody:
+        $ref: '#/components/requestBodies/UserCreateRequest'
   '/users/{id}':
     parameters:
       - schema:
@@ -442,6 +445,38 @@ paths:
       tags:
         - tokens
       description: Deletes a token
+  /countries:
+    get:
+      summary: getCountries
+      tags:
+        - countries
+      responses:
+        '200':
+          $ref: '#/components/responses/CountryListResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getCountries
+      description: Returns all countries
+  '/countries/{code}':
+    parameters:
+      - schema:
+          type: string
+        name: code
+        in: path
+        required: true
+    get:
+      summary: getCountry
+      tags:
+        - countries
+      responses:
+        '200':
+          $ref: '#/components/responses/CountrySingleResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getCountry
+      description: Returns a single country
 components:
   schemas:
     ResponseMessages:
@@ -665,6 +700,17 @@ components:
         - PENDING
         - ACTIVATED
         - LOCKED
+    Country:
+      title: Country
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+      required:
+        - code
+        - title
   securitySchemes:
     AuthToken:
       type: http
@@ -909,6 +955,50 @@ components:
                 type: boolean
               data:
                 $ref: '#/components/schemas/Token'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    CountryListResponse:
+      description: Country List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    CountrySingleResponse:
+      description: Single Country
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Country'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:

@@ -3693,9 +3693,15 @@ components:
           type: string
         config:
           type: object
+        country_code:
+          type: string
+        city:
+          type: string
       required:
         - id
         - title
+        - country_code
+        - city
     ServerVariant:
       title: ServerVariant
       type: object
@@ -6222,9 +6228,15 @@ components:
                 type: string
               config:
                 type: object
+              country_code:
+                type: string
+              city:
+                type: string
             required:
               - title
               - config
+              - country_code
+              - city
     AvailabilityZoneUpdateRequest:
       content:
         application/json:
@@ -6235,6 +6247,10 @@ components:
                 type: string
               config:
                 type: object
+              country_code:
+                type: string
+              city:
+                type: string
     SubnetAddressCreateRequest:
       content:
         application/json:
