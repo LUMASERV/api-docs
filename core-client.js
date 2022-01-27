@@ -387,4 +387,7 @@ export default class LUMASERVCoreClient {
     resizeServer(id, body = null){
         return this.request('post', '/servers/' + id + '/resize', null, body);
     }
+    getLabels(query = null){
+        return this.request('get', '/labels', query, null);
+    }
 }

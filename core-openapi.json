@@ -23,6 +23,8 @@
   }, {
     "name" : "domains"
   }, {
+    "name" : "label"
+  }, {
     "name" : "plesk-licenses"
   }, {
     "name" : "pricing"
@@ -9703,6 +9705,150 @@
         "summary" : "resizeServer",
         "tags" : [ "server" ]
       }
+    },
+    "/labels" : {
+      "get" : {
+        "description" : "Returns all labels that are in use",
+        "operationId" : "getLabels",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Name Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Value Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[value]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Object Type Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[object_type]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_51"
+                }
+              }
+            },
+            "description" : "Label List"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getLabels",
+        "tags" : [ "label" ]
+      }
     }
   },
   "components" : {
@@ -11582,6 +11728,16 @@
           }
         },
         "description" : "ServerStatus"
+      },
+      "LabelListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_51"
+            }
+          }
+        },
+        "description" : "Label List"
       }
     },
     "schemas" : {
@@ -12841,6 +12997,31 @@
         "title" : "ServerActionState",
         "type" : "string",
         "x-tags" : [ "server" ]
+      },
+      "Label" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "object_type" : {
+            "$ref" : "#/components/schemas/ObjectType"
+          },
+          "object_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "required" : [ "name", "object_id", "object_type", "value" ],
+        "title" : "Label",
+        "type" : "object"
+      },
+      "ObjectType" : {
+        "enum" : [ "DOMAIN", "DOMAIN_HANDLE", "SSH_KEY", "PLESK_LICENSE", "SSL_CERTIFICATE", "SSL_ORGANISATION", "SSL_CONTACT", "S3_BUCKET", "S3_ACCESS_KEY", "S3_ACCESS_GRANT", "DNS_ZONE", "SERVER", "SERVER_VOLUME", "SERVER_MEDIA", "NETWORK" ],
+        "title" : "ObjectType",
+        "type" : "string"
       },
       "inline_response_200" : {
         "properties" : {
@@ -14173,6 +14354,30 @@
           "data" : {
             "items" : {
               "$ref" : "#/components/schemas/Address"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_51" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Label"
             },
             "type" : "array"
           },
