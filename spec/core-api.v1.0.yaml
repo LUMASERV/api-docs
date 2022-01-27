@@ -13,6 +13,7 @@ tags:
   - name: address
   - name: dns
   - name: domains
+  - name: label
   - name: plesk-licenses
   - name: pricing
   - name: s3-storage
@@ -2839,6 +2840,46 @@ paths:
       description: Resizes the server to the specified variant
       requestBody:
         $ref: '#/components/requestBodies/ServerResizeRequest'
+  /labels:
+    get:
+      summary: getLabels
+      tags:
+        - label
+      responses:
+        '200':
+          $ref: '#/components/responses/LabelListResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getLabels
+      description: Returns all labels that are in use
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[name]'
+          description: Name Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[value]'
+          description: Value Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[object_type]'
+          description: Object Type Filter
 components:
   schemas:
     ResponseMessages:
@@ -3983,6 +4024,43 @@ components:
         - SUCCESS
       x-tags:
         - server
+    Label:
+      title: Label
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        object_type:
+          $ref: '#/components/schemas/ObjectType'
+        object_id:
+          type: string
+          format: uuid
+      required:
+        - name
+        - value
+        - object_type
+        - object_id
+    ObjectType:
+      type: string
+      title: ObjectType
+      enum:
+        - DOMAIN
+        - DOMAIN_HANDLE
+        - SSH_KEY
+        - PLESK_LICENSE
+        - SSL_CERTIFICATE
+        - SSL_ORGANISATION
+        - SSL_CONTACT
+        - S3_BUCKET
+        - S3_ACCESS_KEY
+        - S3_ACCESS_GRANT
+        - DNS_ZONE
+        - SERVER
+        - SERVER_VOLUME
+        - SERVER_MEDIA
+        - NETWORK
   securitySchemes:
     AuthToken:
       type: http
@@ -5411,6 +5489,30 @@ components:
                 type: boolean
               data:
                 $ref: '#/components/schemas/ServerStatus'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    LabelListResponse:
+      description: Label List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Label'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
