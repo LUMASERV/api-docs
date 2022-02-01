@@ -10909,7 +10909,10 @@
               "properties" : {
                 "zone_ids" : {
                   "format" : "uuid",
-                  "type" : "string"
+                  "items" : {
+                    "type" : "string"
+                  },
+                  "type" : "array"
                 },
                 "title" : {
                   "type" : "string"
