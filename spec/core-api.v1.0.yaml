@@ -6296,8 +6296,10 @@ components:
             type: object
             properties:
               zone_ids:
-                type: string
+                type: array
                 format: uuid
+                items:
+                  type: string
               title:
                 type: string
               cores:
