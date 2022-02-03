@@ -63,6 +63,9 @@ export default class LUMASERVAuthClient {
     getUser(id){
         return this.request('get', '/users/' + id, null, null);
     }
+    updateUser(id, body = null){
+        return this.request('put', '/users/' + id, null, body);
+    }
     getProjectMembers(id, query = null){
         return this.request('get', '/projects/' + id + '/members', query, null);
     }

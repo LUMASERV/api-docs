@@ -665,6 +665,94 @@
         },
         "summary" : "getUser",
         "tags" : [ "users" ]
+      },
+      "put" : {
+        "description" : "Updates the user",
+        "operationId" : "updateUser",
+        "parameters" : [ {
+          "description" : "User ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/UserUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_3"
+                }
+              }
+            },
+            "description" : "Single User"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateUser",
+        "tags" : [ "users" ]
       }
     },
     "/projects/{id}/members" : {
@@ -1640,6 +1728,42 @@
                 }
               },
               "required" : [ "email", "first_name", "gender", "last_name", "password" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "UserUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "gender" : {
+                  "$ref" : "#/components/schemas/Gender"
+                },
+                "first_name" : {
+                  "type" : "string"
+                },
+                "last_name" : {
+                  "type" : "string"
+                },
+                "company" : {
+                  "type" : "string"
+                },
+                "type" : {
+                  "$ref" : "#/components/schemas/UserType"
+                },
+                "state" : {
+                  "$ref" : "#/components/schemas/UserState"
+                },
+                "email" : {
+                  "format" : "email",
+                  "type" : "string"
+                },
+                "password" : {
+                  "type" : "string"
+                }
+              },
               "type" : "object"
             }
           }
