@@ -207,6 +207,27 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getUser
       description: Returns a single user
+    put:
+      summary: updateUser
+      operationId: updateUser
+      responses:
+        '200':
+          $ref: '#/components/responses/UserSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the user
+      tags:
+        - users
+      requestBody:
+        $ref: '#/components/requestBodies/UserUpdateRequest'
   '/projects/{id}/members':
     parameters:
       - schema:
@@ -1104,6 +1125,29 @@ components:
               - last_name
               - email
               - password
+    UserUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              gender:
+                $ref: '#/components/schemas/Gender'
+              first_name:
+                type: string
+              last_name:
+                type: string
+              company:
+                type: string
+              type:
+                $ref: '#/components/schemas/UserType'
+              state:
+                $ref: '#/components/schemas/UserState'
+              email:
+                type: string
+                format: email
+              password:
+                type: string
   parameters:
     PaginationPage:
       name: page
