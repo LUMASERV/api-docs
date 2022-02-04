@@ -160,6 +160,11 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[customer_id]'
+          description: Customer ID Filter
     post:
       summary: createUser
       operationId: createUser
@@ -406,6 +411,11 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[user_id]'
+          description: User ID Filter
     post:
       summary: createToken
       operationId: createToken
