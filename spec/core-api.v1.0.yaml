@@ -2880,6 +2880,34 @@ paths:
           in: query
           name: 'filter[object_type]'
           description: Object Type Filter
+  '/servers/{id}/graph':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getServerGraph
+      tags:
+        - server
+      responses:
+        '200':
+          description: OK
+      operationId: getServerGraph
+      description: Returns graph data for the server
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - week
+              - month
+              - year
+          in: query
+          name: timeframe
+          description: Data Timeframe
 components:
   schemas:
     ResponseMessages:
@@ -4061,6 +4089,37 @@ components:
         - SERVER_VOLUME
         - SERVER_MEDIA
         - NETWORK
+    ServerGraphEntry:
+      title: ServerGraphEntry
+      type: object
+      properties:
+        time:
+          type: integer
+        memory:
+          type: number
+        memory_usage:
+          type: number
+        cpu_usage:
+          type: number
+        disk_read:
+          type: integer
+        disk_write:
+          type: integer
+        network_ingress:
+          type: number
+        network_egress:
+          type: number
+      required:
+        - time
+        - memory
+        - memory_usage
+        - cpu_usage
+        - disk_read
+        - disk_write
+        - network_ingress
+        - network_egress
+      x-tags:
+        - server
   securitySchemes:
     AuthToken:
       type: http
@@ -5513,6 +5572,28 @@ components:
                   $ref: '#/components/schemas/Label'
               pagination:
                 $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerGraphResponse:
+      description: Server Graph
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerGraphEntry'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
