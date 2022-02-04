@@ -9849,6 +9849,40 @@
         "summary" : "getLabels",
         "tags" : [ "label" ]
       }
+    },
+    "/servers/{id}/graph" : {
+      "get" : {
+        "description" : "Returns graph data for the server",
+        "operationId" : "getServerGraph",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Data Timeframe",
+          "explode" : true,
+          "in" : "query",
+          "name" : "timeframe",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "hour", "day", "week", "month", "year" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "getServerGraph",
+        "tags" : [ "server" ]
+      }
     }
   },
   "components" : {
@@ -11741,6 +11775,34 @@
           }
         },
         "description" : "Label List"
+      },
+      "ServerGraphResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "metadata" : {
+                  "$ref" : "#/components/schemas/ResponseMetadata"
+                },
+                "success" : {
+                  "type" : "boolean"
+                },
+                "data" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/ServerGraphEntry"
+                  },
+                  "type" : "array"
+                },
+                "messages" : {
+                  "$ref" : "#/components/schemas/ResponseMessages"
+                }
+              },
+              "required" : [ "data", "messages", "metadata", "success" ],
+              "type" : "object"
+            }
+          }
+        },
+        "description" : "Server Graph"
       }
     },
     "schemas" : {
@@ -13025,6 +13087,38 @@
         "enum" : [ "DOMAIN", "DOMAIN_HANDLE", "SSH_KEY", "PLESK_LICENSE", "SSL_CERTIFICATE", "SSL_ORGANISATION", "SSL_CONTACT", "S3_BUCKET", "S3_ACCESS_KEY", "S3_ACCESS_GRANT", "DNS_ZONE", "SERVER", "SERVER_VOLUME", "SERVER_MEDIA", "NETWORK" ],
         "title" : "ObjectType",
         "type" : "string"
+      },
+      "ServerGraphEntry" : {
+        "properties" : {
+          "time" : {
+            "type" : "integer"
+          },
+          "memory" : {
+            "type" : "number"
+          },
+          "memory_usage" : {
+            "type" : "number"
+          },
+          "cpu_usage" : {
+            "type" : "number"
+          },
+          "disk_read" : {
+            "type" : "integer"
+          },
+          "disk_write" : {
+            "type" : "integer"
+          },
+          "network_ingress" : {
+            "type" : "number"
+          },
+          "network_egress" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "cpu_usage", "disk_read", "disk_write", "memory", "memory_usage", "network_egress", "network_ingress", "time" ],
+        "title" : "ServerGraphEntry",
+        "type" : "object",
+        "x-tags" : [ "server" ]
       },
       "inline_response_200" : {
         "properties" : {

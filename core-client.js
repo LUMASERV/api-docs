@@ -390,4 +390,7 @@ export default class LUMASERVCoreClient {
     getLabels(query = null){
         return this.request('get', '/labels', query, null);
     }
+    getServerGraph(id, query = null){
+        return this.request('get', '/servers/' + id + '/graph', query, null);
+    }
 }
