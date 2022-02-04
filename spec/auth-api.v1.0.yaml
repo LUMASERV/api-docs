@@ -402,6 +402,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getTokens
       description: Returns all tokens
+      parameters:
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
     post:
       summary: createToken
       operationId: createToken
@@ -478,6 +482,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getCountries
       description: Returns all countries
+      parameters:
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
   '/countries/{code}':
     parameters:
       - schema:
