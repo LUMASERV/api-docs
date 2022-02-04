@@ -17,6 +17,8 @@
     "AuthToken" : [ ]
   } ],
   "tags" : [ {
+    "name" : "audit"
+  }, {
     "name" : "auth"
   }, {
     "name" : "countries"
@@ -1641,6 +1643,74 @@
         "summary" : "getCountry",
         "tags" : [ "countries" ]
       }
+    },
+    "/audit-log" : {
+      "post" : {
+        "description" : "Searches the audit log for records",
+        "operationId" : "searchAuditLog",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/AuditLogRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_10"
+                }
+              }
+            },
+            "description" : "Audit Log"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "searchAuditLog",
+        "tags" : [ "audit" ]
+      }
     }
   },
   "components" : {
@@ -1854,6 +1924,29 @@
             }
           }
         }
+      },
+      "AuditLogRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "query" : {
+                  "additionalProperties" : true,
+                  "type" : "object"
+                },
+                "sort" : {
+                  "additionalProperties" : true,
+                  "type" : "object"
+                },
+                "limit" : {
+                  "type" : "integer"
+                }
+              },
+              "required" : [ "query" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -1991,6 +2084,16 @@
           }
         },
         "description" : "Single Country"
+      },
+      "AuditLogResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_10"
+            }
+          }
+        },
+        "description" : "Audit Log"
       }
     },
     "schemas" : {
@@ -2504,6 +2607,27 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/Country"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_10" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "type" : "object"
+            },
+            "type" : "array"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
