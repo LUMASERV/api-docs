@@ -87,8 +87,8 @@ export default class LUMASERVAuthClient {
     getUserProjectMemberships(id){
         return this.request('get', '/users/' + id + '/project_memberships', null, null);
     }
-    getTokens(){
-        return this.request('get', '/tokens', null, null);
+    getTokens(query = null){
+        return this.request('get', '/tokens', query, null);
     }
     createToken(body = null){
         return this.request('post', '/tokens', null, body);
@@ -99,8 +99,8 @@ export default class LUMASERVAuthClient {
     getToken(id){
         return this.request('get', '/tokens/' + id, null, null);
     }
-    getCountries(){
-        return this.request('get', '/countries', null, null);
+    getCountries(query = null){
+        return this.request('get', '/countries', query, null);
     }
     getCountry(code){
         return this.request('get', '/countries/' + code, null, null);
