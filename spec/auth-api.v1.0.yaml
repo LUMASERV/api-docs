@@ -10,6 +10,7 @@ servers:
   - url: 'https://auth.lumaserv.cloud'
     description: Live
 tags:
+  - name: audit
   - name: auth
   - name: countries
   - name: projects
@@ -516,6 +517,26 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getCountry
       description: Returns a single country
+  /audit-log:
+    post:
+      summary: searchAuditLog
+      operationId: searchAuditLog
+      responses:
+        '200':
+          $ref: '#/components/responses/AuditLogResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - audit
+      description: Searches the audit log for records
+      requestBody:
+        $ref: '#/components/requestBodies/AuditLogRequest'
 components:
   schemas:
     ResponseMessages:
@@ -1045,6 +1066,28 @@ components:
               - success
               - data
               - messages
+    AuditLogResponse:
+      description: Audit Log
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     ProjectCreateRequest:
       content:
@@ -1166,6 +1209,22 @@ components:
                 format: email
               password:
                 type: string
+    AuditLogRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              query:
+                type: object
+                additionalProperties: true
+              sort:
+                type: object
+                additionalProperties: true
+              limit:
+                type: integer
+            required:
+              - query
   parameters:
     PaginationPage:
       name: page
