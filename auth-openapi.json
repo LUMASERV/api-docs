@@ -472,6 +472,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Customer ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -1242,6 +1252,16 @@
           "schema" : {
             "default" : 10,
             "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "User ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[user_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           },
           "style" : "form"
         } ],
