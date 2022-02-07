@@ -201,6 +201,9 @@ export default class LUMASERVCoreClient {
     getServerVolumes(query = null){
         return this.request('get', '/server-volumes', query, null);
     }
+    createServerVolume(body = null){
+        return this.request('post', '/server-volumes', null, body);
+    }
     getServerVolume(id){
         return this.request('get', '/server-volumes/' + id, null, null);
     }
@@ -288,7 +291,7 @@ export default class LUMASERVCoreClient {
     getServerVariant(id){
         return this.request('get', '/server-variants/' + id, null, null);
     }
-    getServerVolumeClasses(query = null){
+    getServerStorageClasses(query = null){
         return this.request('get', '/server-storage-classes', query, null);
     }
     createServerStorageClass(body = null){

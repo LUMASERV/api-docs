@@ -4753,6 +4753,82 @@
         },
         "summary" : "getServerVolumes",
         "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new volume",
+        "operationId" : "createServerVolume",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerVolumeCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_17"
+                }
+              }
+            },
+            "description" : "Single ServerVolume"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerVolume",
+        "tags" : [ "server" ]
       }
     },
     "/server-volumes/{id}" : {
@@ -7059,7 +7135,7 @@
     "/server-storage-classes" : {
       "get" : {
         "description" : "Returns all storage classes",
-        "operationId" : "getServerVolumeClasses",
+        "operationId" : "getServerStorageClasses",
         "parameters" : [ {
           "description" : "Page",
           "in" : "query",
@@ -11108,6 +11184,38 @@
             }
           }
         }
+      },
+      "ServerVolumeCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "class_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "size" : {
+                  "type" : "integer"
+                },
+                "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
+                  "type" : "object"
+                }
+              },
+              "required" : [ "class_id", "project_id", "size", "title" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -12593,6 +12701,10 @@
           },
           "root" : {
             "type" : "boolean"
+          },
+          "storage_id" : {
+            "format" : "uuid",
+            "type" : "string"
           }
         },
         "required" : [ "created_at", "id", "project_id", "size", "title" ],
