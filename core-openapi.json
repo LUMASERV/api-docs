@@ -9953,7 +9953,54 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK"
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_52"
+                }
+              }
+            },
+            "description" : "Server Graph"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
           }
         },
         "summary" : "getServerGraph",
@@ -11888,25 +11935,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "metadata" : {
-                  "$ref" : "#/components/schemas/ResponseMetadata"
-                },
-                "success" : {
-                  "type" : "boolean"
-                },
-                "data" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/ServerGraphEntry"
-                  },
-                  "type" : "array"
-                },
-                "messages" : {
-                  "$ref" : "#/components/schemas/ResponseMessages"
-                }
-              },
-              "required" : [ "data", "messages", "metadata", "success" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/inline_response_200_52"
             }
           }
         },
@@ -14592,6 +14621,27 @@
           },
           "pagination" : {
             "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_52" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerGraphEntry"
+            },
+            "type" : "array"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
