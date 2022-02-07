@@ -12734,9 +12734,13 @@
           "storage_id" : {
             "format" : "uuid",
             "type" : "string"
+          },
+          "zone_id" : {
+            "format" : "uuid",
+            "type" : "string"
           }
         },
-        "required" : [ "created_at", "id", "project_id", "size", "title" ],
+        "required" : [ "class_id", "created_at", "id", "project_id", "size", "title", "zone_id" ],
         "title" : "ServerVolume",
         "type" : "object",
         "x-tags" : [ "server" ]
