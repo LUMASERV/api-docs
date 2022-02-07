@@ -1328,6 +1328,27 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+    post:
+      summary: createServerVolume
+      operationId: createServerVolume
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new volume
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVolumeCreateRequest'
   '/server-volumes/{id}':
     parameters:
       - schema:
@@ -2020,7 +2041,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      operationId: getServerVolumeClasses
+      operationId: getServerStorageClasses
       description: Returns all storage classes
       parameters:
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
@@ -3611,6 +3632,9 @@ components:
             type: string
         root:
           type: boolean
+        storage_id:
+          type: string
+          format: uuid
       required:
         - id
         - project_id
@@ -6493,6 +6517,31 @@ components:
                 type: boolean
             required:
               - variant_id
+    ServerVolumeCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              class_id:
+                type: string
+                format: uuid
+              size:
+                type: integer
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - project_id
+              - title
+              - class_id
+              - size
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
