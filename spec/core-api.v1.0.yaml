@@ -3643,12 +3643,17 @@ components:
         storage_id:
           type: string
           format: uuid
+        zone_id:
+          type: string
+          format: uuid
       required:
         - id
         - project_id
         - title
         - size
+        - class_id
         - created_at
+        - zone_id
     DomainPricing:
       title: DomainPricing
       type: object
