@@ -1931,11 +1931,9 @@
             "schema" : {
               "properties" : {
                 "query" : {
-                  "additionalProperties" : true,
                   "type" : "object"
                 },
                 "sort" : {
-                  "additionalProperties" : true,
                   "type" : "object"
                 },
                 "limit" : {
