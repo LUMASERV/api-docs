@@ -6546,6 +6546,8 @@ components:
                 format: uuid
               size:
                 type: integer
+              zone_id:
+                type: string
               labels:
                 type: object
                 additionalProperties:
@@ -6555,6 +6557,7 @@ components:
               - title
               - class_id
               - size
+              - zone_id
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
