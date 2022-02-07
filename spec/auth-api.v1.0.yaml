@@ -1217,10 +1217,8 @@ components:
             properties:
               query:
                 type: object
-                additionalProperties: true
               sort:
                 type: object
-                additionalProperties: true
               limit:
                 type: integer
             required:
