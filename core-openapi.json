@@ -11251,6 +11251,9 @@
                 "size" : {
                   "type" : "integer"
                 },
+                "zone_id" : {
+                  "type" : "string"
+                },
                 "labels" : {
                   "additionalProperties" : {
                     "type" : "string"
@@ -11258,7 +11261,7 @@
                   "type" : "object"
                 }
               },
-              "required" : [ "class_id", "project_id", "size", "title" ],
+              "required" : [ "class_id", "project_id", "size", "title", "zone_id" ],
               "type" : "object"
             }
           }
