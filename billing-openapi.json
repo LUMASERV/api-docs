@@ -6256,8 +6256,7 @@
             "type" : "string"
           },
           "customer_id" : {
-            "format" : "uuid",
-            "type" : "string"
+            "type" : "integer"
           },
           "invoice_position_id" : {
             "format" : "uuid",
@@ -6270,13 +6269,13 @@
             "type" : "string"
           },
           "amount" : {
-            "type" : "string"
+            "type" : "number"
           },
           "price" : {
-            "type" : "string"
+            "type" : "number"
           },
           "vat_rate" : {
-            "type" : "string"
+            "type" : "number"
           },
           "group_key" : {
             "type" : "string"
