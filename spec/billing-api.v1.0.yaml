@@ -1514,8 +1514,7 @@ components:
           type: string
           format: uuid
         customer_id:
-          type: string
-          format: uuid
+          type: integer
         invoice_position_id:
           type: string
           format: uuid
@@ -1524,11 +1523,11 @@ components:
         description:
           type: string
         amount:
-          type: string
+          type: number
         price:
-          type: string
+          type: number
         vat_rate:
-          type: string
+          type: number
         group_key:
           type: string
         available_at:
