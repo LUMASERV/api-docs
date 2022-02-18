@@ -701,7 +701,8 @@ paths:
         required: true
     get:
       summary: getInvoicePosition
-      tags: []
+      tags:
+        - billing
       responses:
         '200':
           $ref: '#/components/responses/InvoicePositionSingleResponse'
