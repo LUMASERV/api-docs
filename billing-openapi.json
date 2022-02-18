@@ -2520,7 +2520,7 @@
           }
         },
         "summary" : "deleteInvoicePosition",
-        "tags" : [ ]
+        "tags" : [ "billing" ]
       },
       "get" : {
         "operationId" : "getInvoicePosition",
@@ -2690,7 +2690,7 @@
           }
         },
         "summary" : "updateInvoicePosition",
-        "tags" : [ ]
+        "tags" : [ "billing" ]
       }
     },
     "/offers" : {
