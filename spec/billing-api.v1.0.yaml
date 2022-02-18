@@ -717,7 +717,8 @@ paths:
       operationId: getInvoicePosition
     put:
       summary: updateInvoicePosition
-      tags: []
+      tags:
+        - billing
       responses:
         '200':
           $ref: '#/components/responses/InvoicePositionSingleResponse'
@@ -736,7 +737,8 @@ paths:
         $ref: '#/components/requestBodies/InvoicePositionUpdateRequest'
     delete:
       summary: deleteInvoicePosition
-      tags: []
+      tags:
+        - billing
       responses:
         '200':
           $ref: '#/components/responses/EmptyResponse'
