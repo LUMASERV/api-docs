@@ -2596,7 +2596,7 @@
           }
         },
         "summary" : "getInvoicePosition",
-        "tags" : [ ]
+        "tags" : [ "billing" ]
       },
       "put" : {
         "operationId" : "updateInvoicePosition",
