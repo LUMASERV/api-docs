@@ -105,15 +105,6 @@ export default class LUMASERVBillingClient {
     getDebitMandate(id){
         return this.request('get', '/debit-mandates/' + id, null, null);
     }
-    getFiles(query = null){
-        return this.request('get', '/files', query, null);
-    }
-    getFile(id){
-        return this.request('get', '/files/' + id, null, null);
-    }
-    getFileDownload(id){
-        return this.request('get', '/files/' + id + '/download', null, null);
-    }
     getInvoices(query = null){
         return this.request('get', '/invoices', query, null);
     }
@@ -129,20 +120,20 @@ export default class LUMASERVBillingClient {
     getInvoiceFile(id){
         return this.request('get', '/invoices/' + id + '/file', null, null);
     }
-    getInvoicePositions(query = null){
-        return this.request('get', '/invoice-positions', query, null);
+    getInvoicePositions(id, query = null){
+        return this.request('get', '/invoices/' + id + '/positions', query, null);
     }
-    createInvoicePosition(body = null){
-        return this.request('post', '/invoice-positions', null, body);
+    createInvoicePosition(id, body = null){
+        return this.request('post', '/invoices/' + id + '/positions', null, body);
     }
-    deleteInvoicePosition(id){
-        return this.request('delete', '/invoice-positions/' + id, null, null);
+    deleteInvoicePosition(invoice_id, id){
+        return this.request('delete', '/invoices/' + invoice_id + '/positions/' + id, null, null);
     }
-    getInvoicePosition(id){
-        return this.request('get', '/invoice-positions/' + id, null, null);
+    getInvoicePosition(invoice_id, id){
+        return this.request('get', '/invoices/' + invoice_id + '/positions/' + id, null, null);
     }
-    updateInvoicePosition(id, body = null){
-        return this.request('put', '/invoice-positions/' + id, null, body);
+    updateInvoicePosition(invoice_id, id, body = null){
+        return this.request('put', '/invoices/' + invoice_id + '/positions/' + id, null, body);
     }
     getOffers(query = null){
         return this.request('get', '/offers', query, null);
