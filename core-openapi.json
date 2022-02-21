@@ -12600,6 +12600,12 @@
           "zone_id" : {
             "format" : "uuid",
             "type" : "string"
+          },
+          "addresses" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Address"
+            },
+            "type" : "array"
           }
         },
         "required" : [ "created_at", "id", "name", "project_id", "state", "template_id", "variant_id", "zone_id" ],
@@ -12897,9 +12903,6 @@
           },
           "title" : {
             "type" : "string"
-          },
-          "config" : {
-            "type" : "object"
           },
           "country_code" : {
             "type" : "string"
