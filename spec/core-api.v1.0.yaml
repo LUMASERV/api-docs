@@ -3520,6 +3520,10 @@ components:
         zone_id:
           type: string
           format: uuid
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
       required:
         - id
         - project_id
@@ -3797,8 +3801,6 @@ components:
           format: uuid
         title:
           type: string
-        config:
-          type: object
         country_code:
           type: string
         city:
