@@ -524,80 +524,6 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getDebitMandate
       description: Returns a single debit mandate
-  /files:
-    get:
-      summary: getFiles
-      responses:
-        '200':
-          $ref: '#/components/responses/FileListResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getFiles
-      description: Returns all files
-      tags:
-        - general
-      parameters:
-        - $ref: '#/components/parameters/PaginationPage'
-        - $ref: '#/components/parameters/PaginationPageSize'
-        - $ref: '#/components/parameters/Search'
-  '/files/{id}':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: File ID
-    get:
-      summary: getFile
-      responses:
-        '200':
-          $ref: '#/components/responses/FileSingleResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getFile
-      description: Returns a single file
-      tags:
-        - general
-  '/files/{id}/download':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: File ID
-    get:
-      summary: getFileDownload
-      responses:
-        '200':
-          $ref: '#/components/responses/FileDownloadResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getFileDownload
-      description: Returns a download url for the file that is valid for 5 minutes
-      tags:
-        - general
   /invoices:
     get:
       summary: getInvoices
@@ -714,7 +640,33 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getInvoiceFile
       description: Returns the file for the invoice
-  /invoice-positions:
+  '/invoices/{id}/positions':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: createInvoicePosition
+      tags:
+        - billing
+      responses:
+        '201':
+          $ref: '#/components/responses/InvoicePositionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: createInvoicePosition
+      requestBody:
+        $ref: '#/components/requestBodies/InvoicePositionCreateRequest'
     get:
       summary: getInvoicePositions
       tags:
@@ -731,41 +683,22 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getInvoicePositions
-      description: Returns all invoice positions
       parameters:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
-    post:
-      summary: createInvoicePosition
-      operationId: createInvoicePosition
-      responses:
-        '201':
-          $ref: '#/components/responses/InvoicePositionSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      description: Creates a new invoice position
-      tags:
-        - billing
-      requestBody:
-        $ref: '#/components/requestBodies/InvoicePositionCreateRequest'
-  '/invoice-positions/{id}':
+  '/invoices/{invoice_id}/positions/{id}':
     parameters:
       - schema:
           type: string
-          format: uuid
+        name: invoice_id
+        in: path
+        required: true
+      - schema:
+          type: string
         name: id
         in: path
         required: true
-        description: InvoicePosition ID
     get:
       summary: getInvoicePosition
       tags:
@@ -782,10 +715,10 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getInvoicePosition
-      description: Returns a single invoice position
     put:
       summary: updateInvoicePosition
-      operationId: updateInvoicePosition
+      tags:
+        - billing
       responses:
         '200':
           $ref: '#/components/responses/InvoicePositionSingleResponse'
@@ -799,14 +732,13 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      description: Updates the invoice position
-      tags:
-        - billing
+      operationId: updateInvoicePosition
       requestBody:
         $ref: '#/components/requestBodies/InvoicePositionUpdateRequest'
     delete:
       summary: deleteInvoicePosition
-      operationId: deleteInvoicePosition
+      tags:
+        - billing
       responses:
         '200':
           $ref: '#/components/responses/EmptyResponse'
@@ -818,9 +750,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      description: Deletes a position for an invoice draft
-      tags:
-        - billing
+      operationId: deleteInvoicePosition
   /offers:
     get:
       summary: getOffers
@@ -1541,7 +1471,7 @@ components:
       description: ''
       properties:
         id:
-          type: integer
+          type: string
         user_id:
           type: string
           format: uuid
@@ -1551,29 +1481,9 @@ components:
           type: string
         last_name:
           type: string
-        street:
-          type: string
-        street_number:
-          type: string
-        additional_address:
-          type: string
-        postal_code:
-          type: string
-        city:
-          type: string
-        country_code:
-          type: string
-        email:
-          type: string
-        invoice_shipping_type:
-          $ref: '#/components/schemas/InvoiceShippingType'
         balance:
           type: number
         credit_limit:
-          type: number
-        vat_id:
-          type: string
-        custom_vat_rate:
           type: number
         next_billing_date:
           type: string
@@ -1582,12 +1492,51 @@ components:
       required:
         - id
         - user_id
-    InvoiceShippingType:
-      type: string
-      title: InvoiceShippingType
-      enum:
-        - EMAIL
-        - MAIL
+    CustomerDetailed:
+      title: CustomerDetailed
+      type: object
+      description: ''
+      properties:
+        id:
+          type: string
+        user_id:
+          type: string
+          format: uuid
+        company_name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        balance:
+          type: number
+        credit_limit:
+          type: number
+        next_billing_date:
+          type: string
+        billing_interval:
+          $ref: '#/components/schemas/BillingInterval'
+        email:
+          type: string
+        street:
+          type: string
+        street_number:
+          type: string
+        additional_address:
+          type: string
+        country_code:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        vat_id:
+          type: string
+        tax_number:
+          type: string
+      required:
+        - id
+        - user_id
     BillingInterval:
       type: string
       title: BillingInterval
@@ -1714,15 +1663,10 @@ components:
       title: InvoicePosition
       type: object
       properties:
-        id:
-          type: string
+        position:
+          type: number
           format: uuid
-        customer_id:
-          type: integer
-        invoice_id:
-          type: string
-          format: uuid
-        title:
+        name:
           type: string
         description:
           type: string
@@ -1736,8 +1680,12 @@ components:
           type: number
         group_key:
           type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
       required:
-        - id
+        - position
     Invoice:
       title: Invoice
       type: object
@@ -1746,18 +1694,34 @@ components:
           type: string
         customer_id:
           type: integer
-        number:
-          type: string
         due_at:
           type: string
         state:
           $ref: '#/components/schemas/InvoiceState'
-        net_amount:
-          type: number
         paid_at:
           type: string
-        cancelled_at:
+        created_at:
           type: string
+    InvoiceDetailed:
+      title: InvoiceDetailed
+      type: object
+      properties:
+        id:
+          type: string
+        customer_id:
+          type: integer
+        due_at:
+          type: string
+        state:
+          $ref: '#/components/schemas/InvoiceState'
+        paid_at:
+          type: string
+        created_at:
+          type: string
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoicePosition'
     OfferPosition:
       title: OfferPosition
       type: object
@@ -1929,19 +1893,14 @@ components:
       type: string
       title: InvoiceState
       enum:
+        - OPEN
         - DRAFT
-        - PENDING
-        - PAID
-        - CANCELLED
-        - FAILED
+        - FINAL
     InvoiceCreateRequestPosition:
       title: InvoiceCreateRequestPosition
       type: object
       properties:
-        invoice_id:
-          type: string
-          format: uuid
-        title:
+        name:
           type: string
         description:
           type: string
@@ -1953,14 +1912,15 @@ components:
           type: number
         vat_rate:
           type: number
-        group_key:
+        group:
           type: string
       required:
-        - title
+        - name
         - description
         - amount
         - unit
         - price
+        - group
     OfferState:
       type: string
       title: OfferState
@@ -2268,7 +2228,7 @@ components:
               success:
                 type: boolean
               data:
-                $ref: '#/components/schemas/Customer'
+                $ref: '#/components/schemas/CustomerDetailed'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
@@ -2408,70 +2368,6 @@ components:
               - success
               - data
               - messages
-    FileListResponse:
-      description: File List
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/File'
-              pagination:
-                $ref: '#/components/schemas/ResponsePagination'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - pagination
-              - messages
-    FileSingleResponse:
-      description: Single File
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                type: string
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
-    FileDownloadResponse:
-      description: FileDownload
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                $ref: '#/components/schemas/FileDownload'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
     InvoiceListResponse:
       description: Invoice List
       content:
@@ -2508,7 +2404,7 @@ components:
               success:
                 type: boolean
               data:
-                $ref: '#/components/schemas/Invoice'
+                $ref: '#/components/schemas/InvoiceDetailed'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
@@ -2972,6 +2868,16 @@ components:
                 $ref: '#/components/schemas/BillingInterval'
               payment_period:
                 type: integer
+              gender:
+                type: string
+                enum:
+                  - MALE
+                  - FEMALE
+                  - OTHER
+              tax_number:
+                type: string
+              auto_finalize:
+                type: boolean
             required:
               - user_id
               - first_name
@@ -2987,6 +2893,8 @@ components:
               - custom_vat_rate
               - billing_interval
               - payment_period
+              - gender
+              - tax_number
     CustomerUpdateRequest:
       content:
         application/json:
@@ -3013,13 +2921,13 @@ components:
                 type: string
               email:
                 type: string
-              invoice_shipping_type:
-                $ref: '#/components/schemas/InvoiceShippingType'
               balance:
                 type: number
               credit_limit:
                 type: number
               vat_id:
+                type: string
+              tax_number:
                 type: string
               custom_vat_rate:
                 type: number
@@ -3027,6 +2935,8 @@ components:
                 $ref: '#/components/schemas/BillingInterval'
               payment_period:
                 type: integer
+              auto_finalize:
+                type: boolean
     DebitMandateCreateRequest:
       content:
         application/json:
@@ -3081,12 +2991,6 @@ components:
                 type: integer
               due_at:
                 type: string
-              state:
-                $ref: '#/components/schemas/InvoiceState'
-              paid_at:
-                type: string
-              cancelled_at:
-                type: string
               positions:
                 type: array
                 items:
@@ -3100,15 +3004,12 @@ components:
           schema:
             type: object
             properties:
-              invoice_id:
-                type: string
-                format: uuid
-              title:
+              name:
                 type: string
               description:
                 type: string
               amount:
-                type: number
+                type: string
               unit:
                 type: string
               price:
@@ -3118,22 +3019,19 @@ components:
               group_key:
                 type: string
             required:
-              - invoice_id
-              - title
+              - name
               - description
               - amount
               - unit
               - price
+              - group_key
     InvoicePositionUpdateRequest:
       content:
         application/json:
           schema:
             type: object
             properties:
-              invoice_id:
-                type: string
-                format: uuid
-              title:
+              name:
                 type: string
               description:
                 type: string
