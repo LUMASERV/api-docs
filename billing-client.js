@@ -111,6 +111,9 @@ export default class LUMASERVBillingClient {
     createInvoice(body = null){
         return this.request('post', '/invoices', null, body);
     }
+    deleteInvoice(id){
+        return this.request('delete', '/invoices/' + id, null, null);
+    }
     getInvoice(id){
         return this.request('get', '/invoices/' + id, null, null);
     }
