@@ -614,6 +614,22 @@ paths:
       description: Updates an invoice draft
       requestBody:
         $ref: '#/components/requestBodies/InvoiceUpdateRequest'
+    delete:
+      summary: deleteInvoice
+      operationId: deleteInvoice
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
   '/invoices/{id}/file':
     parameters:
       - schema:
