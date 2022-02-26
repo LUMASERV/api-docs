@@ -1332,7 +1332,7 @@ paths:
       summary: createServerVolume
       operationId: createServerVolume
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/ServerVolumeSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -1402,7 +1402,7 @@ paths:
       summary: createServerTemplate
       operationId: createServerTemplate
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/ServerTemplateSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -1476,7 +1476,7 @@ paths:
       summary: createServerMedia
       operationId: createServerMedia
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/ServerMediaSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -1882,7 +1882,7 @@ paths:
       summary: createAvailabilityZone
       operationId: createAvailabilityZone
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/AvailabilityZoneSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -1971,7 +1971,7 @@ paths:
       summary: createServerVariant
       operationId: createServerVariant
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/ServerVariantSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -2052,7 +2052,7 @@ paths:
       summary: createServerStorageClass
       operationId: createServerStorageClass
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/ServerStorageClassSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -2125,7 +2125,7 @@ paths:
       summary: createNetwork
       operationId: createNetwork
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/NetworkSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -2202,7 +2202,7 @@ paths:
       summary: createServerNetwork
       operationId: createServerNetwork
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/ServerNetworkSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -2281,7 +2281,7 @@ paths:
       summary: createSubnet
       operationId: createSubnet
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/SubnetSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -2365,7 +2365,7 @@ paths:
       summary: createServerHost
       operationId: createServerHost
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/ServerHostSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -2428,7 +2428,7 @@ paths:
       summary: createServerStorage
       operationId: createServerStorage
       responses:
-        '200':
+        '201':
           $ref: '#/components/responses/ServerStorageSingleResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
@@ -2937,6 +2937,224 @@ paths:
           in: query
           name: timeframe
           description: Data Timeframe
+  /server-backups:
+    get:
+      summary: getServerBackups
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerBackupListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerBackups
+      description: Returns all server backups
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/ProjectIDFilter'
+    post:
+      summary: createServerBackup
+      operationId: createServerBackup
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerBackupSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '409':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new backup of a server
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerBackupCreateRequest'
+  '/server-backups/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerBackup ID
+    get:
+      summary: getServerBackup
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerBackupSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerBackup
+      description: Returns a single server backup
+    delete:
+      summary: deleteServerBackup
+      operationId: deleteServerBackup
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a server backup
+      tags:
+        - server
+  '/servers/{id}/restore':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: restoreServer
+      operationId: restoreServer
+      responses:
+        '200':
+          $ref: '#/components/responses/ScheduledServerActionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '409':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Restores the server from a backup
+      requestBody:
+        $ref: '#/components/requestBodies/ServerRestoreRequest'
+  '/servers/{id}/scheduled-actions':
+    get:
+      summary: getScheduledServerActions
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ScheduledServerActionListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getScheduledServerActions
+      description: Returns all scheduled server actions
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: ./billing-api.v1.0.yaml#/components/parameters/Search
+    post:
+      summary: createScheduledServerAction
+      operationId: createScheduledServerAction
+      responses:
+        '201':
+          $ref: '#/components/responses/ScheduledServerActionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Schedules a new scheduled server action
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ScheduledServerActionCreateRequest'
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+  '/servers/{id}/scheduled-actions/{action_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+      - schema:
+          type: string
+          format: uuid
+        name: action_id
+        in: path
+        required: true
+        description: ScheduledServerAction ID
+    get:
+      summary: getScheduledServerAction
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ScheduledServerActionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getScheduledServerAction
+      description: Returns a single scheduled server action
+    delete:
+      summary: deleteScheduledServerAction
+      operationId: deleteScheduledServerAction
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Deletes a scheduled server action
 components:
   schemas:
     ResponseMessages:
@@ -4157,6 +4375,87 @@ components:
         - disk_write
         - network_ingress
         - network_egress
+      x-tags:
+        - server
+    ServerBackup:
+      title: ServerBackup
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        project_id:
+          type: string
+          format: uuid
+        action_id:
+          type: string
+          format: uuid
+        state:
+          $ref: '#/components/schemas/ServerBackupState'
+        scheduled:
+          type: boolean
+        size:
+          type: number
+        created_at:
+          type: string
+      required:
+        - id
+        - title
+        - project_id
+        - action_id
+        - state
+        - scheduled
+        - size
+        - created_at
+    ServerBackupState:
+      type: string
+      title: ServerBackupState
+      enum:
+        - PENDING
+        - SUCCESS
+        - FAILED
+      x-tags:
+        - server
+    ScheduledServerActionInterval:
+      type: string
+      title: ScheduledServerActionInterval
+      enum:
+        - DAILY
+        - WEEKLY
+        - BI_WEEKLY
+        - ONCE
+      x-tags:
+        - server
+    ScheduledServerAction:
+      title: ScheduledServerAction
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        server_id:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/ServerActionType'
+        interval:
+          $ref: '#/components/schemas/ScheduledServerActionInterval'
+        execute_at:
+          type: string
+        created_at:
+          type: string
+        backup_id:
+          type: string
+          format: uuid
+      required:
+        - id
+        - server_id
+        - type
+        - interval
+        - execute_at
+        - created_at
       x-tags:
         - server
   securitySchemes:
@@ -5640,6 +5939,94 @@ components:
               - success
               - data
               - messages
+    ServerBackupListResponse:
+      description: ServerBackup List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerBackup'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerBackupSingleResponse:
+      description: Single ServerBackup
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerBackup'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ScheduledServerActionListResponse:
+      description: ScheduledServerAction List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ScheduledServerAction'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ScheduledServerActionSingleResponse:
+      description: Single ScheduledServerAction
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ScheduledServerAction'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     S3BucketCreateRequest:
       content:
@@ -6560,6 +6947,48 @@ components:
               - class_id
               - size
               - zone_id
+    ServerBackupCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              server_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+            required:
+              - server_id
+    ServerRestoreRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              backup_id:
+                type: string
+                format: uuid
+            required:
+              - backup_id
+    ScheduledServerActionCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/ServerActionType'
+              interval:
+                $ref: '#/components/schemas/ScheduledServerActionInterval'
+              execute_at:
+                type: string
+              backup_id:
+                type: string
+                format: uuid
+            required:
+              - type
+              - execute_at
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
