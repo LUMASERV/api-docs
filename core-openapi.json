@@ -4761,11 +4761,11 @@
           "$ref" : "#/components/requestBodies/ServerVolumeCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_17"
+                  "$ref" : "#/components/schemas/inline_response_201_11"
                 }
               }
             },
@@ -4852,7 +4852,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_17"
+                  "$ref" : "#/components/schemas/inline_response_201_11"
                 }
               }
             },
@@ -4955,7 +4955,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_18"
+                  "$ref" : "#/components/schemas/inline_response_200_17"
                 }
               }
             },
@@ -4992,11 +4992,11 @@
           "$ref" : "#/components/requestBodies/ServerTemplateCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_19"
+                  "$ref" : "#/components/schemas/inline_response_201_12"
                 }
               }
             },
@@ -5083,7 +5083,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_19"
+                  "$ref" : "#/components/schemas/inline_response_201_12"
                 }
               }
             },
@@ -5207,7 +5207,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_20"
+                  "$ref" : "#/components/schemas/inline_response_200_18"
                 }
               }
             },
@@ -5254,11 +5254,11 @@
           "$ref" : "#/components/requestBodies/ServerMediaCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_21"
+                  "$ref" : "#/components/schemas/inline_response_201_13"
                 }
               }
             },
@@ -5415,7 +5415,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_21"
+                  "$ref" : "#/components/schemas/inline_response_201_13"
                 }
               }
             },
@@ -5487,7 +5487,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_22"
+                  "$ref" : "#/components/schemas/inline_response_200_19"
                 }
               }
             },
@@ -5599,7 +5599,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_23"
+                  "$ref" : "#/components/schemas/inline_response_200_20"
                 }
               }
             },
@@ -5660,7 +5660,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_24"
+                  "$ref" : "#/components/schemas/inline_response_200_21"
                 }
               }
             },
@@ -5764,7 +5764,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_25"
+                  "$ref" : "#/components/schemas/inline_response_200_22"
                 }
               }
             },
@@ -5825,7 +5825,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_26"
+                  "$ref" : "#/components/schemas/inline_response_200_23"
                 }
               }
             },
@@ -5897,7 +5897,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_26"
+                  "$ref" : "#/components/schemas/inline_response_200_23"
                 }
               }
             },
@@ -6005,7 +6005,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_11"
+                  "$ref" : "#/components/schemas/inline_response_201_14"
                 }
               }
             },
@@ -6077,7 +6077,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_27"
+                  "$ref" : "#/components/schemas/inline_response_200_24"
                 }
               }
             },
@@ -6164,7 +6164,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_11"
+                  "$ref" : "#/components/schemas/inline_response_201_14"
                 }
               }
             },
@@ -6340,7 +6340,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_27"
+                  "$ref" : "#/components/schemas/inline_response_200_24"
                 }
               }
             },
@@ -6426,7 +6426,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_28"
+                  "$ref" : "#/components/schemas/inline_response_200_25"
                 }
               }
             },
@@ -6591,7 +6591,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_29"
+                  "$ref" : "#/components/schemas/inline_response_200_26"
                 }
               }
             },
@@ -6628,11 +6628,11 @@
           "$ref" : "#/components/requestBodies/AvailabilityZoneCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_30"
+                  "$ref" : "#/components/schemas/inline_response_201_15"
                 }
               }
             },
@@ -6719,7 +6719,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_30"
+                  "$ref" : "#/components/schemas/inline_response_201_15"
                 }
               }
             },
@@ -6782,7 +6782,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_30"
+                  "$ref" : "#/components/schemas/inline_response_201_15"
                 }
               }
             },
@@ -6893,7 +6893,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_31"
+                  "$ref" : "#/components/schemas/inline_response_200_27"
                 }
               }
             },
@@ -6930,11 +6930,11 @@
           "$ref" : "#/components/requestBodies/ServerVariantCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_32"
+                  "$ref" : "#/components/schemas/inline_response_201_16"
                 }
               }
             },
@@ -7091,7 +7091,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_32"
+                  "$ref" : "#/components/schemas/inline_response_201_16"
                 }
               }
             },
@@ -7167,7 +7167,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_33"
+                  "$ref" : "#/components/schemas/inline_response_200_28"
                 }
               }
             },
@@ -7204,11 +7204,11 @@
           "$ref" : "#/components/requestBodies/ServerStorageClassCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_34"
+                  "$ref" : "#/components/schemas/inline_response_201_17"
                 }
               }
             },
@@ -7295,7 +7295,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_34"
+                  "$ref" : "#/components/schemas/inline_response_201_17"
                 }
               }
             },
@@ -7412,7 +7412,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_35"
+                  "$ref" : "#/components/schemas/inline_response_200_29"
                 }
               }
             },
@@ -7459,11 +7459,11 @@
           "$ref" : "#/components/requestBodies/NetworkCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_36"
+                  "$ref" : "#/components/schemas/inline_response_201_18"
                 }
               }
             },
@@ -7550,7 +7550,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_36"
+                  "$ref" : "#/components/schemas/inline_response_201_18"
                 }
               }
             },
@@ -7647,7 +7647,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_37"
+                  "$ref" : "#/components/schemas/inline_response_200_30"
                 }
               }
             },
@@ -7716,11 +7716,11 @@
           "$ref" : "#/components/requestBodies/ServerNetworkCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_38"
+                  "$ref" : "#/components/schemas/inline_response_201_19"
                 }
               }
             },
@@ -7952,7 +7952,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_39"
+                  "$ref" : "#/components/schemas/inline_response_200_31"
                 }
               }
             },
@@ -7999,11 +7999,11 @@
           "$ref" : "#/components/requestBodies/SubnetCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_40"
+                  "$ref" : "#/components/schemas/inline_response_201_20"
                 }
               }
             },
@@ -8160,7 +8160,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_40"
+                  "$ref" : "#/components/schemas/inline_response_201_20"
                 }
               }
             },
@@ -8253,7 +8253,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_41"
+                  "$ref" : "#/components/schemas/inline_response_200_32"
                 }
               }
             },
@@ -8293,11 +8293,11 @@
           "$ref" : "#/components/requestBodies/ServerHostCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_42"
+                  "$ref" : "#/components/schemas/inline_response_201_21"
                 }
               }
             },
@@ -8384,7 +8384,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_42"
+                  "$ref" : "#/components/schemas/inline_response_201_21"
                 }
               }
             },
@@ -8444,7 +8444,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_43"
+                  "$ref" : "#/components/schemas/inline_response_200_33"
                 }
               }
             },
@@ -8484,11 +8484,11 @@
           "$ref" : "#/components/requestBodies/ServerStorageCreateRequest"
         },
         "responses" : {
-          "200" : {
+          "201" : {
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_44"
+                  "$ref" : "#/components/schemas/inline_response_201_22"
                 }
               }
             },
@@ -8575,7 +8575,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_44"
+                  "$ref" : "#/components/schemas/inline_response_201_22"
                 }
               }
             },
@@ -8650,7 +8650,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_45"
+                  "$ref" : "#/components/schemas/inline_response_200_34"
                 }
               }
             },
@@ -9028,7 +9028,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_46"
+                  "$ref" : "#/components/schemas/inline_response_200_35"
                 }
               }
             },
@@ -9132,7 +9132,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_47"
+                  "$ref" : "#/components/schemas/inline_response_200_36"
                 }
               }
             },
@@ -9215,7 +9215,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_48"
+                  "$ref" : "#/components/schemas/inline_response_200_37"
                 }
               }
             },
@@ -9290,7 +9290,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_17"
+                  "$ref" : "#/components/schemas/inline_response_201_11"
                 }
               }
             },
@@ -9377,7 +9377,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_17"
+                  "$ref" : "#/components/schemas/inline_response_201_11"
                 }
               }
             },
@@ -9459,7 +9459,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_49"
+                  "$ref" : "#/components/schemas/inline_response_200_38"
                 }
               }
             },
@@ -9563,7 +9563,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_50"
+                  "$ref" : "#/components/schemas/inline_response_200_39"
                 }
               }
             },
@@ -9633,7 +9633,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_45"
+                  "$ref" : "#/components/schemas/inline_response_200_34"
                 }
               }
             },
@@ -9865,7 +9865,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_51"
+                  "$ref" : "#/components/schemas/inline_response_200_40"
                 }
               }
             },
@@ -9956,7 +9956,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_52"
+                  "$ref" : "#/components/schemas/inline_response_200_41"
                 }
               }
             },
@@ -10004,6 +10004,780 @@
           }
         },
         "summary" : "getServerGraph",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-backups" : {
+      "get" : {
+        "description" : "Returns all server backups",
+        "operationId" : "getServerBackups",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_42"
+                }
+              }
+            },
+            "description" : "ServerBackup List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerBackups",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new backup of a server",
+        "operationId" : "createServerBackup",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerBackupCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_23"
+                }
+              }
+            },
+            "description" : "Single ServerBackup"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "409" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerBackup",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-backups/{id}" : {
+      "delete" : {
+        "description" : "Deletes a server backup",
+        "operationId" : "deleteServerBackup",
+        "parameters" : [ {
+          "description" : "ServerBackup ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteServerBackup",
+        "tags" : [ "server" ]
+      },
+      "get" : {
+        "description" : "Returns a single server backup",
+        "operationId" : "getServerBackup",
+        "parameters" : [ {
+          "description" : "ServerBackup ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_23"
+                }
+              }
+            },
+            "description" : "Single ServerBackup"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerBackup",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}/restore" : {
+      "post" : {
+        "description" : "Restores the server from a backup",
+        "operationId" : "restoreServer",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerRestoreRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_43"
+                }
+              }
+            },
+            "description" : "Single ScheduledServerAction"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "409" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "restoreServer",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}/scheduled-actions" : {
+      "get" : {
+        "description" : "Returns all scheduled server actions",
+        "operationId" : "getScheduledServerActions",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_44"
+                }
+              }
+            },
+            "description" : "ScheduledServerAction List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getScheduledServerActions",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Schedules a new scheduled server action",
+        "operationId" : "createScheduledServerAction",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ScheduledServerActionCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_43"
+                }
+              }
+            },
+            "description" : "Single ScheduledServerAction"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createScheduledServerAction",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}/scheduled-actions/{action_id}" : {
+      "delete" : {
+        "description" : "Deletes a scheduled server action",
+        "operationId" : "deleteScheduledServerAction",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ScheduledServerAction ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "action_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteScheduledServerAction",
+        "tags" : [ "server" ]
+      },
+      "get" : {
+        "description" : "Returns a single scheduled server action",
+        "operationId" : "getScheduledServerAction",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ScheduledServerAction ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "action_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_43"
+                }
+              }
+            },
+            "description" : "Single ScheduledServerAction"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getScheduledServerAction",
         "tags" : [ "server" ]
       }
     }
@@ -11266,6 +12040,66 @@
             }
           }
         }
+      },
+      "ServerBackupCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "server_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "server_id" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerRestoreRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "backup_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                }
+              },
+              "required" : [ "backup_id" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ScheduledServerActionCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "type" : {
+                  "$ref" : "#/components/schemas/ServerActionType"
+                },
+                "interval" : {
+                  "$ref" : "#/components/schemas/ScheduledServerActionInterval"
+                },
+                "execute_at" : {
+                  "type" : "string"
+                },
+                "backup_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                }
+              },
+              "required" : [ "execute_at", "type" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -11548,7 +12382,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_20"
+              "$ref" : "#/components/schemas/inline_response_200_18"
             }
           }
         },
@@ -11558,7 +12392,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_21"
+              "$ref" : "#/components/schemas/inline_response_201_13"
             }
           }
         },
@@ -11578,7 +12412,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_17"
+              "$ref" : "#/components/schemas/inline_response_201_11"
             }
           }
         },
@@ -11588,7 +12422,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_18"
+              "$ref" : "#/components/schemas/inline_response_200_17"
             }
           }
         },
@@ -11598,7 +12432,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_19"
+              "$ref" : "#/components/schemas/inline_response_201_12"
             }
           }
         },
@@ -11628,7 +12462,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_22"
+              "$ref" : "#/components/schemas/inline_response_200_19"
             }
           }
         },
@@ -11638,7 +12472,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_23"
+              "$ref" : "#/components/schemas/inline_response_200_20"
             }
           }
         },
@@ -11648,7 +12482,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_24"
+              "$ref" : "#/components/schemas/inline_response_200_21"
             }
           }
         },
@@ -11658,7 +12492,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_25"
+              "$ref" : "#/components/schemas/inline_response_200_22"
             }
           }
         },
@@ -11668,7 +12502,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_26"
+              "$ref" : "#/components/schemas/inline_response_200_23"
             }
           }
         },
@@ -11678,7 +12512,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_11"
+              "$ref" : "#/components/schemas/inline_response_201_14"
             }
           }
         },
@@ -11688,7 +12522,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_27"
+              "$ref" : "#/components/schemas/inline_response_200_24"
             }
           }
         },
@@ -11698,7 +12532,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_28"
+              "$ref" : "#/components/schemas/inline_response_200_25"
             }
           }
         },
@@ -11708,7 +12542,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_35"
+              "$ref" : "#/components/schemas/inline_response_200_29"
             }
           }
         },
@@ -11718,7 +12552,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_36"
+              "$ref" : "#/components/schemas/inline_response_201_18"
             }
           }
         },
@@ -11728,7 +12562,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_29"
+              "$ref" : "#/components/schemas/inline_response_200_26"
             }
           }
         },
@@ -11738,7 +12572,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_30"
+              "$ref" : "#/components/schemas/inline_response_201_15"
             }
           }
         },
@@ -11748,7 +12582,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_33"
+              "$ref" : "#/components/schemas/inline_response_200_28"
             }
           }
         },
@@ -11758,7 +12592,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_34"
+              "$ref" : "#/components/schemas/inline_response_201_17"
             }
           }
         },
@@ -11768,7 +12602,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_31"
+              "$ref" : "#/components/schemas/inline_response_200_27"
             }
           }
         },
@@ -11778,7 +12612,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_32"
+              "$ref" : "#/components/schemas/inline_response_201_16"
             }
           }
         },
@@ -11788,7 +12622,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_37"
+              "$ref" : "#/components/schemas/inline_response_200_30"
             }
           }
         },
@@ -11798,7 +12632,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_38"
+              "$ref" : "#/components/schemas/inline_response_201_19"
             }
           }
         },
@@ -11808,7 +12642,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_41"
+              "$ref" : "#/components/schemas/inline_response_200_32"
             }
           }
         },
@@ -11818,7 +12652,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_42"
+              "$ref" : "#/components/schemas/inline_response_201_21"
             }
           }
         },
@@ -11828,7 +12662,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_43"
+              "$ref" : "#/components/schemas/inline_response_200_33"
             }
           }
         },
@@ -11838,7 +12672,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_39"
+              "$ref" : "#/components/schemas/inline_response_200_31"
             }
           }
         },
@@ -11848,7 +12682,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_40"
+              "$ref" : "#/components/schemas/inline_response_201_20"
             }
           }
         },
@@ -11858,7 +12692,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_44"
+              "$ref" : "#/components/schemas/inline_response_201_22"
             }
           }
         },
@@ -11868,7 +12702,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_50"
+              "$ref" : "#/components/schemas/inline_response_200_39"
             }
           }
         },
@@ -11878,7 +12712,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_45"
+              "$ref" : "#/components/schemas/inline_response_200_34"
             }
           }
         },
@@ -11888,7 +12722,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_46"
+              "$ref" : "#/components/schemas/inline_response_200_35"
             }
           }
         },
@@ -11898,7 +12732,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_48"
+              "$ref" : "#/components/schemas/inline_response_200_37"
             }
           }
         },
@@ -11908,7 +12742,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_47"
+              "$ref" : "#/components/schemas/inline_response_200_36"
             }
           }
         },
@@ -11918,7 +12752,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_49"
+              "$ref" : "#/components/schemas/inline_response_200_38"
             }
           }
         },
@@ -11928,7 +12762,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_51"
+              "$ref" : "#/components/schemas/inline_response_200_40"
             }
           }
         },
@@ -11938,11 +12772,51 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_52"
+              "$ref" : "#/components/schemas/inline_response_200_41"
             }
           }
         },
         "description" : "Server Graph"
+      },
+      "ServerBackupListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_42"
+            }
+          }
+        },
+        "description" : "ServerBackup List"
+      },
+      "ServerBackupSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_23"
+            }
+          }
+        },
+        "description" : "Single ServerBackup"
+      },
+      "ScheduledServerActionListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_44"
+            }
+          }
+        },
+        "description" : "ScheduledServerAction List"
+      },
+      "ScheduledServerActionSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_43"
+            }
+          }
+        },
+        "description" : "Single ScheduledServerAction"
       }
     },
     "schemas" : {
@@ -13271,6 +14145,84 @@
         "type" : "object",
         "x-tags" : [ "server" ]
       },
+      "ServerBackup" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "action_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "state" : {
+            "$ref" : "#/components/schemas/ServerBackupState"
+          },
+          "scheduled" : {
+            "type" : "boolean"
+          },
+          "size" : {
+            "type" : "number"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "action_id", "created_at", "id", "project_id", "scheduled", "size", "state", "title" ],
+        "title" : "ServerBackup",
+        "type" : "object"
+      },
+      "ServerBackupState" : {
+        "enum" : [ "PENDING", "SUCCESS", "FAILED" ],
+        "title" : "ServerBackupState",
+        "type" : "string",
+        "x-tags" : [ "server" ]
+      },
+      "ScheduledServerActionInterval" : {
+        "enum" : [ "DAILY", "WEEKLY", "BI_WEEKLY", "ONCE" ],
+        "title" : "ScheduledServerActionInterval",
+        "type" : "string",
+        "x-tags" : [ "server" ]
+      },
+      "ScheduledServerAction" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "server_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type" : {
+            "$ref" : "#/components/schemas/ServerActionType"
+          },
+          "interval" : {
+            "$ref" : "#/components/schemas/ScheduledServerActionInterval"
+          },
+          "execute_at" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          },
+          "backup_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "required" : [ "created_at", "execute_at", "id", "interval", "server_id", "type" ],
+        "title" : "ScheduledServerAction",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
       "inline_response_200" : {
         "properties" : {
           "success" : {
@@ -13892,7 +14844,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_17" : {
+      "inline_response_201_11" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -13910,7 +14862,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_18" : {
+      "inline_response_200_17" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -13934,7 +14886,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_19" : {
+      "inline_response_201_12" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -13952,7 +14904,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_20" : {
+      "inline_response_200_18" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -13976,7 +14928,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_21" : {
+      "inline_response_201_13" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -13994,7 +14946,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_22" : {
+      "inline_response_200_19" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14015,7 +14967,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_23" : {
+      "inline_response_200_20" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14033,7 +14985,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_24" : {
+      "inline_response_200_21" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14051,7 +15003,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_25" : {
+      "inline_response_200_22" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14075,7 +15027,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_26" : {
+      "inline_response_200_23" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14093,7 +15045,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_11" : {
+      "inline_response_201_14" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14117,7 +15069,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_27" : {
+      "inline_response_200_24" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14135,7 +15087,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_28" : {
+      "inline_response_200_25" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14153,7 +15105,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_29" : {
+      "inline_response_200_26" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14177,7 +15129,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_30" : {
+      "inline_response_201_15" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14195,7 +15147,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_31" : {
+      "inline_response_200_27" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14219,7 +15171,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_32" : {
+      "inline_response_201_16" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14237,7 +15189,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_33" : {
+      "inline_response_200_28" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14261,7 +15213,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_34" : {
+      "inline_response_201_17" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14279,7 +15231,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_35" : {
+      "inline_response_200_29" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14303,7 +15255,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_36" : {
+      "inline_response_201_18" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14321,7 +15273,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_37" : {
+      "inline_response_200_30" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14345,7 +15297,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_38" : {
+      "inline_response_201_19" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14366,7 +15318,7 @@
         "required" : [ "data", "messages", "metadata", "pagination", "success" ],
         "type" : "object"
       },
-      "inline_response_200_39" : {
+      "inline_response_200_31" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14390,7 +15342,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_40" : {
+      "inline_response_201_20" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14411,7 +15363,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_41" : {
+      "inline_response_200_32" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14435,7 +15387,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_42" : {
+      "inline_response_201_21" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14453,7 +15405,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_43" : {
+      "inline_response_200_33" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14477,7 +15429,7 @@
         "required" : [ "data", "messages", "metadata", "pagination", "success" ],
         "type" : "object"
       },
-      "inline_response_200_44" : {
+      "inline_response_201_22" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14495,7 +15447,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_45" : {
+      "inline_response_200_34" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14513,7 +15465,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_46" : {
+      "inline_response_200_35" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14531,7 +15483,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_47" : {
+      "inline_response_200_36" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14555,7 +15507,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_48" : {
+      "inline_response_200_37" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14573,7 +15525,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_49" : {
+      "inline_response_200_38" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14591,7 +15543,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_50" : {
+      "inline_response_200_39" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14615,7 +15567,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_51" : {
+      "inline_response_200_40" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14639,7 +15591,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_52" : {
+      "inline_response_200_41" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -14652,6 +15604,90 @@
               "$ref" : "#/components/schemas/ServerGraphEntry"
             },
             "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_42" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerBackup"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_23" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerBackup"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_43" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ScheduledServerAction"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_44" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ScheduledServerAction"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"

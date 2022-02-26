@@ -396,4 +396,31 @@ export default class LUMASERVCoreClient {
     getServerGraph(id, query = null){
         return this.request('get', '/servers/' + id + '/graph', query, null);
     }
+    getServerBackups(query = null){
+        return this.request('get', '/server-backups', query, null);
+    }
+    createServerBackup(body = null){
+        return this.request('post', '/server-backups', null, body);
+    }
+    deleteServerBackup(id){
+        return this.request('delete', '/server-backups/' + id, null, null);
+    }
+    getServerBackup(id){
+        return this.request('get', '/server-backups/' + id, null, null);
+    }
+    restoreServer(id, body = null){
+        return this.request('post', '/servers/' + id + '/restore', null, body);
+    }
+    getScheduledServerActions(id, query = null){
+        return this.request('get', '/servers/' + id + '/scheduled-actions', query, null);
+    }
+    createScheduledServerAction(id, body = null){
+        return this.request('post', '/servers/' + id + '/scheduled-actions', null, body);
+    }
+    deleteScheduledServerAction(id, action_id){
+        return this.request('delete', '/servers/' + id + '/scheduled-actions/' + action_id, null, null);
+    }
+    getScheduledServerAction(id, action_id){
+        return this.request('get', '/servers/' + id + '/scheduled-actions/' + action_id, null, null);
+    }
 }
