@@ -252,54 +252,6 @@ paths:
         - customers
       requestBody:
         $ref: '#/components/requestBodies/CustomerUpdateRequest'
-  /customer-transactions:
-    get:
-      summary: getCustomerTransactions
-      tags:
-        - billing
-      responses:
-        '200':
-          $ref: '#/components/responses/CustomerTransactionListResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getCustomerTransactions
-      description: Returns all customer transactions
-      parameters:
-        - $ref: '#/components/parameters/PaginationPage'
-        - $ref: '#/components/parameters/PaginationPageSize'
-        - $ref: '#/components/parameters/Search'
-  '/customer-transactions/{id}':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: CustomerTransaction ID
-    get:
-      summary: getCustomerTransaction
-      tags:
-        - customers
-      responses:
-        '200':
-          $ref: '#/components/responses/CustomerTransactionSingleResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getCustomerTransaction
-      description: Returns a single customer transaction
   /debits:
     get:
       summary: getDebits
@@ -1433,29 +1385,6 @@ components:
         - QUARTERLY
         - SEMI_ANNUAL
         - ANNUAL
-    CustomerTransaction:
-      title: CustomerTransaction
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        customer_id:
-          type: integer
-        title:
-          type: string
-        amount:
-          type: number
-        type:
-          $ref: '#/components/schemas/CustomerTransactionType'
-        object_id:
-          type: string
-          format: uuid
-        date:
-          type: string
-      required:
-        - id
-        - customer_id
     DebitMandate:
       title: DebitMandate
       type: object
@@ -2073,50 +2002,6 @@ components:
                 type: boolean
               data:
                 $ref: '#/components/schemas/CustomerDetailed'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
-    CustomerTransactionListResponse:
-      description: CustomerTransaction List
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CustomerTransaction'
-              pagination:
-                $ref: '#/components/schemas/ResponsePagination'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
-    CustomerTransactionSingleResponse:
-      description: Single CustomerTransaction
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                $ref: '#/components/schemas/CustomerTransaction'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
