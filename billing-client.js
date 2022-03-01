@@ -36,21 +36,6 @@ export default class LUMASERVBillingClient {
             })
         });
     }
-    getBankAccounts(query = null){
-        return this.request('get', '/bank-accounts', query, null);
-    }
-    createBankAccount(body = null){
-        return this.request('post', '/bank-accounts', null, body);
-    }
-    deleteBankAccount(id){
-        return this.request('delete', '/bank-accounts/' + id, null, null);
-    }
-    getBankAccount(id){
-        return this.request('get', '/bank-accounts/' + id, null, null);
-    }
-    updateBankAccount(id, body = null){
-        return this.request('put', '/bank-accounts/' + id, null, body);
-    }
     getBankTransactions(query = null){
         return this.request('get', '/bank-transactions', query, null);
     }

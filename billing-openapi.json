@@ -26,405 +26,6 @@
     "name" : "payment"
   } ],
   "paths" : {
-    "/bank-accounts" : {
-      "get" : {
-        "description" : "Returns all bank accounts",
-        "operationId" : "getBankAccounts",
-        "parameters" : [ {
-          "description" : "Page",
-          "explode" : true,
-          "in" : "query",
-          "name" : "page",
-          "required" : false,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Page Size",
-          "explode" : true,
-          "in" : "query",
-          "name" : "page_size",
-          "required" : false,
-          "schema" : {
-            "default" : 10,
-            "type" : "integer"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Search",
-          "explode" : true,
-          "in" : "query",
-          "name" : "search",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "form"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200"
-                }
-              }
-            },
-            "description" : "BankAccount List"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "getBankAccounts",
-        "tags" : [ "payment" ]
-      },
-      "post" : {
-        "description" : "Adds a new bank account",
-        "operationId" : "createBankAccount",
-        "requestBody" : {
-          "$ref" : "#/components/requestBodies/BankAccountCreateRequest"
-        },
-        "responses" : {
-          "201" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201"
-                }
-              }
-            },
-            "description" : "Single BankAccount"
-          },
-          "400" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
-                }
-              }
-            },
-            "description" : "Response for validation errors"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "createBankAccount",
-        "tags" : [ "payment" ]
-      }
-    },
-    "/bank-accounts/{id}" : {
-      "delete" : {
-        "description" : "Deletes a bank account",
-        "operationId" : "deleteBankAccount",
-        "parameters" : [ {
-          "description" : "BankAccount ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "deleteBankAccount",
-        "tags" : [ "payment" ]
-      },
-      "get" : {
-        "description" : "Returns a single bank account",
-        "operationId" : "getBankAccount",
-        "parameters" : [ {
-          "description" : "BankAccount ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201"
-                }
-              }
-            },
-            "description" : "Single BankAccount"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "getBankAccount",
-        "tags" : [ "payment" ]
-      },
-      "put" : {
-        "description" : "Updates the bank account",
-        "operationId" : "updateBankAccount",
-        "parameters" : [ {
-          "description" : "BankAccount ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "$ref" : "#/components/requestBodies/BankAccountUpdateRequest"
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201"
-                }
-              }
-            },
-            "description" : "Single BankAccount"
-          },
-          "400" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
-                }
-              }
-            },
-            "description" : "Response for validation errors"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "updateBankAccount",
-        "tags" : [ "payment" ]
-      }
-    },
     "/bank-transactions" : {
       "get" : {
         "description" : "Returns all bank transactions",
@@ -467,7 +68,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_1"
+                  "$ref" : "#/components/schemas/inline_response_200"
                 }
               }
             },
@@ -539,7 +140,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_2"
+                  "$ref" : "#/components/schemas/inline_response_200_1"
                 }
               }
             },
@@ -632,7 +233,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_3"
+                  "$ref" : "#/components/schemas/inline_response_200_2"
                 }
               }
             },
@@ -693,7 +294,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_1"
+                  "$ref" : "#/components/schemas/inline_response_201"
                 }
               }
             },
@@ -850,7 +451,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_1"
+                  "$ref" : "#/components/schemas/inline_response_201"
                 }
               }
             },
@@ -923,7 +524,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_1"
+                  "$ref" : "#/components/schemas/inline_response_201"
                 }
               }
             },
@@ -1016,7 +617,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_4"
+                  "$ref" : "#/components/schemas/inline_response_200_3"
                 }
               }
             },
@@ -1077,7 +678,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_2"
+                  "$ref" : "#/components/schemas/inline_response_201_1"
                 }
               }
             },
@@ -1163,7 +764,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_2"
+                  "$ref" : "#/components/schemas/inline_response_201_1"
                 }
               }
             },
@@ -1235,7 +836,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_2"
+                  "$ref" : "#/components/schemas/inline_response_201_1"
                 }
               }
             },
@@ -1343,7 +944,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_5"
+                  "$ref" : "#/components/schemas/inline_response_200_4"
                 }
               }
             },
@@ -1415,7 +1016,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_6"
+                  "$ref" : "#/components/schemas/inline_response_200_5"
                 }
               }
             },
@@ -1508,7 +1109,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_7"
+                  "$ref" : "#/components/schemas/inline_response_200_6"
                 }
               }
             },
@@ -1580,7 +1181,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_8"
+                  "$ref" : "#/components/schemas/inline_response_200_7"
                 }
               }
             },
@@ -1673,7 +1274,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_9"
+                  "$ref" : "#/components/schemas/inline_response_200_8"
                 }
               }
             },
@@ -1734,7 +1335,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_3"
+                  "$ref" : "#/components/schemas/inline_response_201_2"
                 }
               }
             },
@@ -1821,7 +1422,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_3"
+                  "$ref" : "#/components/schemas/inline_response_201_2"
                 }
               }
             },
@@ -1914,7 +1515,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_10"
+                  "$ref" : "#/components/schemas/inline_response_200_9"
                 }
               }
             },
@@ -1968,7 +1569,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_4"
+                  "$ref" : "#/components/schemas/inline_response_201_3"
                 }
               }
             },
@@ -2133,7 +1734,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_4"
+                  "$ref" : "#/components/schemas/inline_response_201_3"
                 }
               }
             },
@@ -2206,7 +1807,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_4"
+                  "$ref" : "#/components/schemas/inline_response_201_3"
                 }
               }
             },
@@ -2387,7 +1988,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_11"
+                  "$ref" : "#/components/schemas/inline_response_200_10"
                 }
               }
             },
@@ -2457,7 +2058,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_5"
+                  "$ref" : "#/components/schemas/inline_response_201_4"
                 }
               }
             },
@@ -2626,7 +2227,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_5"
+                  "$ref" : "#/components/schemas/inline_response_201_4"
                 }
               }
             },
@@ -2705,7 +2306,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_5"
+                  "$ref" : "#/components/schemas/inline_response_201_4"
                 }
               }
             },
@@ -2813,7 +2414,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_12"
+                  "$ref" : "#/components/schemas/inline_response_200_11"
                 }
               }
             },
@@ -2874,7 +2475,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_6"
+                  "$ref" : "#/components/schemas/inline_response_201_5"
                 }
               }
             },
@@ -2961,7 +2562,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_6"
+                  "$ref" : "#/components/schemas/inline_response_201_5"
                 }
               }
             },
@@ -3034,7 +2635,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_6"
+                  "$ref" : "#/components/schemas/inline_response_201_5"
                 }
               }
             },
@@ -3142,7 +2743,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_13"
+                  "$ref" : "#/components/schemas/inline_response_200_12"
                 }
               }
             },
@@ -3203,7 +2804,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_7"
+                  "$ref" : "#/components/schemas/inline_response_201_6"
                 }
               }
             },
@@ -3360,7 +2961,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_7"
+                  "$ref" : "#/components/schemas/inline_response_201_6"
                 }
               }
             },
@@ -3433,7 +3034,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_7"
+                  "$ref" : "#/components/schemas/inline_response_201_6"
                 }
               }
             },
@@ -3541,7 +3142,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_14"
+                  "$ref" : "#/components/schemas/inline_response_200_13"
                 }
               }
             },
@@ -3613,7 +3214,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_15"
+                  "$ref" : "#/components/schemas/inline_response_200_14"
                 }
               }
             },
@@ -3706,7 +3307,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_16"
+                  "$ref" : "#/components/schemas/inline_response_200_15"
                 }
               }
             },
@@ -3767,7 +3368,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_8"
+                  "$ref" : "#/components/schemas/inline_response_201_7"
                 }
               }
             },
@@ -3854,7 +3455,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_8"
+                  "$ref" : "#/components/schemas/inline_response_201_7"
                 }
               }
             },
@@ -3927,7 +3528,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_8"
+                  "$ref" : "#/components/schemas/inline_response_201_7"
                 }
               }
             },
@@ -4035,7 +3636,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_17"
+                  "$ref" : "#/components/schemas/inline_response_200_16"
                 }
               }
             },
@@ -4096,7 +3697,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_9"
+                  "$ref" : "#/components/schemas/inline_response_201_8"
                 }
               }
             },
@@ -4253,7 +3854,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_9"
+                  "$ref" : "#/components/schemas/inline_response_201_8"
                 }
               }
             },
@@ -4326,7 +3927,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_9"
+                  "$ref" : "#/components/schemas/inline_response_201_8"
                 }
               }
             },
@@ -4434,7 +4035,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_18"
+                  "$ref" : "#/components/schemas/inline_response_200_17"
                 }
               }
             },
@@ -4495,7 +4096,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_10"
+                  "$ref" : "#/components/schemas/inline_response_201_9"
                 }
               }
             },
@@ -4652,7 +4253,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_10"
+                  "$ref" : "#/components/schemas/inline_response_201_9"
                 }
               }
             },
@@ -4725,7 +4326,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_10"
+                  "$ref" : "#/components/schemas/inline_response_201_9"
                 }
               }
             },
@@ -4831,71 +4432,6 @@
       }
     },
     "requestBodies" : {
-      "BankAccountCreateRequest" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "properties" : {
-                "title" : {
-                  "type" : "string"
-                },
-                "bank_account_number" : {
-                  "type" : "string"
-                },
-                "bank_url" : {
-                  "type" : "string"
-                },
-                "bank_port" : {
-                  "type" : "integer"
-                },
-                "bank_code" : {
-                  "type" : "string"
-                },
-                "username" : {
-                  "type" : "string"
-                },
-                "password" : {
-                  "type" : "string"
-                }
-              },
-              "required" : [ "bank_account_number", "bank_code", "bank_port", "bank_url", "password", "title", "username" ],
-              "type" : "object"
-            }
-          }
-        }
-      },
-      "BankAccountUpdateRequest" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "properties" : {
-                "title" : {
-                  "type" : "string"
-                },
-                "bank_account_number" : {
-                  "type" : "string"
-                },
-                "bank_url" : {
-                  "type" : "string"
-                },
-                "bank_port" : {
-                  "type" : "integer"
-                },
-                "bank_code" : {
-                  "type" : "string"
-                },
-                "username" : {
-                  "type" : "string"
-                },
-                "password" : {
-                  "type" : "string"
-                }
-              },
-              "type" : "object"
-            }
-          }
-        }
-      },
       "BillingPositionCreateRequest" : {
         "content" : {
           "application/json" : {
@@ -5614,31 +5150,11 @@
         },
         "description" : "Empty Response"
       },
-      "BankAccountListResponse" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200"
-            }
-          }
-        },
-        "description" : "BankAccount List"
-      },
-      "BankAccountSingleResponse" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201"
-            }
-          }
-        },
-        "description" : "Single BankAccount"
-      },
       "BankTransactionListResponse" : {
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_1"
+              "$ref" : "#/components/schemas/inline_response_200"
             }
           }
         },
@@ -5648,7 +5164,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_2"
+              "$ref" : "#/components/schemas/inline_response_200_1"
             }
           }
         },
@@ -5658,7 +5174,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_3"
+              "$ref" : "#/components/schemas/inline_response_200_2"
             }
           }
         },
@@ -5668,7 +5184,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_1"
+              "$ref" : "#/components/schemas/inline_response_201"
             }
           }
         },
@@ -5678,7 +5194,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_4"
+              "$ref" : "#/components/schemas/inline_response_200_3"
             }
           }
         },
@@ -5688,7 +5204,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_2"
+              "$ref" : "#/components/schemas/inline_response_201_1"
             }
           }
         },
@@ -5698,7 +5214,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_5"
+              "$ref" : "#/components/schemas/inline_response_200_4"
             }
           }
         },
@@ -5708,7 +5224,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_6"
+              "$ref" : "#/components/schemas/inline_response_200_5"
             }
           }
         },
@@ -5718,7 +5234,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_7"
+              "$ref" : "#/components/schemas/inline_response_200_6"
             }
           }
         },
@@ -5728,7 +5244,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_8"
+              "$ref" : "#/components/schemas/inline_response_200_7"
             }
           }
         },
@@ -5738,7 +5254,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_9"
+              "$ref" : "#/components/schemas/inline_response_200_8"
             }
           }
         },
@@ -5748,7 +5264,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_3"
+              "$ref" : "#/components/schemas/inline_response_201_2"
             }
           }
         },
@@ -5758,7 +5274,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_10"
+              "$ref" : "#/components/schemas/inline_response_200_9"
             }
           }
         },
@@ -5768,7 +5284,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_4"
+              "$ref" : "#/components/schemas/inline_response_201_3"
             }
           }
         },
@@ -5778,7 +5294,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_11"
+              "$ref" : "#/components/schemas/inline_response_200_10"
             }
           }
         },
@@ -5788,7 +5304,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_5"
+              "$ref" : "#/components/schemas/inline_response_201_4"
             }
           }
         },
@@ -5798,7 +5314,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_12"
+              "$ref" : "#/components/schemas/inline_response_200_11"
             }
           }
         },
@@ -5808,7 +5324,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_6"
+              "$ref" : "#/components/schemas/inline_response_201_5"
             }
           }
         },
@@ -5818,7 +5334,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_13"
+              "$ref" : "#/components/schemas/inline_response_200_12"
             }
           }
         },
@@ -5828,7 +5344,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_7"
+              "$ref" : "#/components/schemas/inline_response_201_6"
             }
           }
         },
@@ -5838,7 +5354,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_14"
+              "$ref" : "#/components/schemas/inline_response_200_13"
             }
           }
         },
@@ -5848,7 +5364,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_15"
+              "$ref" : "#/components/schemas/inline_response_200_14"
             }
           }
         },
@@ -5858,7 +5374,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_16"
+              "$ref" : "#/components/schemas/inline_response_200_15"
             }
           }
         },
@@ -5868,7 +5384,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_8"
+              "$ref" : "#/components/schemas/inline_response_201_7"
             }
           }
         },
@@ -5878,7 +5394,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_17"
+              "$ref" : "#/components/schemas/inline_response_200_16"
             }
           }
         },
@@ -5888,7 +5404,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_9"
+              "$ref" : "#/components/schemas/inline_response_201_8"
             }
           }
         },
@@ -5898,7 +5414,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_18"
+              "$ref" : "#/components/schemas/inline_response_200_17"
             }
           }
         },
@@ -5908,7 +5424,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_10"
+              "$ref" : "#/components/schemas/inline_response_201_9"
             }
           }
         },
@@ -6003,35 +5519,6 @@
         },
         "required" : [ "page", "page_size", "total" ],
         "title" : "ResponsePagination",
-        "type" : "object"
-      },
-      "BankAccount" : {
-        "properties" : {
-          "id" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "bank_account_number" : {
-            "type" : "string"
-          },
-          "bank_url" : {
-            "type" : "string"
-          },
-          "bank_port" : {
-            "type" : "integer"
-          },
-          "bank_code" : {
-            "type" : "string"
-          },
-          "username" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "id" ],
-        "title" : "BankAccount",
         "type" : "object"
       },
       "BankTransaction" : {
@@ -6771,7 +6258,7 @@
           },
           "data" : {
             "items" : {
-              "$ref" : "#/components/schemas/BankAccount"
+              "$ref" : "#/components/schemas/BankTransaction"
             },
             "type" : "array"
           },
@@ -6782,7 +6269,7 @@
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
-        "required" : [ "data", "messages", "metadata", "success" ],
+        "required" : [ "messages", "metadata", "pagination", "success" ],
         "type" : "object"
       },
       "inline_response_401" : {
@@ -6800,6 +6287,48 @@
         "required" : [ "messages", "metadata", "success" ],
         "type" : "object"
       },
+      "inline_response_200_1" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/BankTransaction"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_2" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/BillingPosition"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
       "inline_response_201" : {
         "properties" : {
           "metadata" : {
@@ -6809,7 +6338,7 @@
             "type" : "boolean"
           },
           "data" : {
-            "$ref" : "#/components/schemas/BankAccount"
+            "$ref" : "#/components/schemas/BillingPosition"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
@@ -6836,91 +6365,7 @@
         "required" : [ "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_1" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "success" : {
-            "type" : "boolean"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/BankTransaction"
-            },
-            "type" : "array"
-          },
-          "pagination" : {
-            "$ref" : "#/components/schemas/ResponsePagination"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "messages", "metadata", "pagination", "success" ],
-        "type" : "object"
-      },
-      "inline_response_200_2" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "success" : {
-            "type" : "boolean"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/BankTransaction"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "success" ],
-        "type" : "object"
-      },
       "inline_response_200_3" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "success" : {
-            "type" : "boolean"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/BillingPosition"
-            },
-            "type" : "array"
-          },
-          "pagination" : {
-            "$ref" : "#/components/schemas/ResponsePagination"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "success" ],
-        "type" : "object"
-      },
-      "inline_response_201_1" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "success" : {
-            "type" : "boolean"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/BillingPosition"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "success" ],
-        "type" : "object"
-      },
-      "inline_response_200_4" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6944,7 +6389,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_2" : {
+      "inline_response_201_1" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6962,7 +6407,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_5" : {
+      "inline_response_200_4" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6986,7 +6431,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_6" : {
+      "inline_response_200_5" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7004,7 +6449,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_7" : {
+      "inline_response_200_6" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7028,7 +6473,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_8" : {
+      "inline_response_200_7" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7046,7 +6491,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_9" : {
+      "inline_response_200_8" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7070,7 +6515,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_3" : {
+      "inline_response_201_2" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7088,7 +6533,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_10" : {
+      "inline_response_200_9" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7112,7 +6557,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_4" : {
+      "inline_response_201_3" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7130,7 +6575,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_11" : {
+      "inline_response_200_10" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7154,7 +6599,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_5" : {
+      "inline_response_201_4" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7172,7 +6617,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_12" : {
+      "inline_response_200_11" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7196,7 +6641,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_6" : {
+      "inline_response_201_5" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7214,7 +6659,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_13" : {
+      "inline_response_200_12" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7238,7 +6683,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_7" : {
+      "inline_response_201_6" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7256,7 +6701,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_14" : {
+      "inline_response_200_13" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7280,7 +6725,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_15" : {
+      "inline_response_200_14" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7298,7 +6743,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_16" : {
+      "inline_response_200_15" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7322,7 +6767,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_8" : {
+      "inline_response_201_7" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7340,7 +6785,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_17" : {
+      "inline_response_200_16" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7364,7 +6809,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_9" : {
+      "inline_response_201_8" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7382,7 +6827,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_18" : {
+      "inline_response_200_17" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -7406,7 +6851,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_10" : {
+      "inline_response_201_9" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
