@@ -69,12 +69,6 @@ export default class LUMASERVBillingClient {
     updateCustomer(id, body = null){
         return this.request('put', '/customers/' + id, null, body);
     }
-    getCustomerTransactions(query = null){
-        return this.request('get', '/customer-transactions', query, null);
-    }
-    getCustomerTransaction(id){
-        return this.request('get', '/customer-transactions/' + id, null, null);
-    }
     getDebits(query = null){
         return this.request('get', '/debits', query, null);
     }

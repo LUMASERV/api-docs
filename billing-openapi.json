@@ -902,171 +902,6 @@
         "tags" : [ "customers" ]
       }
     },
-    "/customer-transactions" : {
-      "get" : {
-        "description" : "Returns all customer transactions",
-        "operationId" : "getCustomerTransactions",
-        "parameters" : [ {
-          "description" : "Page",
-          "explode" : true,
-          "in" : "query",
-          "name" : "page",
-          "required" : false,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Page Size",
-          "explode" : true,
-          "in" : "query",
-          "name" : "page_size",
-          "required" : false,
-          "schema" : {
-            "default" : 10,
-            "type" : "integer"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Search",
-          "explode" : true,
-          "in" : "query",
-          "name" : "search",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "form"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_4"
-                }
-              }
-            },
-            "description" : "CustomerTransaction List"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "getCustomerTransactions",
-        "tags" : [ "billing" ]
-      }
-    },
-    "/customer-transactions/{id}" : {
-      "get" : {
-        "description" : "Returns a single customer transaction",
-        "operationId" : "getCustomerTransaction",
-        "parameters" : [ {
-          "description" : "CustomerTransaction ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_5"
-                }
-              }
-            },
-            "description" : "Single CustomerTransaction"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "getCustomerTransaction",
-        "tags" : [ "customers" ]
-      }
-    },
     "/debits" : {
       "get" : {
         "description" : "Returns all debits",
@@ -1109,7 +944,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_6"
+                  "$ref" : "#/components/schemas/inline_response_200_4"
                 }
               }
             },
@@ -1181,7 +1016,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_7"
+                  "$ref" : "#/components/schemas/inline_response_200_5"
                 }
               }
             },
@@ -1274,7 +1109,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_8"
+                  "$ref" : "#/components/schemas/inline_response_200_6"
                 }
               }
             },
@@ -1515,7 +1350,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_9"
+                  "$ref" : "#/components/schemas/inline_response_200_7"
                 }
               }
             },
@@ -1988,7 +1823,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_10"
+                  "$ref" : "#/components/schemas/inline_response_200_8"
                 }
               }
             },
@@ -2414,7 +2249,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_11"
+                  "$ref" : "#/components/schemas/inline_response_200_9"
                 }
               }
             },
@@ -2743,7 +2578,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_12"
+                  "$ref" : "#/components/schemas/inline_response_200_10"
                 }
               }
             },
@@ -3142,7 +2977,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_13"
+                  "$ref" : "#/components/schemas/inline_response_200_11"
                 }
               }
             },
@@ -3214,7 +3049,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_14"
+                  "$ref" : "#/components/schemas/inline_response_200_12"
                 }
               }
             },
@@ -3307,7 +3142,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_15"
+                  "$ref" : "#/components/schemas/inline_response_200_13"
                 }
               }
             },
@@ -3636,7 +3471,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_16"
+                  "$ref" : "#/components/schemas/inline_response_200_14"
                 }
               }
             },
@@ -4035,7 +3870,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_17"
+                  "$ref" : "#/components/schemas/inline_response_200_15"
                 }
               }
             },
@@ -5210,31 +5045,11 @@
         },
         "description" : "Single Customer"
       },
-      "CustomerTransactionListResponse" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_4"
-            }
-          }
-        },
-        "description" : "CustomerTransaction List"
-      },
-      "CustomerTransactionSingleResponse" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_5"
-            }
-          }
-        },
-        "description" : "Single CustomerTransaction"
-      },
       "DebitListResponse" : {
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_6"
+              "$ref" : "#/components/schemas/inline_response_200_4"
             }
           }
         },
@@ -5244,7 +5059,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_7"
+              "$ref" : "#/components/schemas/inline_response_200_5"
             }
           }
         },
@@ -5254,7 +5069,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_8"
+              "$ref" : "#/components/schemas/inline_response_200_6"
             }
           }
         },
@@ -5274,7 +5089,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_9"
+              "$ref" : "#/components/schemas/inline_response_200_7"
             }
           }
         },
@@ -5294,7 +5109,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_10"
+              "$ref" : "#/components/schemas/inline_response_200_8"
             }
           }
         },
@@ -5314,7 +5129,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_11"
+              "$ref" : "#/components/schemas/inline_response_200_9"
             }
           }
         },
@@ -5334,7 +5149,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_12"
+              "$ref" : "#/components/schemas/inline_response_200_10"
             }
           }
         },
@@ -5354,7 +5169,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_13"
+              "$ref" : "#/components/schemas/inline_response_200_11"
             }
           }
         },
@@ -5364,7 +5179,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_14"
+              "$ref" : "#/components/schemas/inline_response_200_12"
             }
           }
         },
@@ -5374,7 +5189,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_15"
+              "$ref" : "#/components/schemas/inline_response_200_13"
             }
           }
         },
@@ -5394,7 +5209,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_16"
+              "$ref" : "#/components/schemas/inline_response_200_14"
             }
           }
         },
@@ -5414,7 +5229,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_17"
+              "$ref" : "#/components/schemas/inline_response_200_15"
             }
           }
         },
@@ -5711,36 +5526,6 @@
         "enum" : [ "MONTHLY", "QUARTERLY", "SEMI_ANNUAL", "ANNUAL" ],
         "title" : "BillingInterval",
         "type" : "string"
-      },
-      "CustomerTransaction" : {
-        "properties" : {
-          "id" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "customer_id" : {
-            "type" : "integer"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "amount" : {
-            "type" : "number"
-          },
-          "type" : {
-            "$ref" : "#/components/schemas/CustomerTransactionType"
-          },
-          "object_id" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "date" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "customer_id", "id" ],
-        "title" : "CustomerTransaction",
-        "type" : "object"
       },
       "DebitMandate" : {
         "properties" : {
@@ -6417,7 +6202,7 @@
           },
           "data" : {
             "items" : {
-              "$ref" : "#/components/schemas/CustomerTransaction"
+              "$ref" : "#/components/schemas/Debit"
             },
             "type" : "array"
           },
@@ -6440,48 +6225,6 @@
             "type" : "boolean"
           },
           "data" : {
-            "$ref" : "#/components/schemas/CustomerTransaction"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "success" ],
-        "type" : "object"
-      },
-      "inline_response_200_6" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "success" : {
-            "type" : "boolean"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/Debit"
-            },
-            "type" : "array"
-          },
-          "pagination" : {
-            "$ref" : "#/components/schemas/ResponsePagination"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "success" ],
-        "type" : "object"
-      },
-      "inline_response_200_7" : {
-        "properties" : {
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "success" : {
-            "type" : "boolean"
-          },
-          "data" : {
             "$ref" : "#/components/schemas/Debit"
           },
           "messages" : {
@@ -6491,7 +6234,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_8" : {
+      "inline_response_200_6" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6533,7 +6276,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_9" : {
+      "inline_response_200_7" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6575,7 +6318,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_10" : {
+      "inline_response_200_8" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6617,7 +6360,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_11" : {
+      "inline_response_200_9" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6659,7 +6402,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_12" : {
+      "inline_response_200_10" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6701,7 +6444,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_13" : {
+      "inline_response_200_11" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6725,7 +6468,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_14" : {
+      "inline_response_200_12" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6743,7 +6486,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_15" : {
+      "inline_response_200_13" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6785,7 +6528,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_16" : {
+      "inline_response_200_14" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6827,7 +6570,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_17" : {
+      "inline_response_200_15" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
