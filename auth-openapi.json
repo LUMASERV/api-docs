@@ -1918,6 +1918,9 @@
                 },
                 "password" : {
                   "type" : "string"
+                },
+                "customer_id" : {
+                  "type" : "integer"
                 }
               },
               "type" : "object"
