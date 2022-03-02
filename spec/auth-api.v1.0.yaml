@@ -1209,6 +1209,8 @@ components:
                 format: email
               password:
                 type: string
+              customer_id:
+                type: integer
     AuditLogRequest:
       content:
         application/json:
