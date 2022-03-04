@@ -675,8 +675,8 @@ components:
           type: string
           format: uuid
         customer_id:
-          type: integer
-          minimum: 1
+          type: string
+          format: uuid
         email:
           type: string
           format: email
@@ -1210,7 +1210,8 @@ components:
               password:
                 type: string
               customer_id:
-                type: integer
+                type: string
+                format: uuid
     AuditLogRequest:
       content:
         application/json:
