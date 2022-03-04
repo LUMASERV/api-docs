@@ -1920,7 +1920,8 @@
                   "type" : "string"
                 },
                 "customer_id" : {
-                  "type" : "integer"
+                  "format" : "uuid",
+                  "type" : "string"
                 }
               },
               "type" : "object"
@@ -2248,8 +2249,8 @@
             "type" : "string"
           },
           "customer_id" : {
-            "minimum" : 1,
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "email" : {
             "format" : "email",
