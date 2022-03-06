@@ -1375,6 +1375,23 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerVolume
       description: Returns a single volume
+    delete:
+      summary: deleteServerVolume
+      operationId: deleteServerVolume
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Deletes the volume
   /server-templates:
     get:
       summary: getServerTemplates
