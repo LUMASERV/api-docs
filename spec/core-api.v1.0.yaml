@@ -2977,6 +2977,11 @@ paths:
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[server_id]'
+          description: Server ID Filter
     post:
       summary: createServerBackup
       operationId: createServerBackup
