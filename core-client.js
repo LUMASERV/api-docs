@@ -204,6 +204,9 @@ export default class LUMASERVCoreClient {
     createServerVolume(body = null){
         return this.request('post', '/server-volumes', null, body);
     }
+    deleteServerVolume(id){
+        return this.request('delete', '/server-volumes/' + id, null, null);
+    }
     getServerVolume(id){
         return this.request('get', '/server-volumes/' + id, null, null);
     }
