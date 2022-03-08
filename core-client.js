@@ -426,4 +426,40 @@ export default class LUMASERVCoreClient {
     getScheduledServerAction(id, action_id){
         return this.request('get', '/servers/' + id + '/scheduled-actions/' + action_id, null, null);
     }
+    getServerFirewalls(query = null){
+        return this.request('get', '/server-firewalls', query, null);
+    }
+    createServerFirewall(body = null){
+        return this.request('post', '/server-firewalls', null, body);
+    }
+    deleteServerFirewall(id){
+        return this.request('delete', '/server-firewalls/' + id, null, null);
+    }
+    getServerFirewall(id){
+        return this.request('get', '/server-firewalls/' + id, null, null);
+    }
+    getServerFirewallRules(id, query = null){
+        return this.request('get', '/server-firewalls/' + id + '/rules', query, null);
+    }
+    createServerFirewallRule(id, body = null){
+        return this.request('post', '/server-firewalls/' + id + '/rules', null, body);
+    }
+    deleteServerFirewallRule(id, rule_id){
+        return this.request('delete', '/server-firewalls/' + id + '/rules/' + rule_id, null, null);
+    }
+    getServerFirewallRule(id, rule_id){
+        return this.request('get', '/server-firewalls/' + id + '/rules/' + rule_id, null, null);
+    }
+    getServerFirewallMembers(id, query = null){
+        return this.request('get', '/server-firewalls/' + id + '/members', query, null);
+    }
+    createServerFirewallMember(id, body = null){
+        return this.request('post', '/server-firewalls/' + id + '/members', null, body);
+    }
+    deleteServerFirewallMember(id, member_id){
+        return this.request('delete', '/server-firewalls/' + id + '/members/' + member_id, null, null);
+    }
+    getServerFirewallMember(id, member_id){
+        return this.request('get', '/server-firewalls/' + id + '/members/' + member_id, null, null);
+    }
 }

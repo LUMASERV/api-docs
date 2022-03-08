@@ -10860,6 +10860,1040 @@
         "summary" : "getScheduledServerAction",
         "tags" : [ "server" ]
       }
+    },
+    "/server-firewalls" : {
+      "get" : {
+        "description" : "Returns all server firewalls",
+        "operationId" : "getServerFirewalls",
+        "parameters" : [ {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_45"
+                }
+              }
+            },
+            "description" : "ServerFirewall List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerFirewalls",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new server firewall",
+        "operationId" : "createServerFirewall",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerFirewallCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_24"
+                }
+              }
+            },
+            "description" : "Single ServerFirewall"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerFirewall",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-firewalls/{id}" : {
+      "delete" : {
+        "description" : "Deletes a server firewall",
+        "operationId" : "deleteServerFirewall",
+        "parameters" : [ {
+          "description" : "ServerFirewall ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteServerFirewall",
+        "tags" : [ "server" ]
+      },
+      "get" : {
+        "description" : "Returns a single firewall",
+        "operationId" : "getServerFirewall",
+        "parameters" : [ {
+          "description" : "ServerFirewall ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_24"
+                }
+              }
+            },
+            "description" : "Single ServerFirewall"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerFirewall",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-firewalls/{id}/rules" : {
+      "get" : {
+        "description" : "Returns all rules of the firewall",
+        "operationId" : "getServerFirewallRules",
+        "parameters" : [ {
+          "description" : "ServerFirewall ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_46"
+                }
+              }
+            },
+            "description" : "ServerFirewallRule List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerFirewallRules",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Creates a new rule in the server firewall",
+        "operationId" : "createServerFirewallRule",
+        "parameters" : [ {
+          "description" : "ServerFirewall ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerFirewallRuleCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_25"
+                }
+              }
+            },
+            "description" : "Single ServerFirewallRule"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerFirewallRule",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-firewalls/{id}/rules/{rule_id}" : {
+      "delete" : {
+        "description" : "Deletes a server firewall rule",
+        "operationId" : "deleteServerFirewallRule",
+        "parameters" : [ {
+          "description" : "ServerFirewall ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ServerFirewallRule ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "rule_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteServerFirewallRule",
+        "tags" : [ "server" ]
+      },
+      "get" : {
+        "description" : "Returns a single firewall rule",
+        "operationId" : "getServerFirewallRule",
+        "parameters" : [ {
+          "description" : "ServerFirewall ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ServerFirewallRule ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "rule_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_25"
+                }
+              }
+            },
+            "description" : "Single ServerFirewallRule"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerFirewallRule",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-firewalls/{id}/members" : {
+      "get" : {
+        "description" : "Returns all members of the firewall",
+        "operationId" : "getServerFirewallMembers",
+        "parameters" : [ {
+          "description" : "ServerFirewall ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_47"
+                }
+              }
+            },
+            "description" : "ServerFirewallMember List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerFirewallMembers",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Adds a new member to the server firewall",
+        "operationId" : "createServerFirewallMember",
+        "parameters" : [ {
+          "description" : "ServerFirewall ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerFIrewallMemberCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_26"
+                }
+              }
+            },
+            "description" : "Single ServerFirewallMember"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerFirewallMember",
+        "tags" : [ "server" ]
+      }
+    },
+    "/server-firewalls/{id}/members/{member_id}" : {
+      "delete" : {
+        "description" : "Removes a member from the server firewall",
+        "operationId" : "deleteServerFirewallMember",
+        "parameters" : [ {
+          "description" : "ServerFirewall ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ServerFirewallMember ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "member_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteServerFirewallMember",
+        "tags" : [ "server" ]
+      },
+      "get" : {
+        "description" : "Returns a single firewall member",
+        "operationId" : "getServerFirewallMember",
+        "parameters" : [ {
+          "description" : "ServerFirewall ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "ServerFirewallMember ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "member_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_26"
+                }
+              }
+            },
+            "description" : "Single ServerFirewallMember"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerFirewallMember",
+        "tags" : [ "server" ]
+      }
     }
   },
   "components" : {
@@ -12180,6 +13214,95 @@
             }
           }
         }
+      },
+      "ServerFirewallCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "title" : {
+                  "type" : "string"
+                },
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                }
+              },
+              "required" : [ "project_id", "title" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerFirewallRuleCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "type" : {
+                  "$ref" : "#/components/schemas/ServerFirewallRuleType"
+                },
+                "source_addresses" : {
+                  "items" : {
+                    "type" : "string"
+                  },
+                  "type" : "array"
+                },
+                "source_ports" : {
+                  "items" : {
+                    "type" : "string"
+                  },
+                  "type" : "array"
+                },
+                "destination_addresses" : {
+                  "items" : {
+                    "type" : "string"
+                  },
+                  "type" : "array"
+                },
+                "destination_ports" : {
+                  "items" : {
+                    "type" : "string"
+                  },
+                  "type" : "array"
+                },
+                "protocol" : {
+                  "$ref" : "#/components/schemas/ServerFirewallRuleProtocol"
+                },
+                "description" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "type" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerFIrewallMemberCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "type" : {
+                  "$ref" : "#/components/schemas/ServerFirewallMemberType"
+                },
+                "server_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "label_name" : {
+                  "type" : "string"
+                },
+                "label_value" : {
+                  "type" : "string"
+                }
+              },
+              "required" : [ "type" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -12897,6 +14020,66 @@
           }
         },
         "description" : "Single ScheduledServerAction"
+      },
+      "ServerFirewallListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_45"
+            }
+          }
+        },
+        "description" : "ServerFirewall List"
+      },
+      "ServerFirewallSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_24"
+            }
+          }
+        },
+        "description" : "Single ServerFirewall"
+      },
+      "ServerFirewallRuleListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_46"
+            }
+          }
+        },
+        "description" : "ServerFirewallRule List"
+      },
+      "ServerFirewallRuleSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_25"
+            }
+          }
+        },
+        "description" : "Single ServerFirewallRule"
+      },
+      "ServerFirewallMemberListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_47"
+            }
+          }
+        },
+        "description" : "ServerFirewallMember List"
+      },
+      "ServerFirewallMemberSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_201_26"
+            }
+          }
+        },
+        "description" : "Single ServerFirewallMember"
       }
     },
     "schemas" : {
@@ -14300,6 +15483,132 @@
         },
         "required" : [ "created_at", "execute_at", "id", "interval", "server_id", "type" ],
         "title" : "ScheduledServerAction",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "ServerFirewall" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "created_at", "id", "project_id", "title" ],
+        "title" : "ServerFirewall",
+        "type" : "object"
+      },
+      "ServerFirewallRule" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type" : {
+            "$ref" : "#/components/schemas/ServerFirewallRuleType"
+          },
+          "source_addresses" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "source_ports" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "destination_addresses" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "destination_ports" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "protocol" : {
+            "$ref" : "#/components/schemas/ServerFirewallRuleProtocol"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "applied" : {
+            "type" : "boolean"
+          },
+          "created_at" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "applied", "created_at", "id", "type" ],
+        "title" : "ServerFirewallRule",
+        "type" : "object",
+        "x-tags" : [ "server" ]
+      },
+      "ServerFirewallRuleType" : {
+        "enum" : [ "INGRESS", "EGRESS" ],
+        "title" : "ServerFirewallRuleType",
+        "type" : "string",
+        "x-tags" : [ "server" ]
+      },
+      "ServerFirewallRuleProtocol" : {
+        "enum" : [ "TCP", "UDP", "ICMP" ],
+        "title" : "ServerFirewallRuleProtocol",
+        "type" : "string",
+        "x-tags" : [ "server" ]
+      },
+      "ServerFirewallMemberType" : {
+        "enum" : [ "SERVER", "LABEL" ],
+        "title" : "ServerFirewallMemberType",
+        "type" : "string"
+      },
+      "ServerFirewallMember" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type" : {
+            "$ref" : "#/components/schemas/ServerFirewallMemberType"
+          },
+          "server_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "label_name" : {
+            "type" : "string"
+          },
+          "label_value" : {
+            "type" : "string"
+          },
+          "applied" : {
+            "type" : "boolean"
+          },
+          "created_at" : {
+            "type" : "string"
+          },
+          "children" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerFirewallMember"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "applied", "created_at", "id", "type" ],
+        "title" : "ServerFirewallMember",
         "type" : "object",
         "x-tags" : [ "server" ]
       },
@@ -15768,6 +17077,131 @@
           },
           "pagination" : {
             "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_45" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerFirewall"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_24" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerFirewall"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_46" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerFirewallRule"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "type" : "object"
+      },
+      "inline_response_201_25" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerFirewallRule"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_47" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerFirewallMember"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_201_26" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerFirewallMember"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
