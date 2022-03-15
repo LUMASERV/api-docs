@@ -5397,7 +5397,8 @@
             "type" : "string"
           },
           "customer_id" : {
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "invoice_position_id" : {
             "format" : "uuid",
