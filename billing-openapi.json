@@ -4498,7 +4498,8 @@
             "schema" : {
               "properties" : {
                 "customer_id" : {
-                  "type" : "integer"
+                  "format" : "uuid",
+                  "type" : "string"
                 },
                 "depositor" : {
                   "type" : "string"
@@ -4549,7 +4550,8 @@
             "schema" : {
               "properties" : {
                 "customer_id" : {
-                  "type" : "integer"
+                  "format" : "uuid",
+                  "type" : "string"
                 },
                 "due_at" : {
                   "type" : "string"
@@ -4638,7 +4640,8 @@
             "schema" : {
               "properties" : {
                 "customer_id" : {
-                  "type" : "integer"
+                  "format" : "uuid",
+                  "type" : "string"
                 },
                 "due_at" : {
                   "type" : "string"
@@ -4664,7 +4667,8 @@
             "schema" : {
               "properties" : {
                 "customer_id" : {
-                  "type" : "integer"
+                  "format" : "uuid",
+                  "type" : "string"
                 },
                 "number" : {
                   "type" : "string"
@@ -4772,7 +4776,8 @@
             "schema" : {
               "properties" : {
                 "customer_id" : {
-                  "type" : "integer"
+                  "format" : "uuid",
+                  "type" : "string"
                 },
                 "net_amount" : {
                   "type" : "number"
@@ -4795,7 +4800,8 @@
             "schema" : {
               "properties" : {
                 "customer_id" : {
-                  "type" : "integer"
+                  "format" : "uuid",
+                  "type" : "string"
                 },
                 "invoice_id" : {
                   "format" : "uuid",
@@ -4849,7 +4855,8 @@
             "schema" : {
               "properties" : {
                 "customer_id" : {
-                  "type" : "integer"
+                  "format" : "uuid",
+                  "type" : "string"
                 },
                 "title" : {
                   "type" : "string"
@@ -5539,7 +5546,8 @@
             "type" : "string"
           },
           "customer_id" : {
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "depositor" : {
             "type" : "string"
@@ -5686,7 +5694,8 @@
             "type" : "string"
           },
           "customer_id" : {
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "due_at" : {
             "type" : "string"
@@ -5710,7 +5719,8 @@
             "type" : "string"
           },
           "customer_id" : {
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "due_at" : {
             "type" : "string"
@@ -5807,7 +5817,7 @@
             "type" : "string"
           },
           "customer_id" : {
-            "type" : "integer"
+            "type" : "string"
           },
           "provider" : {
             "enum" : [ "PAYPAL" ],
@@ -5835,7 +5845,8 @@
             "type" : "string"
           },
           "customer_id" : {
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "invoice_id" : {
             "format" : "uuid",
@@ -5895,7 +5906,8 @@
             "type" : "string"
           },
           "customer_id" : {
-            "type" : "integer"
+            "format" : "uuid",
+            "type" : "string"
           },
           "title" : {
             "type" : "string"
