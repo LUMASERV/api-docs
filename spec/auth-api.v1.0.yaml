@@ -262,6 +262,11 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[role]'
+          description: Role Filter
   '/projects/{id}/members/{user_id}':
     parameters:
       - schema:
