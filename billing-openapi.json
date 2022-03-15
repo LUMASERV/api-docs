@@ -4273,7 +4273,8 @@
             "schema" : {
               "properties" : {
                 "customer_id" : {
-                  "type" : "integer"
+                  "format" : "uuid",
+                  "type" : "string"
                 },
                 "invoice_position_id" : {
                   "format" : "uuid",
@@ -4312,9 +4313,6 @@
           "application/json" : {
             "schema" : {
               "properties" : {
-                "customer_id" : {
-                  "type" : "integer"
-                },
                 "invoice_position_id" : {
                   "format" : "uuid",
                   "type" : "string"
