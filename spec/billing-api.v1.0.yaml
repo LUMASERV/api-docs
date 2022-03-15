@@ -1394,7 +1394,8 @@ components:
           type: string
           format: uuid
         customer_id:
-          type: integer
+          type: string
+          format: uuid
         depositor:
           type: string
         street:
@@ -1511,7 +1512,8 @@ components:
         id:
           type: string
         customer_id:
-          type: integer
+          type: string
+          format: uuid
         due_at:
           type: string
         state:
@@ -1527,7 +1529,8 @@ components:
         id:
           type: string
         customer_id:
-          type: integer
+          type: string
+          format: uuid
         due_at:
           type: string
         state:
@@ -1603,7 +1606,7 @@ components:
           type: string
           format: uuid
         customer_id:
-          type: integer
+          type: string
         provider:
           type: string
           enum:
@@ -1629,7 +1632,8 @@ components:
           type: string
           format: uuid
         customer_id:
-          type: integer
+          type: string
+          format: uuid
         invoice_id:
           type: string
           format: uuid
@@ -1675,7 +1679,8 @@ components:
           type: string
           format: uuid
         customer_id:
-          type: integer
+          type: string
+          format: uuid
         title:
           type: string
         description:
@@ -2630,7 +2635,8 @@ components:
             type: object
             properties:
               customer_id:
-                type: integer
+                type: string
+                format: uuid
               depositor:
                 type: string
               street:
@@ -2674,7 +2680,8 @@ components:
             type: object
             properties:
               customer_id:
-                type: integer
+                type: string
+                format: uuid
               due_at:
                 type: string
               positions:
@@ -2738,7 +2745,8 @@ components:
             type: object
             properties:
               customer_id:
-                type: integer
+                type: string
+                format: uuid
               due_at:
                 type: string
               state:
@@ -2754,7 +2762,8 @@ components:
             type: object
             properties:
               customer_id:
-                type: integer
+                type: string
+                format: uuid
               number:
                 type: string
               net_amount:
@@ -2829,7 +2838,8 @@ components:
             type: object
             properties:
               customer_id:
-                type: integer
+                type: string
+                format: uuid
               net_amount:
                 type: number
               amount:
@@ -2843,7 +2853,8 @@ components:
             type: object
             properties:
               customer_id:
-                type: integer
+                type: string
+                format: uuid
               invoice_id:
                 type: string
                 format: uuid
@@ -2879,7 +2890,8 @@ components:
             type: object
             properties:
               customer_id:
-                type: integer
+                type: string
+                format: uuid
               title:
                 type: string
               description:
