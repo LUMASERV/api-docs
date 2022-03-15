@@ -4300,9 +4300,12 @@
                 },
                 "available_at" : {
                   "type" : "string"
+                },
+                "unit" : {
+                  "type" : "string"
                 }
               },
-              "required" : [ "amount", "customer_id", "description", "price", "title" ],
+              "required" : [ "amount", "customer_id", "description", "price", "title", "unit" ],
               "type" : "object"
             }
           }
@@ -4336,6 +4339,9 @@
                   "type" : "string"
                 },
                 "available_at" : {
+                  "type" : "string"
+                },
+                "unit" : {
                   "type" : "string"
                 }
               },
