@@ -2476,12 +2476,15 @@ components:
                 type: string
               available_at:
                 type: string
+              unit:
+                type: string
             required:
               - customer_id
               - title
               - description
               - amount
               - price
+              - unit
     BillingPositionUpdateRequest:
       content:
         application/json:
@@ -2504,6 +2507,8 @@ components:
               group_key:
                 type: string
               available_at:
+                type: string
+              unit:
                 type: string
     CustomerCreateRequest:
       content:
