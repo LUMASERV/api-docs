@@ -814,6 +814,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Role Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[role]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
