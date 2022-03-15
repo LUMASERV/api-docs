@@ -2457,7 +2457,8 @@ components:
             type: object
             properties:
               customer_id:
-                type: integer
+                type: string
+                format: uuid
               invoice_position_id:
                 type: string
                 format: uuid
@@ -2487,8 +2488,6 @@ components:
           schema:
             type: object
             properties:
-              customer_id:
-                type: integer
               invoice_position_id:
                 type: string
                 format: uuid
