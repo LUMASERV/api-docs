@@ -1375,6 +1375,23 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerVolume
       description: Returns a single volume
+    delete:
+      summary: deleteServerVolume
+      operationId: deleteServerVolume
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Deletes the volume
   /server-templates:
     get:
       summary: getServerTemplates
@@ -2960,6 +2977,11 @@ paths:
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[server_id]'
+          description: Server ID Filter
     post:
       summary: createServerBackup
       operationId: createServerBackup
@@ -3155,6 +3177,295 @@ paths:
       tags:
         - server
       description: Deletes a scheduled server action
+  /server-firewalls:
+    get:
+      summary: getServerFirewalls
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewalls
+      description: Returns all server firewalls
+      parameters:
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/ProjectIDFilter'
+    post:
+      summary: createServerFirewall
+      operationId: createServerFirewall
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerFirewallSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new server firewall
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerFirewallCreateRequest'
+  '/server-firewalls/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerFirewall ID
+    get:
+      summary: getServerFirewall
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewall
+      description: Returns a single firewall
+    delete:
+      summary: deleteServerFirewall
+      operationId: deleteServerFirewall
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Deletes a server firewall
+  '/server-firewalls/{id}/rules':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerFirewall ID
+    get:
+      summary: getServerFirewallRules
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallRuleListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewallRules
+      description: Returns all rules of the firewall
+      parameters:
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+    post:
+      summary: createServerFirewallRule
+      operationId: createServerFirewallRule
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerFirewallRuleSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new rule in the server firewall
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerFirewallRuleCreateRequest'
+  '/server-firewalls/{id}/rules/{rule_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerFirewall ID
+      - schema:
+          type: string
+          format: uuid
+        name: rule_id
+        in: path
+        required: true
+        description: ServerFirewallRule ID
+    get:
+      summary: getServerFirewallRule
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallRuleSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewallRule
+      description: Returns a single firewall rule
+    delete:
+      summary: deleteServerFirewallRule
+      operationId: deleteServerFirewallRule
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a server firewall rule
+      tags:
+        - server
+  '/server-firewalls/{id}/members':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerFirewall ID
+    get:
+      summary: getServerFirewallMembers
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallMemberListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewallMembers
+      description: Returns all members of the firewall
+      parameters:
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+    post:
+      summary: createServerFirewallMember
+      operationId: createServerFirewallMember
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerFirewallMemberSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Adds a new member to the server firewall
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerFIrewallMemberCreateRequest'
+  '/server-firewalls/{id}/members/{member_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerFirewall ID
+      - schema:
+          type: string
+          format: uuid
+        name: member_id
+        in: path
+        required: true
+        description: ServerFirewallMember ID
+    get:
+      summary: getServerFirewallMember
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallMemberSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewallMember
+      description: Returns a single firewall member
+    delete:
+      summary: deleteServerFirewallMember
+      operationId: deleteServerFirewallMember
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Removes a member from the server firewall
 components:
   schemas:
     ResponseMessages:
@@ -4458,6 +4769,119 @@ components:
         - created_at
       x-tags:
         - server
+    ServerFirewall:
+      title: ServerFirewall
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        created_at:
+          type: string
+      required:
+        - id
+        - project_id
+        - title
+        - created_at
+    ServerFirewallRule:
+      title: ServerFirewallRule
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/ServerFirewallRuleType'
+        source_addresses:
+          type: array
+          items:
+            type: string
+        source_ports:
+          type: array
+          items:
+            type: string
+        destination_addresses:
+          type: array
+          items:
+            type: string
+        destination_ports:
+          type: array
+          items:
+            type: string
+        protocol:
+          $ref: '#/components/schemas/ServerFirewallRuleProtocol'
+        description:
+          type: string
+        applied:
+          type: boolean
+        created_at:
+          type: string
+      required:
+        - id
+        - type
+        - applied
+        - created_at
+      x-tags:
+        - server
+    ServerFirewallRuleType:
+      type: string
+      title: ServerFirewallRuleType
+      enum:
+        - INGRESS
+        - EGRESS
+      x-tags:
+        - server
+    ServerFirewallRuleProtocol:
+      type: string
+      title: ServerFirewallRuleProtocol
+      enum:
+        - TCP
+        - UDP
+        - ICMP
+      x-tags:
+        - server
+    ServerFirewallMemberType:
+      type: string
+      title: ServerFirewallMemberType
+      enum:
+        - SERVER
+        - LABEL
+    ServerFirewallMember:
+      title: ServerFirewallMember
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/ServerFirewallMemberType'
+        server_id:
+          type: string
+          format: uuid
+        label_name:
+          type: string
+        label_value:
+          type: string
+        applied:
+          type: boolean
+        created_at:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerFirewallMember'
+      required:
+        - id
+        - type
+        - applied
+        - created_at
   securitySchemes:
     AuthToken:
       type: http
@@ -6027,6 +6451,133 @@ components:
               - success
               - data
               - messages
+    ServerFirewallListResponse:
+      description: ServerFirewall List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerFirewall'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerFirewallSingleResponse:
+      description: Single ServerFirewall
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerFirewall'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerFirewallRuleListResponse:
+      description: ServerFirewallRule List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerFirewallRule'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+    ServerFirewallRuleSingleResponse:
+      description: Single ServerFirewallRule
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerFirewallRule'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerFirewallMemberListResponse:
+      description: ServerFirewallMember List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerFirewallMember'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerFirewallMemberSingleResponse:
+      description: Single ServerFirewallMember
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerFirewallMember'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     S3BucketCreateRequest:
       content:
@@ -6989,6 +7540,67 @@ components:
             required:
               - type
               - execute_at
+    ServerFirewallCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              project_id:
+                type: string
+                format: uuid
+            required:
+              - title
+              - project_id
+    ServerFirewallRuleCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/ServerFirewallRuleType'
+              source_addresses:
+                type: array
+                items:
+                  type: string
+              source_ports:
+                type: array
+                items:
+                  type: string
+              destination_addresses:
+                type: array
+                items:
+                  type: string
+              destination_ports:
+                type: array
+                items:
+                  type: string
+              protocol:
+                $ref: '#/components/schemas/ServerFirewallRuleProtocol'
+              description:
+                type: string
+            required:
+              - type
+    ServerFIrewallMemberCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/ServerFirewallMemberType'
+              server_id:
+                type: string
+                format: uuid
+              label_name:
+                type: string
+              label_value:
+                type: string
+            required:
+              - type
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
