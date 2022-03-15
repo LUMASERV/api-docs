@@ -1284,7 +1284,8 @@ components:
           type: string
           format: uuid
         customer_id:
-          type: integer
+          type: string
+          format: uuid
         invoice_position_id:
           type: string
           format: uuid
