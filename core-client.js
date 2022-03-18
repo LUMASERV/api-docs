@@ -462,4 +462,43 @@ export default class LUMASERVCoreClient {
     getServerFirewallMember(id, member_id){
         return this.request('get', '/server-firewalls/' + id + '/members/' + member_id, null, null);
     }
+    getServerPriceRanges(){
+        return this.request('get', '/server-price-ranges', null, null);
+    }
+    createServerPriceRange(body = null){
+        return this.request('post', '/server-price-ranges', null, body);
+    }
+    getServerPriceRange(id){
+        return this.request('get', '/server-price-ranges/' + id, null, null);
+    }
+    getServerVariantPrices(id){
+        return this.request('get', '/server-price-ranges/' + id + '/variant-prices', null, null);
+    }
+    createServerVariantPrice(id, body = null){
+        return this.request('post', '/server-price-ranges/' + id + '/variant-prices', null, body);
+    }
+    deleteServerVariantPrice(id, variant_id){
+        return this.request('delete', '/server-price-ranges/' + id + '/variant-prices/' + variant_id, null, null);
+    }
+    getServerVariantPrice(id, variant_id){
+        return this.request('get', '/server-price-ranges/' + id + '/variant-prices/' + variant_id, null, null);
+    }
+    updateServerVariantPrice(id, variant_id, body = null){
+        return this.request('put', '/server-price-ranges/' + id + '/variant-prices/' + variant_id, null, body);
+    }
+    getServerPriceRangeAssignments(){
+        return this.request('get', '/server-price-range-assignments', null, null);
+    }
+    createServerPriceRangeAssignment(body = null){
+        return this.request('post', '/server-price-range-assignments', null, body);
+    }
+    deleteServerPriceRangeAssignment(id){
+        return this.request('delete', '/server-price-range-assignments/' + id, null, null);
+    }
+    getServerPriceRangeAssignment(id){
+        return this.request('get', '/server-price-range-assignments/' + id, null, null);
+    }
+    updateServerPriceRangeAssignment(id){
+        return this.request('put', '/server-price-range-assignments/' + id, null, null);
+    }
 }
