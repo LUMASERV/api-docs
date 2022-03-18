@@ -3466,6 +3466,281 @@ paths:
       tags:
         - server
       description: Removes a member from the server firewall
+  /server-price-ranges:
+    get:
+      summary: getServerPriceRanges
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerPriceRanges
+      description: Returns all price ranges for servers
+    post:
+      summary: createServerPriceRange
+      operationId: createServerPriceRange
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new price range for servers
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerPriceRangeCreateRequest'
+  '/server-price-ranges/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerPriceRange ID
+    get:
+      summary: getServerPriceRange
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerPriceRange
+      description: Returns a single price range for servers
+  '/server-price-ranges/{id}/variant-prices':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerPriceRange ID
+    get:
+      summary: getServerVariantPrices
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantPriceListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVariantPrices
+      description: Returns all variant prices for a range
+    post:
+      summary: createServerVariantPrice
+      operationId: createServerVariantPrice
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantPriceSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new variant price for the range
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVariantPriceCreateRequest'
+      tags:
+        - server
+  '/server-price-ranges/{id}/variant-prices/{variant_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerPriceRange ID
+      - schema:
+          type: string
+          format: uuid
+        name: variant_id
+        in: path
+        required: true
+        description: ServerVariant ID
+    get:
+      summary: getServerVariantPrice
+      tags:
+        - server
+      responses: {}
+      operationId: getServerVariantPrice
+      description: Returns the pricing for a specific variant in the range
+    put:
+      summary: updateServerVariantPrice
+      operationId: updateServerVariantPrice
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantPriceSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Updates the price for a specific variant in the range
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVariantPriceUpdateRequest'
+    delete:
+      summary: deleteServerVariantPrice
+      operationId: deleteServerVariantPrice
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Delete server variant price
+      tags:
+        - server
+  /server-price-range-assignments:
+    get:
+      summary: getServerPriceRangeAssignments
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeAssignmentListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerPriceRangeAssignments
+      description: Returns all price range assignments for servers
+    post:
+      summary: createServerPriceRangeAssignment
+      operationId: createServerPriceRangeAssignment
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerPriceRangeAssignmentSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new price range assignment for servers
+      requestBody:
+        $ref: '#/components/requestBodies/ServerPriceRangeAssignmentCreateRequest'
+      tags:
+        - server
+  '/server-price-range-assignments/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ServerPriceRangeAssignment ID
+    get:
+      summary: getServerPriceRangeAssignment
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeAssignmentSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerPriceRangeAssignment
+      description: Returns a single server price range assignment by id
+    delete:
+      summary: deleteServerPriceRangeAssignment
+      operationId: deleteServerPriceRangeAssignment
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a server price range assignment
+      tags:
+        - server
+    put:
+      summary: updateServerPriceRangeAssignment
+      operationId: updateServerPriceRangeAssignment
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeAssignmentSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the range of an existing server price range assignment
+      tags:
+        - server
 components:
   schemas:
     ResponseMessages:
@@ -4882,6 +5157,53 @@ components:
         - type
         - applied
         - created_at
+    ServerPriceRange:
+      title: ServerPriceRange
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+      required:
+        - id
+        - title
+    ServerPriceRangeAssignment:
+      title: ServerPriceRangeAssignment
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        range_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+      required:
+        - id
+        - range_id
+        - user_id
+    ServerVariantPrice:
+      title: ServerVariantPrice
+      type: object
+      properties:
+        variant_id:
+          type: string
+          format: uuid
+        price:
+          type: number
+        offline_price:
+          type: number
+      required:
+        - variant_id
+        - price
+        - offline_price
   securitySchemes:
     AuthToken:
       type: http
@@ -6578,6 +6900,138 @@ components:
               - success
               - data
               - messages
+    ServerPriceRangeListResponse:
+      description: ServerPriceRange List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerPriceRange'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerPriceRangeSingleResponse:
+      description: Single ServerPriceRange
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ''
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerPriceRange'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerPriceRangeAssignmentListResponse:
+      description: ServerPriceRangeAssignment List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerPriceRangeAssignment'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerPriceRangeAssignmentSingleResponse:
+      description: Single ServerPriceRangeAssignment
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerPriceRangeAssignment'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerVariantPriceListResponse:
+      description: ServerVariantPrice List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerVariantPrice'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerVariantPriceSingleResponse:
+      description: Single ServerVariantPrice
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerVariantPrice'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     S3BucketCreateRequest:
       content:
@@ -7601,6 +8055,71 @@ components:
                 type: string
             required:
               - type
+    ServerPriceRangeCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+            required:
+              - title
+    ServerVariantPriceCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              variant_id:
+                type: string
+                format: uuid
+              price:
+                type: number
+              offline_price:
+                type: number
+            required:
+              - variant_id
+              - price
+              - offline_price
+    ServerVariantPriceUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              price:
+                type: number
+              offline_price:
+                type: number
+    ServerPriceRangeAssignmentCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              range_id:
+                type: string
+                format: uuid
+              user_id:
+                type: string
+                format: uuid
+              project_id:
+                type: string
+                format: uuid
+            required:
+              - range_id
+    ServerPriceRangeAssignmentUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              range_id:
+                type: string
+                format: uuid
+            required:
+              - range_id
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
