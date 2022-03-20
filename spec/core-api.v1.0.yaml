@@ -3741,6 +3741,32 @@ paths:
       description: Updates the range of an existing server price range assignment
       tags:
         - server
+  '/servers/{id}/restart':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: restartServer
+      operationId: restartServer
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerActionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '409':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Restarts the server
+      tags:
+        - server
 components:
   schemas:
     ResponseMessages:
