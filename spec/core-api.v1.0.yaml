@@ -3417,7 +3417,7 @@ paths:
       tags:
         - server
       requestBody:
-        $ref: '#/components/requestBodies/ServerFIrewallMemberCreateRequest'
+        $ref: '#/components/requestBodies/ServerFirewallMemberCreateRequest'
   '/server-firewalls/{id}/members/{member_id}':
     parameters:
       - schema:
@@ -8080,7 +8080,7 @@ components:
                 type: string
             required:
               - type
-    ServerFIrewallMemberCreateRequest:
+    ServerFirewallMemberCreateRequest:
       content:
         application/json:
           schema:
