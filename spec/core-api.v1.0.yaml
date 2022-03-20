@@ -13,6 +13,7 @@ tags:
   - name: address
   - name: dns
   - name: domains
+  - name: general
   - name: label
   - name: plesk-licenses
   - name: pricing
@@ -1579,7 +1580,8 @@ paths:
   /search:
     get:
       summary: search
-      tags: []
+      tags:
+        - general
       responses:
         '200':
           $ref: '#/components/responses/SearchResponse'
@@ -3598,7 +3600,17 @@ paths:
       summary: getServerVariantPrice
       tags:
         - server
-      responses: {}
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantPriceSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
       operationId: getServerVariantPrice
       description: Returns the pricing for a specific variant in the range
     put:
@@ -3741,6 +3753,8 @@ paths:
       description: Updates the range of an existing server price range assignment
       tags:
         - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerPriceRangeAssignmentUpdateRequest'
   '/servers/{id}/restart':
     parameters:
       - schema:
@@ -8017,6 +8031,8 @@ components:
               backup_id:
                 type: string
                 format: uuid
+              force:
+                type: boolean
             required:
               - type
               - execute_at
