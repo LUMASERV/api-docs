@@ -498,8 +498,8 @@ export default class LUMASERVCoreClient {
     getServerPriceRangeAssignment(id){
         return this.request('get', '/server-price-range-assignments/' + id, null, null);
     }
-    updateServerPriceRangeAssignment(id){
-        return this.request('put', '/server-price-range-assignments/' + id, null, null);
+    updateServerPriceRangeAssignment(id, body = null){
+        return this.request('put', '/server-price-range-assignments/' + id, null, body);
     }
     restartServer(id){
         return this.request('post', '/servers/' + id + '/restart', null, null);

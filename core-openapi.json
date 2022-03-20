@@ -23,6 +23,8 @@
   }, {
     "name" : "domains"
   }, {
+    "name" : "general"
+  }, {
     "name" : "label"
   }, {
     "name" : "plesk-licenses"
@@ -5707,7 +5709,7 @@
           }
         },
         "summary" : "search",
-        "tags" : [ ]
+        "tags" : [ "general" ]
       }
     },
     "/domains/{name}/check" : {
@@ -12371,7 +12373,58 @@
           },
           "style" : "simple"
         } ],
-        "responses" : { },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_51"
+                }
+              }
+            },
+            "description" : "Single ServerVariantPrice"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
         "summary" : "getServerVariantPrice",
         "tags" : [ "server" ]
       },
@@ -12774,6 +12827,9 @@
           },
           "style" : "simple"
         } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerPriceRangeAssignmentUpdateRequest"
+        },
         "responses" : {
           "200" : {
             "content" : {
@@ -14237,6 +14293,9 @@
                 "backup_id" : {
                   "format" : "uuid",
                   "type" : "string"
+                },
+                "force" : {
+                  "type" : "boolean"
                 }
               },
               "required" : [ "execute_at", "type" ],
