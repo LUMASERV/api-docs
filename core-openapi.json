@@ -11660,7 +11660,7 @@
           "style" : "simple"
         } ],
         "requestBody" : {
-          "$ref" : "#/components/requestBodies/ServerFIrewallMemberCreateRequest"
+          "$ref" : "#/components/requestBodies/ServerFirewallMemberCreateRequest"
         },
         "responses" : {
           "201" : {
@@ -14368,7 +14368,7 @@
           }
         }
       },
-      "ServerFIrewallMemberCreateRequest" : {
+      "ServerFirewallMemberCreateRequest" : {
         "content" : {
           "application/json" : {
             "schema" : {
