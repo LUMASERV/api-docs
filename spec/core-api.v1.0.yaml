@@ -5106,6 +5106,8 @@ components:
     ServerFirewallRule:
       title: ServerFirewallRule
       type: object
+      x-tags:
+        - server
       properties:
         id:
           type: string
@@ -5116,20 +5118,16 @@ components:
           type: array
           items:
             type: string
-        source_ports:
-          type: array
-          items:
-            type: string
         destination_addresses:
-          type: array
-          items:
-            type: string
-        destination_ports:
           type: array
           items:
             type: string
         protocol:
           $ref: '#/components/schemas/ServerFirewallRuleProtocol'
+        ports:
+          type: array
+          items:
+            type: string
         description:
           type: string
         applied:
@@ -5141,8 +5139,6 @@ components:
         - type
         - applied
         - created_at
-      x-tags:
-        - server
     ServerFirewallRuleType:
       type: string
       title: ServerFirewallRuleType
@@ -8062,20 +8058,16 @@ components:
                 type: array
                 items:
                   type: string
-              source_ports:
-                type: array
-                items:
-                  type: string
               destination_addresses:
-                type: array
-                items:
-                  type: string
-              destination_ports:
                 type: array
                 items:
                   type: string
               protocol:
                 $ref: '#/components/schemas/ServerFirewallRuleProtocol'
+              ports:
+                type: array
+                items:
+                  type: string
               description:
                 type: string
             required:
