@@ -14337,19 +14337,7 @@
                   },
                   "type" : "array"
                 },
-                "source_ports" : {
-                  "items" : {
-                    "type" : "string"
-                  },
-                  "type" : "array"
-                },
                 "destination_addresses" : {
-                  "items" : {
-                    "type" : "string"
-                  },
-                  "type" : "array"
-                },
-                "destination_ports" : {
                   "items" : {
                     "type" : "string"
                   },
@@ -14357,6 +14345,12 @@
                 },
                 "protocol" : {
                   "$ref" : "#/components/schemas/ServerFirewallRuleProtocol"
+                },
+                "ports" : {
+                  "items" : {
+                    "type" : "string"
+                  },
+                  "type" : "array"
                 },
                 "description" : {
                   "type" : "string"
@@ -16765,19 +16759,7 @@
             },
             "type" : "array"
           },
-          "source_ports" : {
-            "items" : {
-              "type" : "string"
-            },
-            "type" : "array"
-          },
           "destination_addresses" : {
-            "items" : {
-              "type" : "string"
-            },
-            "type" : "array"
-          },
-          "destination_ports" : {
             "items" : {
               "type" : "string"
             },
@@ -16785,6 +16767,12 @@
           },
           "protocol" : {
             "$ref" : "#/components/schemas/ServerFirewallRuleProtocol"
+          },
+          "ports" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
           },
           "description" : {
             "type" : "string"
