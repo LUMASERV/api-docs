@@ -7590,6 +7590,10 @@ components:
                 type: string
                 format: uuid
                 example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              backup_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               ssh_keys:
                 type: array
                 items:
@@ -7608,7 +7612,6 @@ components:
               - zone_id
               - name
               - variant_id
-              - template_id
               - ssh_keys
     DNSZoneUpdateRequest:
       content:
