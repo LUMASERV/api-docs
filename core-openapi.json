@@ -13731,6 +13731,11 @@
                   "format" : "uuid",
                   "type" : "string"
                 },
+                "backup_id" : {
+                  "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+                  "format" : "uuid",
+                  "type" : "string"
+                },
                 "ssh_keys" : {
                   "items" : {
                     "format" : "uuid",
@@ -13751,7 +13756,7 @@
                   "type" : "object"
                 }
               },
-              "required" : [ "name", "project_id", "ssh_keys", "template_id", "variant_id", "zone_id" ],
+              "required" : [ "name", "project_id", "ssh_keys", "variant_id", "zone_id" ],
               "type" : "object"
             }
           }
