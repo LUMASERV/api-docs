@@ -522,13 +522,13 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getCountry
       description: Returns a single country
-  /audit-log:
+  /transaction-log:
     post:
-      summary: searchAuditLog
-      operationId: searchAuditLog
+      summary: searchTransactionLog
+      operationId: searchTransactionLog
       responses:
         '200':
-          $ref: '#/components/responses/AuditLogResponse'
+          $ref: '#/components/responses/TransactionLogResponse'
         '400':
           $ref: '#/components/responses/InvalidRequestResponse'
         '401':
@@ -539,9 +539,10 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       tags:
         - audit
-      description: Searches the audit log for records
+      description: Searches the transaction log for records
       requestBody:
-        $ref: '#/components/requestBodies/AuditLogRequest'
+        $ref: '#/components/requestBodies/TransactionLogRequest'
+    parameters: []
 components:
   schemas:
     ResponseMessages:
@@ -1071,7 +1072,7 @@ components:
               - success
               - data
               - messages
-    AuditLogResponse:
+    TransactionLogResponse:
       description: Audit Log
       content:
         application/json:
@@ -1217,7 +1218,7 @@ components:
               customer_id:
                 type: string
                 format: uuid
-    AuditLogRequest:
+    TransactionLogRequest:
       content:
         application/json:
           schema:
