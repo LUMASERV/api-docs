@@ -105,7 +105,7 @@ export default class LUMASERVAuthClient {
     getCountry(code){
         return this.request('get', '/countries/' + code, null, null);
     }
-    searchAuditLog(body = null){
-        return this.request('post', '/audit-log', null, body);
+    searchTransactionLog(body = null){
+        return this.request('post', '/transaction-log', null, body);
     }
 }

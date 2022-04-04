@@ -1654,12 +1654,12 @@
         "tags" : [ "countries" ]
       }
     },
-    "/audit-log" : {
+    "/transaction-log" : {
       "post" : {
-        "description" : "Searches the audit log for records",
-        "operationId" : "searchAuditLog",
+        "description" : "Searches the transaction log for records",
+        "operationId" : "searchTransactionLog",
         "requestBody" : {
-          "$ref" : "#/components/requestBodies/AuditLogRequest"
+          "$ref" : "#/components/requestBodies/TransactionLogRequest"
         },
         "responses" : {
           "200" : {
@@ -1718,7 +1718,7 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "searchAuditLog",
+        "summary" : "searchTransactionLog",
         "tags" : [ "audit" ]
       }
     }
@@ -1939,7 +1939,7 @@
           }
         }
       },
-      "AuditLogRequest" : {
+      "TransactionLogRequest" : {
         "content" : {
           "application/json" : {
             "schema" : {
@@ -2097,7 +2097,7 @@
         },
         "description" : "Single Country"
       },
-      "AuditLogResponse" : {
+      "TransactionLogResponse" : {
         "content" : {
           "application/json" : {
             "schema" : {
