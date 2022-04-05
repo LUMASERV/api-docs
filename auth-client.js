@@ -108,4 +108,10 @@ export default class LUMASERVAuthClient {
     searchTransactionLog(body = null){
         return this.request('post', '/transaction-log', null, body);
     }
+    searchAuditLog(query = null){
+        return this.request('get', '/audit-log', query, null);
+    }
+    insertAuditLogEntry(body = null){
+        return this.request('post', '/audit-log', null, body);
+    }
 }

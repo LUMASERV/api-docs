@@ -11,7 +11,7 @@
   },
   "servers" : [ {
     "description" : "Live",
-    "url" : "https://auth.lumaserv.cloud"
+    "url" : "https://auth.lumaserv.com"
   } ],
   "security" : [ {
     "AuthToken" : [ ]
@@ -1721,6 +1721,194 @@
         "summary" : "searchTransactionLog",
         "tags" : [ "audit" ]
       }
+    },
+    "/audit-log" : {
+      "get" : {
+        "description" : "Searches the audit log for entries matching the filter",
+        "operationId" : "searchAuditLog",
+        "parameters" : [ {
+          "description" : "User ID",
+          "explode" : true,
+          "in" : "query",
+          "name" : "user_id",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID",
+          "explode" : true,
+          "in" : "query",
+          "name" : "project_id",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Object Type",
+          "explode" : true,
+          "in" : "query",
+          "name" : "object_type",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Object ID",
+          "explode" : true,
+          "in" : "query",
+          "name" : "object_id",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200_11"
+                }
+              }
+            },
+            "description" : "AuditLogEntry List"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "searchAuditLog",
+        "tags" : [ "audit" ]
+      },
+      "post" : {
+        "description" : "Inserts a new entry in the audit log",
+        "operationId" : "insertAuditLogEntry",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/AuditLogRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "insertAuditLogEntry",
+        "tags" : [ "audit" ]
+      }
     }
   },
   "components" : {
@@ -1959,6 +2147,42 @@
             }
           }
         }
+      },
+      "AuditLogRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "token_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "action" : {
+                  "type" : "string"
+                },
+                "ip_address" : {
+                  "type" : "string"
+                },
+                "project_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "object_type" : {
+                  "type" : "string"
+                },
+                "object_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
+                "context" : {
+                  "type" : "object"
+                }
+              },
+              "required" : [ "action", "token_id" ],
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -2106,6 +2330,16 @@
           }
         },
         "description" : "Audit Log"
+      },
+      "AuditLogEntryListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_200_11"
+            }
+          }
+        },
+        "description" : "AuditLogEntry List"
       }
     },
     "schemas" : {
@@ -2365,6 +2599,48 @@
         "required" : [ "code", "title" ],
         "title" : "Country",
         "type" : "object"
+      },
+      "AuditLogEntry" : {
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "token_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "ip_address" : {
+            "type" : "string"
+          },
+          "user_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "action" : {
+            "type" : "string"
+          },
+          "object_type" : {
+            "type" : "string"
+          },
+          "object_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string"
+          },
+          "context" : {
+            "type" : "object"
+          }
+        },
+        "required" : [ "action", "date", "id", "token_id", "user_id" ],
+        "title" : "AuditLogEntry",
+        "type" : "object",
+        "x-tags" : [ "audit" ]
       },
       "inline_response_200" : {
         "properties" : {
@@ -2638,6 +2914,27 @@
           "data" : {
             "items" : {
               "type" : "object"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "inline_response_200_11" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/AuditLogEntry"
             },
             "type" : "array"
           },

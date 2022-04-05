@@ -11,7 +11,7 @@
   },
   "servers" : [ {
     "description" : "Live",
-    "url" : "https://api.lumaserv.cloud"
+    "url" : "https://api.lumaserv.com"
   } ],
   "security" : [ {
     "AuthToken" : [ ]
