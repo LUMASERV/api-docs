@@ -7,7 +7,7 @@ info:
     email: support@lumaserv.com
   description: LUMASERV Auth API
 servers:
-  - url: 'https://auth.lumaserv.cloud'
+  - url: 'https://auth.lumaserv.com'
     description: Live
 tags:
   - name: audit
@@ -543,6 +543,69 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/TransactionLogRequest'
     parameters: []
+  /audit-log:
+    get:
+      summary: searchAuditLog
+      tags:
+        - audit
+      responses:
+        '200':
+          $ref: '#/components/responses/AuditLogEntryListResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: searchAuditLog
+      description: Searches the audit log for entries matching the filter
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: user_id
+          description: User ID
+        - schema:
+            type: string
+          in: query
+          name: project_id
+          description: Project ID
+        - schema:
+            type: string
+          in: query
+          name: object_type
+          description: Object Type
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: object_id
+          description: Object ID
+    post:
+      summary: insertAuditLogEntry
+      operationId: insertAuditLogEntry
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Inserts a new entry in the audit log
+      tags:
+        - audit
+      requestBody:
+        $ref: '#/components/requestBodies/AuditLogRequest'
 components:
   schemas:
     ResponseMessages:
@@ -777,6 +840,42 @@ components:
       required:
         - code
         - title
+    AuditLogEntry:
+      title: AuditLogEntry
+      type: object
+      x-tags:
+        - audit
+      properties:
+        id:
+          type: string
+        token_id:
+          type: string
+          format: uuid
+        ip_address:
+          type: string
+        user_id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        action:
+          type: string
+        object_type:
+          type: string
+        object_id:
+          type: string
+          format: uuid
+        date:
+          type: string
+        context:
+          type: object
+      required:
+        - id
+        - token_id
+        - user_id
+        - action
+        - date
   securitySchemes:
     AuthToken:
       type: http
@@ -1094,6 +1193,28 @@ components:
               - success
               - data
               - messages
+    AuditLogEntryListResponse:
+      description: AuditLogEntry List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuditLogEntry'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     ProjectCreateRequest:
       content:
@@ -1232,6 +1353,32 @@ components:
                 type: integer
             required:
               - query
+    AuditLogRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token_id:
+                type: string
+                format: uuid
+              action:
+                type: string
+              ip_address:
+                type: string
+              project_id:
+                type: string
+                format: uuid
+              object_type:
+                type: string
+              object_id:
+                type: string
+                format: uuid
+              context:
+                type: object
+            required:
+              - token_id
+              - action
   parameters:
     PaginationPage:
       name: page

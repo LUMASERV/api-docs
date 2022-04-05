@@ -7,7 +7,7 @@ info:
     email: support@lumaserv.com
   description: LUMASERV Core API
 servers:
-  - url: 'https://api.lumaserv.cloud'
+  - url: 'https://api.lumaserv.com'
     description: Live
 tags:
   - name: address
