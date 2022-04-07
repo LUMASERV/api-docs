@@ -15973,8 +15973,7 @@
             "type" : "object"
           },
           "state" : {
-            "enum" : [ "INSTALLATION", "READY" ],
-            "type" : "string"
+            "$ref" : "#/components/schemas/ServerState"
           },
           "zone_id" : {
             "format" : "uuid",
@@ -16901,6 +16900,12 @@
         "required" : [ "offline_price", "price", "variant_id" ],
         "title" : "ServerVariantPrice",
         "type" : "object"
+      },
+      "ServerState" : {
+        "enum" : [ "INSTALLATION", "RESTORE", "ONLINE", "OFFLINE" ],
+        "title" : "ServerState",
+        "type" : "string",
+        "x-tags" : [ "server" ]
       },
       "inline_response_200" : {
         "properties" : {
