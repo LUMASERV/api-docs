@@ -4357,10 +4357,7 @@ components:
           additionalProperties:
             type: string
         state:
-          type: string
-          enum:
-            - INSTALLATION
-            - READY
+          $ref: '#/components/schemas/ServerState'
         zone_id:
           type: string
           format: uuid
@@ -5240,6 +5237,16 @@ components:
         - variant_id
         - price
         - offline_price
+    ServerState:
+      type: string
+      title: ServerState
+      enum:
+        - INSTALLATION
+        - RESTORE
+        - ONLINE
+        - OFFLINE
+      x-tags:
+        - server
   securitySchemes:
     AuthToken:
       type: http
