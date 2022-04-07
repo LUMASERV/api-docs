@@ -4973,6 +4973,94 @@
         },
         "summary" : "getServerVolume",
         "tags" : [ "server" ]
+      },
+      "put" : {
+        "description" : "Updates the server volume",
+        "operationId" : "updateServerVolume",
+        "parameters" : [ {
+          "description" : "Server Volume ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerVolumeUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_11"
+                }
+              }
+            },
+            "description" : "Single ServerVolume"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateServerVolume",
+        "tags" : [ "server" ]
       }
     },
     "/server-templates" : {
@@ -14481,6 +14569,23 @@
                 }
               },
               "required" : [ "range_id" ],
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "ServerVolumeUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "labels" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
+                  "type" : "object"
+                }
+              },
               "type" : "object"
             }
           }

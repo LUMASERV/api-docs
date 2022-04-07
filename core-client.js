@@ -210,6 +210,9 @@ export default class LUMASERVCoreClient {
     getServerVolume(id){
         return this.request('get', '/server-volumes/' + id, null, null);
     }
+    updateServerVolume(id, body = null){
+        return this.request('put', '/server-volumes/' + id, null, body);
+    }
     getServerTemplates(query = null){
         return this.request('get', '/server-templates', query, null);
     }
