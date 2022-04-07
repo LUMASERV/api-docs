@@ -16533,6 +16533,9 @@
           "state" : {
             "$ref" : "#/components/schemas/ServerActionState"
           },
+          "progress" : {
+            "type" : "number"
+          },
           "started_at" : {
             "type" : "string"
           },
@@ -16540,7 +16543,7 @@
             "type" : "string"
           }
         },
-        "required" : [ "cancellable", "id", "started_at", "state", "type" ],
+        "required" : [ "cancellable", "id", "progress", "started_at", "state", "type" ],
         "title" : "ServerAction",
         "type" : "object",
         "x-tags" : [ "server" ]
