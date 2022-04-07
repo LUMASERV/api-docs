@@ -4873,6 +4873,8 @@ components:
           type: boolean
         state:
           $ref: '#/components/schemas/ServerActionState'
+        progress:
+          type: number
         started_at:
           type: string
         ended_at:
@@ -4882,6 +4884,7 @@ components:
         - type
         - cancellable
         - state
+        - progress
         - started_at
     ServerStatus:
       title: ServerStatus
