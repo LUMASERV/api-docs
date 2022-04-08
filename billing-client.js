@@ -177,19 +177,19 @@ export default class LUMASERVBillingClient {
     updateServiceContract(id, body = null){
         return this.request('put', '/service-contracts/' + id, null, body);
     }
-    getServiceContractPositions(query = null){
-        return this.request('get', '/service-contract-positions', query, null);
+    getServiceContractPositions(contract_id){
+        return this.request('get', '/service-contracts/' + contract_id + '/positions', null, null);
     }
-    createServiceContractPosition(body = null){
-        return this.request('post', '/service-contract-positions', null, body);
+    createServiceContractPosition(contract_id, body = null){
+        return this.request('post', '/service-contracts/' + contract_id + '/positions', null, body);
     }
-    deleteServiceContractPosition(id){
-        return this.request('delete', '/service-contract-positions/' + id, null, null);
+    deleteServiceContractPosition(contract_id, id){
+        return this.request('delete', '/service-contracts/' + contract_id + '/positions/' + id, null, null);
     }
-    getServiceContractPosition(id){
-        return this.request('get', '/service-contract-positions/' + id, null, null);
+    getServiceContractPosition(contract_id, id){
+        return this.request('get', '/service-contracts/' + contract_id + '/positions/' + id, null, null);
     }
-    updateServiceContractPosition(id, body = null){
-        return this.request('put', '/service-contract-positions/' + id, null, body);
+    updateServiceContractPosition(contract_id, id, body = null){
+        return this.request('put', '/service-contracts/' + contract_id + '/positions/' + id, null, body);
     }
 }

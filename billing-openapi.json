@@ -3828,42 +3828,18 @@
         "tags" : [ "billing" ]
       }
     },
-    "/service-contract-positions" : {
+    "/service-contracts/{contract_id}/positions" : {
       "get" : {
-        "description" : "Returns all service contract positions",
         "operationId" : "getServiceContractPositions",
         "parameters" : [ {
-          "description" : "Page",
-          "explode" : true,
-          "in" : "query",
-          "name" : "page",
-          "required" : false,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Page Size",
-          "explode" : true,
-          "in" : "query",
-          "name" : "page_size",
-          "required" : false,
-          "schema" : {
-            "default" : 10,
-            "type" : "integer"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Search",
-          "explode" : true,
-          "in" : "query",
-          "name" : "search",
-          "required" : false,
+          "explode" : false,
+          "in" : "path",
+          "name" : "contract_id",
+          "required" : true,
           "schema" : {
             "type" : "string"
           },
-          "style" : "form"
+          "style" : "simple"
         } ],
         "responses" : {
           "200" : {
@@ -3918,11 +3894,20 @@
           }
         },
         "summary" : "getServiceContractPositions",
-        "tags" : [ "billing" ]
+        "tags" : [ ]
       },
       "post" : {
-        "description" : "Creates a new position for the service contract",
         "operationId" : "createServiceContractPosition",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "contract_id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
         "requestBody" : {
           "$ref" : "#/components/requestBodies/ServiceContractPositionCreateRequest"
         },
@@ -3993,22 +3978,27 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "createServiceContractPosition",
-        "tags" : [ "billing" ]
+        "summary" : "createServiceContractPosition"
       }
     },
-    "/service-contract-positions/{id}" : {
+    "/service-contracts/{contract_id}/positions/{id}" : {
       "delete" : {
-        "description" : "Deletes the service contract position",
         "operationId" : "deleteServiceContractPosition",
         "parameters" : [ {
-          "description" : "ServiceContractPosition ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "contract_id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
           "explode" : false,
           "in" : "path",
           "name" : "id",
           "required" : true,
           "schema" : {
-            "format" : "uuid",
             "type" : "string"
           },
           "style" : "simple"
@@ -4065,20 +4055,25 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "deleteServiceContractPosition",
-        "tags" : [ "billing" ]
+        "summary" : "deleteServiceContractPosition"
       },
       "get" : {
-        "description" : "Returns a single service contract position",
         "operationId" : "getServiceContractPosition",
         "parameters" : [ {
-          "description" : "ServiceContractPosition ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "contract_id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
           "explode" : false,
           "in" : "path",
           "name" : "id",
           "required" : true,
           "schema" : {
-            "format" : "uuid",
             "type" : "string"
           },
           "style" : "simple"
@@ -4136,19 +4131,25 @@
           }
         },
         "summary" : "getServiceContractPosition",
-        "tags" : [ "billing" ]
+        "tags" : [ ]
       },
       "put" : {
-        "description" : "Updates the service contract position",
         "operationId" : "updateServiceContractPosition",
         "parameters" : [ {
-          "description" : "ServiceContractPosition ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "contract_id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
           "explode" : false,
           "in" : "path",
           "name" : "id",
           "required" : true,
           "schema" : {
-            "format" : "uuid",
             "type" : "string"
           },
           "style" : "simple"
@@ -4223,8 +4224,7 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "updateServiceContractPosition",
-        "tags" : [ "billing" ]
+        "summary" : "updateServiceContractPosition"
       }
     }
   },
@@ -4890,29 +4890,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "service_contract_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "title" : {
-                  "type" : "string"
-                },
-                "description" : {
-                  "type" : "string"
-                },
-                "amount" : {
-                  "type" : "number"
-                },
-                "price" : {
-                  "type" : "number"
-                },
-                "vat_rate" : {
-                  "type" : "number"
-                }
-              },
-              "required" : [ "amount", "description", "price", "service_contract_id", "title", "vat_rate" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/Position"
             }
           }
         }
@@ -4948,6 +4926,10 @@
           "application/json" : {
             "schema" : {
               "properties" : {
+                "customer_id" : {
+                  "format" : "uuid",
+                  "type" : "string"
+                },
                 "title" : {
                   "type" : "string"
                 },
@@ -5650,7 +5632,7 @@
         "title" : "File",
         "type" : "object"
       },
-      "InvoicePosition" : {
+      "Position" : {
         "properties" : {
           "position" : {
             "format" : "uuid",
@@ -5685,7 +5667,7 @@
           }
         },
         "required" : [ "position" ],
-        "title" : "InvoicePosition",
+        "title" : "Position",
         "type" : "object"
       },
       "Invoice" : {
@@ -6027,28 +6009,6 @@
         "enum" : [ "WEEKLY", "MONTHLY", "QUARTERLY", "SEMI_ANNUAL", "ANNUAL" ],
         "title" : "ServiceContractInterval",
         "type" : "string"
-      },
-      "ServiceContractCreateRequestPosition" : {
-        "properties" : {
-          "title" : {
-            "type" : "string"
-          },
-          "description" : {
-            "type" : "string"
-          },
-          "amount" : {
-            "type" : "number"
-          },
-          "price" : {
-            "type" : "number"
-          },
-          "vat_rate" : {
-            "type" : "number"
-          }
-        },
-        "required" : [ "amount", "description", "price", "title" ],
-        "title" : "ServiceContractCreateRequestPosition",
-        "type" : "object"
       },
       "inline_response_200" : {
         "properties" : {
