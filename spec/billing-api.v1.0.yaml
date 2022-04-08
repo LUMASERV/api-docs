@@ -1054,11 +1054,16 @@ paths:
       description: Deletes the service contract
       tags:
         - billing
-  /service-contract-positions:
+  '/service-contracts/{contract_id}/positions':
+    parameters:
+      - schema:
+          type: string
+        name: contract_id
+        in: path
+        required: true
     get:
       summary: getServiceContractPositions
-      tags:
-        - billing
+      tags: []
       responses:
         '200':
           $ref: '#/components/responses/ServiceContractPositionListResponse'
@@ -1071,11 +1076,6 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServiceContractPositions
-      description: Returns all service contract positions
-      parameters:
-        - $ref: '#/components/parameters/PaginationPage'
-        - $ref: '#/components/parameters/PaginationPageSize'
-        - $ref: '#/components/parameters/Search'
     post:
       summary: createServiceContractPosition
       operationId: createServiceContractPosition
@@ -1092,24 +1092,23 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      description: Creates a new position for the service contract
-      tags:
-        - billing
       requestBody:
         $ref: '#/components/requestBodies/ServiceContractPositionCreateRequest'
-  '/service-contract-positions/{id}':
+  '/service-contracts/{contract_id}/positions/{id}':
     parameters:
       - schema:
           type: string
-          format: uuid
+        name: contract_id
+        in: path
+        required: true
+      - schema:
+          type: string
         name: id
         in: path
         required: true
-        description: ServiceContractPosition ID
     get:
       summary: getServiceContractPosition
-      tags:
-        - billing
+      tags: []
       responses:
         '200':
           $ref: '#/components/responses/ServiceContractPositionSingleResponse'
@@ -1122,7 +1121,6 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServiceContractPosition
-      description: Returns a single service contract position
     put:
       summary: updateServiceContractPosition
       operationId: updateServiceContractPosition
@@ -1139,9 +1137,6 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      description: Updates the service contract position
-      tags:
-        - billing
       requestBody:
         $ref: '#/components/requestBodies/ServiceContractPositionUpdateRequest'
     delete:
@@ -1158,9 +1153,6 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
-      tags:
-        - billing
-      description: Deletes the service contract position
 components:
   schemas:
     ResponseMessages:
@@ -1478,8 +1470,8 @@ components:
           format: uuid
       required:
         - id
-    InvoicePosition:
-      title: InvoicePosition
+    Position:
+      title: Position
       type: object
       properties:
         position:
@@ -1809,25 +1801,6 @@ components:
         - QUARTERLY
         - SEMI_ANNUAL
         - ANNUAL
-    ServiceContractCreateRequestPosition:
-      title: ServiceContractCreateRequestPosition
-      type: object
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        amount:
-          type: number
-        price:
-          type: number
-        vat_rate:
-          type: number
-      required:
-        - title
-        - description
-        - amount
-        - price
   securitySchemes:
     AuthToken:
       type: http
@@ -2917,28 +2890,7 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              service_contract_id:
-                type: string
-                format: uuid
-              title:
-                type: string
-              description:
-                type: string
-              amount:
-                type: number
-              price:
-                type: number
-              vat_rate:
-                type: number
-            required:
-              - service_contract_id
-              - title
-              - description
-              - amount
-              - price
-              - vat_rate
+            $ref: '#/components/schemas/Position'
     ServiceContractPositionUpdateRequest:
       content:
         application/json:
@@ -2961,6 +2913,9 @@ components:
           schema:
             type: object
             properties:
+              customer_id:
+                type: string
+                format: uuid
               title:
                 type: string
               description:
