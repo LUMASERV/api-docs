@@ -13777,6 +13777,7 @@
                   "type" : "string"
                 },
                 "public_key" : {
+                  "description" : "RSA Public Key in OpenSSH or RFC 4716 Format",
                   "type" : "string"
                 },
                 "labels" : {
@@ -15793,7 +15794,22 @@
           "zone_handle_code" : {
             "type" : "string"
           },
+          "status" : {
+            "$ref" : "#/components/schemas/DomainStatus"
+          },
           "created_at" : {
+            "type" : "string"
+          },
+          "registered_at" : {
+            "type" : "string"
+          },
+          "expire_at" : {
+            "type" : "string"
+          },
+          "suspended_at" : {
+            "type" : "string"
+          },
+          "suspended_until" : {
             "type" : "string"
           },
           "labels" : {
@@ -15803,7 +15819,7 @@
             "type" : "object"
           }
         },
-        "required" : [ "admin_handle_code", "created_at", "name", "owner_handle_code", "project_id", "tech_handle_code", "zone_handle_code" ],
+        "required" : [ "admin_handle_code", "created_at", "name", "owner_handle_code", "project_id", "status", "tech_handle_code", "zone_handle_code" ],
         "title" : "Domain",
         "type" : "object",
         "x-tags" : [ "domains" ]
@@ -17014,6 +17030,12 @@
         "title" : "ServerState",
         "type" : "string",
         "x-tags" : [ "server" ]
+      },
+      "DomainStatus" : {
+        "enum" : [ "PENDING", "OK", "FAILED", "RESTRICTED", "SUSPENDED", "UNKNOWN" ],
+        "title" : "DomainStatus",
+        "type" : "string",
+        "x-tags" : [ "domain" ]
       },
       "inline_response_200" : {
         "properties" : {
