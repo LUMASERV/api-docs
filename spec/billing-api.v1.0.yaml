@@ -1093,7 +1093,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       requestBody:
-        $ref: '#/components/requestBodies/ServiceContractPositionCreateRequest'
+        $ref: '#/components/requestBodies/PositionCreateRequest'
   '/service-contracts/{contract_id}/positions/{id}':
     parameters:
       - schema:
@@ -1138,7 +1138,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       requestBody:
-        $ref: '#/components/requestBodies/ServiceContractPositionUpdateRequest'
+        $ref: '#/components/requestBodies/PositionUpdateRequest'
     delete:
       summary: deleteServiceContractPosition
       operationId: deleteServiceContractPosition
@@ -2664,7 +2664,7 @@ components:
             required:
               - customer_id
               - due_at
-    InvoicePositionCreateRequest:
+    PositionCreateRequest:
       content:
         application/json:
           schema:
@@ -2691,7 +2691,7 @@ components:
               - unit
               - price
               - group_key
-    InvoicePositionUpdateRequest:
+    PositionUpdateRequest:
       content:
         application/json:
           schema:
@@ -2886,27 +2886,6 @@ components:
               - runtime
               - cancellation_period
               - accounting_period
-    ServiceContractPositionCreateRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Position'
-    ServiceContractPositionUpdateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              title:
-                type: string
-              description:
-                type: string
-              amount:
-                type: number
-              price:
-                type: number
-              vat_rate:
-                type: number
     ServiceContractUpdateRequest:
       content:
         application/json:
