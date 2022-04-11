@@ -475,6 +475,9 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - billing
+      description: Deletes a invoice
   '/invoices/{id}/file':
     parameters:
       - schema:
@@ -528,6 +531,7 @@ paths:
       operationId: createInvoicePosition
       requestBody:
         $ref: '#/components/requestBodies/PositionCreateRequest'
+      description: Creates a positions of an invoice
     get:
       summary: getInvoicePositions
       tags:
@@ -548,6 +552,7 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+      description: Returns all positions of an invoice
   '/invoices/{invoice_id}/positions/{id}':
     parameters:
       - schema:
@@ -576,6 +581,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getInvoicePosition
+      description: Returns position of invoice identified by id
     put:
       summary: updateInvoicePosition
       tags:
@@ -596,6 +602,7 @@ paths:
       operationId: updateInvoicePosition
       requestBody:
         $ref: '#/components/requestBodies/PositionUpdateRequest'
+      description: Updates position of invoice identified by id
     delete:
       summary: deleteInvoicePosition
       tags:
@@ -612,6 +619,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: deleteInvoicePosition
+      description: Deletes position of invoice identified by id
   /offers:
     get:
       summary: getOffers
@@ -1063,7 +1071,8 @@ paths:
         required: true
     get:
       summary: getServiceContractPositions
-      tags: []
+      tags:
+        - billing
       responses:
         '200':
           $ref: '#/components/responses/ServiceContractPositionListResponse'
@@ -1076,6 +1085,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServiceContractPositions
+      description: Returns all positions of a contract
     post:
       summary: createServiceContractPosition
       operationId: createServiceContractPosition
@@ -1094,6 +1104,9 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       requestBody:
         $ref: '#/components/requestBodies/PositionCreateRequest'
+      tags:
+        - billing
+      description: Creates a new position for contract
   '/service-contracts/{contract_id}/positions/{id}':
     parameters:
       - schema:
@@ -1108,7 +1121,8 @@ paths:
         required: true
     get:
       summary: getServiceContractPosition
-      tags: []
+      tags:
+        - billing
       responses:
         '200':
           $ref: '#/components/responses/ServiceContractPositionSingleResponse'
@@ -1121,6 +1135,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServiceContractPosition
+      description: Returns the position of a service contract by id
     put:
       summary: updateServiceContractPosition
       operationId: updateServiceContractPosition
@@ -1139,6 +1154,9 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       requestBody:
         $ref: '#/components/requestBodies/PositionUpdateRequest'
+      tags:
+        - billing
+      description: Updates the position of a service contract by id
     delete:
       summary: deleteServiceContractPosition
       operationId: deleteServiceContractPosition
@@ -1153,6 +1171,9 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
         '500':
           $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - billing
+      description: Deletes the position of a service contract by id
 components:
   schemas:
     ResponseMessages:
@@ -1430,46 +1451,6 @@ components:
           type: string
       required:
         - id
-    FileDownload:
-      title: FileDownload
-      type: object
-      properties:
-        file_id:
-          type: string
-          format: uuid
-        url:
-          type: string
-      required:
-        - file_id
-        - url
-    File:
-      title: File
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        state:
-          type: string
-          enum:
-            - DRAFT
-            - GENERATED
-        type:
-          type: string
-          enum:
-            - CUSTOM
-            - INVOICE
-            - SERVICE_CONTRACT
-            - OFFER
-            - PAYMENT_REMINDER
-            - DEBIT
-        object_id:
-          type: string
-          format: uuid
-      required:
-        - id
     Position:
       title: Position
       type: object
@@ -1534,7 +1515,7 @@ components:
         positions:
           type: array
           items:
-            $ref: '#/components/schemas/InvoicePosition'
+            $ref: '#/components/schemas/Position'
     OfferPosition:
       title: OfferPosition
       type: object
@@ -1696,14 +1677,6 @@ components:
       required:
         - id
         - customer_id
-    CustomerTransactionType:
-      type: string
-      title: CustomerTransactionType
-      enum:
-        - INVOICE
-        - REMINDER_FEE
-        - ONLINE_PAYMENT
-        - BANK
     InvoiceState:
       type: string
       title: InvoiceState
@@ -1801,6 +1774,29 @@ components:
         - QUARTERLY
         - SEMI_ANNUAL
         - ANNUAL
+    CreateRequestPosition:
+      title: CreateRequestPosition
+      type: object
+      properties:
+        group_key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        amount:
+          type: number
+        unit:
+          type: string
+        price:
+          type: number
+        vat_rate:
+          type: number
+      required:
+        - name
+        - amount
+        - unit
+        - price
   securitySchemes:
     AuthToken:
       type: http
@@ -2428,6 +2424,11 @@ components:
               - success
               - data
               - messages
+    FileSingleResponse:
+      description: File download response
+      content:
+        application/pdf:
+          schema: {}
   requestBodies:
     BillingPositionCreateRequest:
       content:
@@ -2518,8 +2519,6 @@ components:
                 type: string
               email:
                 type: string
-              invoice_shipping_type:
-                $ref: '#/components/schemas/InvoiceShippingType'
               balance:
                 type: number
               credit_limit:
@@ -2878,7 +2877,7 @@ components:
               positions:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ServiceContractCreateRequestPosition'
+                  $ref: '#/components/schemas/CreateRequestPosition'
             required:
               - customer_id
               - title
