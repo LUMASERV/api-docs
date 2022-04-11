@@ -527,7 +527,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: createInvoicePosition
       requestBody:
-        $ref: '#/components/requestBodies/InvoicePositionCreateRequest'
+        $ref: '#/components/requestBodies/PositionCreateRequest'
     get:
       summary: getInvoicePositions
       tags:
@@ -595,7 +595,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: updateInvoicePosition
       requestBody:
-        $ref: '#/components/requestBodies/InvoicePositionUpdateRequest'
+        $ref: '#/components/requestBodies/PositionUpdateRequest'
     delete:
       summary: deleteInvoicePosition
       tags:
@@ -2134,7 +2134,7 @@ components:
               data:
                 type: array
                 items:
-                  $ref: '#/components/schemas/InvoicePosition'
+                  $ref: '#/components/schemas/Position'
               pagination:
                 $ref: '#/components/schemas/ResponsePagination'
               messages:
@@ -2156,7 +2156,7 @@ components:
               success:
                 type: boolean
               data:
-                $ref: '#/components/schemas/InvoicePosition'
+                $ref: '#/components/schemas/Position'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
