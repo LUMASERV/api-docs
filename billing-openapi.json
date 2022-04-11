@@ -1472,6 +1472,7 @@
     },
     "/invoices/{id}" : {
       "delete" : {
+        "description" : "Deletes a invoice",
         "operationId" : "deleteInvoice",
         "parameters" : [ {
           "description" : "Invoice ID",
@@ -1547,7 +1548,8 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "deleteInvoice"
+        "summary" : "deleteInvoice",
+        "tags" : [ "billing" ]
       },
       "get" : {
         "description" : "Returns a single invoice",
@@ -1726,7 +1728,12 @@
         } ],
         "responses" : {
           "200" : {
-            "$ref" : "#/components/responses/FileSingleResponse"
+            "content" : {
+              "application/pdf" : {
+                "schema" : { }
+              }
+            },
+            "description" : "File download response"
           },
           "401" : {
             "content" : {
@@ -1775,6 +1782,7 @@
     },
     "/invoices/{id}/positions" : {
       "get" : {
+        "description" : "Returns all positions of an invoice",
         "operationId" : "getInvoicePositions",
         "parameters" : [ {
           "explode" : false,
@@ -1874,6 +1882,7 @@
         "tags" : [ "billing" ]
       },
       "post" : {
+        "description" : "Creates a positions of an invoice",
         "operationId" : "createInvoicePosition",
         "parameters" : [ {
           "explode" : false,
@@ -1961,6 +1970,7 @@
     },
     "/invoices/{invoice_id}/positions/{id}" : {
       "delete" : {
+        "description" : "Deletes position of invoice identified by id",
         "operationId" : "deleteInvoicePosition",
         "parameters" : [ {
           "explode" : false,
@@ -2037,6 +2047,7 @@
         "tags" : [ "billing" ]
       },
       "get" : {
+        "description" : "Returns position of invoice identified by id",
         "operationId" : "getInvoicePosition",
         "parameters" : [ {
           "explode" : false,
@@ -2113,6 +2124,7 @@
         "tags" : [ "billing" ]
       },
       "put" : {
+        "description" : "Updates position of invoice identified by id",
         "operationId" : "updateInvoicePosition",
         "parameters" : [ {
           "explode" : false,
@@ -3830,6 +3842,7 @@
     },
     "/service-contracts/{contract_id}/positions" : {
       "get" : {
+        "description" : "Returns all positions of a contract",
         "operationId" : "getServiceContractPositions",
         "parameters" : [ {
           "explode" : false,
@@ -3894,9 +3907,10 @@
           }
         },
         "summary" : "getServiceContractPositions",
-        "tags" : [ ]
+        "tags" : [ "billing" ]
       },
       "post" : {
+        "description" : "Creates a new position for contract",
         "operationId" : "createServiceContractPosition",
         "parameters" : [ {
           "explode" : false,
@@ -3978,11 +3992,13 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "createServiceContractPosition"
+        "summary" : "createServiceContractPosition",
+        "tags" : [ "billing" ]
       }
     },
     "/service-contracts/{contract_id}/positions/{id}" : {
       "delete" : {
+        "description" : "Deletes the position of a service contract by id",
         "operationId" : "deleteServiceContractPosition",
         "parameters" : [ {
           "explode" : false,
@@ -4055,9 +4071,11 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "deleteServiceContractPosition"
+        "summary" : "deleteServiceContractPosition",
+        "tags" : [ "billing" ]
       },
       "get" : {
+        "description" : "Returns the position of a service contract by id",
         "operationId" : "getServiceContractPosition",
         "parameters" : [ {
           "explode" : false,
@@ -4131,9 +4149,10 @@
           }
         },
         "summary" : "getServiceContractPosition",
-        "tags" : [ ]
+        "tags" : [ "billing" ]
       },
       "put" : {
+        "description" : "Updates the position of a service contract by id",
         "operationId" : "updateServiceContractPosition",
         "parameters" : [ {
           "explode" : false,
@@ -4224,7 +4243,8 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "updateServiceContractPosition"
+        "summary" : "updateServiceContractPosition",
+        "tags" : [ "billing" ]
       }
     }
   },
@@ -4388,9 +4408,6 @@
                 },
                 "email" : {
                   "type" : "string"
-                },
-                "invoice_shipping_type" : {
-                  "$ref" : "#/components/schemas/InvoiceShippingType"
                 },
                 "balance" : {
                   "type" : "number"
@@ -4875,7 +4892,7 @@
                 },
                 "positions" : {
                   "items" : {
-                    "$ref" : "#/components/schemas/ServiceContractCreateRequestPosition"
+                    "$ref" : "#/components/schemas/CreateRequestPosition"
                   },
                   "type" : "array"
                 }
@@ -5202,6 +5219,14 @@
           }
         },
         "description" : "Single ServiceContractPosition"
+      },
+      "FileSingleResponse" : {
+        "content" : {
+          "application/pdf" : {
+            "schema" : { }
+          }
+        },
+        "description" : "File download response"
       }
     },
     "schemas" : {
@@ -5557,46 +5582,6 @@
         "title" : "Debit",
         "type" : "object"
       },
-      "FileDownload" : {
-        "properties" : {
-          "file_id" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "url" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "file_id", "url" ],
-        "title" : "FileDownload",
-        "type" : "object"
-      },
-      "File" : {
-        "properties" : {
-          "id" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "name" : {
-            "type" : "string"
-          },
-          "state" : {
-            "enum" : [ "DRAFT", "GENERATED" ],
-            "type" : "string"
-          },
-          "type" : {
-            "enum" : [ "CUSTOM", "INVOICE", "SERVICE_CONTRACT", "OFFER", "PAYMENT_REMINDER", "DEBIT" ],
-            "type" : "string"
-          },
-          "object_id" : {
-            "format" : "uuid",
-            "type" : "string"
-          }
-        },
-        "required" : [ "id" ],
-        "title" : "File",
-        "type" : "object"
-      },
       "Position" : {
         "properties" : {
           "position" : {
@@ -5683,7 +5668,7 @@
           },
           "positions" : {
             "items" : {
-              "$ref" : "#/components/schemas/InvoicePosition"
+              "$ref" : "#/components/schemas/Position"
             },
             "type" : "array"
           }
@@ -5878,11 +5863,6 @@
         "title" : "ServiceContract",
         "type" : "object"
       },
-      "CustomerTransactionType" : {
-        "enum" : [ "INVOICE", "REMINDER_FEE", "ONLINE_PAYMENT", "BANK" ],
-        "title" : "CustomerTransactionType",
-        "type" : "string"
-      },
       "InvoiceState" : {
         "enum" : [ "OPEN", "DRAFT", "FINAL" ],
         "title" : "InvoiceState",
@@ -5974,6 +5954,34 @@
         "enum" : [ "WEEKLY", "MONTHLY", "QUARTERLY", "SEMI_ANNUAL", "ANNUAL" ],
         "title" : "ServiceContractInterval",
         "type" : "string"
+      },
+      "CreateRequestPosition" : {
+        "properties" : {
+          "group_key" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "amount" : {
+            "type" : "number"
+          },
+          "unit" : {
+            "type" : "string"
+          },
+          "price" : {
+            "type" : "number"
+          },
+          "vat_rate" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "amount", "name", "price", "unit" ],
+        "title" : "CreateRequestPosition",
+        "type" : "object"
       },
       "inline_response_200" : {
         "properties" : {
