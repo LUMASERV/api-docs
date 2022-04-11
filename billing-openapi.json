@@ -1886,7 +1886,7 @@
           "style" : "simple"
         } ],
         "requestBody" : {
-          "$ref" : "#/components/requestBodies/InvoicePositionCreateRequest"
+          "$ref" : "#/components/requestBodies/PositionCreateRequest"
         },
         "responses" : {
           "201" : {
@@ -2134,7 +2134,7 @@
           "style" : "simple"
         } ],
         "requestBody" : {
-          "$ref" : "#/components/requestBodies/InvoicePositionUpdateRequest"
+          "$ref" : "#/components/requestBodies/PositionUpdateRequest"
         },
         "responses" : {
           "200" : {
@@ -3909,7 +3909,7 @@
           "style" : "simple"
         } ],
         "requestBody" : {
-          "$ref" : "#/components/requestBodies/ServiceContractPositionCreateRequest"
+          "$ref" : "#/components/requestBodies/PositionCreateRequest"
         },
         "responses" : {
           "201" : {
@@ -4155,7 +4155,7 @@
           "style" : "simple"
         } ],
         "requestBody" : {
-          "$ref" : "#/components/requestBodies/ServiceContractPositionUpdateRequest"
+          "$ref" : "#/components/requestBodies/PositionUpdateRequest"
         },
         "responses" : {
           "200" : {
@@ -4569,7 +4569,7 @@
           }
         }
       },
-      "InvoicePositionCreateRequest" : {
+      "PositionCreateRequest" : {
         "content" : {
           "application/json" : {
             "schema" : {
@@ -4602,7 +4602,7 @@
           }
         }
       },
-      "InvoicePositionUpdateRequest" : {
+      "PositionUpdateRequest" : {
         "content" : {
           "application/json" : {
             "schema" : {
@@ -4881,41 +4881,6 @@
                 }
               },
               "required" : [ "accounting_period", "cancellation_period", "customer_id", "description", "runtime", "title" ],
-              "type" : "object"
-            }
-          }
-        }
-      },
-      "ServiceContractPositionCreateRequest" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Position"
-            }
-          }
-        }
-      },
-      "ServiceContractPositionUpdateRequest" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "properties" : {
-                "title" : {
-                  "type" : "string"
-                },
-                "description" : {
-                  "type" : "string"
-                },
-                "amount" : {
-                  "type" : "number"
-                },
-                "price" : {
-                  "type" : "number"
-                },
-                "vat_rate" : {
-                  "type" : "number"
-                }
-              },
               "type" : "object"
             }
           }
@@ -6305,7 +6270,7 @@
           },
           "data" : {
             "items" : {
-              "$ref" : "#/components/schemas/InvoicePosition"
+              "$ref" : "#/components/schemas/Position"
             },
             "type" : "array"
           },
@@ -6328,7 +6293,7 @@
             "type" : "boolean"
           },
           "data" : {
-            "$ref" : "#/components/schemas/InvoicePosition"
+            "$ref" : "#/components/schemas/Position"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
