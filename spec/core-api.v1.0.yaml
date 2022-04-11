@@ -7022,7 +7022,7 @@ components:
             type: object
             properties:
               metadata:
-                $ref: ''
+                $ref: '#/components/schemas/ResponseMetadata'
               success:
                 type: boolean
               data:
