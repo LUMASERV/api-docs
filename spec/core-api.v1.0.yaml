@@ -4125,7 +4125,17 @@ components:
           type: string
         zone_handle_code:
           type: string
+        status:
+          $ref: '#/components/schemas/DomainStatus'
         created_at:
+          type: string
+        registered_at:
+          type: string
+        expire_at:
+          type: string
+        suspended_at:
+          type: string
+        suspended_until:
           type: string
         labels:
           type: object
@@ -4138,6 +4148,7 @@ components:
         - admin_handle_code
         - tech_handle_code
         - zone_handle_code
+        - status
         - created_at
     DomainAuthinfo:
       title: DomainAuthinfo
@@ -5271,6 +5282,18 @@ components:
         - OFFLINE
       x-tags:
         - server
+    DomainStatus:
+      type: string
+      title: DomainStatus
+      enum:
+        - PENDING
+        - OK
+        - FAILED
+        - RESTRICTED
+        - SUSPENDED
+        - UNKNOWN
+      x-tags:
+        - domain
   securitySchemes:
     AuthToken:
       type: http
@@ -7589,6 +7612,7 @@ components:
                 type: string
               public_key:
                 type: string
+                description: RSA Public Key in OpenSSH or RFC 4716 Format
               labels:
                 type: object
                 additionalProperties:
