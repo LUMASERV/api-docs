@@ -5146,11 +5146,7 @@ components:
           format: uuid
         type:
           $ref: '#/components/schemas/ServerFirewallRuleType'
-        source_addresses:
-          type: array
-          items:
-            type: string
-        destination_addresses:
+        addresses:
           type: array
           items:
             type: string
@@ -8112,11 +8108,7 @@ components:
             properties:
               type:
                 $ref: '#/components/schemas/ServerFirewallRuleType'
-              source_addresses:
-                type: array
-                items:
-                  type: string
-              destination_addresses:
+              addresses:
                 type: array
                 items:
                   type: string
