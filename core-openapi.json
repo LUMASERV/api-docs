@@ -14425,13 +14425,7 @@
                 "type" : {
                   "$ref" : "#/components/schemas/ServerFirewallRuleType"
                 },
-                "source_addresses" : {
-                  "items" : {
-                    "type" : "string"
-                  },
-                  "type" : "array"
-                },
-                "destination_addresses" : {
+                "addresses" : {
                   "items" : {
                     "type" : "string"
                   },
@@ -16881,13 +16875,7 @@
           "type" : {
             "$ref" : "#/components/schemas/ServerFirewallRuleType"
           },
-          "source_addresses" : {
-            "items" : {
-              "type" : "string"
-            },
-            "type" : "array"
-          },
-          "destination_addresses" : {
+          "addresses" : {
             "items" : {
               "type" : "string"
             },
