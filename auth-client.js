@@ -69,6 +69,9 @@ export default class LUMASERVAuthClient {
     getProjectMembers(id, query = null){
         return this.request('get', '/projects/' + id + '/members', query, null);
     }
+    addProjectMember(id, body = null){
+        return this.request('post', '/projects/' + id + '/members', null, body);
+    }
     removeProjectMember(id, user_id){
         return this.request('delete', '/projects/' + id + '/members/' + user_id, null, null);
     }
