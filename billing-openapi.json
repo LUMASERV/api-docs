@@ -4323,6 +4323,10 @@
                 },
                 "unit" : {
                   "type" : "string"
+                },
+                "draft" : {
+                  "default" : false,
+                  "type" : "boolean"
                 }
               },
               "required" : [ "amount", "customer_id", "description", "price", "title", "unit" ],
@@ -4363,6 +4367,9 @@
                 },
                 "unit" : {
                   "type" : "string"
+                },
+                "draft" : {
+                  "type" : "boolean"
                 }
               },
               "type" : "object"
@@ -5397,6 +5404,9 @@
           },
           "vat_rate" : {
             "type" : "number"
+          },
+          "draft" : {
+            "type" : "boolean"
           },
           "group_key" : {
             "type" : "string"
