@@ -2317,6 +2317,12 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[network_id]'
+          description: Network ID Filter
     post:
       summary: createSubnet
       operationId: createSubnet
@@ -7650,6 +7656,8 @@ components:
                 items:
                   type: string
                   format: uuid
+              no_public_network:
+                type: boolean
               networks:
                 type: array
                 items:
