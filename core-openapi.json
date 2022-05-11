@@ -8106,6 +8106,17 @@
             "type" : "boolean"
           },
           "style" : "form"
+        }, {
+          "description" : "Network ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[network_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -13831,6 +13842,9 @@
                     "type" : "string"
                   },
                   "type" : "array"
+                },
+                "no_public_network" : {
+                  "type" : "boolean"
                 },
                 "networks" : {
                   "items" : {
