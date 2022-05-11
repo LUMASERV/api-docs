@@ -267,6 +267,27 @@ paths:
           in: query
           name: 'filter[role]'
           description: Role Filter
+    post:
+      summary: addProjectMember
+      operationId: addProjectMember
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectMemberSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - projects
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectMemberCreateRequest'
+      description: Adds a member to project (admin only)
   '/projects/{id}/members/{user_id}':
     parameters:
       - schema:
@@ -1215,6 +1236,26 @@ components:
               - success
               - data
               - messages
+    ProjectMemberSingleResponse:
+      description: ProjectMember Single
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ProjectMember'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
   requestBodies:
     ProjectCreateRequest:
       content:
@@ -1379,6 +1420,23 @@ components:
             required:
               - token_id
               - action
+    ProjectMemberCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+                format: uuid
+              role:
+                type: string
+                enum:
+                  - USER
+                  - OWNER
+                default: USER
+            required:
+              - user_id
   parameters:
     PaginationPage:
       name: page

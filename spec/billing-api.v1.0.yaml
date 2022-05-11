@@ -1312,6 +1312,8 @@ components:
           type: number
         vat_rate:
           type: number
+        draft:
+          type: boolean
         group_key:
           type: string
         available_at:
@@ -2458,6 +2460,9 @@ components:
                 type: string
               unit:
                 type: string
+              draft:
+                type: boolean
+                default: false
             required:
               - customer_id
               - title
@@ -2490,6 +2495,8 @@ components:
                 type: string
               unit:
                 type: string
+              draft:
+                type: boolean
     CustomerCreateRequest:
       content:
         application/json:
