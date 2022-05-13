@@ -40,6 +40,17 @@ paths:
           in: query
           name: detail
           description: Detail Flag
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
     post:
       summary: createProject
       operationId: createProject
@@ -166,6 +177,35 @@ paths:
           in: query
           name: 'filter[customer_id]'
           description: Customer ID Filter
+        - schema:
+            type: string
+            format: email
+          in: query
+          name: 'filter[email]'
+          description: E-Mail Filter
+        - schema:
+            type: string
+            enum:
+              - ADMIN
+              - CUSTOMER
+          in: query
+          name: 'filter[type]'
+          description: Type Filter
+        - schema:
+            type: string
+            enum:
+              - PENDING
+              - ACTIVATED
+              - LOCKED
+          in: query
+          name: 'filter[state]'
+          description: State Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
     post:
       summary: createUser
       operationId: createUser
@@ -440,9 +480,29 @@ paths:
         - $ref: '#/components/parameters/PaginationPageSize'
         - schema:
             type: string
+            format: uuid
           in: query
           name: 'filter[user_id]'
           description: User ID Filter
+        - schema:
+            type: string
+            enum:
+              - SESSION
+              - API
+          in: query
+          name: 'filter[type]'
+          description: Type Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
     post:
       summary: createToken
       operationId: createToken
