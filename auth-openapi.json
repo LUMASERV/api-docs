@@ -17,16 +17,22 @@
     "AuthToken" : [ ]
   } ],
   "tags" : [ {
+    "description" : "Auditing",
     "name" : "audit"
   }, {
+    "description" : "Authentification",
     "name" : "auth"
   }, {
+    "description" : "Countries",
     "name" : "countries"
   }, {
+    "description" : "Project Management",
     "name" : "projects"
   }, {
+    "description" : "API-Token and Session Management",
     "name" : "tokens"
   }, {
+    "description" : "User Management",
     "name" : "users"
   } ],
   "paths" : {
