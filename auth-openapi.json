@@ -76,6 +76,27 @@
             "type" : "boolean"
           },
           "style" : "form"
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -481,6 +502,50 @@
           "name" : "filter[customer_id]",
           "required" : false,
           "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "E-Mail Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[email]",
+          "required" : false,
+          "schema" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Type Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[type]",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ADMIN", "CUSTOMER" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "State Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[state]",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "PENDING", "ACTIVATED", "LOCKED" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
             "type" : "string"
           },
           "style" : "form"
@@ -1361,6 +1426,39 @@
           "name" : "filter[user_id]",
           "required" : false,
           "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Type Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[type]",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "SESSION", "API" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
             "type" : "string"
           },
           "style" : "form"
