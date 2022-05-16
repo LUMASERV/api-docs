@@ -1437,6 +1437,12 @@ paths:
           in: query
           name: 'filter[title]'
           description: Title Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: zone_id
+          description: Zone ID Filter
     post:
       summary: createServerTemplate
       operationId: createServerTemplate
@@ -2007,6 +2013,18 @@ paths:
           in: query
           name: 'filter[title]'
           description: Title Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: project_id
+          description: Project ID Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: zone_id
+          description: Zone ID Filter
     post:
       summary: createServerVariant
       operationId: createServerVariant
