@@ -5109,6 +5109,17 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Zone ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "zone_id",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -7044,6 +7055,28 @@
           "name" : "filter[title]",
           "required" : false,
           "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "project_id",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Zone ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "zone_id",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
             "type" : "string"
           },
           "style" : "form"
