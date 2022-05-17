@@ -8124,6 +8124,66 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Server ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[server_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Network ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[network_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "MAC Address Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[mac_address]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Address V4 ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[address_v4_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Address V6 ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[address_v6_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
