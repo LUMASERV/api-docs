@@ -2407,6 +2407,36 @@ paths:
           in: query
           name: 'filter[default]'
           description: Default Interface Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[server_id]'
+          description: Server ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[network_id]'
+          description: Network ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[mac_address]'
+          description: MAC Address Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[address_v4_id]'
+          description: Address V4 ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[address_v6_id]'
+          description: Address V6 ID Filter
     post:
       summary: createServerNetwork
       operationId: createServerNetwork
