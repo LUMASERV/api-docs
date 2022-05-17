@@ -5,7 +5,7 @@ info:
   contact:
     name: LUMASERV Support Team
     email: support@lumaserv.com
-    url: https://lumaserv.com
+    url: 'https://lumaserv.com'
   description: LUMASERV Auth API
 servers:
   - url: 'https://auth.lumaserv.com'
@@ -793,6 +793,8 @@ components:
         title:
           type: string
           example: Example Project
+        created_at:
+          type: string
       required:
         - id
         - title
