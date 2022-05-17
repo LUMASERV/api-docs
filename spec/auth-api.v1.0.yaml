@@ -5,6 +5,7 @@ info:
   contact:
     name: LUMASERV Support Team
     email: support@lumaserv.com
+    url: https://lumaserv.com
   description: LUMASERV Auth API
 servers:
   - url: 'https://auth.lumaserv.com'
@@ -422,6 +423,7 @@ paths:
     parameters:
       - schema:
           type: string
+        description: Token
         name: token
         in: path
         required: true
@@ -593,6 +595,7 @@ paths:
     parameters:
       - schema:
           type: string
+        description: Country Code
         name: code
         in: path
         required: true

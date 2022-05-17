@@ -5,22 +5,34 @@ info:
   contact:
     name: LUMASERV Support Team
     email: support@lumaserv.com
+    url: 'https://lumaserv.com'
   description: LUMASERV Core API
 servers:
   - url: 'https://api.lumaserv.com'
     description: Live
 tags:
   - name: address
+    description: IP Address and Subnet Management
   - name: dns
+    description: DNS Management
   - name: domains
+    description: Domain Management
   - name: general
+    description: General Endpoints
   - name: label
+    description: Label Endpoints
   - name: plesk-licenses
+    description: Plesk License Management
   - name: pricing
+    description: Pricing Endpoints
   - name: s3-storage
+    description: S3 Object Storage Management
   - name: server
+    description: Compute Service Management
   - name: sshkeys
+    description: SSH-Key Management
   - name: ssl
+    description: SSL Management
 paths:
   /storage/s3/buckets:
     get:
@@ -467,6 +479,7 @@ paths:
     parameters:
       - schema:
           type: string
+        description: Handle Code
         name: code
         in: path
         required: true
@@ -1215,6 +1228,32 @@ paths:
           in: query
           name: 'filter[name]'
           description: Name Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[state]'
+          description: State Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[variant_id]'
+          description: Variant ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[template_id]'
+          description: Template ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[host_id]'
+          description: Host ID Filter
     post:
       summary: createServer
       operationId: createServer
@@ -1329,6 +1368,21 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[class_id]'
+          description: Storage Class ID Filter
     post:
       summary: createServerVolume
       operationId: createServerVolume
@@ -1443,6 +1497,11 @@ paths:
           in: query
           name: zone_id
           description: Zone ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
     post:
       summary: createServerTemplate
       operationId: createServerTemplate
@@ -1516,6 +1575,16 @@ paths:
           in: query
           name: 'filter[title]'
           description: Title Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[zone_id]'
+          description: Zone ID Filter
     parameters: []
     post:
       summary: createServerMedia
@@ -1812,12 +1881,14 @@ paths:
     parameters:
       - schema:
           type: string
+        description: DNS Zone Name
         name: name
         in: path
         required: true
       - schema:
           type: string
           format: uuid
+        description: DNS Record ID
         name: id
         in: path
         required: true
@@ -1924,6 +1995,21 @@ paths:
           in: query
           name: 'filter[title]'
           description: Title Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[country_code]'
+          description: Country Code Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[city]'
+          description: City Filter
     post:
       summary: createAvailabilityZone
       operationId: createAvailabilityZone
@@ -2025,6 +2111,31 @@ paths:
           in: query
           name: zone_id
           description: Zone ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[cores]'
+          description: Core Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[memory]'
+          description: Memory Size Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[disk]'
+          description: Disk Size Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[storage_class_id]'
+          description: Storage Class ID Filter
     post:
       summary: createServerVariant
       operationId: createServerVariant
@@ -2105,6 +2216,26 @@ paths:
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[replication]'
+          description: Replication Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[ssd]'
+          description: SSD Filter
     parameters: []
     post:
       summary: createServerStorageClass
@@ -2179,6 +2310,21 @@ paths:
           in: query
           name: 'filter[title]'
           description: Title Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[zone_id]'
+          description: Zone ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[type]'
+          description: Type Filter
     post:
       summary: createNetwork
       operationId: createNetwork
@@ -2256,6 +2402,11 @@ paths:
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
         - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+        - schema:
+            type: string
+          in: query
+          name: 'filter[default]'
+          description: Default Interface Filter
     post:
       summary: createServerNetwork
       operationId: createServerNetwork
@@ -2341,6 +2492,11 @@ paths:
           in: query
           name: 'filter[network_id]'
           description: Network ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
     post:
       summary: createSubnet
       operationId: createSubnet
@@ -2425,6 +2581,16 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
     post:
       summary: createServerHost
       operationId: createServerHost
@@ -2488,6 +2654,22 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerStorages
       description: Returns all server storages
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[zone_id]'
+          description: Zone ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[external_id]'
+          description: External ID Filter
     post:
       summary: createServerStorage
       operationId: createServerStorage
@@ -2871,10 +3053,16 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
   '/addresses/{id}':
     parameters:
       - schema:
           type: string
+        description: Address ID
         name: id
         in: path
         required: true
@@ -2899,6 +3087,7 @@ paths:
     parameters:
       - schema:
           type: string
+        description: Server ID
         name: id
         in: path
         required: true
@@ -2969,6 +3158,7 @@ paths:
     parameters:
       - schema:
           type: string
+        description: Server ID
         name: id
         in: path
         required: true
@@ -3029,6 +3219,11 @@ paths:
           in: query
           name: 'filter[server_id]'
           description: Server ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
     post:
       summary: createServerBackup
       operationId: createServerBackup
@@ -3099,6 +3294,7 @@ paths:
     parameters:
       - schema:
           type: string
+        description: Server ID
         name: id
         in: path
         required: true
@@ -3247,6 +3443,16 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
     post:
       summary: createServerFirewall
       operationId: createServerFirewall
@@ -3341,6 +3547,26 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[type]'
+          description: Type Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[protocol]'
+          description: Protocol Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[applied]'
+          description: Applied Rule Filter
     post:
       summary: createServerFirewallRule
       operationId: createServerFirewallRule
@@ -3442,6 +3668,36 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[type]'
+          description: Type Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[server_id]'
+          description: Server ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[label_name]'
+          description: Label Name Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[label_value]'
+          description: Label Value Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[applied]'
+          description: Applied Member Filter
     post:
       summary: createServerFirewallMember
       operationId: createServerFirewallMember
@@ -3531,6 +3787,17 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerPriceRanges
       description: Returns all price ranges for servers
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
     post:
       summary: createServerPriceRange
       operationId: createServerPriceRange
@@ -3714,6 +3981,23 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerPriceRangeAssignments
       description: Returns all price range assignments for servers
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[range_id]'
+          description: Range ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[user_id]'
+          description: User ID Filter
+        - $ref: '#/components/parameters/ProjectIDFilter'
     post:
       summary: createServerPriceRangeAssignment
       operationId: createServerPriceRangeAssignment
@@ -3804,6 +4088,7 @@ paths:
     parameters:
       - schema:
           type: string
+        description: Server ID
         name: id
         in: path
         required: true

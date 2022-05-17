@@ -5,6 +5,7 @@ info:
   contact:
     name: LUMASERV Support Team
     email: support@lumaserv.com
+    url: https://lumaserv.com
   description: LUMASERV Billing API
 servers:
   - url: 'https://billing.lumaserv.com'
@@ -508,6 +509,7 @@ paths:
     parameters:
       - schema:
           type: string
+        description: Invoice ID
         name: id
         in: path
         required: true
@@ -557,11 +559,13 @@ paths:
     parameters:
       - schema:
           type: string
+        description: Invoice ID
         name: invoice_id
         in: path
         required: true
       - schema:
           type: string
+        description: Invoice Position ID
         name: id
         in: path
         required: true
@@ -1066,6 +1070,7 @@ paths:
     parameters:
       - schema:
           type: string
+        description: Service Contract ID
         name: contract_id
         in: path
         required: true
@@ -1111,11 +1116,13 @@ paths:
     parameters:
       - schema:
           type: string
+        description: Service Contract ID
         name: contract_id
         in: path
         required: true
       - schema:
           type: string
+        description: Service Contract Position ID
         name: id
         in: path
         required: true
@@ -2938,6 +2945,10 @@ security:
   - AuthToken: []
 tags:
   - name: billing
+    description: Billing Endpoints
   - name: customers
+    description: Customer Management
   - name: general
+    description: General Endpoints
   - name: payment
+    description: Payment Endpoints
