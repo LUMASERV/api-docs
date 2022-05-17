@@ -2668,6 +2668,9 @@
           "title" : {
             "example" : "Example Project",
             "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
           }
         },
         "required" : [ "id", "title" ],
