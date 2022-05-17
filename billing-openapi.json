@@ -3,7 +3,8 @@
   "info" : {
     "contact" : {
       "email" : "support@lumaserv.com",
-      "name" : "LUMASERV Support Team"
+      "name" : "LUMASERV Support Team",
+      "url" : "https://lumaserv.com"
     },
     "description" : "LUMASERV Billing API",
     "title" : "LUMASERV Billing API",
@@ -17,12 +18,16 @@
     "AuthToken" : [ ]
   } ],
   "tags" : [ {
+    "description" : "Billing Endpoints",
     "name" : "billing"
   }, {
+    "description" : "Customer Management",
     "name" : "customers"
   }, {
+    "description" : "General Endpoints",
     "name" : "general"
   }, {
+    "description" : "Payment Endpoints",
     "name" : "payment"
   } ],
   "paths" : {
@@ -1785,6 +1790,7 @@
         "description" : "Returns all positions of an invoice",
         "operationId" : "getInvoicePositions",
         "parameters" : [ {
+          "description" : "Invoice ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -1885,6 +1891,7 @@
         "description" : "Creates a positions of an invoice",
         "operationId" : "createInvoicePosition",
         "parameters" : [ {
+          "description" : "Invoice ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -1973,6 +1980,7 @@
         "description" : "Deletes position of invoice identified by id",
         "operationId" : "deleteInvoicePosition",
         "parameters" : [ {
+          "description" : "Invoice ID",
           "explode" : false,
           "in" : "path",
           "name" : "invoice_id",
@@ -1982,6 +1990,7 @@
           },
           "style" : "simple"
         }, {
+          "description" : "Invoice Position ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -2050,6 +2059,7 @@
         "description" : "Returns position of invoice identified by id",
         "operationId" : "getInvoicePosition",
         "parameters" : [ {
+          "description" : "Invoice ID",
           "explode" : false,
           "in" : "path",
           "name" : "invoice_id",
@@ -2059,6 +2069,7 @@
           },
           "style" : "simple"
         }, {
+          "description" : "Invoice Position ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -2127,6 +2138,7 @@
         "description" : "Updates position of invoice identified by id",
         "operationId" : "updateInvoicePosition",
         "parameters" : [ {
+          "description" : "Invoice ID",
           "explode" : false,
           "in" : "path",
           "name" : "invoice_id",
@@ -2136,6 +2148,7 @@
           },
           "style" : "simple"
         }, {
+          "description" : "Invoice Position ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -3845,6 +3858,7 @@
         "description" : "Returns all positions of a contract",
         "operationId" : "getServiceContractPositions",
         "parameters" : [ {
+          "description" : "Service Contract ID",
           "explode" : false,
           "in" : "path",
           "name" : "contract_id",
@@ -3913,6 +3927,7 @@
         "description" : "Creates a new position for contract",
         "operationId" : "createServiceContractPosition",
         "parameters" : [ {
+          "description" : "Service Contract ID",
           "explode" : false,
           "in" : "path",
           "name" : "contract_id",
@@ -4001,6 +4016,7 @@
         "description" : "Deletes the position of a service contract by id",
         "operationId" : "deleteServiceContractPosition",
         "parameters" : [ {
+          "description" : "Service Contract ID",
           "explode" : false,
           "in" : "path",
           "name" : "contract_id",
@@ -4010,6 +4026,7 @@
           },
           "style" : "simple"
         }, {
+          "description" : "Service Contract Position ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -4078,6 +4095,7 @@
         "description" : "Returns the position of a service contract by id",
         "operationId" : "getServiceContractPosition",
         "parameters" : [ {
+          "description" : "Service Contract ID",
           "explode" : false,
           "in" : "path",
           "name" : "contract_id",
@@ -4087,6 +4105,7 @@
           },
           "style" : "simple"
         }, {
+          "description" : "Service Contract Position ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -4155,6 +4174,7 @@
         "description" : "Updates the position of a service contract by id",
         "operationId" : "updateServiceContractPosition",
         "parameters" : [ {
+          "description" : "Service Contract ID",
           "explode" : false,
           "in" : "path",
           "name" : "contract_id",
@@ -4164,6 +4184,7 @@
           },
           "style" : "simple"
         }, {
+          "description" : "Service Contract Position ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",

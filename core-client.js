@@ -345,8 +345,8 @@ export default class LUMASERVCoreClient {
     getServerHost(id){
         return this.request('get', '/server-hosts/' + id, null, null);
     }
-    getServerStorages(){
-        return this.request('get', '/server-storages', null, null);
+    getServerStorages(query = null){
+        return this.request('get', '/server-storages', query, null);
     }
     createServerStorage(body = null){
         return this.request('post', '/server-storages', null, body);
@@ -465,8 +465,8 @@ export default class LUMASERVCoreClient {
     getServerFirewallMember(id, member_id){
         return this.request('get', '/server-firewalls/' + id + '/members/' + member_id, null, null);
     }
-    getServerPriceRanges(){
-        return this.request('get', '/server-price-ranges', null, null);
+    getServerPriceRanges(query = null){
+        return this.request('get', '/server-price-ranges', query, null);
     }
     createServerPriceRange(body = null){
         return this.request('post', '/server-price-ranges', null, body);
@@ -489,8 +489,8 @@ export default class LUMASERVCoreClient {
     updateServerVariantPrice(id, variant_id, body = null){
         return this.request('put', '/server-price-ranges/' + id + '/variant-prices/' + variant_id, null, body);
     }
-    getServerPriceRangeAssignments(){
-        return this.request('get', '/server-price-range-assignments', null, null);
+    getServerPriceRangeAssignments(query = null){
+        return this.request('get', '/server-price-range-assignments', query, null);
     }
     createServerPriceRangeAssignment(body = null){
         return this.request('post', '/server-price-range-assignments', null, body);

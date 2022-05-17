@@ -3,7 +3,8 @@
   "info" : {
     "contact" : {
       "email" : "support@lumaserv.com",
-      "name" : "LUMASERV Support Team"
+      "name" : "LUMASERV Support Team",
+      "url" : "https://lumaserv.com"
     },
     "description" : "LUMASERV Auth API",
     "title" : "LUMASERV Auth API",
@@ -1272,6 +1273,7 @@
         "description" : "Validates the token",
         "operationId" : "validateToken",
         "parameters" : [ {
+          "description" : "Token",
           "explode" : false,
           "in" : "path",
           "name" : "token",
@@ -1801,6 +1803,7 @@
         "description" : "Returns a single country",
         "operationId" : "getCountry",
         "parameters" : [ {
+          "description" : "Country Code",
           "explode" : false,
           "in" : "path",
           "name" : "code",

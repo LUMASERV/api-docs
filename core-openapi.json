@@ -3,7 +3,8 @@
   "info" : {
     "contact" : {
       "email" : "support@lumaserv.com",
-      "name" : "LUMASERV Support Team"
+      "name" : "LUMASERV Support Team",
+      "url" : "https://lumaserv.com"
     },
     "description" : "LUMASERV Core API",
     "title" : "LUMASERV Core API",
@@ -17,26 +18,37 @@
     "AuthToken" : [ ]
   } ],
   "tags" : [ {
+    "description" : "IP Address and Subnet Management",
     "name" : "address"
   }, {
+    "description" : "DNS Management",
     "name" : "dns"
   }, {
+    "description" : "Domain Management",
     "name" : "domains"
   }, {
+    "description" : "General Endpoints",
     "name" : "general"
   }, {
+    "description" : "Label Endpoints",
     "name" : "label"
   }, {
+    "description" : "Plesk License Management",
     "name" : "plesk-licenses"
   }, {
+    "description" : "Pricing Endpoints",
     "name" : "pricing"
   }, {
+    "description" : "S3 Object Storage Management",
     "name" : "s3-storage"
   }, {
+    "description" : "Compute Service Management",
     "name" : "server"
   }, {
+    "description" : "SSH-Key Management",
     "name" : "sshkeys"
   }, {
+    "description" : "SSL Management",
     "name" : "ssl"
   } ],
   "paths" : {
@@ -1680,6 +1692,7 @@
         "description" : "Deletes the domain handle",
         "operationId" : "deleteDomainHandle",
         "parameters" : [ {
+          "description" : "Handle Code",
           "explode" : false,
           "in" : "path",
           "name" : "code",
@@ -1748,6 +1761,7 @@
         "description" : "Returns a single domain handle",
         "operationId" : "getDomainHandle",
         "parameters" : [ {
+          "description" : "Handle Code",
           "explode" : false,
           "in" : "path",
           "name" : "code",
@@ -1816,6 +1830,7 @@
         "description" : "Updates the domain handle",
         "operationId" : "updateDomainHandle",
         "parameters" : [ {
+          "description" : "Handle Code",
           "explode" : false,
           "in" : "path",
           "name" : "code",
@@ -4279,6 +4294,57 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "State Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[state]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Variant ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[variant_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Template ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[template_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Host ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[host_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -4710,6 +4776,36 @@
             "type" : "boolean"
           },
           "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Storage Class ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[class_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -5120,6 +5216,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -5367,6 +5473,26 @@
           "explode" : true,
           "in" : "query",
           "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Zone ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[zone_id]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -6406,6 +6532,7 @@
         "description" : "Deletes the dns record",
         "operationId" : "deleteDNSRecord",
         "parameters" : [ {
+          "description" : "DNS Zone Name",
           "explode" : false,
           "in" : "path",
           "name" : "name",
@@ -6415,6 +6542,7 @@
           },
           "style" : "simple"
         }, {
+          "description" : "DNS Record ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -6484,6 +6612,7 @@
         "description" : "Updates the dns record",
         "operationId" : "updateDNSRecord",
         "parameters" : [ {
+          "description" : "DNS Zone Name",
           "explode" : false,
           "in" : "path",
           "name" : "name",
@@ -6493,6 +6622,7 @@
           },
           "style" : "simple"
         }, {
+          "description" : "DNS Record ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -6751,6 +6881,36 @@
           "explode" : true,
           "in" : "query",
           "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Country Code Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[country_code]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "City Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[city]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -7080,6 +7240,56 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Core Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[cores]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Memory Size Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[memory]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Disk Size Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[disk]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Storage Class ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[storage_class_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -7354,6 +7564,46 @@
           "schema" : {
             "type" : "string"
           }
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Replication Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[replication]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "SSD Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[ssd]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -7599,6 +7849,36 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Zone ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[zone_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Type Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[type]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -7834,6 +8114,16 @@
           "schema" : {
             "type" : "string"
           }
+        }, {
+          "description" : "Default Interface Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[default]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -8150,6 +8440,16 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -8451,6 +8751,26 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -8643,6 +8963,37 @@
       "get" : {
         "description" : "Returns all server storages",
         "operationId" : "getServerStorages",
+        "parameters" : [ {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Zone ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[zone_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "External ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[external_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -9761,6 +10112,16 @@
             "type" : "integer"
           },
           "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -9823,6 +10184,7 @@
         "description" : "Returns a single address",
         "operationId" : "getAddress",
         "parameters" : [ {
+          "description" : "Address ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -9893,6 +10255,7 @@
         "description" : "Resizes the server to the specified variant",
         "operationId" : "resizeServer",
         "parameters" : [ {
+          "description" : "Server ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -10135,6 +10498,7 @@
         "description" : "Returns graph data for the server",
         "operationId" : "getServerGraph",
         "parameters" : [ {
+          "description" : "Server ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -10263,6 +10627,16 @@
           "explode" : true,
           "in" : "query",
           "name" : "filter[server_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
           "required" : false,
           "schema" : {
             "type" : "string"
@@ -10558,6 +10932,7 @@
         "description" : "Restores the server from a backup",
         "operationId" : "restoreServer",
         "parameters" : [ {
+          "description" : "Server ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -11042,6 +11417,26 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -11362,6 +11757,46 @@
           "schema" : {
             "default" : 10,
             "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Type Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[type]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Protocol Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[protocol]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Applied Rule Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[applied]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           },
           "style" : "form"
         } ],
@@ -11720,6 +12155,66 @@
             "type" : "integer"
           },
           "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Type Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[type]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Server ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[server_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Label Name Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[label_name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Label Value Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[label_value]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Applied Member Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[applied]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -12033,6 +12528,27 @@
       "get" : {
         "description" : "Returns all price ranges for servers",
         "operationId" : "getServerPriceRanges",
+        "parameters" : [ {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Title Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -12664,6 +13180,48 @@
       "get" : {
         "description" : "Returns all price range assignments for servers",
         "operationId" : "getServerPriceRangeAssignments",
+        "parameters" : [ {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Range ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[range_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "User ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[user_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -13038,6 +13596,7 @@
         "description" : "Restarts the server",
         "operationId" : "restartServer",
         "parameters" : [ {
+          "description" : "Server ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
