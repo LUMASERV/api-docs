@@ -5096,12 +5096,11 @@ components:
         network_id:
           type: string
           format: uuid
-        address_v4_id:
-          type: string
+        addresses:
+          type: array
           format: uuid
-        address_v6_id:
-          type: string
-          format: uuid
+          items:
+            $ref: '#/components/schemas/Address'
         created_at:
           type: string
         labels:
