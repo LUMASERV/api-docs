@@ -17154,13 +17154,12 @@
             "format" : "uuid",
             "type" : "string"
           },
-          "address_v4_id" : {
+          "addresses" : {
             "format" : "uuid",
-            "type" : "string"
-          },
-          "address_v6_id" : {
-            "format" : "uuid",
-            "type" : "string"
+            "items" : {
+              "$ref" : "#/components/schemas/Address"
+            },
+            "type" : "array"
           },
           "created_at" : {
             "type" : "string"
