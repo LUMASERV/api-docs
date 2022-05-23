@@ -954,7 +954,7 @@ components:
         action:
           type: string
         object_type:
-          type: string
+          $ref: '#/components/schemas/ObjectType'
         object_id:
           type: string
           format: uuid
@@ -968,6 +968,27 @@ components:
         - user_id
         - action
         - date
+    ObjectType:
+      type: string
+      title: ObjectType
+      x-stoplight:
+        id: u03v2g5ppbo7r
+      enum:
+        - DOMAIN
+        - DOMAIN_HANDLE
+        - SSH_KEY
+        - PLESK_LICENSE
+        - SSL_CERTIFICATE
+        - SSL_ORGANISATION
+        - SSL_CONTACT
+        - S3_BUCKET
+        - S3_ACCESS_KEY
+        - S3_ACCESS_GRANT
+        - DNS_ZONE
+        - SERVER
+        - SERVER_VOLUME
+        - SERVER_MEDIA
+        - NETWORK
   securitySchemes:
     AuthToken:
       type: http
@@ -1482,7 +1503,7 @@ components:
                 type: string
                 format: uuid
               object_type:
-                type: string
+                $ref: '#/components/schemas/ObjectType'
               object_id:
                 type: string
                 format: uuid
