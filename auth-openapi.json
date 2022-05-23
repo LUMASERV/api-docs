@@ -2363,7 +2363,7 @@
                   "type" : "string"
                 },
                 "object_type" : {
-                  "type" : "string"
+                  "$ref" : "#/components/schemas/ObjectType"
                 },
                 "object_id" : {
                   "format" : "uuid",
@@ -2853,7 +2853,7 @@
             "type" : "string"
           },
           "object_type" : {
-            "type" : "string"
+            "$ref" : "#/components/schemas/ObjectType"
           },
           "object_id" : {
             "format" : "uuid",
@@ -2870,6 +2870,14 @@
         "title" : "AuditLogEntry",
         "type" : "object",
         "x-tags" : [ "audit" ]
+      },
+      "ObjectType" : {
+        "enum" : [ "DOMAIN", "DOMAIN_HANDLE", "SSH_KEY", "PLESK_LICENSE", "SSL_CERTIFICATE", "SSL_ORGANISATION", "SSL_CONTACT", "S3_BUCKET", "S3_ACCESS_KEY", "S3_ACCESS_GRANT", "DNS_ZONE", "SERVER", "SERVER_VOLUME", "SERVER_MEDIA", "NETWORK" ],
+        "title" : "ObjectType",
+        "type" : "string",
+        "x-stoplight" : {
+          "id" : "u03v2g5ppbo7r"
+        }
       },
       "inline_response_200" : {
         "properties" : {
