@@ -87,8 +87,8 @@ export default class LUMASERVAuthClient {
     validateToken(token){
         return this.request('get', '/validate/' + token, null, null);
     }
-    getUserProjectMemberships(id){
-        return this.request('get', '/users/' + id + '/project_memberships', null, null);
+    getUserProjectMemberships(id, query = null){
+        return this.request('get', '/users/' + id + '/project_memberships', query, null);
     }
     getTokens(query = null){
         return this.request('get', '/tokens', query, null);

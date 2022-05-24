@@ -477,8 +477,8 @@ export default class LUMASERVCoreClient {
     getServerPriceRange(id){
         return this.request('get', '/server-price-ranges/' + id, null, null);
     }
-    getServerVariantPrices(id){
-        return this.request('get', '/server-price-ranges/' + id + '/variant-prices', null, null);
+    getServerVariantPrices(id, query = null){
+        return this.request('get', '/server-price-ranges/' + id + '/variant-prices', query, null);
     }
     createServerVariantPrice(id, body = null){
         return this.request('post', '/server-price-ranges/' + id + '/variant-prices', null, body);

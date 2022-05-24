@@ -177,8 +177,8 @@ export default class LUMASERVBillingClient {
     updateServiceContract(id, body = null){
         return this.request('put', '/service-contracts/' + id, null, body);
     }
-    getServiceContractPositions(contract_id){
-        return this.request('get', '/service-contracts/' + contract_id + '/positions', null, null);
+    getServiceContractPositions(contract_id, query = null){
+        return this.request('get', '/service-contracts/' + contract_id + '/positions', query, null);
     }
     createServiceContractPosition(contract_id, body = null){
         return this.request('post', '/service-contracts/' + contract_id + '/positions', null, body);
