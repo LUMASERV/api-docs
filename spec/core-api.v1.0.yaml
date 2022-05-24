@@ -57,6 +57,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createS3Bucket
       operationId: createS3Bucket
@@ -144,6 +146,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createS3AccessKey
       operationId: createS3AccessKey
@@ -237,6 +241,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createPleskLicense
       operationId: createPleskLicense
@@ -323,6 +329,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
   '/licenses/plesk-types/{id}':
     parameters:
       - schema:
@@ -379,6 +387,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createS3AccessKeyGrant
       operationId: createS3AccessKeyGrant
@@ -456,6 +466,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createDomainHandle
       operationId: createDomainHandle
@@ -586,6 +598,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createDomain
       operationId: createDomain
@@ -821,6 +835,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createSSLContact
       operationId: createSSLContact
@@ -908,6 +924,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createSSLOrganisation
       operationId: createSSLOrganisation
@@ -990,6 +1008,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
   '/ssl/types/{id}':
     parameters:
       - schema:
@@ -1061,6 +1081,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createSSLCertificate
       operationId: createSSLCertificate
@@ -1136,6 +1158,8 @@ paths:
           in: query
           name: 'filter[title]'
           description: Title Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createSSHKey
       operationId: createSSHKey
@@ -1254,6 +1278,8 @@ paths:
           in: query
           name: 'filter[host_id]'
           description: Host ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServer
       operationId: createServer
@@ -1383,6 +1409,8 @@ paths:
           in: query
           name: 'filter[class_id]'
           description: Storage Class ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerVolume
       operationId: createServerVolume
@@ -1502,6 +1530,8 @@ paths:
           in: query
           name: 'filter[id]'
           description: ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerTemplate
       operationId: createServerTemplate
@@ -1585,6 +1615,8 @@ paths:
           in: query
           name: 'filter[zone_id]'
           description: Zone ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     parameters: []
     post:
       summary: createServerMedia
@@ -1761,6 +1793,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/LabelsFilter'
         - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
   '/dns/zones/{name}':
     parameters:
       - schema:
@@ -1835,6 +1869,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     put:
       summary: updateDNSZoneRecords
       operationId: updateDNSZoneRecords
@@ -2010,6 +2046,8 @@ paths:
           in: query
           name: 'filter[city]'
           description: City Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createAvailabilityZone
       operationId: createAvailabilityZone
@@ -2136,6 +2174,8 @@ paths:
           in: query
           name: 'filter[storage_class_id]'
           description: Storage Class ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerVariant
       operationId: createServerVariant
@@ -2236,6 +2276,8 @@ paths:
           in: query
           name: 'filter[ssd]'
           description: SSD Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     parameters: []
     post:
       summary: createServerStorageClass
@@ -2325,6 +2367,8 @@ paths:
           in: query
           name: 'filter[type]'
           description: Type Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createNetwork
       operationId: createNetwork
@@ -2437,6 +2481,8 @@ paths:
           in: query
           name: 'filter[address_v6_id]'
           description: Address V6 ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerNetwork
       operationId: createServerNetwork
@@ -2527,6 +2573,8 @@ paths:
           in: query
           name: 'filter[id]'
           description: ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createSubnet
       operationId: createSubnet
@@ -2621,6 +2669,8 @@ paths:
           in: query
           name: 'filter[title]'
           description: Title Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerHost
       operationId: createServerHost
@@ -2700,6 +2750,8 @@ paths:
           in: query
           name: 'filter[external_id]'
           description: External ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerStorage
       operationId: createServerStorage
@@ -2777,6 +2829,7 @@ paths:
         $ref: '#/components/requestBodies/SubnetAddressCreateRequest'
       tags:
         - address
+      parameters: []
   '/servers/{id}/start':
     parameters:
       - schema:
@@ -2943,6 +2996,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
   '/servers/{id}/actions/{action_id}':
     parameters:
       - schema:
@@ -3088,6 +3143,8 @@ paths:
           in: query
           name: 'filter[id]'
           description: ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
   '/addresses/{id}':
     parameters:
       - schema:
@@ -3254,6 +3311,8 @@ paths:
           in: query
           name: 'filter[id]'
           description: ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerBackup
       operationId: createServerBackup
@@ -3394,6 +3453,8 @@ paths:
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
         - $ref: ./billing-api.v1.0.yaml#/components/parameters/Search
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createScheduledServerAction
       operationId: createScheduledServerAction
@@ -3504,6 +3565,8 @@ paths:
           in: query
           name: 'filter[title]'
           description: Title Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerFirewall
       operationId: createServerFirewall
@@ -3618,6 +3681,8 @@ paths:
           in: query
           name: 'filter[applied]'
           description: Applied Rule Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerFirewallRule
       operationId: createServerFirewallRule
@@ -3749,6 +3814,8 @@ paths:
           in: query
           name: 'filter[applied]'
           description: Applied Member Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerFirewallMember
       operationId: createServerFirewallMember
@@ -3849,6 +3916,11 @@ paths:
           in: query
           name: 'filter[title]'
           description: Title Filter
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerPriceRange
       operationId: createServerPriceRange
@@ -3922,6 +3994,12 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerVariantPrices
       description: Returns all variant prices for a range
+      parameters:
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
     post:
       summary: createServerVariantPrice
       operationId: createServerVariantPrice
@@ -4049,6 +4127,11 @@ paths:
           name: 'filter[user_id]'
           description: User ID Filter
         - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createServerPriceRangeAssignment
       operationId: createServerPriceRangeAssignment
@@ -8631,5 +8714,22 @@ components:
       schema:
         type: boolean
       description: 'If length 0, true or 1 is given, the labels will be added to the response objects.'
+    OrderBy:
+      name: order_by
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Field or array of fields to order by
+    Order:
+      name: order
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - ASC
+          - DESC
+      description: 'Order of the results, ascending by default'
 security:
   - AuthToken: []

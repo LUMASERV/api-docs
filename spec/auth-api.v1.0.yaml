@@ -58,6 +58,8 @@ paths:
           in: query
           name: 'filter[id]'
           description: ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createProject
       operationId: createProject
@@ -213,6 +215,8 @@ paths:
           in: query
           name: 'filter[id]'
           description: ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: ./core-api.v1.0.yaml#/components/parameters/OrderBy
     post:
       summary: createUser
       operationId: createUser
@@ -314,6 +318,8 @@ paths:
           in: query
           name: 'filter[role]'
           description: Role Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: addProjectMember
       operationId: addProjectMember
@@ -466,6 +472,12 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getUserProjectMemberships
       description: Returns all project memberships of the user
+      parameters:
+        - $ref: ./core-api.v1.0.yaml#/components/parameters/PaginationPage
+        - $ref: ./core-api.v1.0.yaml#/components/parameters/PaginationPageSize
+        - $ref: ./core-api.v1.0.yaml#/components/parameters/Search
+        - $ref: ./core-api.v1.0.yaml#/components/parameters/Order
+        - $ref: ./core-api.v1.0.yaml#/components/parameters/OrderBy
   /tokens:
     get:
       summary: getTokens
@@ -511,6 +523,8 @@ paths:
           in: query
           name: 'filter[id]'
           description: ID Filter
+        - $ref: ./core-api.v1.0.yaml#/components/parameters/Order
+        - $ref: ./core-api.v1.0.yaml#/components/parameters/OrderBy
     post:
       summary: createToken
       operationId: createToken
@@ -591,6 +605,8 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/PaginationPage'
         - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
   '/countries/{code}':
     parameters:
       - schema:
@@ -1552,5 +1568,22 @@ components:
       schema:
         type: string
       description: Search
+    Order:
+      name: order
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - ASC
+          - DESC
+      description: 'Order of the results, ascending by default'
+    OrderBy:
+      name: order_by
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Field or array of fields to order by
 security:
   - AuthToken: []
