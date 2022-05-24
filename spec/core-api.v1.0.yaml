@@ -3320,6 +3320,27 @@ paths:
       description: Deletes a server backup
       tags:
         - server
+    put:
+      summary: updateServerBackup
+      operationId: updateServerBackup
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerBackupSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the Server Backup
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerBackupUpdateRequest'
   '/servers/{id}/restore':
     parameters:
       - schema:
@@ -5394,6 +5415,8 @@ components:
           type: boolean
         size:
           type: number
+        keep:
+          type: boolean
         created_at:
           type: string
       required:
@@ -8554,6 +8577,15 @@ components:
                 type: object
                 additionalProperties:
                   type: string
+    ServerBackupUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              keep:
+                type: boolean
+      description: ''
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
