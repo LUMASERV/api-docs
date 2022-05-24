@@ -414,6 +414,9 @@ export default class LUMASERVCoreClient {
     getServerBackup(id){
         return this.request('get', '/server-backups/' + id, null, null);
     }
+    updateServerBackup(id, body = null){
+        return this.request('put', '/server-backups/' + id, null, body);
+    }
     restoreServer(id, body = null){
         return this.request('post', '/servers/' + id + '/restore', null, body);
     }

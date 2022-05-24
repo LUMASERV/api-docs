@@ -10985,6 +10985,94 @@
         },
         "summary" : "getServerBackup",
         "tags" : [ "server" ]
+      },
+      "put" : {
+        "description" : "Updates the Server Backup",
+        "operationId" : "updateServerBackup",
+        "parameters" : [ {
+          "description" : "ServerBackup ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerBackupUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_201_23"
+                }
+              }
+            },
+            "description" : "Single ServerBackup"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_400"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateServerBackup",
+        "tags" : [ "server" ]
       }
     },
     "/servers/{id}/restore" : {
@@ -15251,6 +15339,20 @@
             }
           }
         }
+      },
+      "ServerBackupUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "properties" : {
+                "keep" : {
+                  "type" : "boolean"
+                }
+              },
+              "type" : "object"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -17457,6 +17559,9 @@
           },
           "size" : {
             "type" : "number"
+          },
+          "keep" : {
+            "type" : "boolean"
           },
           "created_at" : {
             "type" : "string"
