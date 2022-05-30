@@ -4245,6 +4245,39 @@ paths:
       description: Restarts the server
       tags:
         - server
+  '/servers/{id}/actions/{action_id}/cancel':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+      - schema:
+          type: string
+          format: uuid
+        name: action_id
+        in: path
+        required: true
+        description: ServerAction ID
+    post:
+      summary: cancelServerAction
+      operationId: cancelServerAction
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerActionSingleResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Cancels the server action in case it's stuck
 components:
   schemas:
     ResponseMessages:
