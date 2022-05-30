@@ -354,9 +354,6 @@ export default class LUMASERVCoreClient {
     getServerStorage(id){
         return this.request('get', '/server-storages/' + id, null, null);
     }
-    createSubnetAddress(id, body = null){
-        return this.request('post', '/subnets/' + id + '/addresses', null, body);
-    }
     startServer(id){
         return this.request('post', '/servers/' + id + '/start', null, null);
     }
