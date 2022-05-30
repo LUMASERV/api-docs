@@ -510,4 +510,7 @@ export default class LUMASERVCoreClient {
     restartServer(id){
         return this.request('post', '/servers/' + id + '/restart', null, null);
     }
+    cancelServerAction(id, action_id){
+        return this.request('post', '/servers/' + id + '/actions/' + action_id + '/cancel', null, null);
+    }
 }
