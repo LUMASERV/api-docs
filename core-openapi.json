@@ -17469,6 +17469,9 @@
           "backup_id" : {
             "format" : "uuid",
             "type" : "string"
+          },
+          "backup_retention" : {
+            "type" : "integer"
           }
         },
         "required" : [ "created_at", "execute_at", "id", "interval", "server_id", "type" ],
@@ -20159,6 +20162,11 @@
           "backup_id" : {
             "format" : "uuid",
             "type" : "string"
+          },
+          "backup_retention" : {
+            "maximum" : 50,
+            "minimum" : 1,
+            "type" : "integer"
           },
           "force" : {
             "type" : "boolean"
