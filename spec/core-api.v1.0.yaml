@@ -2799,37 +2799,6 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerStorage
       description: Returns a single server storage
-  '/subnets/{id}/addresses':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: Subnet ID
-    post:
-      summary: createSubnetAddress
-      operationId: createSubnetAddress
-      responses:
-        '200':
-          $ref: '#/components/responses/AddressSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          description: Forbidden
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      description: Creates a new address in the subnet
-      requestBody:
-        $ref: '#/components/requestBodies/SubnetAddressCreateRequest'
-      tags:
-        - address
-      parameters: []
   '/servers/{id}/start':
     parameters:
       - schema:
@@ -8278,8 +8247,10 @@ components:
                 type: string
               prefix:
                 type: integer
-              public:
+              shared:
                 type: boolean
+              range:
+                type: string
             required:
               - network_id
               - address
@@ -8302,6 +8273,8 @@ components:
                 $ref: '#/components/schemas/NetworkType'
               tag:
                 type: integer
+              subnet:
+                type: string
             required:
               - zone_id
               - title
@@ -8454,16 +8427,6 @@ components:
                 type: string
               city:
                 type: string
-    SubnetAddressCreateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              address:
-                type: string
-            required:
-              - address
     ServerNetworkCreateRequest:
       content:
         application/json:
