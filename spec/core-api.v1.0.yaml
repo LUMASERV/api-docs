@@ -5539,6 +5539,8 @@ components:
     ScheduledServerAction:
       title: ScheduledServerAction
       type: object
+      x-tags:
+        - server
       properties:
         id:
           type: string
@@ -5557,6 +5559,8 @@ components:
         backup_id:
           type: string
           format: uuid
+        backup_retention:
+          type: integer
       required:
         - id
         - server_id
@@ -5564,8 +5568,6 @@ components:
         - interval
         - execute_at
         - created_at
-      x-tags:
-        - server
     ServerFirewall:
       title: ServerFirewall
       type: object
@@ -8541,6 +8543,10 @@ components:
               backup_id:
                 type: string
                 format: uuid
+              backup_retention:
+                type: integer
+                minimum: 1
+                maximum: 50
               force:
                 type: boolean
             required:
