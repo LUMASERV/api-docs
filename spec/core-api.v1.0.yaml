@@ -5295,6 +5295,8 @@ components:
     Address:
       title: Address
       type: object
+      x-tags:
+        - address
       properties:
         id:
           type: string
@@ -5307,6 +5309,10 @@ components:
           format: uuid
         address:
           type: string
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressAssignments'
         created_at:
           type: string
       required:
@@ -5314,8 +5320,6 @@ components:
         - subnet_id
         - address
         - created_at
-      x-tags:
-        - address
     ServerVNC:
       title: ServerVNC
       type: object
@@ -5734,6 +5738,20 @@ components:
         - UNKNOWN
       x-tags:
         - domain
+    AddressAssignments:
+      title: AddressAssignments
+      x-stoplight:
+        id: 1p389t6yl7rvw
+      type: object
+      properties:
+        assigned_type:
+          $ref: '#/components/schemas/ObjectType'
+        assigned_id:
+          type: string
+          format: uuid
+      required:
+        - assigned_type
+        - assigned_id
   securitySchemes:
     AuthToken:
       type: http
