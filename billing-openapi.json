@@ -93,7 +93,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200"
+                  "$ref" : "#/components/schemas/getBankTransactions_200_response"
                 }
               }
             },
@@ -103,7 +103,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -113,7 +113,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -123,7 +123,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -133,7 +133,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -165,7 +165,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_1"
+                  "$ref" : "#/components/schemas/getBankTransaction_200_response"
                 }
               }
             },
@@ -175,7 +175,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -185,7 +185,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -195,7 +195,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -205,7 +205,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -278,7 +278,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_2"
+                  "$ref" : "#/components/schemas/getBillingPositions_200_response"
                 }
               }
             },
@@ -288,7 +288,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -298,7 +298,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -308,7 +308,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -318,7 +318,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -339,7 +339,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201"
+                  "$ref" : "#/components/schemas/createBillingPosition_201_response"
                 }
               }
             },
@@ -349,12 +349,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -364,7 +364,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -374,7 +374,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -384,7 +384,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -394,7 +394,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -426,7 +426,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -436,7 +436,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -446,7 +446,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -456,7 +456,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -466,7 +466,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -496,7 +496,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201"
+                  "$ref" : "#/components/schemas/createBillingPosition_201_response"
                 }
               }
             },
@@ -506,7 +506,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -516,7 +516,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -526,7 +526,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -536,7 +536,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -569,7 +569,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201"
+                  "$ref" : "#/components/schemas/createBillingPosition_201_response"
                 }
               }
             },
@@ -579,7 +579,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -589,7 +589,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -599,7 +599,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -609,7 +609,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -682,7 +682,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_3"
+                  "$ref" : "#/components/schemas/getCustomers_200_response"
                 }
               }
             },
@@ -692,7 +692,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -702,7 +702,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -712,7 +712,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -722,7 +722,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -743,7 +743,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_1"
+                  "$ref" : "#/components/schemas/createCustomer_201_response"
                 }
               }
             },
@@ -753,12 +753,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -768,7 +768,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -778,7 +778,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -788,7 +788,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -798,7 +798,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -829,7 +829,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_1"
+                  "$ref" : "#/components/schemas/createCustomer_201_response"
                 }
               }
             },
@@ -839,7 +839,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -849,7 +849,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -859,7 +859,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -869,7 +869,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -901,7 +901,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_1"
+                  "$ref" : "#/components/schemas/createCustomer_201_response"
                 }
               }
             },
@@ -911,12 +911,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -926,7 +926,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -936,7 +936,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -946,7 +946,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -956,7 +956,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1029,7 +1029,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_4"
+                  "$ref" : "#/components/schemas/getDebits_200_response"
                 }
               }
             },
@@ -1039,7 +1039,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1049,7 +1049,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1059,7 +1059,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1069,7 +1069,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1101,7 +1101,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_5"
+                  "$ref" : "#/components/schemas/getDebit_200_response"
                 }
               }
             },
@@ -1111,7 +1111,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1121,7 +1121,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1131,7 +1131,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1141,7 +1141,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1214,7 +1214,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_6"
+                  "$ref" : "#/components/schemas/getDebitMandates_200_response"
                 }
               }
             },
@@ -1224,7 +1224,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1234,7 +1234,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1244,7 +1244,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1254,7 +1254,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1275,7 +1275,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_2"
+                  "$ref" : "#/components/schemas/createDebitMandate_201_response"
                 }
               }
             },
@@ -1285,12 +1285,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -1300,7 +1300,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1310,7 +1310,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1320,7 +1320,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1330,7 +1330,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1362,7 +1362,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_2"
+                  "$ref" : "#/components/schemas/createDebitMandate_201_response"
                 }
               }
             },
@@ -1372,7 +1372,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1382,7 +1382,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1392,7 +1392,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1402,7 +1402,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1475,7 +1475,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_7"
+                  "$ref" : "#/components/schemas/getInvoices_200_response"
                 }
               }
             },
@@ -1485,7 +1485,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1495,7 +1495,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1505,7 +1505,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1529,7 +1529,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_3"
+                  "$ref" : "#/components/schemas/createInvoice_201_response"
                 }
               }
             },
@@ -1539,12 +1539,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -1554,7 +1554,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1564,7 +1564,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1574,7 +1574,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1584,7 +1584,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1616,7 +1616,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1626,7 +1626,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1636,7 +1636,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1646,7 +1646,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1656,7 +1656,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1666,7 +1666,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1696,7 +1696,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_3"
+                  "$ref" : "#/components/schemas/createInvoice_201_response"
                 }
               }
             },
@@ -1706,7 +1706,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1716,7 +1716,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1726,7 +1726,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1736,7 +1736,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1769,7 +1769,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_3"
+                  "$ref" : "#/components/schemas/createInvoice_201_response"
                 }
               }
             },
@@ -1779,12 +1779,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -1794,7 +1794,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1804,7 +1804,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1814,7 +1814,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1824,7 +1824,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1864,7 +1864,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1874,7 +1874,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1884,7 +1884,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1894,7 +1894,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1977,7 +1977,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_8"
+                  "$ref" : "#/components/schemas/getInvoicePositions_200_response"
                 }
               }
             },
@@ -1987,7 +1987,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -1997,7 +1997,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2007,7 +2007,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2017,7 +2017,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2049,7 +2049,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_4"
+                  "$ref" : "#/components/schemas/createInvoicePosition_201_response"
                 }
               }
             },
@@ -2059,12 +2059,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -2074,7 +2074,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2084,7 +2084,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2094,7 +2094,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2104,7 +2104,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2145,7 +2145,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2155,7 +2155,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2165,7 +2165,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2175,7 +2175,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2185,7 +2185,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2224,7 +2224,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_4"
+                  "$ref" : "#/components/schemas/createInvoicePosition_201_response"
                 }
               }
             },
@@ -2234,7 +2234,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2244,7 +2244,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2254,7 +2254,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2264,7 +2264,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2306,7 +2306,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_4"
+                  "$ref" : "#/components/schemas/createInvoicePosition_201_response"
                 }
               }
             },
@@ -2316,12 +2316,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -2331,7 +2331,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2341,7 +2341,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2351,7 +2351,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2361,7 +2361,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2434,7 +2434,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_9"
+                  "$ref" : "#/components/schemas/getOffers_200_response"
                 }
               }
             },
@@ -2444,7 +2444,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2454,7 +2454,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2464,7 +2464,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2474,7 +2474,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2495,7 +2495,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_5"
+                  "$ref" : "#/components/schemas/createOffer_201_response"
                 }
               }
             },
@@ -2505,12 +2505,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -2520,7 +2520,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2530,7 +2530,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2540,7 +2540,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2550,7 +2550,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2582,7 +2582,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_5"
+                  "$ref" : "#/components/schemas/createOffer_201_response"
                 }
               }
             },
@@ -2592,7 +2592,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2602,7 +2602,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2612,7 +2612,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2622,7 +2622,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2655,7 +2655,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_5"
+                  "$ref" : "#/components/schemas/createOffer_201_response"
                 }
               }
             },
@@ -2665,12 +2665,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -2680,7 +2680,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2690,7 +2690,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2700,7 +2700,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2710,7 +2710,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2783,7 +2783,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_10"
+                  "$ref" : "#/components/schemas/getOfferPositions_200_response"
                 }
               }
             },
@@ -2793,7 +2793,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2803,7 +2803,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2813,7 +2813,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2823,7 +2823,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2844,7 +2844,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_6"
+                  "$ref" : "#/components/schemas/createOfferPosition_201_response"
                 }
               }
             },
@@ -2854,12 +2854,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -2869,7 +2869,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2879,7 +2879,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2889,7 +2889,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2899,7 +2899,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2931,7 +2931,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2941,7 +2941,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2951,7 +2951,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2961,7 +2961,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -2971,7 +2971,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3001,7 +3001,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_6"
+                  "$ref" : "#/components/schemas/createOfferPosition_201_response"
                 }
               }
             },
@@ -3011,7 +3011,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3021,7 +3021,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3031,7 +3031,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3041,7 +3041,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3074,7 +3074,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_6"
+                  "$ref" : "#/components/schemas/createOfferPosition_201_response"
                 }
               }
             },
@@ -3084,12 +3084,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -3099,7 +3099,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3109,7 +3109,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3119,7 +3119,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3129,7 +3129,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3202,7 +3202,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_11"
+                  "$ref" : "#/components/schemas/getOnlinePayments_200_response"
                 }
               }
             },
@@ -3212,7 +3212,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3222,7 +3222,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3232,7 +3232,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3242,7 +3242,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3274,7 +3274,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_12"
+                  "$ref" : "#/components/schemas/getOnlinePayment_200_response"
                 }
               }
             },
@@ -3284,7 +3284,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3294,7 +3294,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3304,7 +3304,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3314,7 +3314,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3387,7 +3387,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_13"
+                  "$ref" : "#/components/schemas/getPaymentReminders_200_response"
                 }
               }
             },
@@ -3397,7 +3397,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3407,7 +3407,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3417,7 +3417,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3427,7 +3427,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3448,7 +3448,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_7"
+                  "$ref" : "#/components/schemas/createPaymentReminder_201_response"
                 }
               }
             },
@@ -3458,12 +3458,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -3473,7 +3473,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3483,7 +3483,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3493,7 +3493,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3503,7 +3503,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3535,7 +3535,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_7"
+                  "$ref" : "#/components/schemas/createPaymentReminder_201_response"
                 }
               }
             },
@@ -3545,7 +3545,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3555,7 +3555,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3565,7 +3565,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3575,7 +3575,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3608,7 +3608,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_7"
+                  "$ref" : "#/components/schemas/createPaymentReminder_201_response"
                 }
               }
             },
@@ -3618,12 +3618,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -3633,7 +3633,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3643,7 +3643,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3653,7 +3653,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3663,7 +3663,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3736,7 +3736,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_14"
+                  "$ref" : "#/components/schemas/getServiceContracts_200_response"
                 }
               }
             },
@@ -3746,7 +3746,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3756,7 +3756,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3766,7 +3766,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3776,7 +3776,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3797,7 +3797,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_8"
+                  "$ref" : "#/components/schemas/createServiceContract_201_response"
                 }
               }
             },
@@ -3807,12 +3807,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -3822,7 +3822,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3832,7 +3832,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3842,7 +3842,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3852,7 +3852,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3884,7 +3884,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3894,7 +3894,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3904,7 +3904,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3914,7 +3914,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3924,7 +3924,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3954,7 +3954,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_8"
+                  "$ref" : "#/components/schemas/createServiceContract_201_response"
                 }
               }
             },
@@ -3964,7 +3964,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3974,7 +3974,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3984,7 +3984,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -3994,7 +3994,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4027,7 +4027,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_8"
+                  "$ref" : "#/components/schemas/createServiceContract_201_response"
                 }
               }
             },
@@ -4037,12 +4037,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -4052,7 +4052,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4062,7 +4062,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4072,7 +4072,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4082,7 +4082,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4165,7 +4165,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_200_15"
+                  "$ref" : "#/components/schemas/getServiceContractPositions_200_response"
                 }
               }
             },
@@ -4175,7 +4175,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4185,7 +4185,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4195,7 +4195,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4205,7 +4205,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4237,7 +4237,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_9"
+                  "$ref" : "#/components/schemas/createServiceContractPosition_201_response"
                 }
               }
             },
@@ -4247,12 +4247,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -4262,7 +4262,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4272,7 +4272,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4282,7 +4282,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4292,7 +4292,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4333,7 +4333,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4343,7 +4343,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4353,7 +4353,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4363,7 +4363,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4373,7 +4373,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4412,7 +4412,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_9"
+                  "$ref" : "#/components/schemas/createServiceContractPosition_201_response"
                 }
               }
             },
@@ -4422,7 +4422,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4432,7 +4432,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4442,7 +4442,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4452,7 +4452,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4494,7 +4494,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_201_9"
+                  "$ref" : "#/components/schemas/createServiceContractPosition_201_response"
                 }
               }
             },
@@ -4504,12 +4504,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response"
                 }
               },
               "application/xml" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400"
+                  "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
                 }
               }
             },
@@ -4519,7 +4519,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4529,7 +4529,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4539,7 +4539,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4549,7 +4549,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_401"
+                  "$ref" : "#/components/schemas/getBankTransactions_401_response"
                 }
               }
             },
@@ -4626,46 +4626,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "customer_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "invoice_position_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "title" : {
-                  "type" : "string"
-                },
-                "description" : {
-                  "type" : "string"
-                },
-                "amount" : {
-                  "type" : "number"
-                },
-                "price" : {
-                  "type" : "number"
-                },
-                "vat_rate" : {
-                  "type" : "number"
-                },
-                "group_key" : {
-                  "type" : "string"
-                },
-                "available_at" : {
-                  "type" : "string"
-                },
-                "unit" : {
-                  "type" : "string"
-                },
-                "draft" : {
-                  "default" : false,
-                  "type" : "boolean"
-                }
-              },
-              "required" : [ "amount", "customer_id", "description", "price", "title", "unit" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/createBillingPosition_request"
             }
           }
         }
@@ -4674,40 +4635,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "invoice_position_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "title" : {
-                  "type" : "string"
-                },
-                "description" : {
-                  "type" : "string"
-                },
-                "amount" : {
-                  "type" : "number"
-                },
-                "price" : {
-                  "type" : "number"
-                },
-                "vat_rate" : {
-                  "type" : "number"
-                },
-                "group_key" : {
-                  "type" : "string"
-                },
-                "available_at" : {
-                  "type" : "string"
-                },
-                "unit" : {
-                  "type" : "string"
-                },
-                "draft" : {
-                  "type" : "boolean"
-                }
-              },
-              "type" : "object"
+              "$ref" : "#/components/schemas/updateBillingPosition_request"
             }
           }
         }
@@ -4716,72 +4644,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "user_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "company_name" : {
-                  "type" : "string"
-                },
-                "first_name" : {
-                  "type" : "string"
-                },
-                "last_name" : {
-                  "type" : "string"
-                },
-                "street" : {
-                  "type" : "string"
-                },
-                "street_number" : {
-                  "type" : "string"
-                },
-                "additional_address" : {
-                  "type" : "string"
-                },
-                "postal_code" : {
-                  "type" : "string"
-                },
-                "city" : {
-                  "type" : "string"
-                },
-                "country_code" : {
-                  "type" : "string"
-                },
-                "email" : {
-                  "type" : "string"
-                },
-                "balance" : {
-                  "type" : "number"
-                },
-                "credit_limit" : {
-                  "type" : "number"
-                },
-                "vat_id" : {
-                  "type" : "string"
-                },
-                "custom_vat_rate" : {
-                  "type" : "number"
-                },
-                "billing_interval" : {
-                  "$ref" : "#/components/schemas/BillingInterval"
-                },
-                "payment_period" : {
-                  "type" : "integer"
-                },
-                "gender" : {
-                  "enum" : [ "MALE", "FEMALE", "OTHER" ],
-                  "type" : "string"
-                },
-                "tax_number" : {
-                  "type" : "string"
-                },
-                "auto_finalize" : {
-                  "type" : "boolean"
-                }
-              },
-              "required" : [ "billing_interval", "city", "country_code", "credit_limit", "custom_vat_rate", "email", "first_name", "gender", "last_name", "payment_period", "postal_code", "street", "street_number", "tax_number", "user_id", "vat_id" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/createCustomer_request"
             }
           }
         }
@@ -4790,63 +4653,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "company_name" : {
-                  "type" : "string"
-                },
-                "first_name" : {
-                  "type" : "string"
-                },
-                "last_name" : {
-                  "type" : "string"
-                },
-                "street" : {
-                  "type" : "string"
-                },
-                "street_number" : {
-                  "type" : "string"
-                },
-                "additional_address" : {
-                  "type" : "string"
-                },
-                "postal_code" : {
-                  "type" : "string"
-                },
-                "city" : {
-                  "type" : "string"
-                },
-                "country_code" : {
-                  "type" : "string"
-                },
-                "email" : {
-                  "type" : "string"
-                },
-                "balance" : {
-                  "type" : "number"
-                },
-                "credit_limit" : {
-                  "type" : "number"
-                },
-                "vat_id" : {
-                  "type" : "string"
-                },
-                "tax_number" : {
-                  "type" : "string"
-                },
-                "custom_vat_rate" : {
-                  "type" : "number"
-                },
-                "billing_interval" : {
-                  "$ref" : "#/components/schemas/BillingInterval"
-                },
-                "payment_period" : {
-                  "type" : "integer"
-                },
-                "auto_finalize" : {
-                  "type" : "boolean"
-                }
-              },
-              "type" : "object"
+              "$ref" : "#/components/schemas/updateCustomer_request"
             }
           }
         }
@@ -4855,50 +4662,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "customer_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "depositor" : {
-                  "type" : "string"
-                },
-                "street" : {
-                  "type" : "string"
-                },
-                "street_number" : {
-                  "type" : "string"
-                },
-                "additional_address" : {
-                  "type" : "string"
-                },
-                "postal_code" : {
-                  "type" : "string"
-                },
-                "city" : {
-                  "type" : "string"
-                },
-                "country_code" : {
-                  "type" : "string"
-                },
-                "bank_code" : {
-                  "type" : "string"
-                },
-                "bank_name" : {
-                  "type" : "string"
-                },
-                "account_number" : {
-                  "type" : "string"
-                },
-                "signed_at" : {
-                  "type" : "string"
-                },
-                "valid_until" : {
-                  "type" : "string"
-                }
-              },
-              "required" : [ "account_number", "additional_address", "bank_code", "bank_name", "city", "country_code", "customer_id", "depositor", "postal_code", "street", "street_number" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/createDebitMandate_request"
             }
           }
         }
@@ -4907,23 +4671,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "customer_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "due_at" : {
-                  "type" : "string"
-                },
-                "positions" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/InvoiceCreateRequestPosition"
-                  },
-                  "type" : "array"
-                }
-              },
-              "required" : [ "customer_id", "due_at" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/createInvoice_request"
             }
           }
         }
@@ -4932,31 +4680,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "name" : {
-                  "type" : "string"
-                },
-                "description" : {
-                  "type" : "string"
-                },
-                "amount" : {
-                  "type" : "string"
-                },
-                "unit" : {
-                  "type" : "string"
-                },
-                "price" : {
-                  "type" : "number"
-                },
-                "vat_rate" : {
-                  "type" : "number"
-                },
-                "group_key" : {
-                  "type" : "string"
-                }
-              },
-              "required" : [ "amount", "description", "group_key", "name", "price", "unit" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/createInvoicePosition_request"
             }
           }
         }
@@ -4965,30 +4689,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "name" : {
-                  "type" : "string"
-                },
-                "description" : {
-                  "type" : "string"
-                },
-                "amount" : {
-                  "type" : "number"
-                },
-                "unit" : {
-                  "type" : "string"
-                },
-                "price" : {
-                  "type" : "number"
-                },
-                "vat_rate" : {
-                  "type" : "number"
-                },
-                "group_key" : {
-                  "type" : "string"
-                }
-              },
-              "type" : "object"
+              "$ref" : "#/components/schemas/updateInvoicePosition_request"
             }
           }
         }
@@ -4997,25 +4698,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "customer_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "due_at" : {
-                  "type" : "string"
-                },
-                "state" : {
-                  "$ref" : "#/components/schemas/InvoiceState"
-                },
-                "paid_at" : {
-                  "type" : "string"
-                },
-                "cancelled_at" : {
-                  "type" : "string"
-                }
-              },
-              "type" : "object"
+              "$ref" : "#/components/schemas/updateInvoice_request"
             }
           }
         }
@@ -5024,32 +4707,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "customer_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "number" : {
-                  "type" : "string"
-                },
-                "net_amount" : {
-                  "type" : "number"
-                },
-                "amount" : {
-                  "type" : "number"
-                },
-                "state" : {
-                  "$ref" : "#/components/schemas/OfferState"
-                },
-                "positions" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/OfferCreateRequestPosition"
-                  },
-                  "type" : "array"
-                }
-              },
-              "required" : [ "customer_id" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/createOffer_request"
             }
           }
         }
@@ -5058,38 +4716,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "offer_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "title" : {
-                  "type" : "string"
-                },
-                "description" : {
-                  "type" : "string"
-                },
-                "interval" : {
-                  "$ref" : "#/components/schemas/OfferPositionInterval"
-                },
-                "amount" : {
-                  "type" : "number"
-                },
-                "price" : {
-                  "type" : "number"
-                },
-                "purchasing_price" : {
-                  "type" : "number"
-                },
-                "note" : {
-                  "type" : "string"
-                },
-                "vat_rate" : {
-                  "type" : "number"
-                }
-              },
-              "required" : [ "amount", "description", "offer_id", "price", "title" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/createOfferPosition_request"
             }
           }
         }
@@ -5098,33 +4725,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "title" : {
-                  "type" : "string"
-                },
-                "description" : {
-                  "type" : "string"
-                },
-                "interval" : {
-                  "$ref" : "#/components/schemas/OfferPositionInterval"
-                },
-                "amount" : {
-                  "type" : "number"
-                },
-                "price" : {
-                  "type" : "number"
-                },
-                "purchasing_price" : {
-                  "type" : "number"
-                },
-                "note" : {
-                  "type" : "string"
-                },
-                "vat_rate" : {
-                  "type" : "number"
-                }
-              },
-              "type" : "object"
+              "$ref" : "#/components/schemas/updateOfferPosition_request"
             }
           }
         }
@@ -5133,22 +4734,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "customer_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "net_amount" : {
-                  "type" : "number"
-                },
-                "amount" : {
-                  "type" : "number"
-                },
-                "state" : {
-                  "$ref" : "#/components/schemas/OfferState"
-                }
-              },
-              "type" : "object"
+              "$ref" : "#/components/schemas/updateOffer_request"
             }
           }
         }
@@ -5157,30 +4743,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "customer_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "invoice_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "stage" : {
-                  "type" : "string"
-                },
-                "state" : {
-                  "type" : "string"
-                },
-                "date" : {
-                  "type" : "string"
-                },
-                "due_date" : {
-                  "type" : "string"
-                }
-              },
-              "required" : [ "customer_id", "invoice_id" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/createPaymentReminder_request"
             }
           }
         }
@@ -5189,21 +4752,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "stage" : {
-                  "$ref" : "#/components/schemas/PaymentReminderStage"
-                },
-                "state" : {
-                  "$ref" : "#/components/schemas/PaymentReminderState"
-                },
-                "date" : {
-                  "type" : "string"
-                },
-                "due_date" : {
-                  "type" : "string"
-                }
-              },
-              "type" : "object"
+              "$ref" : "#/components/schemas/updatePaymentReminder_request"
             }
           }
         }
@@ -5212,35 +4761,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "customer_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "title" : {
-                  "type" : "string"
-                },
-                "description" : {
-                  "type" : "string"
-                },
-                "runtime" : {
-                  "$ref" : "#/components/schemas/ServiceContractInterval"
-                },
-                "cancellation_period" : {
-                  "type" : "integer"
-                },
-                "accounting_period" : {
-                  "$ref" : "#/components/schemas/ServiceContractInterval"
-                },
-                "positions" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/CreateRequestPosition"
-                  },
-                  "type" : "array"
-                }
-              },
-              "required" : [ "accounting_period", "cancellation_period", "customer_id", "description", "runtime", "title" ],
-              "type" : "object"
+              "$ref" : "#/components/schemas/createServiceContract_request"
             }
           }
         }
@@ -5249,28 +4770,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "properties" : {
-                "customer_id" : {
-                  "format" : "uuid",
-                  "type" : "string"
-                },
-                "title" : {
-                  "type" : "string"
-                },
-                "description" : {
-                  "type" : "string"
-                },
-                "runtime" : {
-                  "$ref" : "#/components/schemas/ServiceContractInterval"
-                },
-                "cancellation_period" : {
-                  "type" : "integer"
-                },
-                "accounting_period" : {
-                  "$ref" : "#/components/schemas/ServiceContractInterval"
-                }
-              },
-              "type" : "object"
+              "$ref" : "#/components/schemas/updateServiceContract_request"
             }
           }
         }
@@ -5281,12 +4781,12 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_400"
+              "$ref" : "#/components/schemas/createBillingPosition_400_response"
             }
           },
           "application/xml" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_400"
+              "$ref" : "#/components/schemas/createBillingPosition_400_response_1"
             }
           }
         },
@@ -5296,7 +4796,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_401"
+              "$ref" : "#/components/schemas/getBankTransactions_401_response"
             }
           }
         },
@@ -5306,7 +4806,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200"
+              "$ref" : "#/components/schemas/getBankTransactions_200_response"
             }
           }
         },
@@ -5316,7 +4816,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_1"
+              "$ref" : "#/components/schemas/getBankTransaction_200_response"
             }
           }
         },
@@ -5326,7 +4826,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_2"
+              "$ref" : "#/components/schemas/getBillingPositions_200_response"
             }
           }
         },
@@ -5336,7 +4836,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201"
+              "$ref" : "#/components/schemas/createBillingPosition_201_response"
             }
           }
         },
@@ -5346,7 +4846,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_3"
+              "$ref" : "#/components/schemas/getCustomers_200_response"
             }
           }
         },
@@ -5356,7 +4856,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_1"
+              "$ref" : "#/components/schemas/createCustomer_201_response"
             }
           }
         },
@@ -5366,7 +4866,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_4"
+              "$ref" : "#/components/schemas/getDebits_200_response"
             }
           }
         },
@@ -5376,7 +4876,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_5"
+              "$ref" : "#/components/schemas/getDebit_200_response"
             }
           }
         },
@@ -5386,7 +4886,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_6"
+              "$ref" : "#/components/schemas/getDebitMandates_200_response"
             }
           }
         },
@@ -5396,7 +4896,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_2"
+              "$ref" : "#/components/schemas/createDebitMandate_201_response"
             }
           }
         },
@@ -5406,7 +4906,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_7"
+              "$ref" : "#/components/schemas/getInvoices_200_response"
             }
           }
         },
@@ -5416,7 +4916,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_3"
+              "$ref" : "#/components/schemas/createInvoice_201_response"
             }
           }
         },
@@ -5426,7 +4926,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_8"
+              "$ref" : "#/components/schemas/getInvoicePositions_200_response"
             }
           }
         },
@@ -5436,7 +4936,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_4"
+              "$ref" : "#/components/schemas/createInvoicePosition_201_response"
             }
           }
         },
@@ -5446,7 +4946,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_9"
+              "$ref" : "#/components/schemas/getOffers_200_response"
             }
           }
         },
@@ -5456,7 +4956,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_5"
+              "$ref" : "#/components/schemas/createOffer_201_response"
             }
           }
         },
@@ -5466,7 +4966,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_10"
+              "$ref" : "#/components/schemas/getOfferPositions_200_response"
             }
           }
         },
@@ -5476,7 +4976,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_6"
+              "$ref" : "#/components/schemas/createOfferPosition_201_response"
             }
           }
         },
@@ -5486,7 +4986,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_11"
+              "$ref" : "#/components/schemas/getOnlinePayments_200_response"
             }
           }
         },
@@ -5496,7 +4996,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_12"
+              "$ref" : "#/components/schemas/getOnlinePayment_200_response"
             }
           }
         },
@@ -5506,7 +5006,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_13"
+              "$ref" : "#/components/schemas/getPaymentReminders_200_response"
             }
           }
         },
@@ -5516,7 +5016,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_7"
+              "$ref" : "#/components/schemas/createPaymentReminder_201_response"
             }
           }
         },
@@ -5526,7 +5026,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_14"
+              "$ref" : "#/components/schemas/getServiceContracts_200_response"
             }
           }
         },
@@ -5536,7 +5036,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_8"
+              "$ref" : "#/components/schemas/createServiceContract_201_response"
             }
           }
         },
@@ -5546,7 +5046,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_200_15"
+              "$ref" : "#/components/schemas/getServiceContractPositions_200_response"
             }
           }
         },
@@ -5556,7 +5056,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/inline_response_201_9"
+              "$ref" : "#/components/schemas/createServiceContractPosition_201_response"
             }
           }
         },
@@ -5755,6 +5255,7 @@
         "type" : "object"
       },
       "Customer" : {
+        "description" : "",
         "properties" : {
           "id" : {
             "type" : "string"
@@ -5790,6 +5291,7 @@
         "type" : "object"
       },
       "CustomerDetailed" : {
+        "description" : "",
         "properties" : {
           "id" : {
             "type" : "string"
@@ -6328,7 +5830,7 @@
         "title" : "CreateRequestPosition",
         "type" : "object"
       },
-      "inline_response_200" : {
+      "getBankTransactions_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6352,7 +5854,7 @@
         "required" : [ "messages", "metadata", "pagination", "success" ],
         "type" : "object"
       },
-      "inline_response_401" : {
+      "getBankTransactions_401_response" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6367,7 +5869,7 @@
         "required" : [ "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_1" : {
+      "getBankTransaction_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6385,7 +5887,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_2" : {
+      "getBillingPositions_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6409,7 +5911,49 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201" : {
+      "createBillingPosition_request" : {
+        "properties" : {
+          "customer_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "invoice_position_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "amount" : {
+            "type" : "number"
+          },
+          "price" : {
+            "type" : "number"
+          },
+          "vat_rate" : {
+            "type" : "number"
+          },
+          "group_key" : {
+            "type" : "string"
+          },
+          "available_at" : {
+            "type" : "string"
+          },
+          "unit" : {
+            "type" : "string"
+          },
+          "draft" : {
+            "default" : false,
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "amount", "customer_id", "description", "price", "title", "unit" ],
+        "type" : "object"
+      },
+      "createBillingPosition_201_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6427,7 +5971,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_400" : {
+      "createBillingPosition_400_response" : {
         "properties" : {
           "success" : {
             "type" : "boolean"
@@ -6445,7 +5989,58 @@
         "required" : [ "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_3" : {
+      "createBillingPosition_400_response_1" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "type" : "object"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "messages", "success" ],
+        "type" : "object"
+      },
+      "updateBillingPosition_request" : {
+        "properties" : {
+          "invoice_position_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "amount" : {
+            "type" : "number"
+          },
+          "price" : {
+            "type" : "number"
+          },
+          "vat_rate" : {
+            "type" : "number"
+          },
+          "group_key" : {
+            "type" : "string"
+          },
+          "available_at" : {
+            "type" : "string"
+          },
+          "unit" : {
+            "type" : "string"
+          },
+          "draft" : {
+            "type" : "boolean"
+          }
+        },
+        "type" : "object"
+      },
+      "getCustomers_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6469,7 +6064,75 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_1" : {
+      "createCustomer_request" : {
+        "properties" : {
+          "user_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "company_name" : {
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "street" : {
+            "type" : "string"
+          },
+          "street_number" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "balance" : {
+            "type" : "number"
+          },
+          "credit_limit" : {
+            "type" : "number"
+          },
+          "vat_id" : {
+            "type" : "string"
+          },
+          "custom_vat_rate" : {
+            "type" : "number"
+          },
+          "billing_interval" : {
+            "$ref" : "#/components/schemas/BillingInterval"
+          },
+          "payment_period" : {
+            "type" : "integer"
+          },
+          "gender" : {
+            "enum" : [ "MALE", "FEMALE", "OTHER" ],
+            "type" : "string"
+          },
+          "tax_number" : {
+            "type" : "string"
+          },
+          "auto_finalize" : {
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "billing_interval", "city", "country_code", "credit_limit", "custom_vat_rate", "email", "first_name", "gender", "last_name", "payment_period", "postal_code", "street", "street_number", "tax_number", "user_id", "vat_id" ],
+        "type" : "object"
+      },
+      "createCustomer_201_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6487,7 +6150,66 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_4" : {
+      "updateCustomer_request" : {
+        "properties" : {
+          "company_name" : {
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "street" : {
+            "type" : "string"
+          },
+          "street_number" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "balance" : {
+            "type" : "number"
+          },
+          "credit_limit" : {
+            "type" : "number"
+          },
+          "vat_id" : {
+            "type" : "string"
+          },
+          "tax_number" : {
+            "type" : "string"
+          },
+          "custom_vat_rate" : {
+            "type" : "number"
+          },
+          "billing_interval" : {
+            "$ref" : "#/components/schemas/BillingInterval"
+          },
+          "payment_period" : {
+            "type" : "integer"
+          },
+          "auto_finalize" : {
+            "type" : "boolean"
+          }
+        },
+        "type" : "object"
+      },
+      "getDebits_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6511,7 +6233,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_5" : {
+      "getDebit_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6529,7 +6251,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_6" : {
+      "getDebitMandates_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6553,7 +6275,53 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_2" : {
+      "createDebitMandate_request" : {
+        "properties" : {
+          "customer_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "depositor" : {
+            "type" : "string"
+          },
+          "street" : {
+            "type" : "string"
+          },
+          "street_number" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "type" : "string"
+          },
+          "bank_code" : {
+            "type" : "string"
+          },
+          "bank_name" : {
+            "type" : "string"
+          },
+          "account_number" : {
+            "type" : "string"
+          },
+          "signed_at" : {
+            "type" : "string"
+          },
+          "valid_until" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "account_number", "additional_address", "bank_code", "bank_name", "city", "country_code", "customer_id", "depositor", "postal_code", "street", "street_number" ],
+        "type" : "object"
+      },
+      "createDebitMandate_201_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6571,7 +6339,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_7" : {
+      "getInvoices_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6595,7 +6363,26 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_3" : {
+      "createInvoice_request" : {
+        "properties" : {
+          "customer_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "due_at" : {
+            "type" : "string"
+          },
+          "positions" : {
+            "items" : {
+              "$ref" : "#/components/schemas/InvoiceCreateRequestPosition"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "customer_id", "due_at" ],
+        "type" : "object"
+      },
+      "createInvoice_201_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6613,7 +6400,28 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_8" : {
+      "updateInvoice_request" : {
+        "properties" : {
+          "customer_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "due_at" : {
+            "type" : "string"
+          },
+          "state" : {
+            "$ref" : "#/components/schemas/InvoiceState"
+          },
+          "paid_at" : {
+            "type" : "string"
+          },
+          "cancelled_at" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "getInvoicePositions_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6637,7 +6445,34 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_4" : {
+      "createInvoicePosition_request" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "amount" : {
+            "type" : "string"
+          },
+          "unit" : {
+            "type" : "string"
+          },
+          "price" : {
+            "type" : "number"
+          },
+          "vat_rate" : {
+            "type" : "number"
+          },
+          "group_key" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "amount", "description", "group_key", "name", "price", "unit" ],
+        "type" : "object"
+      },
+      "createInvoicePosition_201_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6655,7 +6490,33 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_9" : {
+      "updateInvoicePosition_request" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "amount" : {
+            "type" : "number"
+          },
+          "unit" : {
+            "type" : "string"
+          },
+          "price" : {
+            "type" : "number"
+          },
+          "vat_rate" : {
+            "type" : "number"
+          },
+          "group_key" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "getOffers_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6679,7 +6540,35 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_5" : {
+      "createOffer_request" : {
+        "properties" : {
+          "customer_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "number" : {
+            "type" : "string"
+          },
+          "net_amount" : {
+            "type" : "number"
+          },
+          "amount" : {
+            "type" : "number"
+          },
+          "state" : {
+            "$ref" : "#/components/schemas/OfferState"
+          },
+          "positions" : {
+            "items" : {
+              "$ref" : "#/components/schemas/OfferCreateRequestPosition"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "customer_id" ],
+        "type" : "object"
+      },
+      "createOffer_201_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6697,7 +6586,25 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_10" : {
+      "updateOffer_request" : {
+        "properties" : {
+          "customer_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "net_amount" : {
+            "type" : "number"
+          },
+          "amount" : {
+            "type" : "number"
+          },
+          "state" : {
+            "$ref" : "#/components/schemas/OfferState"
+          }
+        },
+        "type" : "object"
+      },
+      "getOfferPositions_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6721,7 +6628,41 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_6" : {
+      "createOfferPosition_request" : {
+        "properties" : {
+          "offer_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "interval" : {
+            "$ref" : "#/components/schemas/OfferPositionInterval"
+          },
+          "amount" : {
+            "type" : "number"
+          },
+          "price" : {
+            "type" : "number"
+          },
+          "purchasing_price" : {
+            "type" : "number"
+          },
+          "note" : {
+            "type" : "string"
+          },
+          "vat_rate" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "amount", "description", "offer_id", "price", "title" ],
+        "type" : "object"
+      },
+      "createOfferPosition_201_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6739,7 +6680,36 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_11" : {
+      "updateOfferPosition_request" : {
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "interval" : {
+            "$ref" : "#/components/schemas/OfferPositionInterval"
+          },
+          "amount" : {
+            "type" : "number"
+          },
+          "price" : {
+            "type" : "number"
+          },
+          "purchasing_price" : {
+            "type" : "number"
+          },
+          "note" : {
+            "type" : "string"
+          },
+          "vat_rate" : {
+            "type" : "number"
+          }
+        },
+        "type" : "object"
+      },
+      "getOnlinePayments_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6763,7 +6733,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_12" : {
+      "getOnlinePayment_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6781,7 +6751,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_13" : {
+      "getPaymentReminders_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6805,7 +6775,33 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_7" : {
+      "createPaymentReminder_request" : {
+        "properties" : {
+          "customer_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "invoice_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "stage" : {
+            "type" : "string"
+          },
+          "state" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string"
+          },
+          "due_date" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "customer_id", "invoice_id" ],
+        "type" : "object"
+      },
+      "createPaymentReminder_201_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6823,7 +6819,24 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_14" : {
+      "updatePaymentReminder_request" : {
+        "properties" : {
+          "stage" : {
+            "$ref" : "#/components/schemas/PaymentReminderStage"
+          },
+          "state" : {
+            "$ref" : "#/components/schemas/PaymentReminderState"
+          },
+          "date" : {
+            "type" : "string"
+          },
+          "due_date" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "getServiceContracts_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6847,7 +6860,38 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_8" : {
+      "createServiceContract_request" : {
+        "properties" : {
+          "customer_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "runtime" : {
+            "$ref" : "#/components/schemas/ServiceContractInterval"
+          },
+          "cancellation_period" : {
+            "type" : "integer"
+          },
+          "accounting_period" : {
+            "$ref" : "#/components/schemas/ServiceContractInterval"
+          },
+          "positions" : {
+            "items" : {
+              "$ref" : "#/components/schemas/CreateRequestPosition"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "accounting_period", "cancellation_period", "customer_id", "description", "runtime", "title" ],
+        "type" : "object"
+      },
+      "createServiceContract_201_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6865,7 +6909,31 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_200_15" : {
+      "updateServiceContract_request" : {
+        "properties" : {
+          "customer_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "runtime" : {
+            "$ref" : "#/components/schemas/ServiceContractInterval"
+          },
+          "cancellation_period" : {
+            "type" : "integer"
+          },
+          "accounting_period" : {
+            "$ref" : "#/components/schemas/ServiceContractInterval"
+          }
+        },
+        "type" : "object"
+      },
+      "getServiceContractPositions_200_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6889,7 +6957,7 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
-      "inline_response_201_9" : {
+      "createServiceContractPosition_201_response" : {
         "properties" : {
           "metadata" : {
             "$ref" : "#/components/schemas/ResponseMetadata"
@@ -6910,6 +6978,7 @@
     },
     "securitySchemes" : {
       "AuthToken" : {
+        "description" : "",
         "scheme" : "bearer",
         "type" : "http"
       }
