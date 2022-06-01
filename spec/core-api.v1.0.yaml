@@ -7390,6 +7390,11 @@ components:
                 $ref: '#/components/schemas/ResponsePagination'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
     ServerFirewallRuleSingleResponse:
       description: Single ServerFirewallRule
       content:
