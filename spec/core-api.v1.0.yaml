@@ -4247,6 +4247,8 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       description: Cancels the server action in case it's stuck
+      tags:
+        - server
 components:
   schemas:
     ResponseMessages:
