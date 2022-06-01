@@ -20252,6 +20252,7 @@
             "$ref" : "#/components/schemas/ResponseMessages"
           }
         },
+        "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
       "createServerFirewallRule_request" : {
