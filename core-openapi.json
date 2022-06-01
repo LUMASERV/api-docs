@@ -14678,7 +14678,8 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "cancelServerAction"
+        "summary" : "cancelServerAction",
+        "tags" : [ "server" ]
       }
     }
   },
