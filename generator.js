@@ -43,7 +43,7 @@ Object.keys(spec.paths).forEach(path => {
     })
 })
 
-methods.forEach(m => generatedMethods.push(m.name + '(' + m.params.join(', ') + '){\n        ' + m.code + '\n    }'))
+methods.forEach(m => generatedMethods.push(m.name + '(' + m.params.join(', ') + ') {\n        ' + m.code + '\n    }'))
 
 // Write client.js
 const source = fs.readFileSync('client.source.js', 'utf8')

@@ -15,9 +15,9 @@ export default class LUMASERV{API_NAME}Client {
     }
     setToken(token) {
         this.token = token || null;
-        if(this.token){
+        if(this.token) {
             this.headers['Authorization'] = 'Bearer '+this.token;
-        }else{
+        } else {
             delete this.headers['Authorization'];
         }
     }
