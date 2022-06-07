@@ -15,9 +15,9 @@ export default class LUMASERVBillingClient {
     }
     setToken(token) {
         this.token = token || null;
-        if(this.token){
+        if(this.token) {
             this.headers['Authorization'] = 'Bearer '+this.token;
-        }else{
+        } else {
             delete this.headers['Authorization'];
         }
     }
@@ -36,160 +36,160 @@ export default class LUMASERVBillingClient {
             })
         });
     }
-    getBankTransactions(query = null){
+    getBankTransactions(query = null) {
         return this.request('get', '/bank-transactions', query, null);
     }
-    getBankTransaction(id){
+    getBankTransaction(id) {
         return this.request('get', '/bank-transactions/' + id, null, null);
     }
-    getBillingPositions(query = null){
+    getBillingPositions(query = null) {
         return this.request('get', '/billing-positions', query, null);
     }
-    createBillingPosition(body = null){
+    createBillingPosition(body = null) {
         return this.request('post', '/billing-positions', null, body);
     }
-    deleteBillingPosition(id){
+    deleteBillingPosition(id) {
         return this.request('delete', '/billing-positions/' + id, null, null);
     }
-    getBillingPosition(id){
+    getBillingPosition(id) {
         return this.request('get', '/billing-positions/' + id, null, null);
     }
-    updateBillingPosition(id, body = null){
+    updateBillingPosition(id, body = null) {
         return this.request('put', '/billing-positions/' + id, null, body);
     }
-    getCustomers(query = null){
+    getCustomers(query = null) {
         return this.request('get', '/customers', query, null);
     }
-    createCustomer(body = null){
+    createCustomer(body = null) {
         return this.request('post', '/customers', null, body);
     }
-    getCustomer(id){
+    getCustomer(id) {
         return this.request('get', '/customers/' + id, null, null);
     }
-    updateCustomer(id, body = null){
+    updateCustomer(id, body = null) {
         return this.request('put', '/customers/' + id, null, body);
     }
-    getDebits(query = null){
+    getDebits(query = null) {
         return this.request('get', '/debits', query, null);
     }
-    getDebit(id){
+    getDebit(id) {
         return this.request('get', '/debits/' + id, null, null);
     }
-    getDebitMandates(query = null){
+    getDebitMandates(query = null) {
         return this.request('get', '/debit-mandates', query, null);
     }
-    createDebitMandate(body = null){
+    createDebitMandate(body = null) {
         return this.request('post', '/debit-mandates', null, body);
     }
-    getDebitMandate(id){
+    getDebitMandate(id) {
         return this.request('get', '/debit-mandates/' + id, null, null);
     }
-    getInvoices(query = null){
+    getInvoices(query = null) {
         return this.request('get', '/invoices', query, null);
     }
-    createInvoice(body = null){
+    createInvoice(body = null) {
         return this.request('post', '/invoices', null, body);
     }
-    deleteInvoice(id){
+    deleteInvoice(id) {
         return this.request('delete', '/invoices/' + id, null, null);
     }
-    getInvoice(id){
+    getInvoice(id) {
         return this.request('get', '/invoices/' + id, null, null);
     }
-    updateInvoice(id, body = null){
+    updateInvoice(id, body = null) {
         return this.request('put', '/invoices/' + id, null, body);
     }
-    getInvoiceFile(id){
+    getInvoiceFile(id) {
         return this.request('get', '/invoices/' + id + '/file', null, null);
     }
-    getInvoicePositions(id, query = null){
+    getInvoicePositions(id, query = null) {
         return this.request('get', '/invoices/' + id + '/positions', query, null);
     }
-    createInvoicePosition(id, body = null){
+    createInvoicePosition(id, body = null) {
         return this.request('post', '/invoices/' + id + '/positions', null, body);
     }
-    deleteInvoicePosition(invoice_id, id){
+    deleteInvoicePosition(invoice_id, id) {
         return this.request('delete', '/invoices/' + invoice_id + '/positions/' + id, null, null);
     }
-    getInvoicePosition(invoice_id, id){
+    getInvoicePosition(invoice_id, id) {
         return this.request('get', '/invoices/' + invoice_id + '/positions/' + id, null, null);
     }
-    updateInvoicePosition(invoice_id, id, body = null){
+    updateInvoicePosition(invoice_id, id, body = null) {
         return this.request('put', '/invoices/' + invoice_id + '/positions/' + id, null, body);
     }
-    getOffers(query = null){
+    getOffers(query = null) {
         return this.request('get', '/offers', query, null);
     }
-    createOffer(body = null){
+    createOffer(body = null) {
         return this.request('post', '/offers', null, body);
     }
-    getOffer(id){
+    getOffer(id) {
         return this.request('get', '/offers/' + id, null, null);
     }
-    updateOffer(id, body = null){
+    updateOffer(id, body = null) {
         return this.request('put', '/offers/' + id, null, body);
     }
-    getOfferPositions(query = null){
+    getOfferPositions(query = null) {
         return this.request('get', '/offer-positions', query, null);
     }
-    createOfferPosition(body = null){
+    createOfferPosition(body = null) {
         return this.request('post', '/offer-positions', null, body);
     }
-    deleteOfferPosition(id){
+    deleteOfferPosition(id) {
         return this.request('delete', '/offer-positions/' + id, null, null);
     }
-    getOfferPosition(id){
+    getOfferPosition(id) {
         return this.request('get', '/offer-positions/' + id, null, null);
     }
-    updateOfferPosition(id, body = null){
+    updateOfferPosition(id, body = null) {
         return this.request('put', '/offer-positions/' + id, null, body);
     }
-    getOnlinePayments(query = null){
+    getOnlinePayments(query = null) {
         return this.request('get', '/online-payments', query, null);
     }
-    getOnlinePayment(id){
+    getOnlinePayment(id) {
         return this.request('get', '/online-payments/' + id, null, null);
     }
-    getPaymentReminders(query = null){
+    getPaymentReminders(query = null) {
         return this.request('get', '/payment-reminders', query, null);
     }
-    createPaymentReminder(body = null){
+    createPaymentReminder(body = null) {
         return this.request('post', '/payment-reminders', null, body);
     }
-    getPaymentReminder(id){
+    getPaymentReminder(id) {
         return this.request('get', '/payment-reminders/' + id, null, null);
     }
-    updatePaymentReminder(id, body = null){
+    updatePaymentReminder(id, body = null) {
         return this.request('put', '/payment-reminders/' + id, null, body);
     }
-    getServiceContracts(query = null){
+    getServiceContracts(query = null) {
         return this.request('get', '/service-contracts', query, null);
     }
-    createServiceContract(body = null){
+    createServiceContract(body = null) {
         return this.request('post', '/service-contracts', null, body);
     }
-    deleteServiceContract(id){
+    deleteServiceContract(id) {
         return this.request('delete', '/service-contracts/' + id, null, null);
     }
-    getServiceContract(id){
+    getServiceContract(id) {
         return this.request('get', '/service-contracts/' + id, null, null);
     }
-    updateServiceContract(id, body = null){
+    updateServiceContract(id, body = null) {
         return this.request('put', '/service-contracts/' + id, null, body);
     }
-    getServiceContractPositions(contract_id, query = null){
+    getServiceContractPositions(contract_id, query = null) {
         return this.request('get', '/service-contracts/' + contract_id + '/positions', query, null);
     }
-    createServiceContractPosition(contract_id, body = null){
+    createServiceContractPosition(contract_id, body = null) {
         return this.request('post', '/service-contracts/' + contract_id + '/positions', null, body);
     }
-    deleteServiceContractPosition(contract_id, id){
+    deleteServiceContractPosition(contract_id, id) {
         return this.request('delete', '/service-contracts/' + contract_id + '/positions/' + id, null, null);
     }
-    getServiceContractPosition(contract_id, id){
+    getServiceContractPosition(contract_id, id) {
         return this.request('get', '/service-contracts/' + contract_id + '/positions/' + id, null, null);
     }
-    updateServiceContractPosition(contract_id, id, body = null){
+    updateServiceContractPosition(contract_id, id, body = null) {
         return this.request('put', '/service-contracts/' + contract_id + '/positions/' + id, null, body);
     }
 }

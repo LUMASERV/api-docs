@@ -15,9 +15,9 @@ export default class LUMASERVAuthClient {
     }
     setToken(token) {
         this.token = token || null;
-        if(this.token){
+        if(this.token) {
             this.headers['Authorization'] = 'Bearer '+this.token;
-        }else{
+        } else {
             delete this.headers['Authorization'];
         }
     }
@@ -36,85 +36,85 @@ export default class LUMASERVAuthClient {
             })
         });
     }
-    getProjects(query = null){
+    getProjects(query = null) {
         return this.request('get', '/projects', query, null);
     }
-    createProject(body = null){
+    createProject(body = null) {
         return this.request('post', '/projects', null, body);
     }
-    deleteProject(id){
+    deleteProject(id) {
         return this.request('delete', '/projects/' + id, null, null);
     }
-    getProject(id, query = null){
+    getProject(id, query = null) {
         return this.request('get', '/projects/' + id, query, null);
     }
-    updateProject(id, body = null){
+    updateProject(id, body = null) {
         return this.request('put', '/projects/' + id, null, body);
     }
-    login(body = null){
+    login(body = null) {
         return this.request('post', '/login', null, body);
     }
-    getUsers(query = null){
+    getUsers(query = null) {
         return this.request('get', '/users', query, null);
     }
-    createUser(body = null){
+    createUser(body = null) {
         return this.request('post', '/users', null, body);
     }
-    getUser(id){
+    getUser(id) {
         return this.request('get', '/users/' + id, null, null);
     }
-    updateUser(id, body = null){
+    updateUser(id, body = null) {
         return this.request('put', '/users/' + id, null, body);
     }
-    getProjectMembers(id, query = null){
+    getProjectMembers(id, query = null) {
         return this.request('get', '/projects/' + id + '/members', query, null);
     }
-    addProjectMember(id, body = null){
+    addProjectMember(id, body = null) {
         return this.request('post', '/projects/' + id + '/members', null, body);
     }
-    removeProjectMember(id, user_id){
+    removeProjectMember(id, user_id) {
         return this.request('delete', '/projects/' + id + '/members/' + user_id, null, null);
     }
-    validateSelf(){
+    validateSelf() {
         return this.request('get', '/validate/self', null, null);
     }
-    requestPasswordReset(body = null){
+    requestPasswordReset(body = null) {
         return this.request('post', '/password-reset', null, body);
     }
-    executePasswordReset(body = null){
+    executePasswordReset(body = null) {
         return this.request('put', '/password-reset', null, body);
     }
-    validateToken(token){
+    validateToken(token) {
         return this.request('get', '/validate/' + token, null, null);
     }
-    getUserProjectMemberships(id, query = null){
+    getUserProjectMemberships(id, query = null) {
         return this.request('get', '/users/' + id + '/project_memberships', query, null);
     }
-    getTokens(query = null){
+    getTokens(query = null) {
         return this.request('get', '/tokens', query, null);
     }
-    createToken(body = null){
+    createToken(body = null) {
         return this.request('post', '/tokens', null, body);
     }
-    deleteToken(id){
+    deleteToken(id) {
         return this.request('delete', '/tokens/' + id, null, null);
     }
-    getToken(id){
+    getToken(id) {
         return this.request('get', '/tokens/' + id, null, null);
     }
-    getCountries(query = null){
+    getCountries(query = null) {
         return this.request('get', '/countries', query, null);
     }
-    getCountry(code){
+    getCountry(code) {
         return this.request('get', '/countries/' + code, null, null);
     }
-    searchTransactionLog(body = null){
+    searchTransactionLog(body = null) {
         return this.request('post', '/transaction-log', null, body);
     }
-    searchAuditLog(query = null){
+    searchAuditLog(query = null) {
         return this.request('get', '/audit-log', query, null);
     }
-    insertAuditLogEntry(body = null){
+    insertAuditLogEntry(body = null) {
         return this.request('post', '/audit-log', null, body);
     }
 }
