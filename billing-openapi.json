@@ -272,6 +272,66 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Filter by customer id",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[customer_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filter by invoice id",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[invoice_id]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filter by title",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[title]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filter by group key",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[group_key]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filter by sync key",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[sync_key]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filter by draft state",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[draft]",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -5246,6 +5306,9 @@
           "group_key" : {
             "type" : "string"
           },
+          "sync_key" : {
+            "type" : "string"
+          },
           "available_at" : {
             "type" : "string"
           }
@@ -5937,6 +6000,9 @@
             "type" : "number"
           },
           "group_key" : {
+            "type" : "string"
+          },
+          "sync_key" : {
             "type" : "string"
           },
           "available_at" : {
