@@ -85,6 +85,36 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/Order'
         - $ref: '#/components/parameters/OrderBy'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[customer_id]'
+          description: Filter by customer id
+        - schema:
+            type: string
+          in: query
+          name: 'filter[invoice_id]'
+          description: Filter by invoice id
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Filter by title
+        - schema:
+            type: string
+          in: query
+          name: 'filter[group_key]'
+          description: Filter by group key
+        - schema:
+            type: string
+          in: query
+          name: 'filter[sync_key]'
+          description: Filter by sync key
+        - schema:
+            type: boolean
+          in: query
+          name: 'filter[draft]'
+          description: Filter by draft state
     post:
       summary: createBillingPosition
       operationId: createBillingPosition
@@ -1353,6 +1383,8 @@ components:
           type: boolean
         group_key:
           type: string
+        sync_key:
+          type: string
         available_at:
           type: string
       required:
@@ -2492,6 +2524,8 @@ components:
               vat_rate:
                 type: number
               group_key:
+                type: string
+              sync_key:
                 type: string
               available_at:
                 type: string
