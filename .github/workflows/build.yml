@@ -15,14 +15,17 @@ jobs:
         node-version: 12.x
     - run: npm install @openapitools/openapi-generator-cli -g
     - run: openapi-generator-cli generate -i ./spec/auth-api.v1.0.yaml -g openapi -o build-auth
-    - run: openapi-generator-cli generate -i ./spec/core-api.v1.0.yaml -g openapi -o build-core
+    - run: openapi-generator-cli generate -i ./spec/compute-api.v1.0.yaml -g openapi -o build-compute
+    - run: openapi-generator-cli generate -i ./spec/domain-api.v1.0.yaml -g openapi -o build-domain
     - run: openapi-generator-cli generate -i ./spec/billing-api.v1.0.yaml -g openapi -o build-billing
     - run: mkdir build
     - run: mv build-auth/openapi.json build/auth-openapi.json
-    - run: mv build-core/openapi.json build/core-openapi.json
+    - run: mv build-compute/openapi.json build/compute-openapi.json
+    - run: mv build-domain/openapi.json build/domain-openapi.json
     - run: mv build-billing/openapi.json build/billing-openapi.json
     - run: node generator.js Auth build/auth-openapi.json build/auth-client.js
-    - run: node generator.js Core build/core-openapi.json build/core-client.js
+    - run: node generator.js Compute build/compute-openapi.json build/compute-client.js
+    - run: node generator.js Domain build/domain-openapi.json build/domain-client.js
     - run: node generator.js Billing build/billing-openapi.json build/billing-client.js
     - name: Deploy
       uses: s0/git-publish-subdir-action@develop
