@@ -1,0 +1,1907 @@
+openapi: 3.0.0
+x-stoplight:
+  id: axg3vsgus371z
+info:
+  title: LUMASERV Domain API
+  version: '1.0'
+  contact:
+    name: LUMASERV Support Team
+    email: support@lumaserv.com
+    url: 'https://lumaserv.com'
+  description: LUMASERV Domain API
+servers:
+  - url: 'https://api.lumaserv.com/domain'
+    description: Live
+tags:
+  - name: dns
+    description: DNS Management
+  - name: domains
+    description: Domain Management
+  - name: general
+    description: General Endpoints
+  - name: label
+    description: Label Endpoints
+  - name: pricing
+    description: Pricing Endpoints
+paths:
+  /domain-handles:
+    get:
+      summary: getDomainHandles
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainHandleListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomainHandles
+      description: Returns all domain handles
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createDomainHandle
+      operationId: createDomainHandle
+      responses:
+        '201':
+          $ref: '#/components/responses/DomainHandleSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Creates a domain handle
+      requestBody:
+        $ref: '#/components/requestBodies/DomainHandleCreateRequest'
+  '/domain-handles/{code}':
+    parameters:
+      - schema:
+          type: string
+        description: Handle Code
+        name: code
+        in: path
+        required: true
+    get:
+      summary: getDomainHandle
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainHandleSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomainHandle
+      description: Returns a single domain handle
+    put:
+      summary: updateDomainHandle
+      operationId: updateDomainHandle
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainHandleSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Updates the domain handle
+      requestBody:
+        $ref: '#/components/requestBodies/DomainHandleUpdateRequest'
+    delete:
+      summary: deleteDomainHandle
+      operationId: deleteDomainHandle
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Deletes the domain handle
+  /domains:
+    get:
+      summary: getDomains
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomains
+      description: Returns all domains
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[owner_handle_code]'
+          description: Handle Code of Owner Handle
+        - schema:
+            type: string
+          in: query
+          name: 'filter[admin_handle_code]'
+          description: Handle Code of Admin Handle
+        - schema:
+            type: string
+          in: query
+          name: 'filter[tech_handle_code]'
+          description: Handle Code of Tech Handle
+        - schema:
+            type: string
+          in: query
+          name: 'filter[zone_handle_code]'
+          description: Handle Code of Zone Handle
+        - schema:
+            type: string
+          in: query
+          name: 'filter[tld]'
+          description: TLD
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createDomain
+      operationId: createDomain
+      responses:
+        '201':
+          $ref: '#/components/responses/DomainSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Registers or transfer a domain
+      requestBody:
+        $ref: '#/components/requestBodies/DomainCreateRequest'
+  '/domains/{name}':
+    parameters:
+      - schema:
+          type: string
+          format: hostname
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    get:
+      summary: getDomain
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomain
+      description: Returns a single domain
+    put:
+      summary: updateDomain
+      operationId: updateDomain
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Updates a domain
+      requestBody:
+        $ref: '#/components/requestBodies/DomainUpdateRequest'
+    delete:
+      summary: deleteDomain
+      operationId: deleteDomain
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a domain immediately
+      tags:
+        - domains
+  '/domains/{name}/authinfo':
+    parameters:
+      - schema:
+          type: string
+          format: hostname
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    get:
+      summary: getDomainAuthinfo
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainAuthinfoResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomainAuthinfo
+      description: Generates and returns the authinfo for the domain
+    delete:
+      summary: removeDomainAuthinfo
+      operationId: removeDomainAuthinfo
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Removes the authinfo from the domain
+  '/domains/{name}/restore':
+    parameters:
+      - schema:
+          type: string
+          format: hostname
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    post:
+      summary: restoreDomain
+      operationId: restoreDomain
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Restores a deleted domain
+  '/domains/{name}/schedule-delete':
+    parameters:
+      - schema:
+          type: string
+          format: hostname
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    post:
+      summary: scheduleDomainDelete
+      operationId: scheduleDomainDelete
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Schedules the deletion of the domain
+      requestBody:
+        $ref: '#/components/requestBodies/DomainScheduleDeleteRequest'
+  '/domains/{name}/unschedule-delete':
+    parameters:
+      - schema:
+          type: string
+          format: hostname
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    post:
+      summary: unscheduleDomainDelete
+      operationId: unscheduleDomainDelete
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainSingleResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Unscheduled the pending domain deletion
+  /pricing/domains:
+    get:
+      summary: getDomainPricingList
+      tags:
+        - pricing
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainPriceListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDomainPricingList
+      description: Returns the price list for all top-level-domains
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: project_id
+          description: Project ID
+  /search:
+    get:
+      summary: search
+      tags:
+        - general
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: search
+      description: 'Search for multiple resource types at once. Possible resource types are: domains, domain_handles'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: resources
+          description: Comma seperated list of types
+        - schema:
+            type: string
+          in: query
+          name: search
+          description: Search
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: Limit per Resource Type
+        - in: query
+          description: Project ID
+          name: project_id
+          schema:
+            type: string
+            format: uuid
+        - schema:
+            type: string
+          in: query
+          name: 'labels[:name]'
+          description: Filters for the label with the given name. Only checks the value if it's length is greater than 0.
+        - $ref: '#/components/parameters/WithLabels'
+  '/domains/{name}/check':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    get:
+      summary: checkDomain
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainCheckResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: checkDomain
+      description: Checks if the domain is available for registration
+  /dns/zones:
+    get:
+      summary: getDNSZones
+      tags:
+        - dns
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSZoneListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDNSZones
+      description: Returns all dns zones
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+  '/dns/zones/{name}':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+        description: Zone Name
+    get:
+      summary: getDNSZone
+      tags:
+        - dns
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSZoneSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDNSZone
+      description: Returns a single dns zone
+    put:
+      summary: updateDNSZone
+      operationId: updateDNSZone
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSZoneSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the dns zone
+      tags:
+        - dns
+      requestBody:
+        $ref: '#/components/requestBodies/DNSZoneUpdateRequest'
+  '/dns/zones/{name}/records':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+        description: Zone Name
+    get:
+      summary: getDNSZoneRecords
+      tags:
+        - dns
+      responses:
+        '201':
+          $ref: '#/components/responses/DNSRecordListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getDNSZoneRecords
+      description: Returns all records in the zone
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    put:
+      summary: updateDNSZoneRecords
+      operationId: updateDNSZoneRecords
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSRecordListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - dns
+      description: Updates the records in the zone
+      requestBody:
+        $ref: '#/components/requestBodies/DNSRecordsUpdateRequest'
+    post:
+      summary: createDNSZoneRecord
+      operationId: createDNSZoneRecord
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSRecordSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - dns
+      description: Creates a new record in the zone
+      requestBody:
+        $ref: '#/components/requestBodies/DNSRecordCreateRequest'
+  '/dns/zones/{name}/records/{id}':
+    parameters:
+      - schema:
+          type: string
+        description: DNS Zone Name
+        name: name
+        in: path
+        required: true
+      - schema:
+          type: string
+          format: uuid
+        description: DNS Record ID
+        name: id
+        in: path
+        required: true
+    put:
+      summary: updateDNSRecord
+      operationId: updateDNSRecord
+      responses:
+        '200':
+          $ref: '#/components/responses/DNSRecordSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the dns record
+      tags:
+        - dns
+      requestBody:
+        $ref: '#/components/requestBodies/DNSRecordUpdateRequest'
+    delete:
+      summary: deleteDNSRecord
+      operationId: deleteDNSRecord
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes the dns record
+      tags:
+        - dns
+  '/domains/{name}/verification':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+        description: Domain Name
+    get:
+      summary: checkDomainVerification
+      tags:
+        - domains
+      responses:
+        '200':
+          $ref: '#/components/responses/DomainCheckVerificationResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: checkDomainVerification
+      description: Checks whether the owner contact is unverified
+    post:
+      summary: sendDomainVerification
+      operationId: sendDomainVerification
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - domains
+      description: Resends the verification email in case the owner is unverified
+  /labels:
+    get:
+      summary: getLabels
+      tags:
+        - label
+      responses:
+        '200':
+          $ref: '#/components/responses/LabelListResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getLabels
+      description: Returns all labels that are in use
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[name]'
+          description: Name Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[value]'
+          description: Value Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[object_type]'
+          description: Object Type Filter
+components:
+  schemas:
+    ResponseMessages:
+      title: ResponseMessages
+      type: object
+      x-examples:
+        example:
+          warnings: []
+          errors: []
+          success:
+            - code: 10000
+              message: Action successfully executed.
+      properties:
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        infos:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+      required:
+        - warnings
+        - errors
+        - infos
+    ResponseMessage:
+      title: ResponseMessage
+      type: object
+      properties:
+        key:
+          type: string
+          example: general.serverError
+        message:
+          type: string
+          example: Action successfully executed.
+      required:
+        - key
+        - message
+    ResponseMetadata:
+      title: ResponseMetadata
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        build_commit:
+          type: string
+          example: master-a0b1c2d3
+        build_timestamp:
+          type: string
+          example: '2021-09-01 13:37:00'
+      required:
+        - transaction_id
+        - build_commit
+        - build_timestamp
+    ResponsePagination:
+      title: ResponsePagination
+      type: object
+      properties:
+        page:
+          type: integer
+          example: 1
+        page_size:
+          type: integer
+          example: 25
+        total:
+          type: integer
+          example: 1500
+      required:
+        - page
+        - page_size
+        - total
+    DomainHandle:
+      title: DomainHandle
+      type: object
+      x-tags:
+        - domains
+      properties:
+        code:
+          type: string
+        project_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        type:
+          type: string
+          enum:
+            - PERSON
+            - ORGANISATION
+        gender:
+          type: string
+          enum:
+            - MALE
+            - FEMALE
+        first_name:
+          type: string
+        last_name:
+          type: string
+        organisation:
+          type: string
+        street:
+          type: string
+        street_number:
+          type: string
+        additional_address:
+          type: string
+        postal_code:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        country_code:
+          type: string
+          minLength: 2
+          maxLength: 2
+        phone:
+          type: string
+        fax:
+          type: string
+        email:
+          type: string
+          format: email
+        id_card:
+          type: string
+        id_card_issue_date:
+          type: string
+        id_card_authority:
+          type: string
+        tax_number:
+          type: string
+        vat_number:
+          type: string
+        birth_date:
+          type: string
+        birth_country_code:
+          type: string
+          minLength: 2
+          maxLength: 2
+        birth_place:
+          type: string
+        birth_region:
+          type: string
+        company_registration_number:
+          type: string
+        privacy_protection:
+          type: boolean
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - code
+        - project_id
+        - type
+        - gender
+        - first_name
+        - last_name
+        - street
+        - street_number
+        - postal_code
+        - city
+        - country_code
+        - email
+        - privacy_protection
+        - created_at
+    Domain:
+      title: Domain
+      type: object
+      x-tags:
+        - domains
+      properties:
+        name:
+          type: string
+          format: hostname
+        project_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        owner_handle_code:
+          type: string
+        admin_handle_code:
+          type: string
+        tech_handle_code:
+          type: string
+        zone_handle_code:
+          type: string
+        status:
+          $ref: '#/components/schemas/DomainStatus'
+        created_at:
+          type: string
+        registered_at:
+          type: string
+        expire_at:
+          type: string
+        suspended_at:
+          type: string
+        suspended_until:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - name
+        - project_id
+        - owner_handle_code
+        - admin_handle_code
+        - tech_handle_code
+        - zone_handle_code
+        - status
+        - created_at
+    DomainAuthinfo:
+      title: DomainAuthinfo
+      type: object
+      x-tags:
+        - domains
+      properties:
+        authinfo:
+          type: string
+        valid_until:
+          type: string
+      required:
+        - authinfo
+    DomainRequestNameserver:
+      title: DomainRequestNameserver
+      type: object
+      properties:
+        name:
+          type: string
+          format: hostname
+        addresses:
+          type: array
+          items:
+            type: string
+            format: ipv4
+      required:
+        - name
+      x-tags:
+        - domains
+    DomainPricing:
+      title: DomainPricing
+      type: object
+      properties:
+        tld:
+          type: string
+        create:
+          type: number
+        renew:
+          type: number
+        restore:
+          type: number
+      required:
+        - tld
+      x-tags:
+        - pricing
+    SearchResults:
+      title: SearchResults
+      type: object
+      properties:
+        domains:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domain'
+        domain_handles:
+          type: array
+          items:
+            $ref: '#/components/schemas/DomainHandle'
+    DomainCheckResult:
+      title: DomainCheckResult
+      type: object
+      properties:
+        available:
+          type: boolean
+      required:
+        - available
+      x-tags:
+        - domains
+    DNSZone:
+      title: DNSZone
+      type: object
+      x-tags:
+        - dns
+      properties:
+        project_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+            - DOMAIN
+            - RDNS
+        name:
+          type: string
+        hostmaster:
+          type: string
+          format: email
+        ns1:
+          type: string
+        ns2:
+          type: string
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - project_id
+        - type
+        - name
+        - hostmaster
+        - ns1
+        - ns2
+        - created_at
+    DNSRecord:
+      title: DNSRecord
+      type: object
+      x-tags:
+        - dns
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - A
+            - AAAA
+            - MX
+            - CNAME
+            - SRV
+            - TXT
+            - PTR
+        ttl:
+          type: integer
+        data:
+          type: string
+      required:
+        - id
+        - name
+        - type
+        - data
+    DomainVerificationStatus:
+      title: DomainVerificationStatus
+      type: object
+      x-tags:
+        - domains
+      properties:
+        unverified:
+          type: boolean
+      required:
+        - unverified
+    Label:
+      title: Label
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        object_type:
+          $ref: '#/components/schemas/ObjectType'
+        object_id:
+          type: string
+          format: uuid
+      required:
+        - name
+        - value
+        - object_type
+        - object_id
+    ObjectType:
+      type: string
+      title: ObjectType
+      enum:
+        - DOMAIN
+        - DOMAIN_HANDLE
+        - DNS_ZONE
+    DomainStatus:
+      type: string
+      title: DomainStatus
+      enum:
+        - PENDING
+        - OK
+        - FAILED
+        - RESTRICTED
+        - SUSPENDED
+        - UNKNOWN
+      x-tags:
+        - domain
+  securitySchemes:
+    AuthToken:
+      type: http
+      scheme: bearer
+      description: ''
+  responses:
+    InvalidRequestResponse:
+      description: Response for validation errors
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - messages
+              - metadata
+        application/xml:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - messages
+    EmptyResponse:
+      description: Empty Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - messages
+              - metadata
+    DomainHandleSingleResponse:
+      description: Single Domain Handle
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DomainHandle'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    DomainHandleListResponse:
+      description: Domain Handle List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainHandle'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    DomainSingleResponse:
+      description: Single Domain
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Domain'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    DomainListResponse:
+      description: Domain List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Domain'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    DomainAuthinfoResponse:
+      description: Authinfo
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DomainAuthinfo'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    DomainPriceListResponse:
+      description: DomainPrice List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainPricing'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    SearchResponse:
+      description: Search Results
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SearchResults'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DomainCheckResponse:
+      description: Domain Check
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DomainCheckResult'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DNSZoneListResponse:
+      description: DNSZone List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DNSZone'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DNSZoneSingleResponse:
+      description: Single DNSZone
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DNSZone'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DNSRecordListResponse:
+      description: DNSRecord List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DNSRecord'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DNSRecordSingleResponse:
+      description: Single DNSRecord
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DNSRecord'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    DomainCheckVerificationResponse:
+      description: Domain Verification Status Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/DomainVerificationStatus'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    LabelListResponse:
+      description: Label List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Label'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+  requestBodies:
+    DomainHandleCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              type:
+                type: string
+                enum:
+                  - PERSON
+                  - ORGANISATION
+              gender:
+                type: string
+                enum:
+                  - MALE
+                  - FEMALE
+              first_name:
+                type: string
+              last_name:
+                type: string
+              organisation:
+                type: string
+              street:
+                type: string
+              street_number:
+                type: string
+              additional_address:
+                type: string
+              postal_code:
+                type: string
+              city:
+                type: string
+              region:
+                type: string
+              country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              phone:
+                type: string
+              fax:
+                type: string
+              email:
+                type: string
+                format: email
+              id_card:
+                type: string
+              id_card_issue_date:
+                type: string
+              id_card_authority:
+                type: string
+              tax_number:
+                type: string
+              vat_number:
+                type: string
+              birth_date:
+                type: string
+              birth_country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              birth_place:
+                type: string
+              birth_region:
+                type: string
+              company_registration_number:
+                type: string
+              privacy_protection:
+                type: boolean
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - project_id
+              - type
+              - gender
+              - first_name
+              - last_name
+              - street
+              - street_number
+              - postal_code
+              - city
+              - country_code
+              - email
+    DomainHandleUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              street:
+                type: string
+              street_number:
+                type: string
+              additional_address:
+                type: string
+              postal_code:
+                type: string
+              city:
+                type: string
+              region:
+                type: string
+              country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              phone:
+                type: string
+              fax:
+                type: string
+              email:
+                type: string
+                format: email
+              id_card:
+                type: string
+              id_card_issue_date:
+                type: string
+              id_card_authority:
+                type: string
+              tax_number:
+                type: string
+              vat_number:
+                type: string
+              birth_date:
+                type: string
+              birth_country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              birth_place:
+                type: string
+              birth_region:
+                type: string
+              company_registration_number:
+                type: string
+              privacy_protection:
+                type: boolean
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+    DomainCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                format: hostname
+              authinfo:
+                type: string
+              project_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              duration:
+                type: integer
+                minimum: 1
+                maximum: 10
+                exclusiveMinimum: false
+              owner_handle_code:
+                type: string
+              admin_handle_code:
+                type: string
+              tech_handle_code:
+                type: string
+              zone_handle_code:
+                type: string
+              nameserver:
+                type: array
+                minItems: 2
+                items:
+                  $ref: '#/components/schemas/DomainRequestNameserver'
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - name
+              - project_id
+              - owner_handle_code
+              - admin_handle_code
+              - tech_handle_code
+              - zone_handle_code
+              - nameserver
+    DomainUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              owner_handle_code:
+                type: string
+              admin_handle_code:
+                type: string
+              tech_handle_code:
+                type: string
+              zone_handle_code:
+                type: string
+              nameserver:
+                type: array
+                minItems: 2
+                items:
+                  $ref: '#/components/schemas/DomainRequestNameserver'
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+    DomainScheduleDeleteRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              date:
+                type: string
+            required:
+              - date
+    DNSZoneUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              hostmaster:
+                type: string
+                format: email
+              ns1:
+                type: string
+              ns2:
+                type: string
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+    DNSRecordCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+                enum:
+                  - A
+                  - AAAA
+                  - CNAME
+                  - SRV
+                  - MX
+                  - TXT
+                  - PTR
+              ttl:
+                type: integer
+                minimum: 300
+                maximum: 86400
+              data:
+                type: string
+            required:
+              - name
+              - type
+              - data
+    DNSRecordsUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                    - A
+                    - AAAA
+                    - CNAME
+                    - SRV
+                    - MX
+                    - TXT
+                    - PTR
+                ttl:
+                  type: integer
+                data:
+                  type: string
+              required:
+                - name
+                - type
+                - data
+    DNSRecordUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+                enum:
+                  - A
+                  - AAAA
+                  - CNAME
+                  - SRV
+                  - MX
+                  - TXT
+                  - PTR
+              ttl:
+                type: integer
+                maximum: 86400
+                minimum: 300
+              data:
+                type: string
+            required:
+              - name
+              - type
+              - data
+  parameters:
+    ProjectIDFilter:
+      name: 'filter[project_id]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: uuid
+      description: Project ID Filter
+    PaginationPage:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+      description: Page
+    PaginationPageSize:
+      name: page_size
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+      description: Page Size
+    Search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Search
+    LabelsFilter:
+      name: 'filter[labels][:name]'
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filters for the label with the given name. Only checks the value if it's length is greater than 0.
+    WithLabels:
+      name: with_labels
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: 'If length 0, true or 1 is given, the labels will be added to the response objects.'
+    OrderBy:
+      name: order_by
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Field or array of fields to order by
+    Order:
+      name: order
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - ASC
+          - DESC
+      description: 'Order of the results, ascending by default'
+security:
+  - AuthToken: []

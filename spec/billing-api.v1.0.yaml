@@ -8,7 +8,7 @@ info:
     url: 'https://lumaserv.com'
   description: LUMASERV Billing API
 servers:
-  - url: 'https://billing.lumaserv.com'
+  - url: 'https://api.lumaserv.com/billing'
     description: Live
 paths:
   /bank-transactions:

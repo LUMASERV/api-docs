@@ -1,0 +1,6434 @@
+openapi: 3.0.0
+x-stoplight:
+  id: 257a131dee538
+info:
+  title: LUMASERV Compute API
+  version: '1.0'
+  contact:
+    name: LUMASERV Support Team
+    email: support@lumaserv.com
+    url: 'https://lumaserv.com'
+  description: LUMASERV Compute API
+servers:
+  - url: 'https://api.lumaserv.com/compute'
+    description: Live
+tags:
+  - name: address
+    description: IP Address and Subnet Management
+  - name: general
+    description: General Endpoints
+  - name: label
+    description: Label Endpoints
+  - name: plesk-licenses
+    description: Plesk License Management
+  - name: pricing
+    description: Pricing Endpoints
+  - name: s3-storage
+    description: S3 Object Storage Management
+  - name: server
+    description: Compute Service Management
+  - name: sshkeys
+    description: SSH-Key Management
+paths:
+  /storage/s3/buckets:
+    get:
+      summary: getS3Buckets
+      tags:
+        - s3-storage
+      responses:
+        '200':
+          $ref: '#/components/responses/S3BucketListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getS3Buckets
+      description: Returns all s3 buckets
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createS3Bucket
+      operationId: createS3Bucket
+      responses:
+        '201':
+          $ref: '#/components/responses/S3BucketSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new s3 bucket
+      tags:
+        - s3-storage
+      requestBody:
+        $ref: '#/components/requestBodies/S3BucketCreateRequest'
+  '/storage/s3/buckets/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: S3 Bucket ID
+    get:
+      summary: getS3Bucket
+      tags:
+        - s3-storage
+      responses:
+        '200':
+          $ref: '#/components/responses/S3BucketSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getS3Bucket
+      description: Returns a single s3 bucket
+    delete:
+      summary: deleteS3Bucket
+      operationId: deleteS3Bucket
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - s3-storage
+      description: Deletes a s3 bucket
+  /storage/s3/access-keys:
+    get:
+      summary: getS3AccessKeys
+      tags:
+        - s3-storage
+      responses:
+        '200':
+          $ref: '#/components/responses/S3AccessKeyListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getS3AccessKeys
+      description: Returns all access keys
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createS3AccessKey
+      operationId: createS3AccessKey
+      responses:
+        '201':
+          $ref: '#/components/responses/S3AccessKeySingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - s3-storage
+      description: Creates a s3 access key
+      requestBody:
+        $ref: '#/components/requestBodies/S3AccessKeyCreateRequest'
+  '/storage/s3/access-keys/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: S3 Access Key ID
+    get:
+      summary: getS3AccessKey
+      tags:
+        - s3-storage
+      responses:
+        '200':
+          $ref: '#/components/responses/S3AccessKeySingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getS3AccessKey
+      description: Returns a single s3 access key
+    delete:
+      summary: deleteS3AccessKey
+      operationId: deleteS3AccessKey
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - s3-storage
+      description: Deletes a s3 access key
+  /licenses/plesk:
+    get:
+      summary: getPleskLicenses
+      tags:
+        - plesk-licenses
+      operationId: getPleskLicenses
+      description: Returns all plesk licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[type_id]'
+          description: Plesk License Type ID
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createPleskLicense
+      operationId: createPleskLicense
+      responses:
+        '201':
+          $ref: '#/components/responses/PleskLicenseSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - plesk-licenses
+      description: Orders a new plesk license
+      requestBody:
+        $ref: '#/components/requestBodies/PleskLicenseCreateRequest'
+  '/licenses/plesk/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Plesk License ID
+    get:
+      summary: getPleskLicense
+      tags:
+        - plesk-licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPleskLicense
+      description: Returns a single plesk license
+    put:
+      summary: updatePleskLicense
+      operationId: updatePleskLicense
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - plesk-licenses
+      description: Updates a plesk license
+      requestBody:
+        $ref: '#/components/requestBodies/PleskLicenseUpdateRequest'
+  /licenses/plesk-types:
+    get:
+      summary: getPleskLicenseTypes
+      tags:
+        - plesk-licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseTypeListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPleskLicenseTypes
+      description: Return all plesk license types
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+  '/licenses/plesk-types/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Plesk License Type ID
+    get:
+      summary: getPleskLicenseType
+      tags:
+        - plesk-licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseTypeSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPleskLicenseType
+      description: Returns a single plesk license type
+  '/storage/s3/access-keys/{access_key_id}/grants':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: access_key_id
+        in: path
+        required: true
+        description: S3 Access Key ID
+    get:
+      summary: getS3AccessKeyGrants
+      tags:
+        - s3-storage
+      responses:
+        '200':
+          $ref: '#/components/responses/S3AccessGrantListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getS3AccessKeyGrants
+      description: Returns all grants for the s3 access key
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createS3AccessKeyGrant
+      operationId: createS3AccessKeyGrant
+      responses:
+        '201':
+          $ref: '#/components/responses/S3AccessGrantSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - s3-storage
+      description: Creates a new grant for the s3 access key
+      requestBody:
+        $ref: '#/components/requestBodies/S3AccessGrantCreateRequest'
+  '/storage/s3/access-keys/{access_key_id}/grants/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: access_key_id
+        in: path
+        required: true
+        description: S3 Access Key ID
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: S3 Access Grant ID
+    delete:
+      summary: deleteS3AccessKeyGrant
+      operationId: deleteS3AccessKeyGrant
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a grant of a s3 access key
+      tags:
+        - s3-storage
+  /ssh-keys:
+    get:
+      summary: getSSHKeys
+      responses:
+        '200':
+          $ref: '#/components/responses/SSHKeyListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSHKeys
+      description: Returns all ssh keys
+      tags:
+        - sshkeys
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createSSHKey
+      operationId: createSSHKey
+      responses:
+        '201':
+          $ref: '#/components/responses/SSHKeySingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - sshkeys
+      description: Creates a new ssh key
+      requestBody:
+        $ref: '#/components/requestBodies/SSHKeyCreateRequest'
+  '/ssh-keys/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: SSH Key ID
+    get:
+      summary: getSSHKey
+      tags:
+        - sshkeys
+      responses:
+        '200':
+          $ref: '#/components/responses/SSHKeySingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSHKey
+      description: Returns a single ssh key
+    delete:
+      summary: deleteSSHKey
+      operationId: deleteSSHKey
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - sshkeys
+      description: Deletes a ssh key
+  /servers:
+    get:
+      summary: getServers
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServers
+      description: Returns all servers
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[name]'
+          description: Name Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[state]'
+          description: State Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[variant_id]'
+          description: Variant ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[template_id]'
+          description: Template ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[host_id]'
+          description: Host ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServer
+      operationId: createServer
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Creates a new server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerCreateRequest'
+  '/servers/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    get:
+      summary: getServer
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServer
+      description: Returns a single server
+    delete:
+      summary: deleteServer
+      operationId: deleteServer
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Deletes the server
+    put:
+      summary: updateServer
+      operationId: updateServer
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the server
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerUpdateRequest'
+  /server-volumes:
+    get:
+      summary: getServerVolumes
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVolumes
+      description: Returns all server volumes
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[server_id]'
+          description: Server ID Filter
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[class_id]'
+          description: Storage Class ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerVolume
+      operationId: createServerVolume
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerVolumeSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new volume
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVolumeCreateRequest'
+  '/server-volumes/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server Volume ID
+    get:
+      summary: getServerVolume
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVolume
+      description: Returns a single volume
+    delete:
+      summary: deleteServerVolume
+      operationId: deleteServerVolume
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Deletes the volume
+    put:
+      summary: updateServerVolume
+      operationId: updateServerVolume
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the server volume
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVolumeUpdateRequest'
+  /server-templates:
+    get:
+      summary: getServerTemplates
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerTemplateListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerTemplates
+      description: Returns all server templates
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: zone_id
+          description: Zone ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerTemplate
+      operationId: createServerTemplate
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerTemplateSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new server template
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerTemplateCreateRequest'
+  '/server-templates/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server Template ID
+    get:
+      summary: getServerTemplate
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerTemplateSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerTemplate
+      description: Returns a single server template
+  /server-medias:
+    get:
+      summary: getServerMedias
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerMediaListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerMedias
+      description: Returns all server media's
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[zone_id]'
+          description: Zone ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    parameters: []
+    post:
+      summary: createServerMedia
+      operationId: createServerMedia
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerMediaSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new server media
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerMediaCreateRequest'
+  '/server-medias/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server Media ID
+    get:
+      summary: getServerMedia
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerMediaSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerMedia
+      description: Returns a single server media
+    delete:
+      summary: deleteServerMedia
+      operationId: deleteServerMedia
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes the server media
+      tags:
+        - server
+  /search:
+    get:
+      summary: search
+      tags:
+        - general
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: search
+      description: 'Search for multiple resource types at once'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: resources
+          description: Comma seperated list of types
+        - schema:
+            type: string
+          in: query
+          name: search
+          description: Search
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: Limit per Resource Type
+        - in: query
+          description: Project ID
+          name: project_id
+          schema:
+            type: string
+            format: uuid
+        - schema:
+            type: string
+          in: query
+          name: 'labels[:name]'
+          description: Filters for the label with the given name. Only checks the value if it's length is greater than 0.
+        - $ref: '#/components/parameters/WithLabels'
+  /availability-zones:
+    get:
+      summary: getAvailabilityZones
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/AvailabilityZoneListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getAvailabilityZones
+      description: Returns all availability zones
+      parameters:
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[country_code]'
+          description: Country Code Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[city]'
+          description: City Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createAvailabilityZone
+      operationId: createAvailabilityZone
+      responses:
+        '201':
+          $ref: '#/components/responses/AvailabilityZoneSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new availability zone
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/AvailabilityZoneCreateRequest'
+  '/availability-zones/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Availability Zone ID
+    get:
+      summary: getAvailabilityZone
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/AvailabilityZoneSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getAvailabilityZone
+      description: Returns a single availability zone
+    put:
+      summary: updateAvailabilityZone
+      operationId: updateAvailabilityZone
+      responses:
+        '200':
+          $ref: '#/components/responses/AvailabilityZoneSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the availability zone
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/AvailabilityZoneUpdateRequest'
+  /server-variants:
+    get:
+      summary: getServerVariants
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVariants
+      description: Returns all server variants
+      parameters:
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: project_id
+          description: Project ID Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: zone_id
+          description: Zone ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[cores]'
+          description: Core Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[memory]'
+          description: Memory Size Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[disk]'
+          description: Disk Size Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[storage_class_id]'
+          description: Storage Class ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerVariant
+      operationId: createServerVariant
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerVariantSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new server variant
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVariantCreateRequest'
+  '/server-variants/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server Variant ID
+    get:
+      summary: getServerVariant
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVariant
+      description: Returns a single server variant
+    delete:
+      summary: deleteServerVariant
+      operationId: deleteServerVariant
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes the server variant
+      tags:
+        - server
+  /server-storage-classes:
+    get:
+      summary: getServerStorageClasses
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerStorageClassListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerStorageClasses
+      description: Returns all storage classes
+      parameters:
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[replication]'
+          description: Replication Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[ssd]'
+          description: SSD Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    parameters: []
+    post:
+      summary: createServerStorageClass
+      operationId: createServerStorageClass
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerStorageClassSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new storage class
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerStorageClassCreateRequest'
+  '/server-storage-classes/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server Volume Class ID
+    get:
+      summary: getServerStorageClass
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerStorageClassSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerStorageClass
+      description: Returns a single storage class
+  /networks:
+    get:
+      summary: getNetworks
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/NetworkListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getNetworks
+      description: Returns all networks
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[zone_id]'
+          description: Zone ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[type]'
+          description: Type Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createNetwork
+      operationId: createNetwork
+      responses:
+        '201':
+          $ref: '#/components/responses/NetworkSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new network
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/NetworkCreateRequest'
+  '/networks/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Network ID
+    get:
+      summary: getNetwork
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/NetworkSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getNetwork
+      description: Returns a single network
+  '/servers/{id}/networks':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    get:
+      summary: getServerNetworks
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerNetworkListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerNetworks
+      description: Returns all server networks
+      parameters:
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPage
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/PaginationPageSize
+        - $ref: ./auth-api.v1.0.yaml#/components/parameters/Search
+        - schema:
+            type: string
+          in: query
+          name: 'filter[default]'
+          description: Default Interface Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[server_id]'
+          description: Server ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[network_id]'
+          description: Network ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[mac_address]'
+          description: MAC Address Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[address_v4_id]'
+          description: Address V4 ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[address_v6_id]'
+          description: Address V6 ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerNetwork
+      operationId: createServerNetwork
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerNetworkSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Adds a new network adapter to the server
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerNetworkCreateRequest'
+  '/servers/{id}/networks/{network_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+      - schema:
+          type: string
+          format: uuid
+        name: network_id
+        in: path
+        required: true
+        description: Server Network ID
+    delete:
+      summary: deleteServerNetwork
+      operationId: deleteServerNetwork
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Removes the network adapter
+      tags:
+        - server
+  /subnets:
+    get:
+      summary: getSubnets
+      tags:
+        - address
+      responses:
+        '200':
+          $ref: '#/components/responses/SubnetListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSubnets
+      description: Returns all subnets
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/LabelsFilter'
+        - $ref: '#/components/parameters/WithLabels'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[network_id]'
+          description: Network ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createSubnet
+      operationId: createSubnet
+      responses:
+        '201':
+          $ref: '#/components/responses/SubnetSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new subnet
+      tags:
+        - address
+      requestBody:
+        $ref: '#/components/requestBodies/SubnetCreateRequest'
+  '/subnets/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Subnet ID
+    get:
+      summary: getSubnet
+      tags:
+        - address
+      responses:
+        '200':
+          $ref: '#/components/responses/SubnetSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSubnet
+      description: Returns a single subnet
+    delete:
+      summary: deleteSubnet
+      operationId: deleteSubnet
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - address
+      description: Deletes a subnet
+  /server-hosts:
+    get:
+      summary: getServerHosts
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerHostListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          description: Forbidden
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerHosts
+      description: Returns all server hosts
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerHost
+      operationId: createServerHost
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerHostSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new server host
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerHostCreateRequest'
+  '/server-hosts/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerHost ID
+    get:
+      summary: getServerHost
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerHostSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerHost
+      description: Returns a single host
+  /server-storages:
+    get:
+      summary: getServerStorages
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerStorageListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          description: Forbidden
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerStorages
+      description: Returns all server storages
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[zone_id]'
+          description: Zone ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[external_id]'
+          description: External ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerStorage
+      operationId: createServerStorage
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerStorageSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new server storage
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerStorageCreateRequest'
+  '/server-storages/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerStorage ID
+    get:
+      summary: getServerStorage
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerStorageSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerStorage
+      description: Returns a single server storage
+  '/servers/{id}/start':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        description: Server ID
+        required: true
+    post:
+      summary: startServer
+      operationId: startServer
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Starts the server
+  '/servers/{id}/shutdown':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    post:
+      summary: shutdownServer
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: shutdownServer
+      description: Shuts the server down using a soft shutdown (ACPI Signal)
+      parameters:
+        - schema:
+            type: boolean
+          in: query
+          name: force
+          description: Optionally force the poweroff when the server doesn't respond to the signal in a reasonable amount of time
+  '/servers/{id}/stop':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    post:
+      summary: stopServer
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: stopServer
+      description: Stops the server forcefully (see shutdownServer for soft shutdown)
+  '/servers/{id}/recreate':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    post:
+      summary: recreateServer
+      operationId: recreateServer
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Recreates the server. This will delete all data on the root disk and the server will be freshly reinstalled.
+      tags:
+        - server
+  '/servers/{id}/vnc':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    get:
+      summary: getServerVNC
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVNCResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVNC
+      description: Returns vnc websocket credentials
+  '/servers/{id}/actions':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    get:
+      summary: getServerActions
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerActionListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerActions
+      description: Returns all actions for the server
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+  '/servers/{id}/actions/{action_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+      - schema:
+          type: string
+          format: uuid
+        name: action_id
+        in: path
+        required: true
+        description: ServerAction ID
+    get:
+      summary: getServerAction
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerActionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerAction
+      description: Returns a single server action
+  '/server-volumes/{id}/attach':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Volume ID
+    post:
+      summary: attachServerVolume
+      operationId: attachServerVolume
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Attaches the volume to the provided server
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVolumeAttachRequest'
+  '/server-volumes/{id}/detach':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Volume ID
+    post:
+      summary: detachServerVolume
+      operationId: detachServerVolume
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeSingleResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Detaches the volume from the current server
+      tags:
+        - server
+  '/servers/{id}/status':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    get:
+      summary: getServerStatus
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerStatusResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerStatus
+      description: Fetches the current server status
+  /addresses:
+    get:
+      summary: getAddresses
+      tags:
+        - address
+      responses:
+        '200':
+          $ref: '#/components/responses/AddressListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getAddresses
+      description: Returns all addresses
+      parameters:
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+  '/addresses/{id}':
+    parameters:
+      - schema:
+          type: string
+        description: Address ID
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getAddress
+      tags:
+        - address
+      responses:
+        '200':
+          $ref: '#/components/responses/AddressSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getAddress
+      description: Returns a single address
+  '/servers/{id}/resize':
+    parameters:
+      - schema:
+          type: string
+        description: Server ID
+        name: id
+        in: path
+        required: true
+    post:
+      summary: resizeServer
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '409':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: resizeServer
+      description: Resizes the server to the specified variant
+      requestBody:
+        $ref: '#/components/requestBodies/ServerResizeRequest'
+  /labels:
+    get:
+      summary: getLabels
+      tags:
+        - label
+      responses:
+        '200':
+          $ref: '#/components/responses/LabelListResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getLabels
+      description: Returns all labels that are in use
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[name]'
+          description: Name Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[value]'
+          description: Value Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[object_type]'
+          description: Object Type Filter
+  '/servers/{id}/graph':
+    parameters:
+      - schema:
+          type: string
+        description: Server ID
+        name: id
+        in: path
+        required: true
+    get:
+      summary: getServerGraph
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerGraphResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerGraph
+      description: Returns graph data for the server
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - week
+              - month
+              - year
+          in: query
+          name: timeframe
+          description: Data Timeframe
+  /server-backups:
+    get:
+      summary: getServerBackups
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerBackupListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerBackups
+      description: Returns all server backups
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[server_id]'
+          description: Server ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerBackup
+      operationId: createServerBackup
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerBackupSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '409':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new backup of a server
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerBackupCreateRequest'
+  '/server-backups/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerBackup ID
+    get:
+      summary: getServerBackup
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerBackupSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerBackup
+      description: Returns a single server backup
+    delete:
+      summary: deleteServerBackup
+      operationId: deleteServerBackup
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a server backup
+      tags:
+        - server
+    put:
+      summary: updateServerBackup
+      operationId: updateServerBackup
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerBackupSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the Server Backup
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerBackupUpdateRequest'
+  '/servers/{id}/restore':
+    parameters:
+      - schema:
+          type: string
+        description: Server ID
+        name: id
+        in: path
+        required: true
+    post:
+      summary: restoreServer
+      operationId: restoreServer
+      responses:
+        '200':
+          $ref: '#/components/responses/ScheduledServerActionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '409':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Restores the server from a backup
+      requestBody:
+        $ref: '#/components/requestBodies/ServerRestoreRequest'
+  '/servers/{id}/scheduled-actions':
+    get:
+      summary: getScheduledServerActions
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ScheduledServerActionListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getScheduledServerActions
+      description: Returns all scheduled server actions
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: ./billing-api.v1.0.yaml#/components/parameters/Search
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createScheduledServerAction
+      operationId: createScheduledServerAction
+      responses:
+        '201':
+          $ref: '#/components/responses/ScheduledServerActionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Schedules a new scheduled server action
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ScheduledServerActionCreateRequest'
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+  '/servers/{id}/scheduled-actions/{action_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+      - schema:
+          type: string
+          format: uuid
+        name: action_id
+        in: path
+        required: true
+        description: ScheduledServerAction ID
+    get:
+      summary: getScheduledServerAction
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ScheduledServerActionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getScheduledServerAction
+      description: Returns a single scheduled server action
+    delete:
+      summary: deleteScheduledServerAction
+      operationId: deleteScheduledServerAction
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Deletes a scheduled server action
+  /server-firewalls:
+    get:
+      summary: getServerFirewalls
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewalls
+      description: Returns all server firewalls
+      parameters:
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerFirewall
+      operationId: createServerFirewall
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerFirewallSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new server firewall
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerFirewallCreateRequest'
+  '/server-firewalls/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerFirewall ID
+    get:
+      summary: getServerFirewall
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewall
+      description: Returns a single firewall
+    delete:
+      summary: deleteServerFirewall
+      operationId: deleteServerFirewall
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Deletes a server firewall
+  '/server-firewalls/{id}/rules':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerFirewall ID
+    get:
+      summary: getServerFirewallRules
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallRuleListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewallRules
+      description: Returns all rules of the firewall
+      parameters:
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[type]'
+          description: Type Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[protocol]'
+          description: Protocol Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[applied]'
+          description: Applied Rule Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerFirewallRule
+      operationId: createServerFirewallRule
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerFirewallRuleSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new rule in the server firewall
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerFirewallRuleCreateRequest'
+  '/server-firewalls/{id}/rules/{rule_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerFirewall ID
+      - schema:
+          type: string
+          format: uuid
+        name: rule_id
+        in: path
+        required: true
+        description: ServerFirewallRule ID
+    get:
+      summary: getServerFirewallRule
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallRuleSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewallRule
+      description: Returns a single firewall rule
+    delete:
+      summary: deleteServerFirewallRule
+      operationId: deleteServerFirewallRule
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a server firewall rule
+      tags:
+        - server
+  '/server-firewalls/{id}/members':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerFirewall ID
+    get:
+      summary: getServerFirewallMembers
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallMemberListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewallMembers
+      description: Returns all members of the firewall
+      parameters:
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[type]'
+          description: Type Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[server_id]'
+          description: Server ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[label_name]'
+          description: Label Name Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[label_value]'
+          description: Label Value Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[applied]'
+          description: Applied Member Filter
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerFirewallMember
+      operationId: createServerFirewallMember
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerFirewallMemberSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Adds a new member to the server firewall
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerFirewallMemberCreateRequest'
+  '/server-firewalls/{id}/members/{member_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerFirewall ID
+      - schema:
+          type: string
+          format: uuid
+        name: member_id
+        in: path
+        required: true
+        description: ServerFirewallMember ID
+    get:
+      summary: getServerFirewallMember
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallMemberSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerFirewallMember
+      description: Returns a single firewall member
+    delete:
+      summary: deleteServerFirewallMember
+      operationId: deleteServerFirewallMember
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Removes a member from the server firewall
+  /server-price-ranges:
+    get:
+      summary: getServerPriceRanges
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerPriceRanges
+      description: Returns all price ranges for servers
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[title]'
+          description: Title Filter
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerPriceRange
+      operationId: createServerPriceRange
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new price range for servers
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerPriceRangeCreateRequest'
+  '/server-price-ranges/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerPriceRange ID
+    get:
+      summary: getServerPriceRange
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerPriceRange
+      description: Returns a single price range for servers
+  '/server-price-ranges/{id}/variant-prices':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerPriceRange ID
+    get:
+      summary: getServerVariantPrices
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantPriceListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVariantPrices
+      description: Returns all variant prices for a range
+      parameters:
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+    post:
+      summary: createServerVariantPrice
+      operationId: createServerVariantPrice
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantPriceSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new variant price for the range
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVariantPriceCreateRequest'
+      tags:
+        - server
+  '/server-price-ranges/{id}/variant-prices/{variant_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: ServerPriceRange ID
+      - schema:
+          type: string
+          format: uuid
+        name: variant_id
+        in: path
+        required: true
+        description: ServerVariant ID
+    get:
+      summary: getServerVariantPrice
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantPriceSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVariantPrice
+      description: Returns the pricing for a specific variant in the range
+    put:
+      summary: updateServerVariantPrice
+      operationId: updateServerVariantPrice
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantPriceSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Updates the price for a specific variant in the range
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVariantPriceUpdateRequest'
+    delete:
+      summary: deleteServerVariantPrice
+      operationId: deleteServerVariantPrice
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Delete server variant price
+      tags:
+        - server
+  /server-price-range-assignments:
+    get:
+      summary: getServerPriceRangeAssignments
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeAssignmentListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerPriceRangeAssignments
+      description: Returns all price range assignments for servers
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[range_id]'
+          description: Range ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[user_id]'
+          description: User ID Filter
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+    post:
+      summary: createServerPriceRangeAssignment
+      operationId: createServerPriceRangeAssignment
+      responses:
+        '201':
+          $ref: '#/components/responses/ServerPriceRangeAssignmentSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new price range assignment for servers
+      requestBody:
+        $ref: '#/components/requestBodies/ServerPriceRangeAssignmentCreateRequest'
+      tags:
+        - server
+  '/server-price-range-assignments/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ServerPriceRangeAssignment ID
+    get:
+      summary: getServerPriceRangeAssignment
+      tags:
+        - server
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeAssignmentSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerPriceRangeAssignment
+      description: Returns a single server price range assignment by id
+    delete:
+      summary: deleteServerPriceRangeAssignment
+      operationId: deleteServerPriceRangeAssignment
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a server price range assignment
+      tags:
+        - server
+    put:
+      summary: updateServerPriceRangeAssignment
+      operationId: updateServerPriceRangeAssignment
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerPriceRangeAssignmentSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the range of an existing server price range assignment
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerPriceRangeAssignmentUpdateRequest'
+  '/servers/{id}/restart':
+    parameters:
+      - schema:
+          type: string
+        description: Server ID
+        name: id
+        in: path
+        required: true
+    post:
+      summary: restartServer
+      operationId: restartServer
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerActionSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '409':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Restarts the server
+      tags:
+        - server
+  '/servers/{id}/actions/{action_id}/cancel':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+      - schema:
+          type: string
+          format: uuid
+        name: action_id
+        in: path
+        required: true
+        description: ServerAction ID
+    post:
+      summary: cancelServerAction
+      operationId: cancelServerAction
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerActionSingleResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Cancels the server action in case it's stuck
+      tags:
+        - server
+components:
+  schemas:
+    ResponseMessages:
+      title: ResponseMessages
+      type: object
+      x-examples:
+        example:
+          warnings: []
+          errors: []
+          success:
+            - code: 10000
+              message: Action successfully executed.
+      properties:
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        infos:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+      required:
+        - warnings
+        - errors
+        - infos
+    ResponseMessage:
+      title: ResponseMessage
+      type: object
+      properties:
+        key:
+          type: string
+          example: general.serverError
+        message:
+          type: string
+          example: Action successfully executed.
+      required:
+        - key
+        - message
+    ResponseMetadata:
+      title: ResponseMetadata
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        build_commit:
+          type: string
+          example: master-a0b1c2d3
+        build_timestamp:
+          type: string
+          example: '2021-09-01 13:37:00'
+      required:
+        - transaction_id
+        - build_commit
+        - build_timestamp
+    ResponsePagination:
+      title: ResponsePagination
+      type: object
+      properties:
+        page:
+          type: integer
+          example: 1
+        page_size:
+          type: integer
+          example: 25
+        total:
+          type: integer
+          example: 1500
+      required:
+        - page
+        - page_size
+        - total
+    PleskLicense:
+      title: PleskLicense
+      type: object
+      description: A Plesk License
+      x-tags:
+        - plesk-licenses
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        license:
+          type: string
+        key:
+          type: string
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - id
+        - project_id
+        - license
+        - key
+        - created_at
+    PleskLicenseType:
+      title: PleskLicenseType
+      type: object
+      description: A Plesk License Type
+      x-tags:
+        - plesk-licenses
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        title:
+          type: string
+          example: Web Admin
+      required:
+        - id
+        - title
+    S3Bucket:
+      title: S3Bucket
+      type: object
+      x-tags:
+        - s3-storage
+      description: A S3 Bucket
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        project_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        title:
+          type: string
+          example: Example Bucket
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - id
+        - project_id
+        - title
+    S3AccessKey:
+      title: S3AccessKey
+      type: object
+      x-tags:
+        - s3-storage
+      description: A S3 Access Key
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        project_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        title:
+          type: string
+          example: Example Access Key
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - id
+        - project_id
+        - title
+    S3AccessGrant:
+      title: S3AccessGrant
+      type: object
+      description: ''
+      x-tags:
+        - s3-storage
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        bucket_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        path:
+          type: string
+          example: /videos
+        role:
+          type: string
+          enum:
+            - READ_ONLY
+            - READ_WRITE
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - id
+        - role
+    Server:
+      title: Server
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        project_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        name:
+          type: string
+        variant_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        template_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        media_id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        state:
+          $ref: '#/components/schemas/ServerState'
+        zone_id:
+          type: string
+          format: uuid
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+      required:
+        - id
+        - project_id
+        - name
+        - variant_id
+        - template_id
+        - created_at
+        - state
+        - zone_id
+    SSHKey:
+      title: SSHKey
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        project_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        title:
+          type: string
+        public_key:
+          type: string
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - id
+        - project_id
+        - title
+        - public_key
+        - created_at
+    ServerTemplate:
+      title: ServerTemplate
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        title:
+          type: string
+          example: Debian 10
+      required:
+        - id
+        - title
+    ServerMedia:
+      title: ServerMedia
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        zone_id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        title:
+          type: string
+          example: GRML 2020 Full
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        external_id:
+          type: string
+      required:
+        - id
+        - project_id
+        - title
+        - created_at
+    ServerVolume:
+      title: ServerVolume
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        project_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        title:
+          type: string
+          example: Example Volume
+        server_id:
+          type: string
+          format: uuid
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        size:
+          type: integer
+        class_id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        root:
+          type: boolean
+        storage_id:
+          type: string
+          format: uuid
+        zone_id:
+          type: string
+          format: uuid
+      required:
+        - id
+        - project_id
+        - title
+        - size
+        - class_id
+        - created_at
+        - zone_id
+    SearchResults:
+      title: SearchResults
+      type: object
+      properties:
+        ssh_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/SSHKey'
+        servers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Server'
+        server_medias:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerMedia'
+        server_volumes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerVolume'
+        plesk_licenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PleskLicense'
+        s3_buckets:
+          type: array
+          items:
+            $ref: '#/components/schemas/S3Bucket'
+        s3_access_keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/S3AccessKey'
+    AvailabilityZone:
+      title: AvailabilityZone
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        country_code:
+          type: string
+        city:
+          type: string
+      required:
+        - id
+        - title
+        - country_code
+        - city
+    ServerVariant:
+      title: ServerVariant
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        cores:
+          type: integer
+        memory:
+          type: integer
+        disk:
+          type: integer
+        storage_class_id:
+          type: string
+          format: uuid
+      required:
+        - id
+        - title
+        - cores
+        - memory
+        - disk
+        - storage_class_id
+    Network:
+      title: Network
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        zone_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        type:
+          $ref: '#/components/schemas/NetworkType'
+        tag:
+          type: integer
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - id
+        - project_id
+        - zone_id
+        - title
+        - created_at
+    ServerNetwork:
+      title: ServerNetwork
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        default:
+          type: boolean
+        network_id:
+          type: string
+          format: uuid
+        addresses:
+          type: array
+          format: uuid
+          items:
+            $ref: '#/components/schemas/Address'
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        host_id:
+          type: string
+          format: uuid
+        external_id:
+          type: string
+      required:
+        - id
+        - default
+        - network_id
+        - created_at
+    ServerStorageClass:
+      title: ServerStorageClass
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        replication:
+          type: integer
+      required:
+        - id
+        - title
+        - replication
+    ServerHost:
+      title: ServerHost
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        zone_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        created_at:
+          type: string
+      required:
+        - id
+        - zone_id
+        - title
+        - created_at
+    ServerStorage:
+      title: ServerStorage
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        zone_id:
+          type: string
+          format: uuid
+        external_id:
+          type: string
+      required:
+        - id
+        - zone_id
+        - external_id
+      x-tags:
+        - server
+    Subnet:
+      title: Subnet
+      type: object
+      x-tags:
+        - address
+      properties:
+        id:
+          type: string
+          format: uuid
+        network_id:
+          type: string
+          format: uuid
+        address:
+          type: string
+        prefix:
+          type: integer
+        created_at:
+          type: string
+      required:
+        - id
+        - network_id
+        - address
+        - prefix
+        - created_at
+    NetworkType:
+      type: string
+      title: NetworkType
+      enum:
+        - VLAN
+        - VXLAN
+      x-tags:
+        - server
+    Address:
+      title: Address
+      type: object
+      x-tags:
+        - address
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        subnet_id:
+          type: string
+          format: uuid
+        address:
+          type: string
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressAssignments'
+        created_at:
+          type: string
+      required:
+        - id
+        - subnet_id
+        - address
+        - created_at
+    ServerVNC:
+      title: ServerVNC
+      type: object
+      properties:
+        host:
+          type: string
+        port:
+          type: integer
+        password:
+          type: string
+      required:
+        - host
+        - port
+        - password
+      x-tags:
+        - server
+    ServerAction:
+      title: ServerAction
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/ServerActionType'
+        cancellable:
+          type: boolean
+        state:
+          $ref: '#/components/schemas/ServerActionState'
+        progress:
+          type: number
+        started_at:
+          type: string
+        ended_at:
+          type: string
+      required:
+        - id
+        - type
+        - cancellable
+        - state
+        - progress
+        - started_at
+    ServerStatus:
+      title: ServerStatus
+      type: object
+      x-tags:
+        - server
+      properties:
+        online:
+          type: boolean
+        uptime:
+          type: integer
+        cpu_usage:
+          type: number
+        memory:
+          type: integer
+        memory_usage:
+          type: number
+      required:
+        - online
+    ServerCreateRequestNetwork:
+      title: ServerCreateRequestNetwork
+      type: object
+      properties:
+        network_id:
+          type: string
+          format: uuid
+      required:
+        - network_id
+      x-tags:
+        - server
+    ServerActionType:
+      type: string
+      title: ServerActionType
+      enum:
+        - START
+        - SHUTDOWN
+        - STOP
+        - RESIZE
+      x-tags:
+        - server
+    ServerActionState:
+      type: string
+      title: ServerActionState
+      enum:
+        - STARTED
+        - CANCELLED
+        - FAILED
+        - SUCCESS
+      x-tags:
+        - server
+    Label:
+      title: Label
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        object_type:
+          $ref: '#/components/schemas/ObjectType'
+        object_id:
+          type: string
+          format: uuid
+      required:
+        - name
+        - value
+        - object_type
+        - object_id
+    ObjectType:
+      type: string
+      title: ObjectType
+      enum:
+        - SSH_KEY
+        - PLESK_LICENSE
+        - S3_BUCKET
+        - S3_ACCESS_KEY
+        - S3_ACCESS_GRANT
+        - SERVER
+        - SERVER_VOLUME
+        - SERVER_MEDIA
+        - NETWORK
+    ServerGraphEntry:
+      title: ServerGraphEntry
+      type: object
+      properties:
+        time:
+          type: integer
+        memory:
+          type: number
+        memory_usage:
+          type: number
+        cpu_usage:
+          type: number
+        disk_read:
+          type: integer
+        disk_write:
+          type: integer
+        network_ingress:
+          type: number
+        network_egress:
+          type: number
+      required:
+        - time
+        - memory
+        - memory_usage
+        - cpu_usage
+        - disk_read
+        - disk_write
+        - network_ingress
+        - network_egress
+      x-tags:
+        - server
+    ServerBackup:
+      title: ServerBackup
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        project_id:
+          type: string
+          format: uuid
+        action_id:
+          type: string
+          format: uuid
+        state:
+          $ref: '#/components/schemas/ServerBackupState'
+        scheduled:
+          type: boolean
+        size:
+          type: number
+        keep:
+          type: boolean
+        created_at:
+          type: string
+      required:
+        - id
+        - title
+        - project_id
+        - action_id
+        - state
+        - scheduled
+        - size
+        - created_at
+    ServerBackupState:
+      type: string
+      title: ServerBackupState
+      enum:
+        - PENDING
+        - SUCCESS
+        - FAILED
+      x-tags:
+        - server
+    ScheduledServerActionInterval:
+      type: string
+      title: ScheduledServerActionInterval
+      enum:
+        - DAILY
+        - WEEKLY
+        - BI_WEEKLY
+        - ONCE
+      x-tags:
+        - server
+    ScheduledServerAction:
+      title: ScheduledServerAction
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        server_id:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/ServerActionType'
+        interval:
+          $ref: '#/components/schemas/ScheduledServerActionInterval'
+        execute_at:
+          type: string
+        created_at:
+          type: string
+        backup_id:
+          type: string
+          format: uuid
+        backup_retention:
+          type: integer
+      required:
+        - id
+        - server_id
+        - type
+        - interval
+        - execute_at
+        - created_at
+    ServerFirewall:
+      title: ServerFirewall
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        created_at:
+          type: string
+      required:
+        - id
+        - project_id
+        - title
+        - created_at
+    ServerFirewallRule:
+      title: ServerFirewallRule
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/ServerFirewallRuleType'
+        addresses:
+          type: array
+          items:
+            type: string
+        protocol:
+          $ref: '#/components/schemas/ServerFirewallRuleProtocol'
+        ports:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        applied:
+          type: boolean
+        created_at:
+          type: string
+      required:
+        - id
+        - type
+        - applied
+        - created_at
+    ServerFirewallRuleType:
+      type: string
+      title: ServerFirewallRuleType
+      enum:
+        - INGRESS
+        - EGRESS
+      x-tags:
+        - server
+    ServerFirewallRuleProtocol:
+      type: string
+      title: ServerFirewallRuleProtocol
+      enum:
+        - TCP
+        - UDP
+        - ICMP
+      x-tags:
+        - server
+    ServerFirewallMemberType:
+      type: string
+      title: ServerFirewallMemberType
+      enum:
+        - SERVER
+        - LABEL
+    ServerFirewallMember:
+      title: ServerFirewallMember
+      type: object
+      x-tags:
+        - server
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          $ref: '#/components/schemas/ServerFirewallMemberType'
+        server_id:
+          type: string
+          format: uuid
+        label_name:
+          type: string
+        label_value:
+          type: string
+        applied:
+          type: boolean
+        created_at:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerFirewallMember'
+      required:
+        - id
+        - type
+        - applied
+        - created_at
+    ServerPriceRange:
+      title: ServerPriceRange
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+      required:
+        - id
+        - title
+    ServerPriceRangeAssignment:
+      title: ServerPriceRangeAssignment
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        range_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+      required:
+        - id
+        - range_id
+        - user_id
+    ServerVariantPrice:
+      title: ServerVariantPrice
+      type: object
+      properties:
+        variant_id:
+          type: string
+          format: uuid
+        price:
+          type: number
+        offline_price:
+          type: number
+      required:
+        - variant_id
+        - price
+        - offline_price
+    ServerState:
+      type: string
+      title: ServerState
+      enum:
+        - INSTALLATION
+        - RESTORE
+        - ONLINE
+        - OFFLINE
+      x-tags:
+        - server
+    AddressAssignments:
+      title: AddressAssignments
+      x-stoplight:
+        id: 1p389t6yl7rvw
+      type: object
+      properties:
+        assigned_type:
+          $ref: '#/components/schemas/ObjectType'
+        assigned_id:
+          type: string
+          format: uuid
+      required:
+        - assigned_type
+        - assigned_id
+  securitySchemes:
+    AuthToken:
+      type: http
+      scheme: bearer
+      description: ''
+  responses:
+    InvalidRequestResponse:
+      description: Response for validation errors
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - messages
+              - metadata
+        application/xml:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - messages
+    EmptyResponse:
+      description: Empty Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - messages
+              - metadata
+    S3BucketSingleResponse:
+      description: Single S3 Bucket
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/S3Bucket'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    S3BucketListResponse:
+      description: S3 Bucket List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/S3Bucket'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    S3AccessKeySingleResponse:
+      description: Single S3 Access Key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/S3AccessKey'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    S3AccessKeyListResponse:
+      description: S3 Access Key List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/S3AccessKey'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    PleskLicenseSingleResponse:
+      description: Single Plesk License
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/PleskLicense'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    PleskLicenseListResponse:
+      description: Plesk License List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PleskLicense'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    PleskLicenseTypeSingleResponse:
+      description: Single Plesk License Type
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/PleskLicenseType'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    PleskLicenseTypeListResponse:
+      description: Plesk License Type List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PleskLicenseType'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    S3AccessGrantListResponse:
+      description: S3 Access Grant List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/S3AccessGrant'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    S3AccessGrantSingleResponse:
+      description: Single S3 Access Grant
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/S3AccessGrant'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    ServerListResponse:
+      description: Server List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Server'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    ServerSingleResponse:
+      description: Single Server
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Server'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    ServerMediaListResponse:
+      description: ServerMedia List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerMedia'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    ServerMediaSingleResponse:
+      description: Single ServerMedia
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerMedia'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    ServerVolumeListResponse:
+      description: ServerVolume List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerVolume'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    ServerVolumeSingleResponse:
+      description: Single ServerVolume
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerVolume'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    ServerTemplateListResponse:
+      description: ServerTemplate List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerTemplate'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    ServerTemplateSingleResponse:
+      description: Single ServerTemplate
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerTemplate'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    SSHKeyListResponse:
+      description: SSHKey List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSHKey'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    SSHKeySingleResponse:
+      description: Single SSHKey
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SSHKey'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - data
+              - messages
+              - metadata
+    SearchResponse:
+      description: Search Results
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SearchResults'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    NetworkListResponse:
+      description: Network List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Network'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    NetworkSingleResponse:
+      description: Single Network
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Network'
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    AvailabilityZoneListResponse:
+      description: AvailabilityZone List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AvailabilityZone'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    AvailabilityZoneSingleResponse:
+      description: Single AvailabilityZone
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/AvailabilityZone'
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerStorageClassListResponse:
+      description: ServerStorageClass List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerStorageClass'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerStorageClassSingleResponse:
+      description: Single ServerStorageClass
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerStorageClass'
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerVariantListResponse:
+      description: ServerVariant List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerVariant'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerVariantSingleResponse:
+      description: Single ServerVariant
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerVariant'
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerNetworkListResponse:
+      description: ServerNetwork List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerNetwork'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerNetworkSingleResponse:
+      description: Single ServerNetwork
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerNetwork'
+              pagination:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponsePagination
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - pagination
+              - messages
+    ServerHostListResponse:
+      description: ServerHost List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerHost'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerHostSingleResponse:
+      description: Single ServerHost
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerHost'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerStorageListResponse:
+      description: ServerStorage List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerStorage'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - pagination
+              - messages
+    SubnetListResponse:
+      description: Subnet List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subnet'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    SubnetSingleResponse:
+      description: Single Subnet
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Subnet'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerStorageSingleResponse:
+      description: Single ServerStorage
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerStorage'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    AddressListResponse:
+      description: Address List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    AddressSingleResponse:
+      description: Single Address
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/Address'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerVNCResponse:
+      description: ServerVNC
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMetadata
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerVNC'
+              messages:
+                $ref: ./auth-api.v1.0.yaml#/components/schemas/ResponseMessages
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerActionSingleResponse:
+      description: Single ServerAction
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerAction'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerActionListResponse:
+      description: ServerAction List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerAction'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerStatusResponse:
+      description: ServerStatus
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerStatus'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    LabelListResponse:
+      description: Label List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Label'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerGraphResponse:
+      description: Server Graph
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerGraphEntry'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerBackupListResponse:
+      description: ServerBackup List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerBackup'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerBackupSingleResponse:
+      description: Single ServerBackup
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerBackup'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ScheduledServerActionListResponse:
+      description: ScheduledServerAction List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ScheduledServerAction'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ScheduledServerActionSingleResponse:
+      description: Single ScheduledServerAction
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ScheduledServerAction'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerFirewallListResponse:
+      description: ServerFirewall List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerFirewall'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerFirewallSingleResponse:
+      description: Single ServerFirewall
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerFirewall'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerFirewallRuleListResponse:
+      description: ServerFirewallRule List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerFirewallRule'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerFirewallRuleSingleResponse:
+      description: Single ServerFirewallRule
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerFirewallRule'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerFirewallMemberListResponse:
+      description: ServerFirewallMember List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerFirewallMember'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerFirewallMemberSingleResponse:
+      description: Single ServerFirewallMember
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerFirewallMember'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerPriceRangeListResponse:
+      description: ServerPriceRange List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerPriceRange'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerPriceRangeSingleResponse:
+      description: Single ServerPriceRange
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerPriceRange'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerPriceRangeAssignmentListResponse:
+      description: ServerPriceRangeAssignment List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerPriceRangeAssignment'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerPriceRangeAssignmentSingleResponse:
+      description: Single ServerPriceRangeAssignment
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerPriceRangeAssignment'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerVariantPriceListResponse:
+      description: ServerVariantPrice List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerVariantPrice'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerVariantPriceSingleResponse:
+      description: Single ServerVariantPrice
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerVariantPrice'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+  requestBodies:
+    S3BucketCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              title:
+                type: string
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - project_id
+              - title
+      description: ''
+    S3AccessKeyCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              title:
+                type: string
+              secret_key:
+                type: string
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - project_id
+              - title
+              - secret_key
+    PleskLicenseCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              type_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              address:
+                type: string
+                format: ipv4
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - project_id
+              - type_id
+      description: ''
+    PleskLicenseUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              address:
+                type: string
+                format: ipv4
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+    S3AccessGrantCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              bucket_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              path:
+                type: string
+              role:
+                type: string
+                enum:
+                  - READ_ONLY
+                  - READ_WRITE
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - role
+    SSHKeyCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              title:
+                type: string
+              public_key:
+                type: string
+                description: RSA Public Key in OpenSSH or RFC 4716 Format
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - project_id
+              - title
+              - public_key
+      description: ''
+    ServerCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              zone_id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              variant_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              template_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              backup_id:
+                type: string
+                format: uuid
+                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+              ssh_keys:
+                type: array
+                items:
+                  type: string
+                  format: uuid
+              no_public_network:
+                type: boolean
+              networks:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerCreateRequestNetwork'
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - project_id
+              - zone_id
+              - name
+              - variant_id
+              - ssh_keys
+    SubnetCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              network_id:
+                type: string
+                format: uuid
+              address:
+                type: string
+              prefix:
+                type: integer
+              shared:
+                type: boolean
+              range:
+                type: string
+            required:
+              - network_id
+              - address
+              - prefix
+    NetworkCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              zone_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              project_id:
+                type: string
+                format: uuid
+              type:
+                $ref: '#/components/schemas/NetworkType'
+              tag:
+                type: integer
+              subnet:
+                type: string
+            required:
+              - zone_id
+              - title
+    ServerHostCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              zone_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              external_id:
+                type: string
+            required:
+              - zone_id
+              - title
+              - external_id
+    ServerMediaCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              zone_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              external_id:
+                type: string
+            required:
+              - zone_id
+              - title
+              - external_id
+    ServerStorageClassCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              storage_ids:
+                type: array
+                items:
+                  type: string
+                  format: uuid
+              title:
+                type: string
+              replication:
+                type: integer
+            required:
+              - storage_ids
+              - title
+              - replication
+    ServerStorageCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              zone_id:
+                type: string
+                format: uuid
+              external_id:
+                type: string
+            required:
+              - zone_id
+              - external_id
+    ServerTemplateCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              zones:
+                type: object
+              title:
+                type: string
+              root_slot:
+                type: string
+            required:
+              - zones
+              - title
+              - root_slot
+    ServerVariantCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              zone_ids:
+                type: array
+                format: uuid
+                items:
+                  type: string
+              title:
+                type: string
+              cores:
+                type: integer
+              memory:
+                type: integer
+              disk:
+                type: integer
+              storage_class_id:
+                type: string
+                format: uuid
+              legacy:
+                type: boolean
+                deprecated: true
+                default: false
+            required:
+              - zone_ids
+              - title
+              - cores
+              - memory
+              - disk
+              - storage_class_id
+    AvailabilityZoneCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              config:
+                type: object
+              country_code:
+                type: string
+              city:
+                type: string
+            required:
+              - title
+              - config
+              - country_code
+              - city
+    AvailabilityZoneUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              config:
+                type: object
+              country_code:
+                type: string
+              city:
+                type: string
+    ServerNetworkCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              network_id:
+                type: string
+                format: uuid
+            required:
+              - network_id
+    ServerVolumeAttachRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              server_id:
+                type: string
+                format: uuid
+            required:
+              - server_id
+    ServerUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+    ServerResizeRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              variant_id:
+                type: string
+                format: uuid
+              resize_disk:
+                type: boolean
+            required:
+              - variant_id
+    ServerVolumeCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              class_id:
+                type: string
+                format: uuid
+              size:
+                type: integer
+              zone_id:
+                type: string
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - project_id
+              - title
+              - class_id
+              - size
+              - zone_id
+    ServerBackupCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              server_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+            required:
+              - server_id
+    ServerRestoreRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              backup_id:
+                type: string
+                format: uuid
+            required:
+              - backup_id
+    ScheduledServerActionCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/ServerActionType'
+              interval:
+                $ref: '#/components/schemas/ScheduledServerActionInterval'
+              execute_at:
+                type: string
+              backup_id:
+                type: string
+                format: uuid
+              backup_retention:
+                type: integer
+                minimum: 1
+                maximum: 50
+              force:
+                type: boolean
+            required:
+              - type
+              - execute_at
+    ServerFirewallCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              project_id:
+                type: string
+                format: uuid
+            required:
+              - title
+              - project_id
+    ServerFirewallRuleCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/ServerFirewallRuleType'
+              addresses:
+                type: array
+                items:
+                  type: string
+              protocol:
+                $ref: '#/components/schemas/ServerFirewallRuleProtocol'
+              ports:
+                type: array
+                items:
+                  type: string
+              description:
+                type: string
+            required:
+              - type
+    ServerFirewallMemberCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/ServerFirewallMemberType'
+              server_id:
+                type: string
+                format: uuid
+              label_name:
+                type: string
+              label_value:
+                type: string
+            required:
+              - type
+    ServerPriceRangeCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+            required:
+              - title
+    ServerVariantPriceCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              variant_id:
+                type: string
+                format: uuid
+              price:
+                type: number
+              offline_price:
+                type: number
+            required:
+              - variant_id
+              - price
+              - offline_price
+    ServerVariantPriceUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              price:
+                type: number
+              offline_price:
+                type: number
+    ServerPriceRangeAssignmentCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              range_id:
+                type: string
+                format: uuid
+              user_id:
+                type: string
+                format: uuid
+              project_id:
+                type: string
+                format: uuid
+            required:
+              - range_id
+    ServerPriceRangeAssignmentUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              range_id:
+                type: string
+                format: uuid
+            required:
+              - range_id
+    ServerVolumeUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+    ServerBackupUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              keep:
+                type: boolean
+      description: ''
+  parameters:
+    ProjectIDFilter:
+      name: 'filter[project_id]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: uuid
+      description: Project ID Filter
+    PaginationPage:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+      description: Page
+    PaginationPageSize:
+      name: page_size
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+      description: Page Size
+    Search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Search
+    LabelsFilter:
+      name: 'filter[labels][:name]'
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filters for the label with the given name. Only checks the value if it's length is greater than 0.
+    WithLabels:
+      name: with_labels
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: 'If length 0, true or 1 is given, the labels will be added to the response objects.'
+    OrderBy:
+      name: order_by
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Field or array of fields to order by
+    Order:
+      name: order
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - ASC
+          - DESC
+      description: 'Order of the results, ascending by default'
+security:
+  - AuthToken: []
