@@ -12,7 +12,7 @@
   },
   "servers" : [ {
     "description" : "Live",
-    "url" : "https://billing.lumaserv.com"
+    "url" : "https://api.lumaserv.com/billing"
   } ],
   "security" : [ {
     "AuthToken" : [ ]

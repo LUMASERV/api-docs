@@ -590,12 +590,14 @@
           "style" : "form"
         }, {
           "description" : "Field or array of fields to order by",
+          "explode" : true,
           "in" : "query",
           "name" : "order_by",
           "required" : false,
           "schema" : {
             "type" : "string"
-          }
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -1407,46 +1409,57 @@
           "style" : "simple"
         }, {
           "description" : "Page",
+          "explode" : true,
           "in" : "query",
           "name" : "page",
+          "required" : false,
           "schema" : {
             "minimum" : 1,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Page Size",
+          "explode" : true,
           "in" : "query",
           "name" : "page_size",
           "required" : false,
           "schema" : {
             "default" : 10,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Search",
+          "explode" : true,
           "in" : "query",
           "name" : "search",
           "required" : false,
           "schema" : {
             "type" : "string"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Order of the results, ascending by default",
+          "explode" : true,
           "in" : "query",
           "name" : "order",
           "required" : false,
           "schema" : {
             "enum" : [ "ASC", "DESC" ],
             "type" : "string"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Field or array of fields to order by",
+          "explode" : true,
           "in" : "query",
           "name" : "order_by",
           "required" : false,
           "schema" : {
             "type" : "string"
-          }
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -1575,21 +1588,25 @@
           "style" : "form"
         }, {
           "description" : "Order of the results, ascending by default",
+          "explode" : true,
           "in" : "query",
           "name" : "order",
           "required" : false,
           "schema" : {
             "enum" : [ "ASC", "DESC" ],
             "type" : "string"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Field or array of fields to order by",
+          "explode" : true,
           "in" : "query",
           "name" : "order_by",
           "required" : false,
           "schema" : {
             "type" : "string"
-          }
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {

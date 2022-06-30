@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default class LUMASERVBillingClient {
-    constructor(baseURL = 'https://api.lumaserv.cloud') {
+    constructor(baseURL = 'https://api.lumaserv.com') {
         this.axios = axios.create({
             baseURL,
             headers: {

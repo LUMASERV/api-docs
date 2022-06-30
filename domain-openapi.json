@@ -1,0 +1,4076 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "contact" : {
+      "email" : "support@lumaserv.com",
+      "name" : "LUMASERV Support Team",
+      "url" : "https://lumaserv.com"
+    },
+    "description" : "LUMASERV Domain API",
+    "title" : "LUMASERV Domain API",
+    "version" : "1.0"
+  },
+  "servers" : [ {
+    "description" : "Live",
+    "url" : "https://api.lumaserv.com/domain"
+  } ],
+  "security" : [ {
+    "AuthToken" : [ ]
+  } ],
+  "tags" : [ {
+    "description" : "DNS Management",
+    "name" : "dns"
+  }, {
+    "description" : "Domain Management",
+    "name" : "domains"
+  }, {
+    "description" : "General Endpoints",
+    "name" : "general"
+  }, {
+    "description" : "Label Endpoints",
+    "name" : "label"
+  }, {
+    "description" : "Pricing Endpoints",
+    "name" : "pricing"
+  } ],
+  "paths" : {
+    "/domain-handles" : {
+      "get" : {
+        "description" : "Returns all domain handles",
+        "operationId" : "getDomainHandles",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_200_response"
+                }
+              }
+            },
+            "description" : "Domain Handle List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomainHandles",
+        "tags" : [ "domains" ]
+      },
+      "post" : {
+        "description" : "Creates a domain handle",
+        "operationId" : "createDomainHandle",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DomainHandleCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_201_response"
+                }
+              }
+            },
+            "description" : "Single Domain Handle"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createDomainHandle",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domain-handles/{code}" : {
+      "delete" : {
+        "description" : "Deletes the domain handle",
+        "operationId" : "deleteDomainHandle",
+        "parameters" : [ {
+          "description" : "Handle Code",
+          "explode" : false,
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteDomainHandle",
+        "tags" : [ "domains" ]
+      },
+      "get" : {
+        "description" : "Returns a single domain handle",
+        "operationId" : "getDomainHandle",
+        "parameters" : [ {
+          "description" : "Handle Code",
+          "explode" : false,
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_201_response"
+                }
+              }
+            },
+            "description" : "Single Domain Handle"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomainHandle",
+        "tags" : [ "domains" ]
+      },
+      "put" : {
+        "description" : "Updates the domain handle",
+        "operationId" : "updateDomainHandle",
+        "parameters" : [ {
+          "description" : "Handle Code",
+          "explode" : false,
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DomainHandleUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_201_response"
+                }
+              }
+            },
+            "description" : "Single Domain Handle"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateDomainHandle",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains" : {
+      "get" : {
+        "description" : "Returns all domains",
+        "operationId" : "getDomains",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Handle Code of Owner Handle",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[owner_handle_code]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Handle Code of Admin Handle",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[admin_handle_code]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Handle Code of Tech Handle",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[tech_handle_code]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Handle Code of Zone Handle",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[zone_handle_code]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "TLD",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[tld]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomains_200_response"
+                }
+              }
+            },
+            "description" : "Domain List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomains",
+        "tags" : [ "domains" ]
+      },
+      "post" : {
+        "description" : "Registers or transfer a domain",
+        "operationId" : "createDomain",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DomainCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomain_201_response"
+                }
+              }
+            },
+            "description" : "Single Domain"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createDomain",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains/{name}" : {
+      "delete" : {
+        "description" : "Deletes a domain immediately",
+        "operationId" : "deleteDomain",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteDomain",
+        "tags" : [ "domains" ]
+      },
+      "get" : {
+        "description" : "Returns a single domain",
+        "operationId" : "getDomain",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomain_201_response"
+                }
+              }
+            },
+            "description" : "Single Domain"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomain",
+        "tags" : [ "domains" ]
+      },
+      "put" : {
+        "description" : "Updates a domain",
+        "operationId" : "updateDomain",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DomainUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomain_201_response"
+                }
+              }
+            },
+            "description" : "Single Domain"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateDomain",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains/{name}/authinfo" : {
+      "delete" : {
+        "description" : "Removes the authinfo from the domain",
+        "operationId" : "removeDomainAuthinfo",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "removeDomainAuthinfo",
+        "tags" : [ "domains" ]
+      },
+      "get" : {
+        "description" : "Generates and returns the authinfo for the domain",
+        "operationId" : "getDomainAuthinfo",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainAuthinfo_200_response"
+                }
+              }
+            },
+            "description" : "Authinfo"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomainAuthinfo",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains/{name}/restore" : {
+      "post" : {
+        "description" : "Restores a deleted domain",
+        "operationId" : "restoreDomain",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "restoreDomain",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains/{name}/schedule-delete" : {
+      "post" : {
+        "description" : "Schedules the deletion of the domain",
+        "operationId" : "scheduleDomainDelete",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DomainScheduleDeleteRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomain_201_response"
+                }
+              }
+            },
+            "description" : "Single Domain"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "scheduleDomainDelete",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/domains/{name}/unschedule-delete" : {
+      "post" : {
+        "description" : "Unscheduled the pending domain deletion",
+        "operationId" : "unscheduleDomainDelete",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomain_201_response"
+                }
+              }
+            },
+            "description" : "Single Domain"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "unscheduleDomainDelete",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/pricing/domains" : {
+      "get" : {
+        "description" : "Returns the price list for all top-level-domains",
+        "operationId" : "getDomainPricingList",
+        "parameters" : [ {
+          "description" : "Project ID",
+          "explode" : true,
+          "in" : "query",
+          "name" : "project_id",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainPricingList_200_response"
+                }
+              }
+            },
+            "description" : "DomainPrice List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDomainPricingList",
+        "tags" : [ "pricing" ]
+      }
+    },
+    "/search" : {
+      "get" : {
+        "description" : "Search for multiple resource types at once. Possible resource types are: domains, domain_handles",
+        "operationId" : "search",
+        "parameters" : [ {
+          "description" : "Comma seperated list of types",
+          "explode" : true,
+          "in" : "query",
+          "name" : "resources",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Limit per Resource Type",
+          "explode" : true,
+          "in" : "query",
+          "name" : "limit",
+          "required" : false,
+          "schema" : {
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID",
+          "explode" : true,
+          "in" : "query",
+          "name" : "project_id",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "labels[:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/search_200_response"
+                }
+              }
+            },
+            "description" : "Search Results"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "search",
+        "tags" : [ "general" ]
+      }
+    },
+    "/domains/{name}/check" : {
+      "get" : {
+        "description" : "Checks if the domain is available for registration",
+        "operationId" : "checkDomain",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/checkDomain_200_response"
+                }
+              }
+            },
+            "description" : "Domain Check"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "checkDomain",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/dns/zones" : {
+      "get" : {
+        "description" : "Returns all dns zones",
+        "operationId" : "getDNSZones",
+        "parameters" : [ {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDNSZones_200_response"
+                }
+              }
+            },
+            "description" : "DNSZone List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDNSZones",
+        "tags" : [ "dns" ]
+      }
+    },
+    "/dns/zones/{name}" : {
+      "get" : {
+        "description" : "Returns a single dns zone",
+        "operationId" : "getDNSZone",
+        "parameters" : [ {
+          "description" : "Zone Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDNSZone_200_response"
+                }
+              }
+            },
+            "description" : "Single DNSZone"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDNSZone",
+        "tags" : [ "dns" ]
+      },
+      "put" : {
+        "description" : "Updates the dns zone",
+        "operationId" : "updateDNSZone",
+        "parameters" : [ {
+          "description" : "Zone Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DNSZoneUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDNSZone_200_response"
+                }
+              }
+            },
+            "description" : "Single DNSZone"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateDNSZone",
+        "tags" : [ "dns" ]
+      }
+    },
+    "/dns/zones/{name}/records" : {
+      "get" : {
+        "description" : "Returns all records in the zone",
+        "operationId" : "getDNSZoneRecords",
+        "parameters" : [ {
+          "description" : "Zone Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDNSZoneRecords_201_response"
+                }
+              }
+            },
+            "description" : "DNSRecord List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getDNSZoneRecords",
+        "tags" : [ "dns" ]
+      },
+      "post" : {
+        "description" : "Creates a new record in the zone",
+        "operationId" : "createDNSZoneRecord",
+        "parameters" : [ {
+          "description" : "Zone Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DNSRecordCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDNSZoneRecord_200_response"
+                }
+              }
+            },
+            "description" : "Single DNSRecord"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createDNSZoneRecord",
+        "tags" : [ "dns" ]
+      },
+      "put" : {
+        "description" : "Updates the records in the zone",
+        "operationId" : "updateDNSZoneRecords",
+        "parameters" : [ {
+          "description" : "Zone Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DNSRecordsUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDNSZoneRecords_201_response"
+                }
+              }
+            },
+            "description" : "DNSRecord List"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateDNSZoneRecords",
+        "tags" : [ "dns" ]
+      }
+    },
+    "/dns/zones/{name}/records/{id}" : {
+      "delete" : {
+        "description" : "Deletes the dns record",
+        "operationId" : "deleteDNSRecord",
+        "parameters" : [ {
+          "description" : "DNS Zone Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "DNS Record ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteDNSRecord",
+        "tags" : [ "dns" ]
+      },
+      "put" : {
+        "description" : "Updates the dns record",
+        "operationId" : "updateDNSRecord",
+        "parameters" : [ {
+          "description" : "DNS Zone Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "DNS Record ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/DNSRecordUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDNSZoneRecord_200_response"
+                }
+              }
+            },
+            "description" : "Single DNSRecord"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createDomainHandle_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateDNSRecord",
+        "tags" : [ "dns" ]
+      }
+    },
+    "/domains/{name}/verification" : {
+      "get" : {
+        "description" : "Checks whether the owner contact is unverified",
+        "operationId" : "checkDomainVerification",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/checkDomainVerification_200_response"
+                }
+              }
+            },
+            "description" : "Domain Verification Status Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "checkDomainVerification",
+        "tags" : [ "domains" ]
+      },
+      "post" : {
+        "description" : "Resends the verification email in case the owner is unverified",
+        "operationId" : "sendDomainVerification",
+        "parameters" : [ {
+          "description" : "Domain Name",
+          "explode" : false,
+          "in" : "path",
+          "name" : "name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "sendDomainVerification",
+        "tags" : [ "domains" ]
+      }
+    },
+    "/labels" : {
+      "get" : {
+        "description" : "Returns all labels that are in use",
+        "operationId" : "getLabels",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Name Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Value Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[value]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Object Type Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[object_type]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getLabels_200_response"
+                }
+              }
+            },
+            "description" : "Label List"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getDomainHandles_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getLabels",
+        "tags" : [ "label" ]
+      }
+    }
+  },
+  "components" : {
+    "parameters" : {
+      "ProjectIDFilter" : {
+        "description" : "Project ID Filter",
+        "explode" : true,
+        "in" : "query",
+        "name" : "filter[project_id]",
+        "required" : false,
+        "schema" : {
+          "format" : "uuid",
+          "type" : "string"
+        },
+        "style" : "form"
+      },
+      "PaginationPage" : {
+        "description" : "Page",
+        "explode" : true,
+        "in" : "query",
+        "name" : "page",
+        "required" : false,
+        "schema" : {
+          "minimum" : 1,
+          "type" : "integer"
+        },
+        "style" : "form"
+      },
+      "PaginationPageSize" : {
+        "description" : "Page Size",
+        "explode" : true,
+        "in" : "query",
+        "name" : "page_size",
+        "required" : false,
+        "schema" : {
+          "default" : 10,
+          "type" : "integer"
+        },
+        "style" : "form"
+      },
+      "Search" : {
+        "description" : "Search",
+        "explode" : true,
+        "in" : "query",
+        "name" : "search",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "style" : "form"
+      },
+      "LabelsFilter" : {
+        "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+        "explode" : true,
+        "in" : "query",
+        "name" : "filter[labels][:name]",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "style" : "form"
+      },
+      "WithLabels" : {
+        "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+        "explode" : true,
+        "in" : "query",
+        "name" : "with_labels",
+        "required" : false,
+        "schema" : {
+          "type" : "boolean"
+        },
+        "style" : "form"
+      },
+      "OrderBy" : {
+        "description" : "Field or array of fields to order by",
+        "explode" : true,
+        "in" : "query",
+        "name" : "order_by",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "style" : "form"
+      },
+      "Order" : {
+        "description" : "Order of the results, ascending by default",
+        "explode" : true,
+        "in" : "query",
+        "name" : "order",
+        "required" : false,
+        "schema" : {
+          "enum" : [ "ASC", "DESC" ],
+          "type" : "string"
+        },
+        "style" : "form"
+      }
+    },
+    "requestBodies" : {
+      "DomainHandleCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createDomainHandle_request"
+            }
+          }
+        }
+      },
+      "DomainHandleUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/updateDomainHandle_request"
+            }
+          }
+        }
+      },
+      "DomainCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createDomain_request"
+            }
+          }
+        }
+      },
+      "DomainUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/updateDomain_request"
+            }
+          }
+        }
+      },
+      "DomainScheduleDeleteRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/scheduleDomainDelete_request"
+            }
+          }
+        }
+      },
+      "DNSZoneUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/updateDNSZone_request"
+            }
+          }
+        }
+      },
+      "DNSRecordCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createDNSZoneRecord_request"
+            }
+          }
+        }
+      },
+      "DNSRecordsUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "items" : {
+                "$ref" : "#/components/schemas/updateDNSZoneRecords_request_inner"
+              },
+              "type" : "array"
+            }
+          }
+        }
+      },
+      "DNSRecordUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createDNSZoneRecord_request"
+            }
+          }
+        }
+      }
+    },
+    "responses" : {
+      "InvalidRequestResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createDomainHandle_400_response"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createDomainHandle_400_response_1"
+            }
+          }
+        },
+        "description" : "Response for validation errors"
+      },
+      "EmptyResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getDomainHandles_401_response"
+            }
+          }
+        },
+        "description" : "Empty Response"
+      },
+      "DomainHandleSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createDomainHandle_201_response"
+            }
+          }
+        },
+        "description" : "Single Domain Handle"
+      },
+      "DomainHandleListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getDomainHandles_200_response"
+            }
+          }
+        },
+        "description" : "Domain Handle List"
+      },
+      "DomainSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createDomain_201_response"
+            }
+          }
+        },
+        "description" : "Single Domain"
+      },
+      "DomainListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getDomains_200_response"
+            }
+          }
+        },
+        "description" : "Domain List"
+      },
+      "DomainAuthinfoResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getDomainAuthinfo_200_response"
+            }
+          }
+        },
+        "description" : "Authinfo"
+      },
+      "DomainPriceListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getDomainPricingList_200_response"
+            }
+          }
+        },
+        "description" : "DomainPrice List"
+      },
+      "SearchResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/search_200_response"
+            }
+          }
+        },
+        "description" : "Search Results"
+      },
+      "DomainCheckResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/checkDomain_200_response"
+            }
+          }
+        },
+        "description" : "Domain Check"
+      },
+      "DNSZoneListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getDNSZones_200_response"
+            }
+          }
+        },
+        "description" : "DNSZone List"
+      },
+      "DNSZoneSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getDNSZone_200_response"
+            }
+          }
+        },
+        "description" : "Single DNSZone"
+      },
+      "DNSRecordListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getDNSZoneRecords_201_response"
+            }
+          }
+        },
+        "description" : "DNSRecord List"
+      },
+      "DNSRecordSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createDNSZoneRecord_200_response"
+            }
+          }
+        },
+        "description" : "Single DNSRecord"
+      },
+      "DomainCheckVerificationResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/checkDomainVerification_200_response"
+            }
+          }
+        },
+        "description" : "Domain Verification Status Response"
+      },
+      "LabelListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getLabels_200_response"
+            }
+          }
+        },
+        "description" : "Label List"
+      }
+    },
+    "schemas" : {
+      "ResponseMessages" : {
+        "properties" : {
+          "warnings" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          },
+          "errors" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          },
+          "infos" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "errors", "infos", "warnings" ],
+        "title" : "ResponseMessages",
+        "type" : "object",
+        "x-examples" : {
+          "example" : {
+            "warnings" : [ ],
+            "errors" : [ ],
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          }
+        }
+      },
+      "ResponseMessage" : {
+        "properties" : {
+          "key" : {
+            "example" : "general.serverError",
+            "type" : "string"
+          },
+          "message" : {
+            "example" : "Action successfully executed.",
+            "type" : "string"
+          }
+        },
+        "required" : [ "key", "message" ],
+        "title" : "ResponseMessage",
+        "type" : "object"
+      },
+      "ResponseMetadata" : {
+        "properties" : {
+          "transaction_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "build_commit" : {
+            "example" : "master-a0b1c2d3",
+            "type" : "string"
+          },
+          "build_timestamp" : {
+            "example" : "2021-09-01 13:37:00",
+            "type" : "string"
+          }
+        },
+        "required" : [ "build_commit", "build_timestamp", "transaction_id" ],
+        "title" : "ResponseMetadata",
+        "type" : "object"
+      },
+      "ResponsePagination" : {
+        "properties" : {
+          "page" : {
+            "example" : 1,
+            "type" : "integer"
+          },
+          "page_size" : {
+            "example" : 25,
+            "type" : "integer"
+          },
+          "total" : {
+            "example" : 1500,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "page", "page_size", "total" ],
+        "title" : "ResponsePagination",
+        "type" : "object"
+      },
+      "DomainHandle" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "PERSON", "ORGANISATION" ],
+            "type" : "string"
+          },
+          "gender" : {
+            "enum" : [ "MALE", "FEMALE" ],
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "organisation" : {
+            "type" : "string"
+          },
+          "street" : {
+            "type" : "string"
+          },
+          "street_number" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "region" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "fax" : {
+            "type" : "string"
+          },
+          "email" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "id_card" : {
+            "type" : "string"
+          },
+          "id_card_issue_date" : {
+            "type" : "string"
+          },
+          "id_card_authority" : {
+            "type" : "string"
+          },
+          "tax_number" : {
+            "type" : "string"
+          },
+          "vat_number" : {
+            "type" : "string"
+          },
+          "birth_date" : {
+            "type" : "string"
+          },
+          "birth_country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "birth_place" : {
+            "type" : "string"
+          },
+          "birth_region" : {
+            "type" : "string"
+          },
+          "company_registration_number" : {
+            "type" : "string"
+          },
+          "privacy_protection" : {
+            "type" : "boolean"
+          },
+          "created_at" : {
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "city", "code", "country_code", "created_at", "email", "first_name", "gender", "last_name", "postal_code", "privacy_protection", "project_id", "street", "street_number", "type" ],
+        "title" : "DomainHandle",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
+      },
+      "Domain" : {
+        "properties" : {
+          "name" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "owner_handle_code" : {
+            "type" : "string"
+          },
+          "admin_handle_code" : {
+            "type" : "string"
+          },
+          "tech_handle_code" : {
+            "type" : "string"
+          },
+          "zone_handle_code" : {
+            "type" : "string"
+          },
+          "status" : {
+            "$ref" : "#/components/schemas/DomainStatus"
+          },
+          "created_at" : {
+            "type" : "string"
+          },
+          "registered_at" : {
+            "type" : "string"
+          },
+          "expire_at" : {
+            "type" : "string"
+          },
+          "suspended_at" : {
+            "type" : "string"
+          },
+          "suspended_until" : {
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "admin_handle_code", "created_at", "name", "owner_handle_code", "project_id", "status", "tech_handle_code", "zone_handle_code" ],
+        "title" : "Domain",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
+      },
+      "DomainAuthinfo" : {
+        "properties" : {
+          "authinfo" : {
+            "type" : "string"
+          },
+          "valid_until" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "authinfo" ],
+        "title" : "DomainAuthinfo",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
+      },
+      "DomainRequestNameserver" : {
+        "properties" : {
+          "name" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "addresses" : {
+            "items" : {
+              "format" : "ipv4",
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "name" ],
+        "title" : "DomainRequestNameserver",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
+      },
+      "DomainPricing" : {
+        "properties" : {
+          "tld" : {
+            "type" : "string"
+          },
+          "create" : {
+            "type" : "number"
+          },
+          "renew" : {
+            "type" : "number"
+          },
+          "restore" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "tld" ],
+        "title" : "DomainPricing",
+        "type" : "object",
+        "x-tags" : [ "pricing" ]
+      },
+      "SearchResults" : {
+        "properties" : {
+          "domains" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Domain"
+            },
+            "type" : "array"
+          },
+          "domain_handles" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DomainHandle"
+            },
+            "type" : "array"
+          }
+        },
+        "title" : "SearchResults",
+        "type" : "object"
+      },
+      "DomainCheckResult" : {
+        "properties" : {
+          "available" : {
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "available" ],
+        "title" : "DomainCheckResult",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
+      },
+      "DNSZone" : {
+        "properties" : {
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "DOMAIN", "RDNS" ],
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "hostmaster" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "ns1" : {
+            "type" : "string"
+          },
+          "ns2" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "created_at", "hostmaster", "name", "ns1", "ns2", "project_id", "type" ],
+        "title" : "DNSZone",
+        "type" : "object",
+        "x-tags" : [ "dns" ]
+      },
+      "DNSRecord" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "A", "AAAA", "MX", "CNAME", "SRV", "TXT", "PTR" ],
+            "type" : "string"
+          },
+          "ttl" : {
+            "type" : "integer"
+          },
+          "data" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "data", "id", "name", "type" ],
+        "title" : "DNSRecord",
+        "type" : "object",
+        "x-tags" : [ "dns" ]
+      },
+      "DomainVerificationStatus" : {
+        "properties" : {
+          "unverified" : {
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "unverified" ],
+        "title" : "DomainVerificationStatus",
+        "type" : "object",
+        "x-tags" : [ "domains" ]
+      },
+      "Label" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "object_type" : {
+            "$ref" : "#/components/schemas/ObjectType"
+          },
+          "object_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "required" : [ "name", "object_id", "object_type", "value" ],
+        "title" : "Label",
+        "type" : "object"
+      },
+      "ObjectType" : {
+        "enum" : [ "DOMAIN", "DOMAIN_HANDLE", "DNS_ZONE" ],
+        "title" : "ObjectType",
+        "type" : "string"
+      },
+      "DomainStatus" : {
+        "enum" : [ "PENDING", "OK", "FAILED", "RESTRICTED", "SUSPENDED", "UNKNOWN" ],
+        "title" : "DomainStatus",
+        "type" : "string",
+        "x-tags" : [ "domain" ]
+      },
+      "getDomainHandles_200_response" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DomainHandle"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getDomainHandles_401_response" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "createDomainHandle_request" : {
+        "properties" : {
+          "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "PERSON", "ORGANISATION" ],
+            "type" : "string"
+          },
+          "gender" : {
+            "enum" : [ "MALE", "FEMALE" ],
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "organisation" : {
+            "type" : "string"
+          },
+          "street" : {
+            "type" : "string"
+          },
+          "street_number" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "region" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "fax" : {
+            "type" : "string"
+          },
+          "email" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "id_card" : {
+            "type" : "string"
+          },
+          "id_card_issue_date" : {
+            "type" : "string"
+          },
+          "id_card_authority" : {
+            "type" : "string"
+          },
+          "tax_number" : {
+            "type" : "string"
+          },
+          "vat_number" : {
+            "type" : "string"
+          },
+          "birth_date" : {
+            "type" : "string"
+          },
+          "birth_country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "birth_place" : {
+            "type" : "string"
+          },
+          "birth_region" : {
+            "type" : "string"
+          },
+          "company_registration_number" : {
+            "type" : "string"
+          },
+          "privacy_protection" : {
+            "type" : "boolean"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "city", "country_code", "email", "first_name", "gender", "last_name", "postal_code", "project_id", "street", "street_number", "type" ],
+        "type" : "object"
+      },
+      "createDomainHandle_201_response" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/DomainHandle"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "createDomainHandle_400_response" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "type" : "object"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "createDomainHandle_400_response_1" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "type" : "object"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "messages", "success" ],
+        "type" : "object"
+      },
+      "updateDomainHandle_request" : {
+        "properties" : {
+          "street" : {
+            "type" : "string"
+          },
+          "street_number" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "region" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "fax" : {
+            "type" : "string"
+          },
+          "email" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "id_card" : {
+            "type" : "string"
+          },
+          "id_card_issue_date" : {
+            "type" : "string"
+          },
+          "id_card_authority" : {
+            "type" : "string"
+          },
+          "tax_number" : {
+            "type" : "string"
+          },
+          "vat_number" : {
+            "type" : "string"
+          },
+          "birth_date" : {
+            "type" : "string"
+          },
+          "birth_country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "birth_place" : {
+            "type" : "string"
+          },
+          "birth_region" : {
+            "type" : "string"
+          },
+          "company_registration_number" : {
+            "type" : "string"
+          },
+          "privacy_protection" : {
+            "type" : "boolean"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "type" : "object"
+      },
+      "getDomains_200_response" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Domain"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "createDomain_request" : {
+        "properties" : {
+          "name" : {
+            "format" : "hostname",
+            "type" : "string"
+          },
+          "authinfo" : {
+            "type" : "string"
+          },
+          "project_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "duration" : {
+            "exclusiveMinimum" : false,
+            "maximum" : 10,
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "owner_handle_code" : {
+            "type" : "string"
+          },
+          "admin_handle_code" : {
+            "type" : "string"
+          },
+          "tech_handle_code" : {
+            "type" : "string"
+          },
+          "zone_handle_code" : {
+            "type" : "string"
+          },
+          "nameserver" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DomainRequestNameserver"
+            },
+            "minItems" : 2,
+            "type" : "array"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "admin_handle_code", "name", "nameserver", "owner_handle_code", "project_id", "tech_handle_code", "zone_handle_code" ],
+        "type" : "object"
+      },
+      "createDomain_201_response" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/Domain"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "updateDomain_request" : {
+        "properties" : {
+          "owner_handle_code" : {
+            "type" : "string"
+          },
+          "admin_handle_code" : {
+            "type" : "string"
+          },
+          "tech_handle_code" : {
+            "type" : "string"
+          },
+          "zone_handle_code" : {
+            "type" : "string"
+          },
+          "nameserver" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DomainRequestNameserver"
+            },
+            "minItems" : 2,
+            "type" : "array"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "type" : "object"
+      },
+      "getDomainAuthinfo_200_response" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/DomainAuthinfo"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "scheduleDomainDelete_request" : {
+        "properties" : {
+          "date" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "date" ],
+        "type" : "object"
+      },
+      "getDomainPricingList_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DomainPricing"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "search_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SearchResults"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "checkDomain_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/DomainCheckResult"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getDNSZones_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DNSZone"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getDNSZone_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/DNSZone"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "updateDNSZone_request" : {
+        "properties" : {
+          "hostmaster" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "ns1" : {
+            "type" : "string"
+          },
+          "ns2" : {
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "type" : "object"
+      },
+      "getDNSZoneRecords_201_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DNSRecord"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "updateDNSZoneRecords_request_inner" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "A", "AAAA", "CNAME", "SRV", "MX", "TXT", "PTR" ],
+            "type" : "string"
+          },
+          "ttl" : {
+            "type" : "integer"
+          },
+          "data" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "data", "name", "type" ],
+        "type" : "object"
+      },
+      "createDNSZoneRecord_request" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "A", "AAAA", "CNAME", "SRV", "MX", "TXT", "PTR" ],
+            "type" : "string"
+          },
+          "ttl" : {
+            "maximum" : 86400,
+            "minimum" : 300,
+            "type" : "integer"
+          },
+          "data" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "data", "name", "type" ],
+        "type" : "object"
+      },
+      "createDNSZoneRecord_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/DNSRecord"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "checkDomainVerification_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/DomainVerificationStatus"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getLabels_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Label"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      }
+    },
+    "securitySchemes" : {
+      "AuthToken" : {
+        "description" : "",
+        "scheme" : "bearer",
+        "type" : "http"
+      }
+    }
+  },
+  "x-stoplight" : {
+    "id" : "axg3vsgus371z"
+  }
+}

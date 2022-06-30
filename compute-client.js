@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export default class LUMASERVCoreClient {
-    constructor(baseURL = 'https://api.lumaserv.cloud') {
+export default class LUMASERVComputeClient {
+    constructor(baseURL = 'https://api.lumaserv.com') {
         this.axios = axios.create({
             baseURL,
             headers: {
@@ -87,90 +87,6 @@ export default class LUMASERVCoreClient {
     deleteS3AccessKeyGrant(access_key_id, id) {
         return this.request('delete', '/storage/s3/access-keys/' + access_key_id + '/grants/' + id, null, null);
     }
-    getDomainHandles(query = null) {
-        return this.request('get', '/domain-handles', query, null);
-    }
-    createDomainHandle(body = null) {
-        return this.request('post', '/domain-handles', null, body);
-    }
-    deleteDomainHandle(code) {
-        return this.request('delete', '/domain-handles/' + code, null, null);
-    }
-    getDomainHandle(code) {
-        return this.request('get', '/domain-handles/' + code, null, null);
-    }
-    updateDomainHandle(code, body = null) {
-        return this.request('put', '/domain-handles/' + code, null, body);
-    }
-    getDomains(query = null) {
-        return this.request('get', '/domains', query, null);
-    }
-    createDomain(body = null) {
-        return this.request('post', '/domains', null, body);
-    }
-    deleteDomain(name) {
-        return this.request('delete', '/domains/' + name, null, null);
-    }
-    getDomain(name) {
-        return this.request('get', '/domains/' + name, null, null);
-    }
-    updateDomain(name, body = null) {
-        return this.request('put', '/domains/' + name, null, body);
-    }
-    removeDomainAuthinfo(name) {
-        return this.request('delete', '/domains/' + name + '/authinfo', null, null);
-    }
-    getDomainAuthinfo(name) {
-        return this.request('get', '/domains/' + name + '/authinfo', null, null);
-    }
-    restoreDomain(name) {
-        return this.request('post', '/domains/' + name + '/restore', null, null);
-    }
-    scheduleDomainDelete(name, body = null) {
-        return this.request('post', '/domains/' + name + '/schedule-delete', null, body);
-    }
-    unscheduleDomainDelete(name) {
-        return this.request('post', '/domains/' + name + '/unschedule-delete', null, null);
-    }
-    getSSLContacts(query = null) {
-        return this.request('get', '/ssl/contacts', query, null);
-    }
-    createSSLContact(body = null) {
-        return this.request('post', '/ssl/contacts', null, body);
-    }
-    deleteSSLContact(id) {
-        return this.request('delete', '/ssl/contacts/' + id, null, null);
-    }
-    getSSLContact(id) {
-        return this.request('get', '/ssl/contacts/' + id, null, null);
-    }
-    getSSLOrganisations(query = null) {
-        return this.request('get', '/ssl/organisations', query, null);
-    }
-    createSSLOrganisation(body = null) {
-        return this.request('post', '/ssl/organisations', null, body);
-    }
-    deleteSSLOrganisation(id) {
-        return this.request('delete', '/ssl/organisations/' + id, null, null);
-    }
-    getSSLOrganisation(id) {
-        return this.request('get', '/ssl/organisations/' + id, null, null);
-    }
-    getSSLTypes(query = null) {
-        return this.request('get', '/ssl/types', query, null);
-    }
-    getSSLType(id) {
-        return this.request('get', '/ssl/types/' + id, null, null);
-    }
-    getSSLCertificates(query = null) {
-        return this.request('get', '/ssl/certificates', query, null);
-    }
-    createSSLCertificate(body = null) {
-        return this.request('post', '/ssl/certificates', null, body);
-    }
-    getSSLCertificate(id) {
-        return this.request('get', '/ssl/certificates/' + id, null, null);
-    }
     getSSHKeys(query = null) {
         return this.request('get', '/ssh-keys', query, null);
     }
@@ -234,44 +150,8 @@ export default class LUMASERVCoreClient {
     getServerMedia(id) {
         return this.request('get', '/server-medias/' + id, null, null);
     }
-    getDomainPricingList(query = null) {
-        return this.request('get', '/pricing/domains', query, null);
-    }
     search(query = null) {
         return this.request('get', '/search', query, null);
-    }
-    checkDomain(name) {
-        return this.request('get', '/domains/' + name + '/check', null, null);
-    }
-    getDNSZones(query = null) {
-        return this.request('get', '/dns/zones', query, null);
-    }
-    getDNSZone(name) {
-        return this.request('get', '/dns/zones/' + name, null, null);
-    }
-    updateDNSZone(name, body = null) {
-        return this.request('put', '/dns/zones/' + name, null, body);
-    }
-    getDNSZoneRecords(name, query = null) {
-        return this.request('get', '/dns/zones/' + name + '/records', query, null);
-    }
-    createDNSZoneRecord(name, body = null) {
-        return this.request('post', '/dns/zones/' + name + '/records', null, body);
-    }
-    updateDNSZoneRecords(name, body = null) {
-        return this.request('put', '/dns/zones/' + name + '/records', null, body);
-    }
-    deleteDNSRecord(name, id) {
-        return this.request('delete', '/dns/zones/' + name + '/records/' + id, null, null);
-    }
-    updateDNSRecord(name, id, body = null) {
-        return this.request('put', '/dns/zones/' + name + '/records/' + id, null, body);
-    }
-    checkDomainVerification(name) {
-        return this.request('get', '/domains/' + name + '/verification', null, null);
-    }
-    sendDomainVerification(name) {
-        return this.request('post', '/domains/' + name + '/verification', null, null);
     }
     getAvailabilityZones(query = null) {
         return this.request('get', '/availability-zones', query, null);
