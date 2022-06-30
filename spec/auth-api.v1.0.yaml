@@ -216,7 +216,7 @@ paths:
           name: 'filter[id]'
           description: ID Filter
         - $ref: '#/components/parameters/Order'
-        - $ref: ./core-api.v1.0.yaml#/components/parameters/OrderBy
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createUser
       operationId: createUser
@@ -473,11 +473,11 @@ paths:
       operationId: getUserProjectMemberships
       description: Returns all project memberships of the user
       parameters:
-        - $ref: ./core-api.v1.0.yaml#/components/parameters/PaginationPage
-        - $ref: ./core-api.v1.0.yaml#/components/parameters/PaginationPageSize
-        - $ref: ./core-api.v1.0.yaml#/components/parameters/Search
-        - $ref: ./core-api.v1.0.yaml#/components/parameters/Order
-        - $ref: ./core-api.v1.0.yaml#/components/parameters/OrderBy
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
   /tokens:
     get:
       summary: getTokens
@@ -523,8 +523,8 @@ paths:
           in: query
           name: 'filter[id]'
           description: ID Filter
-        - $ref: ./core-api.v1.0.yaml#/components/parameters/Order
-        - $ref: ./core-api.v1.0.yaml#/components/parameters/OrderBy
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
     post:
       summary: createToken
       operationId: createToken
