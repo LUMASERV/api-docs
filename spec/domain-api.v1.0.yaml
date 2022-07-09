@@ -807,7 +807,6 @@ components:
       properties:
         transaction_id:
           type: string
-          format: uuid
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         build_commit:
           type: string
