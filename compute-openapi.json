@@ -12858,9 +12858,12 @@
           },
           "created_at" : {
             "type" : "string"
+          },
+          "active" : {
+            "type" : "boolean"
           }
         },
-        "required" : [ "created_at", "id", "title", "zone_id" ],
+        "required" : [ "active", "created_at", "id", "title", "zone_id" ],
         "title" : "ServerHost",
         "type" : "object",
         "x-tags" : [ "server" ]
