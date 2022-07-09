@@ -3837,11 +3837,14 @@ components:
           type: string
         created_at:
           type: string
+        active:
+          type: boolean
       required:
         - id
         - zone_id
         - title
         - created_at
+        - active
     ServerStorage:
       title: ServerStorage
       type: object
