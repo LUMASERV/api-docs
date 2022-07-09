@@ -2649,7 +2649,6 @@
         "properties" : {
           "transaction_id" : {
             "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
-            "format" : "uuid",
             "type" : "string"
           },
           "build_commit" : {
