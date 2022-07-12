@@ -1962,15 +1962,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerVNC
       description: Returns vnc websocket credentials
-  '/servers/{id}/actions':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: Server ID
+  /server-actions:
+    parameters: []
     get:
       summary: getServerActions
       tags:
@@ -1994,19 +1987,34 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/Order'
         - $ref: '#/components/parameters/OrderBy'
-  '/servers/{id}/actions/{action_id}':
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[server_id]'
+          description: Server ID Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[type]'
+          description: Type Filter
+        - schema:
+            type: string
+          in: query
+          name: 'filter[state]'
+          description: State Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+  '/server-actions/{id}':
     parameters:
       - schema:
           type: string
           format: uuid
         name: id
-        in: path
-        required: true
-        description: Server ID
-      - schema:
-          type: string
-          format: uuid
-        name: action_id
         in: path
         required: true
         description: ServerAction ID
@@ -3241,19 +3249,12 @@ paths:
       description: Restarts the server
       tags:
         - server
-  '/servers/{id}/actions/{action_id}/cancel':
+  '/server-actions/{id}/cancel':
     parameters:
       - schema:
           type: string
           format: uuid
         name: id
-        in: path
-        required: true
-        description: Server ID
-      - schema:
-          type: string
-          format: uuid
-        name: action_id
         in: path
         required: true
         description: ServerAction ID
@@ -3276,6 +3277,53 @@ paths:
       description: Cancels the server action in case it's stuck
       tags:
         - server
+  '/servers/{id}/mount':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server ID
+    post:
+      summary: mountServerMedia
+      operationId: mountServerMedia
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Mounts a media to a server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerMediaMountRequest'
+    delete:
+      summary: unmountServerMedia
+      operationId: unmountServerMedia
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      description: Unmounts a mounted media from a server
 components:
   schemas:
     ResponseMessages:
@@ -6370,6 +6418,17 @@ components:
               keep:
                 type: boolean
       description: ''
+    ServerMediaMountRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              media_id:
+                type: string
+                format: uuid
+            required:
+              - media_id
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'

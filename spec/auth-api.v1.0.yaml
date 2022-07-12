@@ -712,6 +712,136 @@ paths:
         - audit
       requestBody:
         $ref: '#/components/requestBodies/AuditLogRequest'
+  /project-invites:
+    get:
+      summary: getProjectInvites
+      tags:
+        - projects
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectInviteListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getProjectInvites
+      description: Retrieves all pending invites
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: ./compute-api.v1.0.yaml#/components/parameters/ProjectIDFilter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[id]'
+          description: ID Filter
+        - schema:
+            type: string
+            format: email
+          in: query
+          name: 'filter[email]'
+          description: E-Mail Filter
+    post:
+      summary: createProjectInvite
+      operationId: createProjectInvite
+      responses:
+        '200':
+          $ref: '#/components/responses/ProjectInviteSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Invites a user to a project
+      tags:
+        - projects
+      requestBody:
+        $ref: '#/components/requestBodies/ProjectInviteCreateRequest'
+  '/project-invites/{id}/accept':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: acceptProjectInvite
+      operationId: acceptProjectInvite
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Accepts an invite to a project
+      tags:
+        - projects
+  '/project-invites/{id}/reject':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: rejectProjectInvite
+      operationId: rejectProjectInvite
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - projects
+      description: Reject an invite to a project
+  '/project-invites/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    delete:
+      summary: deleteProjectInvite
+      operationId: deleteProjectInvite
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a pending invite to a project
+      tags:
+        - projects
 components:
   schemas:
     ResponseMessages:
@@ -1004,6 +1134,31 @@ components:
         - SERVER_VOLUME
         - SERVER_MEDIA
         - NETWORK
+    ProjectInvite:
+      title: ProjectInvite
+      x-stoplight:
+        id: r44qtk826ngsc
+      type: object
+      properties:
+        id:
+          type: string
+        project_id:
+          type: string
+        project_title:
+          type: string
+        email:
+          type: string
+        valid_until:
+          type: string
+        created_at:
+          type: string
+      required:
+        - id
+        - project_id
+        - project_title
+        - email
+        - valid_until
+        - created_at
   securitySchemes:
     AuthToken:
       type: http
@@ -1363,6 +1518,52 @@ components:
               - data
               - messages
               - metadata
+    ProjectInviteListResponse:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+                default: true
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectInvite'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ProjectInviteSingleResponse:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                type: string
+              success:
+                type: boolean
+                default: true
+              data:
+                $ref: '#/components/schemas/ProjectInvite'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     ProjectCreateRequest:
       content:
@@ -1544,6 +1745,20 @@ components:
                 default: USER
             required:
               - user_id
+    ProjectInviteCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              email:
+                type: string
+            required:
+              - project_id
+              - email
   parameters:
     PaginationPage:
       name: page
