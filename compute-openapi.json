@@ -6640,22 +6640,11 @@
         "tags" : [ "server" ]
       }
     },
-    "/servers/{id}/actions" : {
+    "/server-actions" : {
       "get" : {
         "description" : "Returns all actions for the server",
         "operationId" : "getServerActions",
         "parameters" : [ {
-          "description" : "Server ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        }, {
           "description" : "Page",
           "explode" : true,
           "in" : "query",
@@ -6705,6 +6694,48 @@
           "name" : "order_by",
           "required" : false,
           "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Server ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[server_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Type Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[type]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "State Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[state]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
             "type" : "string"
           },
           "style" : "form"
@@ -6765,26 +6796,15 @@
         "tags" : [ "server" ]
       }
     },
-    "/servers/{id}/actions/{action_id}" : {
+    "/server-actions/{id}" : {
       "get" : {
         "description" : "Returns a single server action",
         "operationId" : "getServerAction",
         "parameters" : [ {
-          "description" : "Server ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        }, {
           "description" : "ServerAction ID",
           "explode" : false,
           "in" : "path",
-          "name" : "action_id",
+          "name" : "id",
           "required" : true,
           "schema" : {
             "format" : "uuid",
@@ -11072,26 +11092,15 @@
         "tags" : [ "server" ]
       }
     },
-    "/servers/{id}/actions/{action_id}/cancel" : {
+    "/server-actions/{id}/cancel" : {
       "post" : {
         "description" : "Cancels the server action in case it's stuck",
         "operationId" : "cancelServerAction",
         "parameters" : [ {
-          "description" : "Server ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        }, {
           "description" : "ServerAction ID",
           "explode" : false,
           "in" : "path",
-          "name" : "action_id",
+          "name" : "id",
           "required" : true,
           "schema" : {
             "format" : "uuid",
@@ -11162,6 +11171,166 @@
           }
         },
         "summary" : "cancelServerAction",
+        "tags" : [ "server" ]
+      }
+    },
+    "/servers/{id}/mount" : {
+      "delete" : {
+        "description" : "Unmounts a mounted media from a server",
+        "operationId" : "unmountServerMedia",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createServer_201_response"
+                }
+              }
+            },
+            "description" : "Single Server"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "unmountServerMedia",
+        "tags" : [ "server" ]
+      },
+      "post" : {
+        "description" : "Mounts a media to a server",
+        "operationId" : "mountServerMedia",
+        "parameters" : [ {
+          "description" : "Server ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerMediaMountRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createServer_201_response"
+                }
+              }
+            },
+            "description" : "Single Server"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createS3Bucket_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createS3Bucket_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "mountServerMedia",
         "tags" : [ "server" ]
       }
     }
@@ -11580,6 +11749,15 @@
           }
         },
         "description" : ""
+      },
+      "ServerMediaMountRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/mountServerMedia_request"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -15342,6 +15520,16 @@
           }
         },
         "required" : [ "range_id" ],
+        "type" : "object"
+      },
+      "mountServerMedia_request" : {
+        "properties" : {
+          "media_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "required" : [ "media_id" ],
         "type" : "object"
       }
     },

@@ -117,4 +117,19 @@ export default class LUMASERVAuthClient {
     insertAuditLogEntry(body = null) {
         return this.request('post', '/audit-log', null, body);
     }
+    getProjectInvites(query = null) {
+        return this.request('get', '/project-invites', query, null);
+    }
+    createProjectInvite(body = null) {
+        return this.request('post', '/project-invites', null, body);
+    }
+    acceptProjectInvite(id) {
+        return this.request('post', '/project-invites/' + id + '/accept', null, null);
+    }
+    rejectProjectInvite(id) {
+        return this.request('post', '/project-invites/' + id + '/reject', null, null);
+    }
+    deleteProjectInvite(id) {
+        return this.request('delete', '/project-invites/' + id, null, null);
+    }
 }

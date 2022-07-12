@@ -249,11 +249,11 @@ export default class LUMASERVComputeClient {
     getServerVNC(id) {
         return this.request('get', '/servers/' + id + '/vnc', null, null);
     }
-    getServerActions(id, query = null) {
-        return this.request('get', '/servers/' + id + '/actions', query, null);
+    getServerActions(query = null) {
+        return this.request('get', '/server-actions', query, null);
     }
-    getServerAction(id, action_id) {
-        return this.request('get', '/servers/' + id + '/actions/' + action_id, null, null);
+    getServerAction(id) {
+        return this.request('get', '/server-actions/' + id, null, null);
     }
     attachServerVolume(id, body = null) {
         return this.request('post', '/server-volumes/' + id + '/attach', null, body);
@@ -387,7 +387,13 @@ export default class LUMASERVComputeClient {
     restartServer(id) {
         return this.request('post', '/servers/' + id + '/restart', null, null);
     }
-    cancelServerAction(id, action_id) {
-        return this.request('post', '/servers/' + id + '/actions/' + action_id + '/cancel', null, null);
+    cancelServerAction(id) {
+        return this.request('post', '/server-actions/' + id + '/cancel', null, null);
+    }
+    unmountServerMedia(id) {
+        return this.request('delete', '/servers/' + id + '/mount', null, null);
+    }
+    mountServerMedia(id, body = null) {
+        return this.request('post', '/servers/' + id + '/mount', null, body);
     }
 }
