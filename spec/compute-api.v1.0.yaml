@@ -1745,6 +1745,24 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerHost
       description: Returns a single host
+    put:
+      summary: updateServerHost
+      operationId: updateServerHost
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerHostSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/ServerHostUpdateRequest'
   /server-storages:
     get:
       summary: getServerStorages
@@ -6022,6 +6040,8 @@ components:
                 type: string
               external_id:
                 type: string
+              active:
+                type: boolean
             required:
               - zone_id
               - title
@@ -6429,6 +6449,16 @@ components:
                 format: uuid
             required:
               - media_id
+    ServerHostUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              active:
+                type: boolean
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
