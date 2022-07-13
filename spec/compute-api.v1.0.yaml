@@ -1763,6 +1763,8 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       requestBody:
         $ref: '#/components/requestBodies/ServerHostUpdateRequest'
+      tags:
+        - server
   /server-storages:
     get:
       summary: getServerStorages
