@@ -6025,6 +6025,92 @@
         },
         "summary" : "getServerHost",
         "tags" : [ "server" ]
+      },
+      "put" : {
+        "operationId" : "updateServerHost",
+        "parameters" : [ {
+          "description" : "ServerHost ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerHostUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createServerHost_201_response"
+                }
+              }
+            },
+            "description" : "Single ServerHost"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createS3Bucket_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createS3Bucket_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateServerHost"
       }
     },
     "/server-storages" : {
@@ -11519,7 +11605,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/createServerMedia_request"
+              "$ref" : "#/components/schemas/createServerHost_request"
             }
           }
         }
@@ -11755,6 +11841,15 @@
           "application/json" : {
             "schema" : {
               "$ref" : "#/components/schemas/mountServerMedia_request"
+            }
+          }
+        }
+      },
+      "ServerHostUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/updateServerHost_request"
             }
           }
         }
@@ -14744,6 +14839,25 @@
         "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       },
+      "createServerHost_request" : {
+        "properties" : {
+          "zone_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "external_id" : {
+            "type" : "string"
+          },
+          "active" : {
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "external_id", "title", "zone_id" ],
+        "type" : "object"
+      },
       "createServerHost_201_response" : {
         "properties" : {
           "metadata" : {
@@ -14760,6 +14874,17 @@
           }
         },
         "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "updateServerHost_request" : {
+        "properties" : {
+          "title" : {
+            "type" : "string"
+          },
+          "active" : {
+            "type" : "boolean"
+          }
+        },
         "type" : "object"
       },
       "getServerStorages_200_response" : {

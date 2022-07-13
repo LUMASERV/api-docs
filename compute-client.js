@@ -225,6 +225,9 @@ export default class LUMASERVComputeClient {
     getServerHost(id) {
         return this.request('get', '/server-hosts/' + id, null, null);
     }
+    updateServerHost(id, body = null) {
+        return this.request('put', '/server-hosts/' + id, null, body);
+    }
     getServerStorages(query = null) {
         return this.request('get', '/server-storages', query, null);
     }
