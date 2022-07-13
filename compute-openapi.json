@@ -6110,7 +6110,8 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "updateServerHost"
+        "summary" : "updateServerHost",
+        "tags" : [ "server" ]
       }
     },
     "/server-storages" : {
