@@ -336,6 +336,9 @@ export default class LUMASERVComputeClient {
     getServerFirewallRule(id, rule_id) {
         return this.request('get', '/server-firewalls/' + id + '/rules/' + rule_id, null, null);
     }
+    updateServerFirewallRule(id, rule_id, body = null) {
+        return this.request('put', '/server-firewalls/' + id + '/rules/' + rule_id, null, body);
+    }
     getServerFirewallMembers(id, query = null) {
         return this.request('get', '/server-firewalls/' + id + '/members', query, null);
     }
