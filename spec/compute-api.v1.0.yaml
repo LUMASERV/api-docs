@@ -2707,6 +2707,11 @@ paths:
           description: Applied Rule Filter
         - $ref: '#/components/parameters/Order'
         - $ref: '#/components/parameters/OrderBy'
+        - schema:
+            type: boolean
+          in: query
+          name: 'filter[disabled]'
+          description: Disabled Filter
     post:
       summary: createServerFirewallRule
       operationId: createServerFirewallRule
@@ -2778,6 +2783,27 @@ paths:
       description: Deletes a server firewall rule
       tags:
         - server
+    put:
+      summary: updateServerFirewallRule
+      operationId: updateServerFirewallRule
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerFirewallRuleSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the firewall rule
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerFirewallRuleUpdateRequest'
   '/server-firewalls/{id}/members':
     parameters:
       - schema:
@@ -6337,6 +6363,8 @@ components:
                   type: string
               description:
                 type: string
+              disabled:
+                type: boolean
             required:
               - type
     ServerFirewallMemberCreateRequest:
@@ -6461,6 +6489,16 @@ components:
                 type: string
               active:
                 type: boolean
+    ServerFirewallRuleUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              disabled:
+                type: boolean
+              description:
+                type: string
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
