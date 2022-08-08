@@ -195,6 +195,9 @@ export default class LUMASERVComputeClient {
     getNetwork(id) {
         return this.request('get', '/networks/' + id, null, null);
     }
+    updateNetwork(id, body = null) {
+        return this.request('put', '/networks/' + id, null, body);
+    }
     getServerNetworks(id, query = null) {
         return this.request('get', '/servers/' + id + '/networks', query, null);
     }
