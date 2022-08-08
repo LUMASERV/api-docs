@@ -1443,6 +1443,27 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: getNetwork
       description: Returns a single network
+    put:
+      summary: updateNetwork
+      operationId: updateNetwork
+      responses:
+        '200':
+          $ref: '#/components/responses/NetworkSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates the network
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/NetworkUpdateRequest'
   '/servers/{id}/networks':
     parameters:
       - schema:
@@ -6499,6 +6520,14 @@ components:
                 type: boolean
               description:
                 type: string
+    NetworkUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              labels:
+                type: object
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
