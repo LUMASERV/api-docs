@@ -2577,6 +2577,27 @@ paths:
       tags:
         - server
       description: Deletes a scheduled server action
+    put:
+      summary: updateScheduledServerAction
+      operationId: updateScheduledServerAction
+      responses:
+        '200':
+          $ref: '#/components/responses/ScheduledServerActionSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ScheduledServerActionUpdateRequest'
+      description: Updates the scheduled server action
   /server-firewalls:
     get:
       summary: getServerFirewalls
@@ -6528,6 +6549,23 @@ components:
             properties:
               labels:
                 type: object
+    ScheduledServerActionUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              type:
+                $ref: '#/components/schemas/ServerActionType'
+              interval:
+                $ref: '#/components/schemas/ScheduledServerActionInterval'
+              backup_id:
+                type: string
+                format: uuid
+              backup_retention:
+                type: integer
+              force:
+                type: boolean
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
