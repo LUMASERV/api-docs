@@ -408,4 +408,7 @@ export default class LUMASERVComputeClient {
     mountServerMedia(id, body = null) {
         return this.request('post', '/servers/' + id + '/mount', null, body);
     }
+    resizeServerVolume(id, body = null) {
+        return this.request('post', '/server-volumes/' + id + '/resize', null, body);
+    }
 }

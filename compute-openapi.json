@@ -11727,6 +11727,94 @@
         "summary" : "mountServerMedia",
         "tags" : [ "server" ]
       }
+    },
+    "/server-volumes/{id}/resize" : {
+      "post" : {
+        "description" : "Resizes the volume",
+        "operationId" : "resizeServerVolume",
+        "parameters" : [ {
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerVolumeResizeRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createServerVolume_201_response"
+                }
+              }
+            },
+            "description" : "Single ServerVolume"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createS3Bucket_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createS3Bucket_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "resizeServerVolume",
+        "tags" : [ "server" ]
+      }
     }
   },
   "components" : {
@@ -12185,6 +12273,15 @@
           "application/json" : {
             "schema" : {
               "$ref" : "#/components/schemas/updateScheduledServerAction_request"
+            }
+          }
+        }
+      },
+      "ServerVolumeResizeRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/resizeServerVolume_request"
             }
           }
         }
@@ -16033,6 +16130,15 @@
           }
         },
         "required" : [ "media_id" ],
+        "type" : "object"
+      },
+      "resizeServerVolume_request" : {
+        "properties" : {
+          "size" : {
+            "type" : "integer"
+          }
+        },
+        "required" : [ "size" ],
         "type" : "object"
       }
     },
