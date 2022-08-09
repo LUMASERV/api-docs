@@ -3418,6 +3418,34 @@ paths:
       tags:
         - server
       description: Unmounts a mounted media from a server
+  '/server-volumes/{id}/resize':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: resizeServerVolume
+      operationId: resizeServerVolume
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumeSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Resizes the volume
+      tags:
+        - server
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVolumeResizeRequest'
 components:
   schemas:
     ResponseMessages:
@@ -6572,6 +6600,16 @@ components:
                 type: integer
               force:
                 type: boolean
+    ServerVolumeResizeRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              size:
+                type: integer
+            required:
+              - size
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
