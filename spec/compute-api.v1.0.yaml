@@ -589,6 +589,12 @@ paths:
           description: Host ID Filter
         - $ref: '#/components/parameters/Order'
         - $ref: '#/components/parameters/OrderBy'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[network_id]'
+          description: Network ID Filter
     post:
       summary: createServer
       operationId: createServer
