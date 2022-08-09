@@ -315,6 +315,9 @@ export default class LUMASERVComputeClient {
     getScheduledServerAction(id, action_id) {
         return this.request('get', '/servers/' + id + '/scheduled-actions/' + action_id, null, null);
     }
+    updateScheduledServerAction(id, action_id, body = null) {
+        return this.request('put', '/servers/' + id + '/scheduled-actions/' + action_id, null, body);
+    }
     getServerFirewalls(query = null) {
         return this.request('get', '/server-firewalls', query, null);
     }
