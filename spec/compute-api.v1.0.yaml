@@ -6024,6 +6024,7 @@ components:
                 example: 1428d399-8861-40a5-a85f-6ed4c669bae0
               title:
                 type: string
+                minLength: 2
               public_key:
                 type: string
                 description: RSA Public Key in OpenSSH or RFC 4716 Format
@@ -6051,6 +6052,7 @@ components:
                 format: uuid
               name:
                 type: string
+                minLength: 2
               variant_id:
                 type: string
                 format: uuid
@@ -6119,6 +6121,7 @@ components:
                 format: uuid
               title:
                 type: string
+                minLength: 2
               project_id:
                 type: string
                 format: uuid
@@ -6142,6 +6145,7 @@ components:
                 format: uuid
               title:
                 type: string
+                minLength: 2
               external_id:
                 type: string
               active:
@@ -6161,6 +6165,7 @@ components:
                 format: uuid
               title:
                 type: string
+                minLength: 2
               external_id:
                 type: string
             required:
@@ -6180,6 +6185,7 @@ components:
                   format: uuid
               title:
                 type: string
+                minLength: 2
               replication:
                 type: integer
             required:
@@ -6229,6 +6235,7 @@ components:
                   type: string
               title:
                 type: string
+                minLength: 2
               cores:
                 type: integer
               memory:
@@ -6257,6 +6264,7 @@ components:
             properties:
               title:
                 type: string
+                minLength: 2
               config:
                 type: object
               country_code:
@@ -6276,6 +6284,7 @@ components:
             properties:
               title:
                 type: string
+                minLength: 2
               config:
                 type: object
               country_code:
@@ -6312,6 +6321,7 @@ components:
             properties:
               name:
                 type: string
+                minLength: 2
               labels:
                 type: object
                 additionalProperties:
@@ -6368,6 +6378,7 @@ components:
                 format: uuid
               title:
                 type: string
+                minLength: 2
             required:
               - server_id
     ServerRestoreRequest:
@@ -6413,6 +6424,7 @@ components:
             properties:
               title:
                 type: string
+                minLength: 2
               project_id:
                 type: string
                 format: uuid
@@ -6468,6 +6480,7 @@ components:
             properties:
               title:
                 type: string
+                minLength: 2
             required:
               - title
     ServerVariantPriceCreateRequest:
@@ -6531,6 +6544,9 @@ components:
           schema:
             type: object
             properties:
+              title:
+                type: string
+                minLength: 2
               labels:
                 type: object
                 additionalProperties:
@@ -6543,6 +6559,9 @@ components:
             properties:
               keep:
                 type: boolean
+              title:
+                type: string
+                minLength: 2
       description: ''
     ServerMediaMountRequest:
       content:
@@ -6563,6 +6582,7 @@ components:
             properties:
               title:
                 type: string
+                minLength: 2
               active:
                 type: boolean
     ServerFirewallRuleUpdateRequest:
@@ -6581,6 +6601,9 @@ components:
           schema:
             type: object
             properties:
+              title:
+                type: string
+                minLength: 2
               labels:
                 type: object
     ScheduledServerActionUpdateRequest:
