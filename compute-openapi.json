@@ -14479,6 +14479,7 @@
             "type" : "string"
           },
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "public_key" : {
@@ -14549,6 +14550,7 @@
             "type" : "string"
           },
           "name" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "variant_id" : {
@@ -14613,6 +14615,7 @@
       "updateServer_request" : {
         "properties" : {
           "name" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "labels" : {
@@ -14697,6 +14700,10 @@
       },
       "updateServerVolume_request" : {
         "properties" : {
+          "title" : {
+            "minLength" : 2,
+            "type" : "string"
+          },
           "labels" : {
             "additionalProperties" : {
               "type" : "string"
@@ -14794,6 +14801,7 @@
             "type" : "string"
           },
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "external_id" : {
@@ -14866,6 +14874,7 @@
       "createAvailabilityZone_request" : {
         "properties" : {
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "config" : {
@@ -14902,6 +14911,7 @@
       "updateAvailabilityZone_request" : {
         "properties" : {
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "config" : {
@@ -14950,6 +14960,7 @@
             "type" : "array"
           },
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "cores" : {
@@ -15026,6 +15037,7 @@
             "type" : "array"
           },
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "replication" : {
@@ -15084,6 +15096,7 @@
             "type" : "string"
           },
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "project_id" : {
@@ -15123,6 +15136,10 @@
       },
       "updateNetwork_request" : {
         "properties" : {
+          "title" : {
+            "minLength" : 2,
+            "type" : "string"
+          },
           "labels" : {
             "type" : "object"
           }
@@ -15286,6 +15303,7 @@
             "type" : "string"
           },
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "external_id" : {
@@ -15319,6 +15337,7 @@
       "updateServerHost_request" : {
         "properties" : {
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "active" : {
@@ -15601,6 +15620,7 @@
             "type" : "string"
           },
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           }
         },
@@ -15629,6 +15649,10 @@
         "properties" : {
           "keep" : {
             "type" : "boolean"
+          },
+          "title" : {
+            "minLength" : 2,
+            "type" : "string"
           }
         },
         "type" : "object"
@@ -15760,6 +15784,7 @@
       "createServerFirewall_request" : {
         "properties" : {
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           },
           "project_id" : {
@@ -15959,6 +15984,7 @@
       "createServerPriceRange_request" : {
         "properties" : {
           "title" : {
+            "minLength" : 2,
             "type" : "string"
           }
         },
