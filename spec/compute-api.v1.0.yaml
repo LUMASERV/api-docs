@@ -1775,6 +1775,7 @@ paths:
     put:
       summary: updateServerHost
       operationId: updateServerHost
+      description: Updates the server host
       responses:
         '200':
           $ref: '#/components/responses/ServerHostSingleResponse'
@@ -3424,6 +3425,7 @@ paths:
           type: string
         name: id
         in: path
+        description: ServerVolume ID
         required: true
     post:
       summary: resizeServerVolume
