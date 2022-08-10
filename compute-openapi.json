@@ -6126,6 +6126,7 @@
         "tags" : [ "server" ]
       },
       "put" : {
+        "description" : "Updates the server host",
         "operationId" : "updateServerHost",
         "parameters" : [ {
           "description" : "ServerHost ID",
@@ -11733,6 +11734,7 @@
         "description" : "Resizes the volume",
         "operationId" : "resizeServerVolume",
         "parameters" : [ {
+          "description" : "ServerVolume ID",
           "explode" : false,
           "in" : "path",
           "name" : "id",
