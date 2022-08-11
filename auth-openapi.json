@@ -2322,13 +2322,14 @@
           "style" : "form"
         }, {
           "description" : "Project ID Filter",
+          "explode" : true,
           "in" : "query",
           "name" : "filter[project_id]",
           "required" : false,
           "schema" : {
-            "format" : "uuid",
             "type" : "string"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "ID Filter",
           "explode" : true,
@@ -2749,6 +2750,17 @@
         "explode" : true,
         "in" : "query",
         "name" : "order_by",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "style" : "form"
+      },
+      "ProjectIDFilter" : {
+        "description" : "Project ID Filter",
+        "explode" : true,
+        "in" : "query",
+        "name" : "filter[project_id]",
         "required" : false,
         "schema" : {
           "type" : "string"
