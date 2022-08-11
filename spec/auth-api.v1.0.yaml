@@ -736,7 +736,7 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/Order'
         - $ref: '#/components/parameters/OrderBy'
-        - $ref: ./compute-api.v1.0.yaml#/components/parameters/ProjectIDFilter
+        - $ref: '#/components/parameters/ProjectIDFilter'
         - schema:
             type: string
             format: uuid
@@ -1799,5 +1799,12 @@ components:
       schema:
         type: string
       description: Field or array of fields to order by
+    ProjectIDFilter:
+      name: 'filter[project_id]'
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Project ID Filter
 security:
   - AuthToken: []
