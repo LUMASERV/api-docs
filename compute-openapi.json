@@ -38,7 +38,13 @@
   }, {
     "name" : "server-firewall"
   }, {
+    "name" : "server-host"
+  }, {
     "name" : "server-media"
+  }, {
+    "name" : "server-storage"
+  }, {
+    "name" : "server-storage-class"
   }, {
     "name" : "server-template"
   }, {
@@ -4041,7 +4047,7 @@
           }
         },
         "summary" : "getServerStorageClasses",
-        "tags" : [ "server" ]
+        "tags" : [ "server-storage-class" ]
       },
       "post" : {
         "description" : "Creates a new storage class",
@@ -4117,7 +4123,7 @@
           }
         },
         "summary" : "createServerStorageClass",
-        "tags" : [ "server" ]
+        "tags" : [ "server-storage-class" ]
       }
     },
     "/server-storage-classes/{id}" : {
@@ -4179,7 +4185,7 @@
           }
         },
         "summary" : "getServerStorageClass",
-        "tags" : [ "server" ]
+        "tags" : [ "server-storage-class" ]
       }
     },
     "/networks" : {
@@ -5443,7 +5449,7 @@
           }
         },
         "summary" : "getServerHosts",
-        "tags" : [ "server" ]
+        "tags" : [ "server-host" ]
       },
       "post" : {
         "description" : "Creates a new server host",
@@ -5519,7 +5525,7 @@
           }
         },
         "summary" : "createServerHost",
-        "tags" : [ "server" ]
+        "tags" : [ "server-host" ]
       }
     },
     "/server-hosts/{id}" : {
@@ -5591,7 +5597,7 @@
           }
         },
         "summary" : "getServerHost",
-        "tags" : [ "server" ]
+        "tags" : [ "server-host" ]
       },
       "put" : {
         "description" : "Updates the server host",
@@ -5679,7 +5685,7 @@
           }
         },
         "summary" : "updateServerHost",
-        "tags" : [ "server" ]
+        "tags" : [ "server-host" ]
       }
     },
     "/server-storages" : {
@@ -5774,7 +5780,7 @@
           }
         },
         "summary" : "getServerStorages",
-        "tags" : [ "server" ]
+        "tags" : [ "server-storage" ]
       },
       "post" : {
         "description" : "Creates a new server storage",
@@ -5850,7 +5856,7 @@
           }
         },
         "summary" : "createServerStorage",
-        "tags" : [ "server" ]
+        "tags" : [ "server-storage" ]
       }
     },
     "/server-storages/{id}" : {
@@ -5922,7 +5928,7 @@
           }
         },
         "summary" : "getServerStorage",
-        "tags" : [ "server" ]
+        "tags" : [ "server-storage" ]
       }
     },
     "/servers/{id}/start" : {
@@ -6610,7 +6616,7 @@
           }
         },
         "summary" : "attachServerVolume",
-        "tags" : [ "server" ]
+        "tags" : [ "server-volume" ]
       }
     },
     "/server-volumes/{id}/detach" : {
@@ -6692,7 +6698,7 @@
           }
         },
         "summary" : "detachServerVolume",
-        "tags" : [ "server" ]
+        "tags" : [ "server-volume" ]
       }
     },
     "/servers/{id}/status" : {
