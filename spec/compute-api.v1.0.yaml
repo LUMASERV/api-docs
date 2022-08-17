@@ -14,13 +14,19 @@ servers:
     description: Live
 tags:
   - name: address
+  - name: availability-zone
   - name: general
   - name: label
   - name: network
   - name: pricing
   - name: s3-storage
   - name: server
+  - name: server-backup
   - name: server-firewall
+  - name: server-media
+  - name: server-template
+  - name: server-variant
+  - name: server-volume
   - name: sshkeys
 paths:
   /storage/s3/buckets:
@@ -534,7 +540,7 @@ paths:
     get:
       summary: getServerVolumes
       tags:
-        - server
+        - server-volume
       responses:
         '200':
           $ref: '#/components/responses/ServerVolumeListResponse'
@@ -594,7 +600,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new volume
       tags:
-        - server
+        - server-volume
       requestBody:
         $ref: '#/components/requestBodies/ServerVolumeCreateRequest'
   '/server-volumes/{id}':
@@ -609,7 +615,7 @@ paths:
     get:
       summary: getServerVolume
       tags:
-        - server
+        - server-volume
       responses:
         '200':
           $ref: '#/components/responses/ServerVolumeSingleResponse'
@@ -638,7 +644,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       tags:
-        - server
+        - server-volume
       description: Deletes the volume
     put:
       summary: updateServerVolume
@@ -658,14 +664,14 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Updates the server volume
       tags:
-        - server
+        - server-volume
       requestBody:
         $ref: '#/components/requestBodies/ServerVolumeUpdateRequest'
   /server-templates:
     get:
       summary: getServerTemplates
       tags:
-        - server
+        - server-template
       responses:
         '200':
           $ref: '#/components/responses/ServerTemplateListResponse'
@@ -715,7 +721,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new server template
       tags:
-        - server
+        - server-template
       requestBody:
         $ref: '#/components/requestBodies/ServerTemplateCreateRequest'
   '/server-templates/{id}':
@@ -730,7 +736,7 @@ paths:
     get:
       summary: getServerTemplate
       tags:
-        - server
+        - server-template
       responses:
         '200':
           $ref: '#/components/responses/ServerTemplateSingleResponse'
@@ -746,7 +752,7 @@ paths:
     get:
       summary: getServerMedias
       tags:
-        - server
+        - server-media
       responses:
         '200':
           $ref: '#/components/responses/ServerMediaListResponse'
@@ -801,7 +807,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new server media
       tags:
-        - server
+        - server-media
       requestBody:
         $ref: '#/components/requestBodies/ServerMediaCreateRequest'
   '/server-medias/{id}':
@@ -816,7 +822,7 @@ paths:
     get:
       summary: getServerMedia
       tags:
-        - server
+        - server-media
       responses:
         '200':
           $ref: '#/components/responses/ServerMediaSingleResponse'
@@ -846,7 +852,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Deletes the server media
       tags:
-        - server
+        - server-media
   /search:
     get:
       summary: search
@@ -895,7 +901,7 @@ paths:
     get:
       summary: getAvailabilityZones
       tags:
-        - server
+        - availability-zone
       responses:
         '200':
           $ref: '#/components/responses/AvailabilityZoneListResponse'
@@ -949,7 +955,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new availability zone
       tags:
-        - server
+        - availability-zone
       requestBody:
         $ref: '#/components/requestBodies/AvailabilityZoneCreateRequest'
   '/availability-zones/{id}':
@@ -964,7 +970,7 @@ paths:
     get:
       summary: getAvailabilityZone
       tags:
-        - server
+        - availability-zone
       responses:
         '200':
           $ref: '#/components/responses/AvailabilityZoneSingleResponse'
@@ -994,14 +1000,14 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Updates the availability zone
       tags:
-        - server
+        - availability-zone
       requestBody:
         $ref: '#/components/requestBodies/AvailabilityZoneUpdateRequest'
   /server-variants:
     get:
       summary: getServerVariants
       tags:
-        - server
+        - server-variant
       responses:
         '200':
           $ref: '#/components/responses/ServerVariantListResponse'
@@ -1077,7 +1083,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new server variant
       tags:
-        - server
+        - server-variant
       requestBody:
         $ref: '#/components/requestBodies/ServerVariantCreateRequest'
   '/server-variants/{id}':
@@ -1092,7 +1098,7 @@ paths:
     get:
       summary: getServerVariant
       tags:
-        - server
+        - server-variant
       responses:
         '200':
           $ref: '#/components/responses/ServerVariantSingleResponse'
@@ -1120,7 +1126,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Deletes the server variant
       tags:
-        - server
+        - server-variant
   /server-storage-classes:
     get:
       summary: getServerStorageClasses
@@ -2184,7 +2190,7 @@ paths:
     get:
       summary: getServerBackups
       tags:
-        - server
+        - server-backup
       responses:
         '200':
           $ref: '#/components/responses/ServerBackupListResponse'
@@ -2235,7 +2241,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new backup of a server
       tags:
-        - server
+        - server-backup
       requestBody:
         $ref: '#/components/requestBodies/ServerBackupCreateRequest'
   '/server-backups/{id}':
@@ -2250,7 +2256,7 @@ paths:
     get:
       summary: getServerBackup
       tags:
-        - server
+        - server-backup
       responses:
         '200':
           $ref: '#/components/responses/ServerBackupSingleResponse'
@@ -2280,7 +2286,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Deletes a server backup
       tags:
-        - server
+        - server-backup
     put:
       summary: updateServerBackup
       operationId: updateServerBackup
@@ -2299,7 +2305,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Updates the Server Backup
       tags:
-        - server
+        - server-backup
       requestBody:
         $ref: '#/components/requestBodies/ServerBackupUpdateRequest'
   '/servers/{id}/restore':
@@ -2840,7 +2846,7 @@ paths:
     get:
       summary: getServerPriceRanges
       tags:
-        - server
+        - pricing
       responses:
         '200':
           $ref: '#/components/responses/ServerPriceRangeListResponse'
@@ -2888,7 +2894,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new price range for servers
       tags:
-        - server
+        - pricing
       requestBody:
         $ref: '#/components/requestBodies/ServerPriceRangeCreateRequest'
   '/server-price-ranges/{id}':
@@ -2903,7 +2909,7 @@ paths:
     get:
       summary: getServerPriceRange
       tags:
-        - server
+        - pricing
       responses:
         '200':
           $ref: '#/components/responses/ServerPriceRangeSingleResponse'
@@ -2929,7 +2935,7 @@ paths:
     get:
       summary: getServerVariantPrices
       tags:
-        - server
+        - pricing
       responses:
         '200':
           $ref: '#/components/responses/ServerVariantPriceListResponse'
@@ -2969,7 +2975,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/ServerVariantPriceCreateRequest'
       tags:
-        - server
+        - pricing
   '/server-price-ranges/{id}/variant-prices/{variant_id}':
     parameters:
       - schema:
@@ -2989,7 +2995,7 @@ paths:
     get:
       summary: getServerVariantPrice
       tags:
-        - server
+        - pricing
       responses:
         '200':
           $ref: '#/components/responses/ServerVariantPriceSingleResponse'
@@ -3020,7 +3026,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       tags:
-        - server
+        - pricing
       description: Updates the price for a specific variant in the range
       requestBody:
         $ref: '#/components/requestBodies/ServerVariantPriceUpdateRequest'
@@ -3040,12 +3046,12 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Delete server variant price
       tags:
-        - server
+        - pricing
   /server-price-range-assignments:
     get:
       summary: getServerPriceRangeAssignments
       tags:
-        - server
+        - pricing
       responses:
         '200':
           $ref: '#/components/responses/ServerPriceRangeAssignmentListResponse'
@@ -3101,7 +3107,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/ServerPriceRangeAssignmentCreateRequest'
       tags:
-        - server
+        - pricing
   '/server-price-range-assignments/{id}':
     parameters:
       - schema:
@@ -3113,7 +3119,7 @@ paths:
     get:
       summary: getServerPriceRangeAssignment
       tags:
-        - server
+        - pricing
       responses:
         '200':
           $ref: '#/components/responses/ServerPriceRangeAssignmentSingleResponse'
@@ -3145,7 +3151,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Deletes a server price range assignment
       tags:
-        - server
+        - pricing
     put:
       summary: updateServerPriceRangeAssignment
       operationId: updateServerPriceRangeAssignment
@@ -3164,7 +3170,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Updates the range of an existing server price range assignment
       tags:
-        - server
+        - pricing
       requestBody:
         $ref: '#/components/requestBodies/ServerPriceRangeAssignmentUpdateRequest'
   '/servers/{id}/restart':
@@ -3295,7 +3301,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Resizes the volume
       tags:
-        - server
+        - server-volume
       requestBody:
         $ref: '#/components/requestBodies/ServerVolumeResizeRequest'
 components:
