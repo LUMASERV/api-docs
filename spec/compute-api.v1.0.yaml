@@ -14,21 +14,14 @@ servers:
     description: Live
 tags:
   - name: address
-    description: IP Address and Subnet Management
   - name: general
-    description: General Endpoints
   - name: label
-    description: Label Endpoints
-  - name: plesk-licenses
-    description: Plesk License Management
+  - name: network
   - name: pricing
-    description: Pricing Endpoints
   - name: s3-storage
-    description: S3 Object Storage Management
   - name: server
-    description: Compute Service Management
+  - name: server-firewall
   - name: sshkeys
-    description: SSH-Key Management
 paths:
   /storage/s3/buckets:
     get:
@@ -208,149 +201,6 @@ paths:
       tags:
         - s3-storage
       description: Deletes a s3 access key
-  /licenses/plesk:
-    get:
-      summary: getPleskLicenses
-      tags:
-        - plesk-licenses
-      operationId: getPleskLicenses
-      description: Returns all plesk licenses
-      responses:
-        '200':
-          $ref: '#/components/responses/PleskLicenseListResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      parameters:
-        - $ref: '#/components/parameters/ProjectIDFilter'
-        - $ref: '#/components/parameters/PaginationPage'
-        - $ref: '#/components/parameters/PaginationPageSize'
-        - schema:
-            type: string
-            format: uuid
-          in: query
-          name: 'filter[type_id]'
-          description: Plesk License Type ID
-        - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/LabelsFilter'
-        - $ref: '#/components/parameters/WithLabels'
-        - $ref: '#/components/parameters/Order'
-        - $ref: '#/components/parameters/OrderBy'
-    post:
-      summary: createPleskLicense
-      operationId: createPleskLicense
-      responses:
-        '201':
-          $ref: '#/components/responses/PleskLicenseSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      tags:
-        - plesk-licenses
-      description: Orders a new plesk license
-      requestBody:
-        $ref: '#/components/requestBodies/PleskLicenseCreateRequest'
-  '/licenses/plesk/{id}':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: Plesk License ID
-    get:
-      summary: getPleskLicense
-      tags:
-        - plesk-licenses
-      responses:
-        '200':
-          $ref: '#/components/responses/PleskLicenseSingleResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getPleskLicense
-      description: Returns a single plesk license
-    put:
-      summary: updatePleskLicense
-      operationId: updatePleskLicense
-      responses:
-        '200':
-          $ref: '#/components/responses/PleskLicenseSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      tags:
-        - plesk-licenses
-      description: Updates a plesk license
-      requestBody:
-        $ref: '#/components/requestBodies/PleskLicenseUpdateRequest'
-  /licenses/plesk-types:
-    get:
-      summary: getPleskLicenseTypes
-      tags:
-        - plesk-licenses
-      responses:
-        '200':
-          $ref: '#/components/responses/PleskLicenseTypeListResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getPleskLicenseTypes
-      description: Return all plesk license types
-      parameters:
-        - $ref: '#/components/parameters/PaginationPage'
-        - $ref: '#/components/parameters/PaginationPageSize'
-        - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/Order'
-        - $ref: '#/components/parameters/OrderBy'
-  '/licenses/plesk-types/{id}':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: Plesk License Type ID
-    get:
-      summary: getPleskLicenseType
-      tags:
-        - plesk-licenses
-      responses:
-        '200':
-          $ref: '#/components/responses/PleskLicenseTypeSingleResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getPleskLicenseType
-      description: Returns a single plesk license type
   '/storage/s3/access-keys/{access_key_id}/grants':
     parameters:
       - schema:
@@ -1360,8 +1210,6 @@ paths:
   /networks:
     get:
       summary: getNetworks
-      tags:
-        - server
       responses:
         '200':
           $ref: '#/components/responses/NetworkListResponse'
@@ -1402,6 +1250,8 @@ paths:
           description: Type Filter
         - $ref: '#/components/parameters/Order'
         - $ref: '#/components/parameters/OrderBy'
+      tags:
+        - network
     post:
       summary: createNetwork
       operationId: createNetwork
@@ -1420,7 +1270,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new network
       tags:
-        - server
+        - network
       requestBody:
         $ref: '#/components/requestBodies/NetworkCreateRequest'
   '/networks/{id}':
@@ -1435,7 +1285,7 @@ paths:
     get:
       summary: getNetwork
       tags:
-        - server
+        - network
       responses:
         '200':
           $ref: '#/components/responses/NetworkSingleResponse'
@@ -1467,7 +1317,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Updates the network
       tags:
-        - server
+        - network
       requestBody:
         $ref: '#/components/requestBodies/NetworkUpdateRequest'
   '/servers/{id}/networks':
@@ -2609,7 +2459,7 @@ paths:
     get:
       summary: getServerFirewalls
       tags:
-        - server
+        - server-firewall
       responses:
         '200':
           $ref: '#/components/responses/ServerFirewallListResponse'
@@ -2658,7 +2508,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new server firewall
       tags:
-        - server
+        - server-firewall
       requestBody:
         $ref: '#/components/requestBodies/ServerFirewallCreateRequest'
   '/server-firewalls/{id}':
@@ -2673,7 +2523,7 @@ paths:
     get:
       summary: getServerFirewall
       tags:
-        - server
+        - server-firewall
       responses:
         '200':
           $ref: '#/components/responses/ServerFirewallSingleResponse'
@@ -2702,7 +2552,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       tags:
-        - server
+        - server-firewall
       description: Deletes a server firewall
   '/server-firewalls/{id}/rules':
     parameters:
@@ -2716,7 +2566,7 @@ paths:
     get:
       summary: getServerFirewallRules
       tags:
-        - server
+        - server-firewall
       responses:
         '200':
           $ref: '#/components/responses/ServerFirewallRuleListResponse'
@@ -2779,7 +2629,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new rule in the server firewall
       tags:
-        - server
+        - server-firewall
       requestBody:
         $ref: '#/components/requestBodies/ServerFirewallRuleCreateRequest'
   '/server-firewalls/{id}/rules/{rule_id}':
@@ -2801,7 +2651,7 @@ paths:
     get:
       summary: getServerFirewallRule
       tags:
-        - server
+        - server-firewall
       responses:
         '200':
           $ref: '#/components/responses/ServerFirewallRuleSingleResponse'
@@ -2831,7 +2681,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Deletes a server firewall rule
       tags:
-        - server
+        - server-firewall
     put:
       summary: updateServerFirewallRule
       operationId: updateServerFirewallRule
@@ -2850,7 +2700,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Updates the firewall rule
       tags:
-        - server
+        - server-firewall
       requestBody:
         $ref: '#/components/requestBodies/ServerFirewallRuleUpdateRequest'
   '/server-firewalls/{id}/members':
@@ -2865,7 +2715,7 @@ paths:
     get:
       summary: getServerFirewallMembers
       tags:
-        - server
+        - server-firewall
       responses:
         '200':
           $ref: '#/components/responses/ServerFirewallMemberListResponse'
@@ -2933,7 +2783,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Adds a new member to the server firewall
       tags:
-        - server
+        - server-firewall
       requestBody:
         $ref: '#/components/requestBodies/ServerFirewallMemberCreateRequest'
   '/server-firewalls/{id}/members/{member_id}':
@@ -2955,7 +2805,7 @@ paths:
     get:
       summary: getServerFirewallMember
       tags:
-        - server
+        - server-firewall
       responses:
         '200':
           $ref: '#/components/responses/ServerFirewallMemberSingleResponse'
@@ -2984,7 +2834,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       tags:
-        - server
+        - server-firewall
       description: Removes a member from the server firewall
   /server-price-ranges:
     get:
@@ -3524,53 +3374,6 @@ components:
         - page
         - page_size
         - total
-    PleskLicense:
-      title: PleskLicense
-      type: object
-      description: A Plesk License
-      x-tags:
-        - plesk-licenses
-      properties:
-        id:
-          type: string
-          format: uuid
-        project_id:
-          type: string
-          format: uuid
-          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-        license:
-          type: string
-        key:
-          type: string
-        created_at:
-          type: string
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-        - id
-        - project_id
-        - license
-        - key
-        - created_at
-    PleskLicenseType:
-      title: PleskLicenseType
-      type: object
-      description: A Plesk License Type
-      x-tags:
-        - plesk-licenses
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-        title:
-          type: string
-          example: Web Admin
-      required:
-        - id
-        - title
     S3Bucket:
       title: S3Bucket
       type: object
@@ -3849,10 +3652,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ServerVolume'
-        plesk_licenses:
-          type: array
-          items:
-            $ref: '#/components/schemas/PleskLicense'
         s3_buckets:
           type: array
           items:
@@ -4211,7 +4010,6 @@ components:
       title: ObjectType
       enum:
         - SSH_KEY
-        - PLESK_LICENSE
         - S3_BUCKET
         - S3_ACCESS_KEY
         - S3_ACCESS_GRANT
@@ -4643,94 +4441,6 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/S3AccessKey'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              pagination:
-                $ref: '#/components/schemas/ResponsePagination'
-            required:
-              - success
-              - data
-              - messages
-              - metadata
-    PleskLicenseSingleResponse:
-      description: Single Plesk License
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-              data:
-                $ref: '#/components/schemas/PleskLicense'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-            required:
-              - success
-              - data
-              - messages
-              - metadata
-    PleskLicenseListResponse:
-      description: Plesk License List
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PleskLicense'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              pagination:
-                $ref: '#/components/schemas/ResponsePagination'
-            required:
-              - success
-              - data
-              - messages
-              - metadata
-    PleskLicenseTypeSingleResponse:
-      description: Single Plesk License Type
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-              data:
-                $ref: '#/components/schemas/PleskLicenseType'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-            required:
-              - success
-              - data
-              - messages
-              - metadata
-    PleskLicenseTypeListResponse:
-      description: Plesk License Type List
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PleskLicenseType'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
               metadata:
@@ -5953,44 +5663,6 @@ components:
               - project_id
               - title
               - secret_key
-    PleskLicenseCreateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              project_id:
-                type: string
-                format: uuid
-                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-              type_id:
-                type: string
-                format: uuid
-                example: 1428d399-8861-40a5-a85f-6ed4c669bae0
-              address:
-                type: string
-                format: ipv4
-              labels:
-                type: object
-                additionalProperties:
-                  type: string
-            required:
-              - project_id
-              - type_id
-      description: ''
-    PleskLicenseUpdateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              address:
-                type: string
-                format: ipv4
-              labels:
-                type: object
-                additionalProperties:
-                  type: string
     S3AccessGrantCreateRequest:
       content:
         application/json:
