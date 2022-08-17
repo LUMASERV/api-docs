@@ -20,6 +20,8 @@
   "tags" : [ {
     "name" : "address"
   }, {
+    "name" : "availability-zone"
+  }, {
     "name" : "general"
   }, {
     "name" : "label"
@@ -32,7 +34,17 @@
   }, {
     "name" : "server"
   }, {
+    "name" : "server-backup"
+  }, {
     "name" : "server-firewall"
+  }, {
+    "name" : "server-media"
+  }, {
+    "name" : "server-template"
+  }, {
+    "name" : "server-variant"
+  }, {
+    "name" : "server-volume"
   }, {
     "name" : "sshkeys"
   } ],
@@ -2108,7 +2120,7 @@
           }
         },
         "summary" : "getServerVolumes",
-        "tags" : [ "server" ]
+        "tags" : [ "server-volume" ]
       },
       "post" : {
         "description" : "Creates a new volume",
@@ -2184,7 +2196,7 @@
           }
         },
         "summary" : "createServerVolume",
-        "tags" : [ "server" ]
+        "tags" : [ "server-volume" ]
       }
     },
     "/server-volumes/{id}" : {
@@ -2256,7 +2268,7 @@
           }
         },
         "summary" : "deleteServerVolume",
-        "tags" : [ "server" ]
+        "tags" : [ "server-volume" ]
       },
       "get" : {
         "description" : "Returns a single volume",
@@ -2326,7 +2338,7 @@
           }
         },
         "summary" : "getServerVolume",
-        "tags" : [ "server" ]
+        "tags" : [ "server-volume" ]
       },
       "put" : {
         "description" : "Updates the server volume",
@@ -2414,7 +2426,7 @@
           }
         },
         "summary" : "updateServerVolume",
-        "tags" : [ "server" ]
+        "tags" : [ "server-volume" ]
       }
     },
     "/server-templates" : {
@@ -2539,7 +2551,7 @@
           }
         },
         "summary" : "getServerTemplates",
-        "tags" : [ "server" ]
+        "tags" : [ "server-template" ]
       },
       "post" : {
         "description" : "Creates a new server template",
@@ -2615,7 +2627,7 @@
           }
         },
         "summary" : "createServerTemplate",
-        "tags" : [ "server" ]
+        "tags" : [ "server-template" ]
       }
     },
     "/server-templates/{id}" : {
@@ -2677,7 +2689,7 @@
           }
         },
         "summary" : "getServerTemplate",
-        "tags" : [ "server" ]
+        "tags" : [ "server-template" ]
       }
     },
     "/server-medias" : {
@@ -2842,7 +2854,7 @@
           }
         },
         "summary" : "getServerMedias",
-        "tags" : [ "server" ]
+        "tags" : [ "server-media" ]
       },
       "post" : {
         "description" : "Creates a new server media",
@@ -2918,7 +2930,7 @@
           }
         },
         "summary" : "createServerMedia",
-        "tags" : [ "server" ]
+        "tags" : [ "server-media" ]
       }
     },
     "/server-medias/{id}" : {
@@ -2990,7 +3002,7 @@
           }
         },
         "summary" : "deleteServerMedia",
-        "tags" : [ "server" ]
+        "tags" : [ "server-media" ]
       },
       "get" : {
         "description" : "Returns a single server media",
@@ -3060,7 +3072,7 @@
           }
         },
         "summary" : "getServerMedia",
-        "tags" : [ "server" ]
+        "tags" : [ "server-media" ]
       }
     },
     "/search" : {
@@ -3299,7 +3311,7 @@
           }
         },
         "summary" : "getAvailabilityZones",
-        "tags" : [ "server" ]
+        "tags" : [ "availability-zone" ]
       },
       "post" : {
         "description" : "Creates a new availability zone",
@@ -3375,7 +3387,7 @@
           }
         },
         "summary" : "createAvailabilityZone",
-        "tags" : [ "server" ]
+        "tags" : [ "availability-zone" ]
       }
     },
     "/availability-zones/{id}" : {
@@ -3437,7 +3449,7 @@
           }
         },
         "summary" : "getAvailabilityZone",
-        "tags" : [ "server" ]
+        "tags" : [ "availability-zone" ]
       },
       "put" : {
         "description" : "Updates the availability zone",
@@ -3525,7 +3537,7 @@
           }
         },
         "summary" : "updateAvailabilityZone",
-        "tags" : [ "server" ]
+        "tags" : [ "availability-zone" ]
       }
     },
     "/server-variants" : {
@@ -3694,7 +3706,7 @@
           }
         },
         "summary" : "getServerVariants",
-        "tags" : [ "server" ]
+        "tags" : [ "server-variant" ]
       },
       "post" : {
         "description" : "Creates a new server variant",
@@ -3770,7 +3782,7 @@
           }
         },
         "summary" : "createServerVariant",
-        "tags" : [ "server" ]
+        "tags" : [ "server-variant" ]
       }
     },
     "/server-variants/{id}" : {
@@ -3842,7 +3854,7 @@
           }
         },
         "summary" : "deleteServerVariant",
-        "tags" : [ "server" ]
+        "tags" : [ "server-variant" ]
       },
       "get" : {
         "description" : "Returns a single server variant",
@@ -3902,7 +3914,7 @@
           }
         },
         "summary" : "getServerVariant",
-        "tags" : [ "server" ]
+        "tags" : [ "server-variant" ]
       }
     },
     "/server-storage-classes" : {
@@ -7428,7 +7440,7 @@
           }
         },
         "summary" : "getServerBackups",
-        "tags" : [ "server" ]
+        "tags" : [ "server-backup" ]
       },
       "post" : {
         "description" : "Creates a new backup of a server",
@@ -7514,7 +7526,7 @@
           }
         },
         "summary" : "createServerBackup",
-        "tags" : [ "server" ]
+        "tags" : [ "server-backup" ]
       }
     },
     "/server-backups/{id}" : {
@@ -7586,7 +7598,7 @@
           }
         },
         "summary" : "deleteServerBackup",
-        "tags" : [ "server" ]
+        "tags" : [ "server-backup" ]
       },
       "get" : {
         "description" : "Returns a single server backup",
@@ -7656,7 +7668,7 @@
           }
         },
         "summary" : "getServerBackup",
-        "tags" : [ "server" ]
+        "tags" : [ "server-backup" ]
       },
       "put" : {
         "description" : "Updates the Server Backup",
@@ -7744,7 +7756,7 @@
           }
         },
         "summary" : "updateServerBackup",
-        "tags" : [ "server" ]
+        "tags" : [ "server-backup" ]
       }
     },
     "/servers/{id}/restore" : {
@@ -9767,7 +9779,7 @@
           }
         },
         "summary" : "getServerPriceRanges",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       },
       "post" : {
         "description" : "Creates a new price range for servers",
@@ -9843,7 +9855,7 @@
           }
         },
         "summary" : "createServerPriceRange",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       }
     },
     "/server-price-ranges/{id}" : {
@@ -9915,7 +9927,7 @@
           }
         },
         "summary" : "getServerPriceRange",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       }
     },
     "/server-price-ranges/{id}/variant-prices" : {
@@ -10040,7 +10052,7 @@
           }
         },
         "summary" : "getServerVariantPrices",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       },
       "post" : {
         "description" : "Creates a new variant price for the range",
@@ -10128,7 +10140,7 @@
           }
         },
         "summary" : "createServerVariantPrice",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       }
     },
     "/server-price-ranges/{id}/variant-prices/{variant_id}" : {
@@ -10211,7 +10223,7 @@
           }
         },
         "summary" : "deleteServerVariantPrice",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       },
       "get" : {
         "description" : "Returns the pricing for a specific variant in the range",
@@ -10292,7 +10304,7 @@
           }
         },
         "summary" : "getServerVariantPrice",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       },
       "put" : {
         "description" : "Updates the price for a specific variant in the range",
@@ -10391,7 +10403,7 @@
           }
         },
         "summary" : "updateServerVariantPrice",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       }
     },
     "/server-price-range-assignments" : {
@@ -10546,7 +10558,7 @@
           }
         },
         "summary" : "getServerPriceRangeAssignments",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       },
       "post" : {
         "description" : "Creates a new price range assignment for servers",
@@ -10622,7 +10634,7 @@
           }
         },
         "summary" : "createServerPriceRangeAssignment",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       }
     },
     "/server-price-range-assignments/{id}" : {
@@ -10703,7 +10715,7 @@
           }
         },
         "summary" : "deleteServerPriceRangeAssignment",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       },
       "get" : {
         "description" : "Returns a single server price range assignment by id",
@@ -10772,7 +10784,7 @@
           }
         },
         "summary" : "getServerPriceRangeAssignment",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       },
       "put" : {
         "description" : "Updates the range of an existing server price range assignment",
@@ -10859,7 +10871,7 @@
           }
         },
         "summary" : "updateServerPriceRangeAssignment",
-        "tags" : [ "server" ]
+        "tags" : [ "pricing" ]
       }
     },
     "/servers/{id}/restart" : {
@@ -11271,7 +11283,7 @@
           }
         },
         "summary" : "resizeServerVolume",
-        "tags" : [ "server" ]
+        "tags" : [ "server-volume" ]
       }
     }
   },
