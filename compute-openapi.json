@@ -18,28 +18,22 @@
     "AuthToken" : [ ]
   } ],
   "tags" : [ {
-    "description" : "IP Address and Subnet Management",
     "name" : "address"
   }, {
-    "description" : "General Endpoints",
     "name" : "general"
   }, {
-    "description" : "Label Endpoints",
     "name" : "label"
   }, {
-    "description" : "Plesk License Management",
-    "name" : "plesk-licenses"
+    "name" : "network"
   }, {
-    "description" : "Pricing Endpoints",
     "name" : "pricing"
   }, {
-    "description" : "S3 Object Storage Management",
     "name" : "s3-storage"
   }, {
-    "description" : "Compute Service Management",
     "name" : "server"
   }, {
-    "description" : "SSH-Key Management",
+    "name" : "server-firewall"
+  }, {
     "name" : "sshkeys"
   } ],
   "paths" : {
@@ -747,544 +741,6 @@
         },
         "summary" : "getS3AccessKey",
         "tags" : [ "s3-storage" ]
-      }
-    },
-    "/licenses/plesk" : {
-      "get" : {
-        "description" : "Returns all plesk licenses",
-        "operationId" : "getPleskLicenses",
-        "parameters" : [ {
-          "description" : "Project ID Filter",
-          "explode" : true,
-          "in" : "query",
-          "name" : "filter[project_id]",
-          "required" : false,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Page",
-          "explode" : true,
-          "in" : "query",
-          "name" : "page",
-          "required" : false,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Page Size",
-          "explode" : true,
-          "in" : "query",
-          "name" : "page_size",
-          "required" : false,
-          "schema" : {
-            "default" : 10,
-            "type" : "integer"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Plesk License Type ID",
-          "explode" : true,
-          "in" : "query",
-          "name" : "filter[type_id]",
-          "required" : false,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Search",
-          "explode" : true,
-          "in" : "query",
-          "name" : "search",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
-          "explode" : true,
-          "in" : "query",
-          "name" : "filter[labels][:name]",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "form"
-        }, {
-          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
-          "explode" : true,
-          "in" : "query",
-          "name" : "with_labels",
-          "required" : false,
-          "schema" : {
-            "type" : "boolean"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Order of the results, ascending by default",
-          "explode" : true,
-          "in" : "query",
-          "name" : "order",
-          "required" : false,
-          "schema" : {
-            "enum" : [ "ASC", "DESC" ],
-            "type" : "string"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Field or array of fields to order by",
-          "explode" : true,
-          "in" : "query",
-          "name" : "order_by",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "form"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getPleskLicenses_200_response"
-                }
-              }
-            },
-            "description" : "Plesk License List"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "getPleskLicenses",
-        "tags" : [ "plesk-licenses" ]
-      },
-      "post" : {
-        "description" : "Orders a new plesk license",
-        "operationId" : "createPleskLicense",
-        "requestBody" : {
-          "$ref" : "#/components/requestBodies/PleskLicenseCreateRequest"
-        },
-        "responses" : {
-          "201" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/createPleskLicense_201_response"
-                }
-              }
-            },
-            "description" : "Single Plesk License"
-          },
-          "400" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/createS3Bucket_400_response"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/createS3Bucket_400_response_1"
-                }
-              }
-            },
-            "description" : "Response for validation errors"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "createPleskLicense",
-        "tags" : [ "plesk-licenses" ]
-      }
-    },
-    "/licenses/plesk/{id}" : {
-      "get" : {
-        "description" : "Returns a single plesk license",
-        "operationId" : "getPleskLicense",
-        "parameters" : [ {
-          "description" : "Plesk License ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/createPleskLicense_201_response"
-                }
-              }
-            },
-            "description" : "Single Plesk License"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "getPleskLicense",
-        "tags" : [ "plesk-licenses" ]
-      },
-      "put" : {
-        "description" : "Updates a plesk license",
-        "operationId" : "updatePleskLicense",
-        "parameters" : [ {
-          "description" : "Plesk License ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "requestBody" : {
-          "$ref" : "#/components/requestBodies/PleskLicenseUpdateRequest"
-        },
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/createPleskLicense_201_response"
-                }
-              }
-            },
-            "description" : "Single Plesk License"
-          },
-          "400" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/createS3Bucket_400_response"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/createS3Bucket_400_response_1"
-                }
-              }
-            },
-            "description" : "Response for validation errors"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "403" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "updatePleskLicense",
-        "tags" : [ "plesk-licenses" ]
-      }
-    },
-    "/licenses/plesk-types" : {
-      "get" : {
-        "description" : "Return all plesk license types",
-        "operationId" : "getPleskLicenseTypes",
-        "parameters" : [ {
-          "description" : "Page",
-          "explode" : true,
-          "in" : "query",
-          "name" : "page",
-          "required" : false,
-          "schema" : {
-            "minimum" : 1,
-            "type" : "integer"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Page Size",
-          "explode" : true,
-          "in" : "query",
-          "name" : "page_size",
-          "required" : false,
-          "schema" : {
-            "default" : 10,
-            "type" : "integer"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Search",
-          "explode" : true,
-          "in" : "query",
-          "name" : "search",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Order of the results, ascending by default",
-          "explode" : true,
-          "in" : "query",
-          "name" : "order",
-          "required" : false,
-          "schema" : {
-            "enum" : [ "ASC", "DESC" ],
-            "type" : "string"
-          },
-          "style" : "form"
-        }, {
-          "description" : "Field or array of fields to order by",
-          "explode" : true,
-          "in" : "query",
-          "name" : "order_by",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "form"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getPleskLicenseTypes_200_response"
-                }
-              }
-            },
-            "description" : "Plesk License Type List"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "getPleskLicenseTypes",
-        "tags" : [ "plesk-licenses" ]
-      }
-    },
-    "/licenses/plesk-types/{id}" : {
-      "get" : {
-        "description" : "Returns a single plesk license type",
-        "operationId" : "getPleskLicenseType",
-        "parameters" : [ {
-          "description" : "Plesk License Type ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getPleskLicenseType_200_response"
-                }
-              }
-            },
-            "description" : "Single Plesk License Type"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          },
-          "500" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
-                }
-              }
-            },
-            "description" : "Empty Response"
-          }
-        },
-        "summary" : "getPleskLicenseType",
-        "tags" : [ "plesk-licenses" ]
       }
     },
     "/storage/s3/access-keys/{access_key_id}/grants" : {
@@ -4879,7 +4335,7 @@
           }
         },
         "summary" : "getNetworks",
-        "tags" : [ "server" ]
+        "tags" : [ "network" ]
       },
       "post" : {
         "description" : "Creates a new network",
@@ -4955,7 +4411,7 @@
           }
         },
         "summary" : "createNetwork",
-        "tags" : [ "server" ]
+        "tags" : [ "network" ]
       }
     },
     "/networks/{id}" : {
@@ -5027,7 +4483,7 @@
           }
         },
         "summary" : "getNetwork",
-        "tags" : [ "server" ]
+        "tags" : [ "network" ]
       },
       "put" : {
         "description" : "Updates the network",
@@ -5115,7 +4571,7 @@
           }
         },
         "summary" : "updateNetwork",
-        "tags" : [ "server" ]
+        "tags" : [ "network" ]
       }
     },
     "/servers/{id}/networks" : {
@@ -8996,7 +8452,7 @@
           }
         },
         "summary" : "getServerFirewalls",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       },
       "post" : {
         "description" : "Creates a new server firewall",
@@ -9072,7 +8528,7 @@
           }
         },
         "summary" : "createServerFirewall",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       }
     },
     "/server-firewalls/{id}" : {
@@ -9144,7 +8600,7 @@
           }
         },
         "summary" : "deleteServerFirewall",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       },
       "get" : {
         "description" : "Returns a single firewall",
@@ -9214,7 +8670,7 @@
           }
         },
         "summary" : "getServerFirewall",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       }
     },
     "/server-firewalls/{id}/rules" : {
@@ -9389,7 +8845,7 @@
           }
         },
         "summary" : "getServerFirewallRules",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       },
       "post" : {
         "description" : "Creates a new rule in the server firewall",
@@ -9477,7 +8933,7 @@
           }
         },
         "summary" : "createServerFirewallRule",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       }
     },
     "/server-firewalls/{id}/rules/{rule_id}" : {
@@ -9560,7 +9016,7 @@
           }
         },
         "summary" : "deleteServerFirewallRule",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       },
       "get" : {
         "description" : "Returns a single firewall rule",
@@ -9641,7 +9097,7 @@
           }
         },
         "summary" : "getServerFirewallRule",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       },
       "put" : {
         "description" : "Updates the firewall rule",
@@ -9740,7 +9196,7 @@
           }
         },
         "summary" : "updateServerFirewallRule",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       }
     },
     "/server-firewalls/{id}/members" : {
@@ -9925,7 +9381,7 @@
           }
         },
         "summary" : "getServerFirewallMembers",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       },
       "post" : {
         "description" : "Adds a new member to the server firewall",
@@ -10013,7 +9469,7 @@
           }
         },
         "summary" : "createServerFirewallMember",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       }
     },
     "/server-firewalls/{id}/members/{member_id}" : {
@@ -10096,7 +9552,7 @@
           }
         },
         "summary" : "deleteServerFirewallMember",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       },
       "get" : {
         "description" : "Returns a single firewall member",
@@ -10177,7 +9633,7 @@
           }
         },
         "summary" : "getServerFirewallMember",
-        "tags" : [ "server" ]
+        "tags" : [ "server-firewall" ]
       }
     },
     "/server-price-ranges" : {
@@ -11934,25 +11390,6 @@
           }
         }
       },
-      "PleskLicenseCreateRequest" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/createPleskLicense_request"
-            }
-          }
-        },
-        "description" : ""
-      },
-      "PleskLicenseUpdateRequest" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/updatePleskLicense_request"
-            }
-          }
-        }
-      },
       "S3AccessGrantCreateRequest" : {
         "content" : {
           "application/json" : {
@@ -12354,46 +11791,6 @@
           }
         },
         "description" : "S3 Access Key List"
-      },
-      "PleskLicenseSingleResponse" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/createPleskLicense_201_response"
-            }
-          }
-        },
-        "description" : "Single Plesk License"
-      },
-      "PleskLicenseListResponse" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/getPleskLicenses_200_response"
-            }
-          }
-        },
-        "description" : "Plesk License List"
-      },
-      "PleskLicenseTypeSingleResponse" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/getPleskLicenseType_200_response"
-            }
-          }
-        },
-        "description" : "Single Plesk License Type"
-      },
-      "PleskLicenseTypeListResponse" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/getPleskLicenseTypes_200_response"
-            }
-          }
-        },
-        "description" : "Plesk License Type List"
       },
       "S3AccessGrantListResponse" : {
         "content" : {
@@ -13015,57 +12412,6 @@
         "title" : "ResponsePagination",
         "type" : "object"
       },
-      "PleskLicense" : {
-        "description" : "A Plesk License",
-        "properties" : {
-          "id" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "project_id" : {
-            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "license" : {
-            "type" : "string"
-          },
-          "key" : {
-            "type" : "string"
-          },
-          "created_at" : {
-            "type" : "string"
-          },
-          "labels" : {
-            "additionalProperties" : {
-              "type" : "string"
-            },
-            "type" : "object"
-          }
-        },
-        "required" : [ "created_at", "id", "key", "license", "project_id" ],
-        "title" : "PleskLicense",
-        "type" : "object",
-        "x-tags" : [ "plesk-licenses" ]
-      },
-      "PleskLicenseType" : {
-        "description" : "A Plesk License Type",
-        "properties" : {
-          "id" : {
-            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "title" : {
-            "example" : "Web Admin",
-            "type" : "string"
-          }
-        },
-        "required" : [ "id", "title" ],
-        "title" : "PleskLicenseType",
-        "type" : "object",
-        "x-tags" : [ "plesk-licenses" ]
-      },
       "S3Bucket" : {
         "description" : "A S3 Bucket",
         "properties" : {
@@ -13378,12 +12724,6 @@
           "server_volumes" : {
             "items" : {
               "$ref" : "#/components/schemas/ServerVolume"
-            },
-            "type" : "array"
-          },
-          "plesk_licenses" : {
-            "items" : {
-              "$ref" : "#/components/schemas/PleskLicense"
             },
             "type" : "array"
           },
@@ -13772,7 +13112,7 @@
         "type" : "object"
       },
       "ObjectType" : {
-        "enum" : [ "SSH_KEY", "PLESK_LICENSE", "S3_BUCKET", "S3_ACCESS_KEY", "S3_ACCESS_GRANT", "SERVER", "SERVER_VOLUME", "SERVER_MEDIA", "NETWORK" ],
+        "enum" : [ "SSH_KEY", "S3_BUCKET", "S3_ACCESS_KEY", "S3_ACCESS_GRANT", "SERVER", "SERVER_VOLUME", "SERVER_MEDIA", "NETWORK" ],
         "title" : "ObjectType",
         "type" : "string"
       },
@@ -14247,131 +13587,6 @@
           },
           "data" : {
             "$ref" : "#/components/schemas/S3AccessKey"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          },
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "success" ],
-        "type" : "object"
-      },
-      "getPleskLicenses_200_response" : {
-        "properties" : {
-          "success" : {
-            "type" : "boolean"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/PleskLicense"
-            },
-            "type" : "array"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          },
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "pagination" : {
-            "$ref" : "#/components/schemas/ResponsePagination"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "success" ],
-        "type" : "object"
-      },
-      "createPleskLicense_request" : {
-        "properties" : {
-          "project_id" : {
-            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "type_id" : {
-            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "address" : {
-            "format" : "ipv4",
-            "type" : "string"
-          },
-          "labels" : {
-            "additionalProperties" : {
-              "type" : "string"
-            },
-            "type" : "object"
-          }
-        },
-        "required" : [ "project_id", "type_id" ],
-        "type" : "object"
-      },
-      "createPleskLicense_201_response" : {
-        "properties" : {
-          "success" : {
-            "type" : "boolean"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/PleskLicense"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          },
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "success" ],
-        "type" : "object"
-      },
-      "updatePleskLicense_request" : {
-        "properties" : {
-          "address" : {
-            "format" : "ipv4",
-            "type" : "string"
-          },
-          "labels" : {
-            "additionalProperties" : {
-              "type" : "string"
-            },
-            "type" : "object"
-          }
-        },
-        "type" : "object"
-      },
-      "getPleskLicenseTypes_200_response" : {
-        "properties" : {
-          "success" : {
-            "type" : "boolean"
-          },
-          "data" : {
-            "items" : {
-              "$ref" : "#/components/schemas/PleskLicenseType"
-            },
-            "type" : "array"
-          },
-          "messages" : {
-            "$ref" : "#/components/schemas/ResponseMessages"
-          },
-          "metadata" : {
-            "$ref" : "#/components/schemas/ResponseMetadata"
-          },
-          "pagination" : {
-            "$ref" : "#/components/schemas/ResponsePagination"
-          }
-        },
-        "required" : [ "data", "messages", "metadata", "success" ],
-        "type" : "object"
-      },
-      "getPleskLicenseType_200_response" : {
-        "properties" : {
-          "success" : {
-            "type" : "boolean"
-          },
-          "data" : {
-            "$ref" : "#/components/schemas/PleskLicenseType"
           },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"

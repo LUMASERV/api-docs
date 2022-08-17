@@ -60,24 +60,6 @@ export default class LUMASERVComputeClient {
     getS3AccessKey(id) {
         return this.request('get', '/storage/s3/access-keys/' + id, null, null);
     }
-    getPleskLicenses(query = null) {
-        return this.request('get', '/licenses/plesk', query, null);
-    }
-    createPleskLicense(body = null) {
-        return this.request('post', '/licenses/plesk', null, body);
-    }
-    getPleskLicense(id) {
-        return this.request('get', '/licenses/plesk/' + id, null, null);
-    }
-    updatePleskLicense(id, body = null) {
-        return this.request('put', '/licenses/plesk/' + id, null, body);
-    }
-    getPleskLicenseTypes(query = null) {
-        return this.request('get', '/licenses/plesk-types', query, null);
-    }
-    getPleskLicenseType(id) {
-        return this.request('get', '/licenses/plesk-types/' + id, null, null);
-    }
     getS3AccessKeyGrants(access_key_id, query = null) {
         return this.request('get', '/storage/s3/access-keys/' + access_key_id + '/grants', query, null);
     }
