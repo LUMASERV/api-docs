@@ -23,7 +23,10 @@ tags:
   - name: server
   - name: server-backup
   - name: server-firewall
+  - name: server-host
   - name: server-media
+  - name: server-storage
+  - name: server-storage-class
   - name: server-template
   - name: server-variant
   - name: server-volume
@@ -1131,7 +1134,7 @@ paths:
     get:
       summary: getServerStorageClasses
       tags:
-        - server
+        - server-storage-class
       responses:
         '200':
           $ref: '#/components/responses/ServerStorageClassListResponse'
@@ -1186,7 +1189,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new storage class
       tags:
-        - server
+        - server-storage-class
       requestBody:
         $ref: '#/components/requestBodies/ServerStorageClassCreateRequest'
   '/server-storage-classes/{id}':
@@ -1201,7 +1204,7 @@ paths:
     get:
       summary: getServerStorageClass
       tags:
-        - server
+        - server-storage-class
       responses:
         '200':
           $ref: '#/components/responses/ServerStorageClassSingleResponse'
@@ -1553,7 +1556,7 @@ paths:
     get:
       summary: getServerHosts
       tags:
-        - server
+        - server-host
       responses:
         '200':
           $ref: '#/components/responses/ServerHostListResponse'
@@ -1599,7 +1602,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new server host
       tags:
-        - server
+        - server-host
       requestBody:
         $ref: '#/components/requestBodies/ServerHostCreateRequest'
   '/server-hosts/{id}':
@@ -1614,7 +1617,7 @@ paths:
     get:
       summary: getServerHost
       tags:
-        - server
+        - server-host
       responses:
         '200':
           $ref: '#/components/responses/ServerHostSingleResponse'
@@ -1648,12 +1651,12 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/ServerHostUpdateRequest'
       tags:
-        - server
+        - server-host
   /server-storages:
     get:
       summary: getServerStorages
       tags:
-        - server
+        - server-storage
       responses:
         '200':
           $ref: '#/components/responses/ServerStorageListResponse'
@@ -1701,7 +1704,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new server storage
       tags:
-        - server
+        - server-storage
       requestBody:
         $ref: '#/components/requestBodies/ServerStorageCreateRequest'
   '/server-storages/{id}':
@@ -1716,7 +1719,7 @@ paths:
     get:
       summary: getServerStorage
       tags:
-        - server
+        - server-storage
       responses:
         '200':
           $ref: '#/components/responses/ServerStorageSingleResponse'
@@ -1966,7 +1969,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Attaches the volume to the provided server
       tags:
-        - server
+        - server-volume
       requestBody:
         $ref: '#/components/requestBodies/ServerVolumeAttachRequest'
   '/server-volumes/{id}/detach':
@@ -1996,7 +1999,7 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       description: Detaches the volume from the current server
       tags:
-        - server
+        - server-volume
   '/servers/{id}/status':
     parameters:
       - schema:
