@@ -1576,7 +1576,7 @@
           }
         },
         "summary" : "getInvoices",
-        "tags" : [ "billing" ]
+        "tags" : [ "invoices" ]
       },
       "post" : {
         "description" : "Creates a new invoice",
@@ -1652,7 +1652,7 @@
           }
         },
         "summary" : "createInvoice",
-        "tags" : [ "billing" ]
+        "tags" : [ "invoices" ]
       }
     },
     "/invoices/{id}" : {
@@ -1734,7 +1734,7 @@
           }
         },
         "summary" : "deleteInvoice",
-        "tags" : [ "billing" ]
+        "tags" : [ "invoices" ]
       },
       "get" : {
         "description" : "Returns a single invoice",
@@ -1804,7 +1804,7 @@
           }
         },
         "summary" : "getInvoice",
-        "tags" : [ "billing" ]
+        "tags" : [ "invoices" ]
       },
       "put" : {
         "description" : "Updates an invoice draft",
@@ -1892,7 +1892,7 @@
           }
         },
         "summary" : "updateInvoice",
-        "tags" : [ "billing" ]
+        "tags" : [ "invoices" ]
       }
     },
     "/invoices/{id}/file" : {
@@ -1962,7 +1962,7 @@
           }
         },
         "summary" : "getInvoiceFile",
-        "tags" : [ "billing" ]
+        "tags" : [ "invoices" ]
       }
     },
     "/invoices/{id}/positions" : {
@@ -2085,7 +2085,7 @@
           }
         },
         "summary" : "getInvoicePositions",
-        "tags" : [ "billing" ]
+        "tags" : [ "invoices" ]
       },
       "post" : {
         "description" : "Creates a positions of an invoice",
@@ -2172,7 +2172,7 @@
           }
         },
         "summary" : "createInvoicePosition",
-        "tags" : [ "billing" ]
+        "tags" : [ "invoices" ]
       }
     },
     "/invoices/{invoice_id}/positions/{id}" : {
@@ -2253,7 +2253,7 @@
           }
         },
         "summary" : "deleteInvoicePosition",
-        "tags" : [ "billing" ]
+        "tags" : [ "invoices" ]
       },
       "get" : {
         "description" : "Returns position of invoice identified by id",
@@ -2332,7 +2332,7 @@
           }
         },
         "summary" : "getInvoicePosition",
-        "tags" : [ "billing" ]
+        "tags" : [ "invoices" ]
       },
       "put" : {
         "description" : "Updates position of invoice identified by id",
@@ -2429,7 +2429,7 @@
           }
         },
         "summary" : "updateInvoicePosition",
-        "tags" : [ "billing" ]
+        "tags" : [ "invoices" ]
       }
     },
     "/payment-reminders" : {
