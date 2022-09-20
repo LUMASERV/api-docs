@@ -668,257 +668,6 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: deleteInvoicePosition
       description: Deletes position of invoice identified by id
-  /offers:
-    get:
-      summary: getOffers
-      tags:
-        - billing
-      responses:
-        '200':
-          $ref: '#/components/responses/OfferListResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getOffers
-      description: Returns all offers
-      parameters:
-        - $ref: '#/components/parameters/PaginationPage'
-        - $ref: '#/components/parameters/PaginationPageSize'
-        - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/Order'
-        - $ref: '#/components/parameters/OrderBy'
-    post:
-      summary: createOffer
-      operationId: createOffer
-      responses:
-        '201':
-          $ref: '#/components/responses/OfferSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      tags:
-        - billing
-      description: Creates a new offer
-      requestBody:
-        $ref: '#/components/requestBodies/OfferCreateRequest'
-  '/offers/{id}':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: Offer ID
-    get:
-      summary: getOffer
-      tags:
-        - billing
-      responses:
-        '200':
-          $ref: '#/components/responses/OfferSingleResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getOffer
-      description: Returns a single offer
-    put:
-      summary: updateOffer
-      operationId: updateOffer
-      responses:
-        '200':
-          $ref: '#/components/responses/OfferSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      description: Updates the offer
-      tags:
-        - billing
-      requestBody:
-        $ref: '#/components/requestBodies/OfferUpdateRequest'
-  /offer-positions:
-    get:
-      summary: getOfferPositions
-      tags:
-        - billing
-      responses:
-        '200':
-          $ref: '#/components/responses/OfferPositionListResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getOfferPositions
-      description: Returns all offer positions
-      parameters:
-        - $ref: '#/components/parameters/PaginationPage'
-        - $ref: '#/components/parameters/PaginationPageSize'
-        - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/Order'
-        - $ref: '#/components/parameters/OrderBy'
-    post:
-      summary: createOfferPosition
-      operationId: createOfferPosition
-      responses:
-        '201':
-          $ref: '#/components/responses/OfferPositionSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      description: Creates a new offer position
-      tags:
-        - billing
-      requestBody:
-        $ref: '#/components/requestBodies/OfferPositionCreateRequest'
-  '/offer-positions/{id}':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: OfferPosition ID
-    get:
-      summary: getOfferPosition
-      tags:
-        - billing
-      responses:
-        '200':
-          $ref: '#/components/responses/OfferPositionSingleResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getOfferPosition
-      description: Returns a single offer position
-    put:
-      summary: updateOfferPosition
-      operationId: updateOfferPosition
-      responses:
-        '200':
-          $ref: '#/components/responses/OfferPositionSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      description: Updates the offer position
-      tags:
-        - billing
-      requestBody:
-        $ref: '#/components/requestBodies/OfferPositionUpdateRequest'
-    delete:
-      summary: deleteOfferPosition
-      operationId: deleteOfferPosition
-      responses:
-        '200':
-          $ref: '#/components/responses/EmptyResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      description: Deletes an offer position
-      tags:
-        - billing
-  /online-payments:
-    get:
-      summary: getOnlinePayments
-      tags:
-        - payment
-      responses:
-        '200':
-          $ref: '#/components/responses/OnlinePaymentListResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getOnlinePayments
-      description: Returns all online payments
-      parameters:
-        - $ref: '#/components/parameters/PaginationPage'
-        - $ref: '#/components/parameters/PaginationPageSize'
-        - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/Order'
-        - $ref: '#/components/parameters/OrderBy'
-  '/online-payments/{id}':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: OnlinePayment ID
-    get:
-      summary: getOnlinePayment
-      tags:
-        - payment
-      responses:
-        '200':
-          $ref: '#/components/responses/OnlinePaymentSingleResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getOnlinePayment
-      description: Returns a single online payment
   /payment-reminders:
     get:
       summary: getPaymentReminders
@@ -1561,10 +1310,23 @@ components:
           type: string
         state:
           $ref: '#/components/schemas/InvoiceState'
+        net_price:
+          type: number
+        gross_price:
+          type: number
         paid_at:
           type: string
         created_at:
           type: string
+      required:
+        - id
+        - customer_id
+        - due_at
+        - state
+        - net_price
+        - gross_price
+        - paid_at
+        - created_at
     InvoiceDetailed:
       title: InvoiceDetailed
       type: object
@@ -1578,6 +1340,10 @@ components:
           type: string
         state:
           $ref: '#/components/schemas/InvoiceState'
+        net_price:
+          type: number
+        gross_price:
+          type: number
         paid_at:
           type: string
         created_at:
@@ -1586,61 +1352,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Position'
-    OfferPosition:
-      title: OfferPosition
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        offer_id:
-          type: string
-          format: uuid
-        title:
-          type: string
-        description:
-          type: string
-        interval:
-          type: string
-          enum:
-            - WEEKLY
-            - MONTHLY
-            - QUARTERLY
-            - SEMI_ANNUAL
-            - ANNUAL
-        amount:
-          type: number
-        price:
-          type: number
-        purchasing_price:
-          type: number
-        note:
-          type: string
-        vat_rate:
-          type: number
-      required:
-        - id
-        - offer_id
-    Offer:
-      title: Offer
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        customer_id:
-          type: integer
-        number:
-          type: string
-        net_amount:
-          type: number
-        amount:
-          type: number
-        state:
-          $ref: '#/components/schemas/OfferState'
       required:
         - id
         - customer_id
+        - due_at
+        - state
+        - net_price
+        - gross_price
+        - paid_at
+        - created_at
+        - positions
     OnlinePayment:
       title: OnlinePayment
       type: object
@@ -2230,138 +1951,6 @@ components:
               - success
               - data
               - messages
-    OfferListResponse:
-      description: Offer List
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Offer'
-              pagination:
-                $ref: '#/components/schemas/ResponsePagination'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
-    OfferSingleResponse:
-      description: Single Offer
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                $ref: '#/components/schemas/Offer'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
-    OfferPositionListResponse:
-      description: OfferPosition List
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/OfferPosition'
-              pagination:
-                $ref: '#/components/schemas/ResponsePagination'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
-    OfferPositionSingleResponse:
-      description: Single OfferPosition
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                $ref: '#/components/schemas/OfferPosition'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
-    OnlinePaymentListResponse:
-      description: OnlinePayment List
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/OnlinePayment'
-              pagination:
-                $ref: '#/components/schemas/ResponsePagination'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
-    OnlinePaymentSingleResponse:
-      description: Single OnlinePayment
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                $ref: '#/components/schemas/OnlinePayment'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
     PaymentReminderListResponse:
       description: PaymentReminder List
       content:
@@ -2804,97 +2393,6 @@ components:
                 type: string
               cancelled_at:
                 type: string
-    OfferCreateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              customer_id:
-                type: string
-                format: uuid
-              number:
-                type: string
-              net_amount:
-                type: number
-              amount:
-                type: number
-              state:
-                $ref: '#/components/schemas/OfferState'
-              positions:
-                type: array
-                items:
-                  $ref: '#/components/schemas/OfferCreateRequestPosition'
-            required:
-              - customer_id
-    OfferPositionCreateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              offer_id:
-                type: string
-                format: uuid
-              title:
-                type: string
-              description:
-                type: string
-              interval:
-                $ref: '#/components/schemas/OfferPositionInterval'
-              amount:
-                type: number
-              price:
-                type: number
-              purchasing_price:
-                type: number
-              note:
-                type: string
-              vat_rate:
-                type: number
-            required:
-              - offer_id
-              - title
-              - description
-              - amount
-              - price
-    OfferPositionUpdateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              title:
-                type: string
-              description:
-                type: string
-              interval:
-                $ref: '#/components/schemas/OfferPositionInterval'
-              amount:
-                type: number
-              price:
-                type: number
-              purchasing_price:
-                type: number
-              note:
-                type: string
-              vat_rate:
-                type: number
-    OfferUpdateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              customer_id:
-                type: string
-                format: uuid
-              net_amount:
-                type: number
-              amount:
-                type: number
-              state:
-                $ref: '#/components/schemas/OfferState'
     PaymentReminderCreateRequest:
       content:
         application/json:
