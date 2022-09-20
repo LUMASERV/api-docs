@@ -2527,3 +2527,5 @@ tags:
     description: General Endpoints
   - name: payment
     description: Payment Endpoints
+  - name: invoices
+    description: Invoice Endpoints
