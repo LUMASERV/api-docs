@@ -29,6 +29,9 @@
   }, {
     "description" : "Payment Endpoints",
     "name" : "payment"
+  }, {
+    "description" : "Invoice Endpoints",
+    "name" : "invoices"
   } ],
   "paths" : {
     "/bank-transactions" : {
