@@ -414,7 +414,7 @@ paths:
     get:
       summary: getInvoices
       tags:
-        - billing
+        - invoices
       responses:
         '200':
           $ref: '#/components/responses/InvoiceListResponse'
@@ -451,10 +451,10 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       description: Creates a new invoice
-      tags:
-        - billing
       requestBody:
         $ref: '#/components/requestBodies/InvoiceCreateRequest'
+      tags:
+        - invoices
   '/invoices/{id}':
     parameters:
       - schema:
@@ -467,7 +467,7 @@ paths:
     get:
       summary: getInvoice
       tags:
-        - billing
+        - invoices
       responses:
         '200':
           $ref: '#/components/responses/InvoiceSingleResponse'
@@ -498,7 +498,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       tags:
-        - billing
+        - invoices
       description: Updates an invoice draft
       requestBody:
         $ref: '#/components/requestBodies/InvoiceUpdateRequest'
@@ -519,7 +519,7 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       tags:
-        - billing
+        - invoices
       description: Deletes a invoice
   '/invoices/{id}/file':
     parameters:
@@ -533,7 +533,7 @@ paths:
     get:
       summary: getInvoiceFile
       tags:
-        - billing
+        - invoices
       responses:
         '200':
           $ref: '#/components/responses/FileSingleResponse'
@@ -558,7 +558,7 @@ paths:
     post:
       summary: createInvoicePosition
       tags:
-        - billing
+        - invoices
       responses:
         '201':
           $ref: '#/components/responses/InvoicePositionSingleResponse'
@@ -579,7 +579,7 @@ paths:
     get:
       summary: getInvoicePositions
       tags:
-        - billing
+        - invoices
       responses:
         '200':
           $ref: '#/components/responses/InvoicePositionListResponse'
@@ -616,7 +616,7 @@ paths:
     get:
       summary: getInvoicePosition
       tags:
-        - billing
+        - invoices
       responses:
         '200':
           $ref: '#/components/responses/InvoicePositionSingleResponse'
@@ -633,7 +633,7 @@ paths:
     put:
       summary: updateInvoicePosition
       tags:
-        - billing
+        - invoices
       responses:
         '200':
           $ref: '#/components/responses/InvoicePositionSingleResponse'
@@ -654,7 +654,7 @@ paths:
     delete:
       summary: deleteInvoicePosition
       tags:
-        - billing
+        - invoices
       responses:
         '200':
           $ref: '#/components/responses/EmptyResponse'
