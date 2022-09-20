@@ -117,39 +117,6 @@ export default class LUMASERVBillingClient {
     updateInvoicePosition(invoice_id, id, body = null) {
         return this.request('put', '/invoices/' + invoice_id + '/positions/' + id, null, body);
     }
-    getOffers(query = null) {
-        return this.request('get', '/offers', query, null);
-    }
-    createOffer(body = null) {
-        return this.request('post', '/offers', null, body);
-    }
-    getOffer(id) {
-        return this.request('get', '/offers/' + id, null, null);
-    }
-    updateOffer(id, body = null) {
-        return this.request('put', '/offers/' + id, null, body);
-    }
-    getOfferPositions(query = null) {
-        return this.request('get', '/offer-positions', query, null);
-    }
-    createOfferPosition(body = null) {
-        return this.request('post', '/offer-positions', null, body);
-    }
-    deleteOfferPosition(id) {
-        return this.request('delete', '/offer-positions/' + id, null, null);
-    }
-    getOfferPosition(id) {
-        return this.request('get', '/offer-positions/' + id, null, null);
-    }
-    updateOfferPosition(id, body = null) {
-        return this.request('put', '/offer-positions/' + id, null, body);
-    }
-    getOnlinePayments(query = null) {
-        return this.request('get', '/online-payments', query, null);
-    }
-    getOnlinePayment(id) {
-        return this.request('get', '/online-payments/' + id, null, null);
-    }
     getPaymentReminders(query = null) {
         return this.request('get', '/payment-reminders', query, null);
     }
