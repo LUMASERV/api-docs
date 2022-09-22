@@ -1493,6 +1493,8 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/AuditLogEntry'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
