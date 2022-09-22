@@ -3661,6 +3661,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ServerVolume'
+        server_firewalls:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerFirewall'
         s3_buckets:
           type: array
           items:
@@ -4080,6 +4084,7 @@ components:
           type: number
         keep:
           type: boolean
+          description: Only set if scheduled is true.
         created_at:
           type: string
       required:
@@ -6242,6 +6247,7 @@ components:
             properties:
               keep:
                 type: boolean
+                description: 'Can only be set, if the backup is scheduled.'
               title:
                 type: string
                 minLength: 2
