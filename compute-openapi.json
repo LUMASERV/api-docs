@@ -13104,7 +13104,7 @@
         "x-tags" : [ "server" ]
       },
       "ServerActionType" : {
-        "enum" : [ "START", "SHUTDOWN", "STOP", "RESIZE" ],
+        "enum" : [ "START", "SHUTDOWN", "STOP", "RESIZE", "RESTART", "BACKUP", "RESTORE" ],
         "title" : "ServerActionType",
         "type" : "string",
         "x-tags" : [ "server" ]
@@ -13249,6 +13249,8 @@
             "type" : "string"
           },
           "backup_retention" : {
+            "default" : 1,
+            "description" : "Only set if the ScheduledServerAction is of type \"BACKUP\"",
             "type" : "integer"
           }
         },
