@@ -3914,6 +3914,9 @@
             },
             "type" : "array"
           },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
           "messages" : {
             "$ref" : "#/components/schemas/ResponseMessages"
           }
