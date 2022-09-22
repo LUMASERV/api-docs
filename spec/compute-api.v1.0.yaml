@@ -3988,6 +3988,9 @@ components:
         - SHUTDOWN
         - STOP
         - RESIZE
+        - RESTART
+        - BACKUP
+        - RESTORE
       x-tags:
         - server
     ServerActionState:
@@ -4140,6 +4143,8 @@ components:
           format: uuid
         backup_retention:
           type: integer
+          default: 1
+          description: Only set if the ScheduledServerAction is of type "BACKUP"
       required:
         - id
         - server_id
