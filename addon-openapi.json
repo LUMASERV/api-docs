@@ -613,7 +613,8 @@
             "description" : "Empty Response"
           }
         },
-        "summary" : "createSSLContact"
+        "summary" : "createSSLContact",
+        "tags" : [ "ssl-contacts" ]
       }
     },
     "/ssl/contacts/{id}" : {
