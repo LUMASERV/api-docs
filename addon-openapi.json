@@ -1,0 +1,3342 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "contact" : {
+      "email" : "support@lumaserv.com",
+      "name" : "LUMASERV Support Team",
+      "url" : "https://lumaserv.com"
+    },
+    "description" : "LUMASERV Addon API",
+    "title" : "addon-api.v1.0",
+    "version" : "1.0"
+  },
+  "servers" : [ {
+    "description" : "Live",
+    "url" : "https://api.lumaserv.com/addon"
+  } ],
+  "tags" : [ {
+    "description" : "General",
+    "name" : "general"
+  }, {
+    "description" : "Licenses",
+    "name" : "licenses"
+  }, {
+    "description" : "SSL Certificates",
+    "name" : "ssl-certificates"
+  }, {
+    "description" : "SSL Contacts",
+    "name" : "ssl-contacts"
+  }, {
+    "description" : "SSL Organsations",
+    "name" : "ssl-organisations"
+  }, {
+    "description" : "SSL Types",
+    "name" : "ssl-types"
+  } ],
+  "paths" : {
+    "/ssl/certificates" : {
+      "get" : {
+        "description" : "Returns all SSL Certificates",
+        "operationId" : "getSSLCertificates",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Type ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[type_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Organisation ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[organisation_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Admin Contact ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[admin_contact_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Tech Contact ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[tech_contact_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_200_response"
+                }
+              }
+            },
+            "description" : "SSLCertificate List"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLCertificates",
+        "tags" : [ "ssl-certificates" ]
+      },
+      "post" : {
+        "description" : "Creates a SSL Certificates",
+        "operationId" : "createSSLCertificate",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/SSLCertificateCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createSSLCertificate_201_response"
+                }
+              }
+            },
+            "description" : "Single SSLCertificate"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createSSLCertificate",
+        "tags" : [ "ssl-certificates" ]
+      }
+    },
+    "/ssl/certificates/{id}" : {
+      "get" : {
+        "description" : "Gets a SSL Certificate",
+        "operationId" : "getSSLCertificate",
+        "parameters" : [ {
+          "description" : "SSL Certificate ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createSSLCertificate_201_response"
+                }
+              }
+            },
+            "description" : "Single SSLCertificate"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLCertificate",
+        "tags" : [ "ssl-certificates" ]
+      }
+    },
+    "/ssl/contacts" : {
+      "get" : {
+        "description" : "Returns all SSL Contacts",
+        "operationId" : "getSSLContacts",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLContacts_200_response"
+                }
+              }
+            },
+            "description" : "SSLContact List"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLContacts",
+        "tags" : [ "ssl-contacts" ]
+      },
+      "post" : {
+        "description" : "Creates a SSL Contact",
+        "operationId" : "createSSLContact",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/SSLContactCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createSSLContact_201_response"
+                }
+              }
+            },
+            "description" : "Single SSLContact"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createSSLContact"
+      }
+    },
+    "/ssl/contacts/{id}" : {
+      "delete" : {
+        "description" : "Deletes a SSL Contact",
+        "operationId" : "deleteSSLContact",
+        "parameters" : [ {
+          "description" : "SSL Contact ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteSSLContact",
+        "tags" : [ "ssl-contacts" ]
+      },
+      "get" : {
+        "description" : "Gets a SSL Contact",
+        "operationId" : "getSSLContact",
+        "parameters" : [ {
+          "description" : "SSL Contact ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createSSLContact_201_response"
+                }
+              }
+            },
+            "description" : "Single SSLContact"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLContact",
+        "tags" : [ "ssl-contacts" ]
+      }
+    },
+    "/ssl/types" : {
+      "get" : {
+        "description" : "Returns all SSL Types",
+        "operationId" : "getSSLTypes",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLTypes_200_response"
+                }
+              }
+            },
+            "description" : "SSLType List"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLTypes",
+        "tags" : [ "ssl-types" ]
+      }
+    },
+    "/ssl/types/{id}" : {
+      "get" : {
+        "description" : "Get a SSL Type",
+        "operationId" : "getSSLType",
+        "parameters" : [ {
+          "description" : "SSL Type ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLType_200_response"
+                }
+              }
+            },
+            "description" : "Single SSLType"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLType",
+        "tags" : [ "ssl-types" ]
+      }
+    },
+    "/ssl/organisations" : {
+      "get" : {
+        "description" : "Returns all SSL Organisations",
+        "operationId" : "getSSLOrganisations",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLOrganisations_200_response"
+                }
+              }
+            },
+            "description" : "SSLOrganisation List"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLOrganisations",
+        "tags" : [ "ssl-organisations" ]
+      },
+      "post" : {
+        "description" : "Creates a SSL Organisation",
+        "operationId" : "createSSLOrganisation",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/SSLOrganisationCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createSSLOrganisation_201_response"
+                }
+              }
+            },
+            "description" : "Single SSLOrganisation"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createSSLOrganisation",
+        "tags" : [ "ssl-organisations" ]
+      }
+    },
+    "/ssl/organisations/{id}" : {
+      "delete" : {
+        "description" : "Deletes a SSL Organisation",
+        "operationId" : "deleteSSLOrganisation",
+        "parameters" : [ {
+          "description" : "SSL Organisation ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteSSLOrganisation",
+        "tags" : [ "ssl-organisations" ]
+      },
+      "get" : {
+        "description" : "Gets a SSL Organisation",
+        "operationId" : "getSSLOrganisation",
+        "parameters" : [ {
+          "description" : "SSL Organisation ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createSSLOrganisation_201_response"
+                }
+              }
+            },
+            "description" : "Single SSLOrganisation"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getSSLOrganisation",
+        "tags" : [ "ssl-organisations" ]
+      }
+    },
+    "/search" : {
+      "get" : {
+        "description" : "Search for multiple resource types at once",
+        "operationId" : "search",
+        "parameters" : [ {
+          "description" : "Comma seperated list of types",
+          "explode" : true,
+          "in" : "query",
+          "name" : "resources",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Limit per Resource Type",
+          "explode" : true,
+          "in" : "query",
+          "name" : "limit",
+          "required" : false,
+          "schema" : {
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID",
+          "explode" : true,
+          "in" : "query",
+          "name" : "project_id",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "labels[:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "with_labels",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/search_200_response"
+                }
+              }
+            },
+            "description" : "Search result"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "search",
+        "tags" : [ "general" ]
+      }
+    },
+    "/license/plesk-types" : {
+      "get" : {
+        "description" : "Returns all Plesk license types",
+        "operationId" : "getPleskLicenseTypes",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getPleskLicenseTypes_200_response"
+                }
+              }
+            },
+            "description" : "PleskLicenseType List"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getPleskLicenseTypes",
+        "tags" : [ "licenses" ]
+      }
+    },
+    "/license/plesk-types/{id}" : {
+      "get" : {
+        "description" : "Gets a Plesk license type",
+        "operationId" : "getPleskLicenseType",
+        "parameters" : [ {
+          "description" : "Plesk License Type ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getPleskLicenseType_200_response"
+                }
+              }
+            },
+            "description" : "Single PleskLicenseType"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getPleskLicenseType",
+        "tags" : [ "licenses" ]
+      }
+    },
+    "/licenses/plesk" : {
+      "get" : {
+        "description" : "Returns all Plesk licenses",
+        "operationId" : "getPleskLicenses",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Project ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[project_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Type ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[type_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[labels][:name]",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getPleskLicenses_200_response"
+                }
+              }
+            },
+            "description" : "PleskLicense List"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getPleskLicenses",
+        "tags" : [ "licenses" ]
+      },
+      "post" : {
+        "description" : "Creates a Plesk license",
+        "operationId" : "createPleskLicense",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PleskLicenseCreateRequest"
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createPleskLicense_201_response"
+                }
+              }
+            },
+            "description" : "Single PleskLicense"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createPleskLicense",
+        "tags" : [ "licenses" ]
+      }
+    },
+    "/licenses/plesk/{id}" : {
+      "get" : {
+        "description" : "Gets a Plesk license",
+        "operationId" : "getPleskLicense",
+        "parameters" : [ {
+          "description" : "Plesk License ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createPleskLicense_201_response"
+                }
+              }
+            },
+            "description" : "Single PleskLicense"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getPleskLicense",
+        "tags" : [ "licenses" ]
+      },
+      "put" : {
+        "description" : "Updates a Plesk license",
+        "operationId" : "updatePleskLicense",
+        "parameters" : [ {
+          "description" : "Plesk License ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PleskLicenseUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createPleskLicense_201_response"
+                }
+              }
+            },
+            "description" : "Single PleskLicense"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updatePleskLicense",
+        "tags" : [ "licenses" ]
+      }
+    }
+  },
+  "components" : {
+    "parameters" : {
+      "ProjectIDFilter" : {
+        "description" : "Project ID Filter",
+        "explode" : true,
+        "in" : "query",
+        "name" : "filter[project_id]",
+        "required" : false,
+        "schema" : {
+          "format" : "uuid",
+          "type" : "string"
+        },
+        "style" : "form"
+      },
+      "PaginationPage" : {
+        "description" : "Page",
+        "explode" : true,
+        "in" : "query",
+        "name" : "page",
+        "required" : false,
+        "schema" : {
+          "minimum" : 1,
+          "type" : "integer"
+        },
+        "style" : "form"
+      },
+      "PaginationPageSize" : {
+        "description" : "Page Size",
+        "explode" : true,
+        "in" : "query",
+        "name" : "page_size",
+        "required" : false,
+        "schema" : {
+          "default" : 10,
+          "type" : "integer"
+        },
+        "style" : "form"
+      },
+      "Search" : {
+        "description" : "Search",
+        "explode" : true,
+        "in" : "query",
+        "name" : "search",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "style" : "form"
+      },
+      "LabelsFilter" : {
+        "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
+        "explode" : true,
+        "in" : "query",
+        "name" : "filter[labels][:name]",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "style" : "form"
+      },
+      "WithLabels" : {
+        "description" : "If length 0, true or 1 is given, the labels will be added to the response objects.",
+        "explode" : true,
+        "in" : "query",
+        "name" : "with_labels",
+        "required" : false,
+        "schema" : {
+          "type" : "boolean"
+        },
+        "style" : "form"
+      },
+      "OrderBy" : {
+        "description" : "Field or array of fields to order by",
+        "explode" : true,
+        "in" : "query",
+        "name" : "order_by",
+        "required" : false,
+        "schema" : {
+          "type" : "string"
+        },
+        "style" : "form"
+      },
+      "Order" : {
+        "description" : "Order of the results, ascending by default",
+        "explode" : true,
+        "in" : "query",
+        "name" : "order",
+        "required" : false,
+        "schema" : {
+          "enum" : [ "ASC", "DESC" ],
+          "type" : "string"
+        },
+        "style" : "form"
+      }
+    },
+    "requestBodies" : {
+      "SSLCertificateCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createSSLCertificate_request"
+            }
+          }
+        }
+      },
+      "SSLContactCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createSSLContact_request"
+            }
+          }
+        }
+      },
+      "SSLOrganisationCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createSSLOrganisation_request"
+            }
+          }
+        }
+      },
+      "PleskLicenseCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createPleskLicense_request"
+            }
+          }
+        }
+      },
+      "PleskLicenseUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/updatePleskLicense_request"
+            }
+          }
+        }
+      }
+    },
+    "responses" : {
+      "InvalidRequestResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getSSLCertificates_400_response"
+            }
+          },
+          "application/xml" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getSSLCertificates_400_response_1"
+            }
+          }
+        },
+        "description" : "Response for validation errors"
+      },
+      "EmptyResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getSSLCertificates_401_response"
+            }
+          }
+        },
+        "description" : "Empty Response"
+      },
+      "SSLCertificateListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getSSLCertificates_200_response"
+            }
+          }
+        },
+        "description" : "SSLCertificate List"
+      },
+      "SSLCertificateSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createSSLCertificate_201_response"
+            }
+          }
+        },
+        "description" : "Single SSLCertificate"
+      },
+      "SSLContactListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getSSLContacts_200_response"
+            }
+          }
+        },
+        "description" : "SSLContact List"
+      },
+      "SSLContactSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createSSLContact_201_response"
+            }
+          }
+        },
+        "description" : "Single SSLContact"
+      },
+      "SSLTypeSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getSSLType_200_response"
+            }
+          }
+        },
+        "description" : "Single SSLType"
+      },
+      "SSLTypeListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getSSLTypes_200_response"
+            }
+          }
+        },
+        "description" : "SSLType List"
+      },
+      "SSLOrganisationSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createSSLOrganisation_201_response"
+            }
+          }
+        },
+        "description" : "Single SSLOrganisation"
+      },
+      "SSLOrganisationListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getSSLOrganisations_200_response"
+            }
+          }
+        },
+        "description" : "SSLOrganisation List"
+      },
+      "SearchResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/search_200_response"
+            }
+          }
+        },
+        "description" : "Search result"
+      },
+      "PleskLicenseTypeSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getPleskLicenseType_200_response"
+            }
+          }
+        },
+        "description" : "Single PleskLicenseType"
+      },
+      "PleskLicenseTypeListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getPleskLicenseTypes_200_response"
+            }
+          }
+        },
+        "description" : "PleskLicenseType List"
+      },
+      "PleskLicenseListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getPleskLicenses_200_response"
+            }
+          }
+        },
+        "description" : "PleskLicense List"
+      },
+      "PleskLicenseSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createPleskLicense_201_response"
+            }
+          }
+        },
+        "description" : "Single PleskLicense"
+      }
+    },
+    "schemas" : {
+      "ResponsePagination" : {
+        "properties" : {
+          "page" : {
+            "example" : 1,
+            "type" : "integer"
+          },
+          "page_size" : {
+            "example" : 25,
+            "type" : "integer"
+          },
+          "total" : {
+            "example" : 1500,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "page", "page_size", "total" ],
+        "title" : "ResponsePagination",
+        "type" : "object"
+      },
+      "ResponseMessages" : {
+        "properties" : {
+          "warnings" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          },
+          "errors" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          },
+          "infos" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseMessage"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "errors", "infos", "warnings" ],
+        "title" : "ResponseMessages",
+        "type" : "object",
+        "x-examples" : {
+          "example" : {
+            "warnings" : [ ],
+            "errors" : [ ],
+            "success" : [ {
+              "code" : 10000,
+              "message" : "Action successfully executed."
+            } ]
+          }
+        }
+      },
+      "ResponseMessage" : {
+        "properties" : {
+          "key" : {
+            "example" : "general.serverError",
+            "type" : "string"
+          },
+          "message" : {
+            "example" : "Action successfully executed.",
+            "type" : "string"
+          }
+        },
+        "required" : [ "key", "message" ],
+        "title" : "ResponseMessage",
+        "type" : "object"
+      },
+      "ResponseMetadata" : {
+        "properties" : {
+          "transaction_id" : {
+            "example" : "1428d399-8861-40a5-a85f-6ed4c669bae0",
+            "type" : "string"
+          },
+          "build_commit" : {
+            "example" : "master-a0b1c2d3",
+            "type" : "string"
+          },
+          "build_timestamp" : {
+            "example" : "2021-09-01 13:37:00",
+            "type" : "string"
+          }
+        },
+        "required" : [ "build_commit", "build_timestamp", "transaction_id" ],
+        "title" : "ResponseMetadata",
+        "type" : "object"
+      },
+      "SSLCertificate" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "organisation_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "admin_contact_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "tech_contact_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "approver_email" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "valid_until" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "admin_contact_id", "approver_email", "created_at", "id", "organisation_id", "project_id", "tech_contact_id", "type_id", "valid_until" ],
+        "title" : "SSLCertificate",
+        "type" : "object",
+        "x-stoplight" : {
+          "id" : "rae8q98mxzeav"
+        }
+      },
+      "SSLContact" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "organisation" : {
+            "type" : "string"
+          },
+          "email" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "fax" : {
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "region" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "additional_address", "address", "city", "country_code", "created_at", "email", "fax", "first_name", "id", "last_name", "organisation", "phone", "postal_code", "project_id", "region", "title" ],
+        "title" : "SSLContact",
+        "type" : "object",
+        "x-stoplight" : {
+          "id" : "073y7qjn67uo0"
+        }
+      },
+      "SSLType" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "title" ],
+        "title" : "SSLType",
+        "type" : "object",
+        "x-stoplight" : {
+          "id" : "9cuedq9mc02g9"
+        }
+      },
+      "SSLOrganisation" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "division" : {
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "region" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "fax" : {
+            "type" : "string"
+          },
+          "registration_number" : {
+            "type" : "string"
+          },
+          "duns" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "additional_address", "address", "city", "country_code", "created_at", "division", "duns", "fax", "id", "name", "phone", "postal_code", "project_id", "region", "registration_number" ],
+        "title" : "SSLOrganisation",
+        "type" : "object",
+        "x-stoplight" : {
+          "id" : "i6pgvnethcqac"
+        }
+      },
+      "SearchResults" : {
+        "properties" : {
+          "ssl_contacts" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSLContact"
+            },
+            "type" : "array"
+          },
+          "ssl_organisations" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSLOrganisation"
+            },
+            "type" : "array"
+          },
+          "ssl_certificates" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSLCertificate"
+            },
+            "type" : "array"
+          },
+          "plesk_licenses" : {
+            "items" : {
+              "$ref" : "#/components/schemas/PleskLicense"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "plesk_licenses", "ssl_certificates", "ssl_contacts", "ssl_organisations" ],
+        "title" : "SearchResults",
+        "type" : "object",
+        "x-stoplight" : {
+          "id" : "b6jungvnx7er2"
+        }
+      },
+      "PleskLicense" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "license" : {
+            "type" : "string"
+          },
+          "key" : {
+            "type" : "string"
+          },
+          "created_at" : {
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "created_at", "id", "key", "license", "project_id" ],
+        "title" : "PleskLicense",
+        "type" : "object",
+        "x-stoplight" : {
+          "id" : "hg2et4soupkv2"
+        }
+      },
+      "PleskLicenseType" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "id", "title" ],
+        "title" : "PleskLicenseType",
+        "type" : "object",
+        "x-stoplight" : {
+          "id" : "53lsg4mwfolc9"
+        }
+      },
+      "getSSLCertificates_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSLCertificate"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getSSLCertificates_400_response" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "type" : "object"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getSSLCertificates_400_response_1" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "type" : "object"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "messages", "success" ],
+        "type" : "object"
+      },
+      "getSSLCertificates_401_response" : {
+        "properties" : {
+          "success" : {
+            "type" : "boolean"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          }
+        },
+        "required" : [ "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "createSSLCertificate_request" : {
+        "properties" : {
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "organisation_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "organisation" : {
+            "type" : "string"
+          },
+          "admin_contact_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "admin_contact" : {
+            "type" : "string"
+          },
+          "tech_contact_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "csr" : {
+            "type" : "string"
+          },
+          "validationMethod" : {
+            "type" : "string"
+          },
+          "approverEmail" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "approverEmail", "csr", "project_id", "type_id", "validationMethod" ],
+        "type" : "object"
+      },
+      "createSSLCertificate_201_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SSLCertificate"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getSSLContacts_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSLContact"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "createSSLContact_request" : {
+        "properties" : {
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "first_name" : {
+            "type" : "string"
+          },
+          "last_name" : {
+            "type" : "string"
+          },
+          "organisation" : {
+            "type" : "string"
+          },
+          "email" : {
+            "format" : "email",
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "fax" : {
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "additonalAddress" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "region" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "address", "city", "country_code", "email", "first_name", "last_name", "organisation", "phone", "postal_code" ],
+        "type" : "object"
+      },
+      "createSSLContact_201_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SSLContact"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "type" : "object"
+      },
+      "getSSLTypes_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSLType"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "type" : "object"
+      },
+      "getSSLType_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SSLType"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getSSLOrganisations_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SSLOrganisation"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "createSSLOrganisation_request" : {
+        "properties" : {
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "division" : {
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "additional_address" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "postal_code" : {
+            "type" : "string"
+          },
+          "region" : {
+            "type" : "string"
+          },
+          "country_code" : {
+            "maxLength" : 2,
+            "minLength" : 2,
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "fax" : {
+            "type" : "string"
+          },
+          "registration_number" : {
+            "type" : "string"
+          },
+          "duns" : {
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "address", "city", "country_code", "name", "phone", "postal_code" ],
+        "type" : "object"
+      },
+      "createSSLOrganisation_201_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SSLOrganisation"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "search_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/SearchResults"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getPleskLicenseTypes_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/PleskLicenseType"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getPleskLicenseType_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/PleskLicenseType"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getPleskLicenses_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/PleskLicense"
+            },
+            "type" : "array"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "createPleskLicense_request" : {
+        "properties" : {
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "address" : {
+            "format" : "ipv4",
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "required" : [ "address", "project_id", "type_id" ],
+        "type" : "object"
+      },
+      "createPleskLicense_201_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/PleskLicense"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "updatePleskLicense_request" : {
+        "properties" : {
+          "address" : {
+            "format" : "ipv4",
+            "type" : "string"
+          },
+          "labels" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          }
+        },
+        "type" : "object"
+      }
+    },
+    "securitySchemes" : {
+      "AuthToken" : {
+        "scheme" : "bearer",
+        "type" : "http"
+      }
+    }
+  },
+  "x-stoplight" : {
+    "id" : "acggu0p2fzqo3"
+  }
+}
