@@ -3199,29 +3199,36 @@
         "operationId" : "getAvailabilityZones",
         "parameters" : [ {
           "description" : "Page",
+          "explode" : true,
           "in" : "query",
           "name" : "page",
+          "required" : false,
           "schema" : {
             "minimum" : 1,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Page Size",
+          "explode" : true,
           "in" : "query",
           "name" : "page_size",
           "required" : false,
           "schema" : {
             "default" : 10,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Search",
+          "explode" : true,
           "in" : "query",
           "name" : "search",
           "required" : false,
           "schema" : {
             "type" : "string"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Title Filter",
           "explode" : true,
@@ -3552,29 +3559,36 @@
         "operationId" : "getServerVariants",
         "parameters" : [ {
           "description" : "Page",
+          "explode" : true,
           "in" : "query",
           "name" : "page",
+          "required" : false,
           "schema" : {
             "minimum" : 1,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Page Size",
+          "explode" : true,
           "in" : "query",
           "name" : "page_size",
           "required" : false,
           "schema" : {
             "default" : 10,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Search",
+          "explode" : true,
           "in" : "query",
           "name" : "search",
           "required" : false,
           "schema" : {
             "type" : "string"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Title Filter",
           "explode" : true,
@@ -3929,29 +3943,36 @@
         "operationId" : "getServerStorageClasses",
         "parameters" : [ {
           "description" : "Page",
+          "explode" : true,
           "in" : "query",
           "name" : "page",
+          "required" : false,
           "schema" : {
             "minimum" : 1,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Page Size",
+          "explode" : true,
           "in" : "query",
           "name" : "page_size",
           "required" : false,
           "schema" : {
             "default" : 10,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Search",
+          "explode" : true,
           "in" : "query",
           "name" : "search",
           "required" : false,
           "schema" : {
             "type" : "string"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "ID Filter",
           "explode" : true,
@@ -4205,29 +4226,36 @@
           "style" : "form"
         }, {
           "description" : "Page",
+          "explode" : true,
           "in" : "query",
           "name" : "page",
+          "required" : false,
           "schema" : {
             "minimum" : 1,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Page Size",
+          "explode" : true,
           "in" : "query",
           "name" : "page_size",
           "required" : false,
           "schema" : {
             "default" : 10,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Search",
+          "explode" : true,
           "in" : "query",
           "name" : "search",
           "required" : false,
           "schema" : {
             "type" : "string"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Filters for the label with the given name. Only checks the value if it's length is greater than 0.",
           "explode" : true,
@@ -4609,29 +4637,36 @@
           "style" : "simple"
         }, {
           "description" : "Page",
+          "explode" : true,
           "in" : "query",
           "name" : "page",
+          "required" : false,
           "schema" : {
             "minimum" : 1,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Page Size",
+          "explode" : true,
           "in" : "query",
           "name" : "page_size",
           "required" : false,
           "schema" : {
             "default" : 10,
             "type" : "integer"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Search",
+          "explode" : true,
           "in" : "query",
           "name" : "search",
           "required" : false,
           "schema" : {
             "type" : "string"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Default Interface Filter",
           "explode" : true,
@@ -7903,12 +7938,14 @@
           "style" : "form"
         }, {
           "description" : "Search",
+          "explode" : true,
           "in" : "query",
           "name" : "search",
           "required" : false,
           "schema" : {
             "type" : "string"
-          }
+          },
+          "style" : "form"
         }, {
           "description" : "Order of the results, ascending by default",
           "explode" : true,
