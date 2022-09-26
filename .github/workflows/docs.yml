@@ -14,7 +14,7 @@ jobs:
       with:
         node-version: 12.x
     - run: npm i -g redoc-cli@0.13.2
-    - run: mkdir docs && mkdir docs/auth && mkdir docs/compute && mkdir docs/domain && mkdir docs/billing
+    - run: mkdir docs && mkdir docs/auth && mkdir docs/compute && mkdir docs/domain && mkdir docs/billing && mkdir docs/addon
     - run: npx redoc-cli bundle spec/auth-api.v1.0.yaml --options.theme.colors.primary.main=#ac0006
     - run: cp redoc-static.html docs/auth/index.html
     - run: npx redoc-cli bundle spec/compute-api.v1.0.yaml --options.theme.colors.primary.main=#ac0006
@@ -23,6 +23,8 @@ jobs:
     - run: cp redoc-static.html docs/domain/index.html
     - run: npx redoc-cli bundle spec/billing-api.v1.0.yaml --options.theme.colors.primary.main=#ac0006
     - run: cp redoc-static.html docs/billing/index.html
+    - run: npx redoc-cli bundle spec/addon-api.v1.0.yaml --options.theme.colors.primary.main=#ac0006
+    - run: cp redoc-static.html docs/addon/index.html
     - name: Deploy
       uses: s0/git-publish-subdir-action@develop
       env:
