@@ -691,6 +691,8 @@ paths:
           in: query
           name: object_id
           description: Object ID
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
     post:
       summary: insertAuditLogEntry
       operationId: insertAuditLogEntry
@@ -1491,6 +1493,8 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/AuditLogEntry'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
