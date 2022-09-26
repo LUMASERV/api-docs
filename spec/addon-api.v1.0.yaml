@@ -1,0 +1,1468 @@
+openapi: 3.0.0
+x-stoplight:
+  id: acggu0p2fzqo3
+info:
+  title: addon-api.v1.0
+  version: '1.0'
+  contact:
+    name: LUMASERV Support Team
+    url: 'https://lumaserv.com'
+    email: support@lumaserv.com
+  description: LUMASERV Addon API
+servers:
+  - url: 'https://api.lumaserv.com/addon'
+    description: Live
+tags:
+  - name: general
+    description: General
+  - name: licenses
+    description: Licenses
+  - name: ssl-certificates
+    description: SSL Certificates
+  - name: ssl-contacts
+    description: SSL Contacts
+  - name: ssl-organisations
+    description: SSL Organsations
+  - name: ssl-types
+    description: SSL Types
+paths:
+  /ssl/certificates:
+    get:
+      summary: getSSLCertificates
+      tags:
+        - ssl-certificates
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLCertificateListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLCertificates
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[type_id]'
+          description: Type ID Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[organisation_id]'
+          description: Organisation ID Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[admin_contact_id]'
+          description: Admin Contact ID Filter
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[tech_contact_id]'
+          description: Tech Contact ID Filter
+        - $ref: '#/components/parameters/LabelsFilter'
+      description: Returns all SSL Certificates
+    post:
+      summary: createSSLCertificate
+      operationId: createSSLCertificate
+      responses:
+        '201':
+          $ref: '#/components/responses/SSLCertificateSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - ssl-certificates
+      description: Creates a SSL Certificates
+      requestBody:
+        $ref: '#/components/requestBodies/SSLCertificateCreateRequest'
+  '/ssl/certificates/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: SSL Certificate ID
+    get:
+      summary: getSSLCertificate
+      tags:
+        - ssl-certificates
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLCertificateSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLCertificate
+      description: Gets a SSL Certificate
+  /ssl/contacts:
+    get:
+      summary: getSSLContacts
+      tags:
+        - ssl-contacts
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLContactListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLContacts
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/LabelsFilter'
+      description: Returns all SSL Contacts
+    post:
+      summary: createSSLContact
+      operationId: createSSLContact
+      responses:
+        '201':
+          $ref: '#/components/responses/SSLContactSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/SSLContactCreateRequest'
+      description: Creates a SSL Contact
+  '/ssl/contacts/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: SSL Contact ID
+    get:
+      summary: getSSLContact
+      tags:
+        - ssl-contacts
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLContactSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLContact
+      description: Gets a SSL Contact
+    delete:
+      summary: deleteSSLContact
+      operationId: deleteSSLContact
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - ssl-contacts
+      description: Deletes a SSL Contact
+  /ssl/types:
+    get:
+      summary: getSSLTypes
+      tags:
+        - ssl-types
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLTypeListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLTypes
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+      description: Returns all SSL Types
+  '/ssl/types/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: SSL Type ID
+    get:
+      summary: getSSLType
+      tags:
+        - ssl-types
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLTypeSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLType
+      description: Get a SSL Type
+  /ssl/organisations:
+    get:
+      summary: getSSLOrganisations
+      tags:
+        - ssl-organisations
+      operationId: getSSLOrganisations
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLOrganisationListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - $ref: '#/components/parameters/LabelsFilter'
+      description: Returns all SSL Organisations
+    post:
+      summary: createSSLOrganisation
+      operationId: createSSLOrganisation
+      responses:
+        '201':
+          $ref: '#/components/responses/SSLOrganisationSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/SSLOrganisationCreateRequest'
+      tags:
+        - ssl-organisations
+      description: Creates a SSL Organisation
+  '/ssl/organisations/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: SSL Organisation ID
+    get:
+      summary: getSSLOrganisation
+      tags:
+        - ssl-organisations
+      responses:
+        '200':
+          $ref: '#/components/responses/SSLOrganisationSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getSSLOrganisation
+      description: Gets a SSL Organisation
+    delete:
+      summary: deleteSSLOrganisation
+      operationId: deleteSSLOrganisation
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - ssl-organisations
+      description: Deletes a SSL Organisation
+  /search:
+    get:
+      summary: search
+      tags:
+        - general
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: search
+      description: Search for multiple resource types at once
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: resources
+          description: Comma seperated list of types
+        - schema:
+            type: string
+          in: query
+          name: search
+          description: Search
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: Limit per Resource Type
+        - in: query
+          description: Project ID
+          name: project_id
+          schema:
+            type: string
+            format: uuid
+        - schema:
+            type: string
+          in: query
+          name: 'labels[:name]'
+          description: Filters for the label with the given name. Only checks the value if it's length is greater than 0.
+        - $ref: '#/components/parameters/WithLabels'
+  /license/plesk-types:
+    get:
+      summary: getPleskLicenseTypes
+      tags:
+        - licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseTypeListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPleskLicenseTypes
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/Order'
+      description: Returns all Plesk license types
+  '/license/plesk-types/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: Plesk License Type ID
+    get:
+      summary: getPleskLicenseType
+      tags:
+        - licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseTypeSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPleskLicenseType
+      description: Gets a Plesk license type
+  /licenses/plesk:
+    get:
+      summary: getPleskLicenses
+      tags:
+        - licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPleskLicenses
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/ProjectIDFilter'
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[type_id]'
+          description: Type ID Filter
+        - $ref: '#/components/parameters/LabelsFilter'
+      description: Returns all Plesk licenses
+    post:
+      summary: createPleskLicense
+      operationId: createPleskLicense
+      responses:
+        '201':
+          $ref: '#/components/responses/PleskLicenseSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/PleskLicenseCreateRequest'
+      tags:
+        - licenses
+      description: Creates a Plesk license
+  '/licenses/plesk/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Plesk License ID
+    get:
+      summary: getPleskLicense
+      tags:
+        - licenses
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getPleskLicense
+      description: Gets a Plesk license
+    put:
+      summary: updatePleskLicense
+      operationId: updatePleskLicense
+      responses:
+        '200':
+          $ref: '#/components/responses/PleskLicenseSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '403':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - licenses
+      description: Updates a Plesk license
+      requestBody:
+        $ref: '#/components/requestBodies/PleskLicenseUpdateRequest'
+components:
+  schemas:
+    ResponsePagination:
+      title: ResponsePagination
+      type: object
+      properties:
+        page:
+          type: integer
+          example: 1
+        page_size:
+          type: integer
+          example: 25
+        total:
+          type: integer
+          example: 1500
+      required:
+        - page
+        - page_size
+        - total
+    ResponseMessages:
+      title: ResponseMessages
+      type: object
+      x-examples:
+        example:
+          warnings: []
+          errors: []
+          success:
+            - code: 10000
+              message: Action successfully executed.
+      properties:
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        infos:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+      required:
+        - warnings
+        - errors
+        - infos
+    ResponseMessage:
+      title: ResponseMessage
+      type: object
+      properties:
+        key:
+          type: string
+          example: general.serverError
+        message:
+          type: string
+          example: Action successfully executed.
+      required:
+        - key
+        - message
+    ResponseMetadata:
+      title: ResponseMetadata
+      type: object
+      properties:
+        transaction_id:
+          type: string
+          example: 1428d399-8861-40a5-a85f-6ed4c669bae0
+        build_commit:
+          type: string
+          example: master-a0b1c2d3
+        build_timestamp:
+          type: string
+          example: '2021-09-01 13:37:00'
+      required:
+        - transaction_id
+        - build_commit
+        - build_timestamp
+    SSLCertificate:
+      title: SSLCertificate
+      x-stoplight:
+        id: rae8q98mxzeav
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        type_id:
+          type: string
+          format: uuid
+        organisation_id:
+          type: string
+          format: uuid
+        admin_contact_id:
+          type: string
+          format: uuid
+        tech_contact_id:
+          type: string
+          format: uuid
+        approver_email:
+          type: string
+          format: email
+        valid_until:
+          type: string
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - id
+        - project_id
+        - type_id
+        - organisation_id
+        - admin_contact_id
+        - tech_contact_id
+        - approver_email
+        - valid_until
+        - created_at
+    SSLContact:
+      title: SSLContact
+      x-stoplight:
+        id: 073y7qjn67uo0
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        organisation:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        fax:
+          type: string
+        address:
+          type: string
+        additional_address:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        region:
+          type: string
+        country_code:
+          type: string
+          maxLength: 2
+          minLength: 2
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - id
+        - project_id
+        - title
+        - first_name
+        - last_name
+        - organisation
+        - email
+        - phone
+        - fax
+        - address
+        - additional_address
+        - city
+        - postal_code
+        - region
+        - country_code
+        - created_at
+    SSLType:
+      title: SSLType
+      x-stoplight:
+        id: 9cuedq9mc02g9
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+      required:
+        - id
+        - title
+    SSLOrganisation:
+      title: SSLOrganisation
+      x-stoplight:
+        id: i6pgvnethcqac
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        division:
+          type: string
+        address:
+          type: string
+        additional_address:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        region:
+          type: string
+        country_code:
+          type: string
+          maxLength: 2
+          minLength: 2
+        phone:
+          type: string
+        fax:
+          type: string
+        registration_number:
+          type: string
+        duns:
+          type: string
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - id
+        - project_id
+        - name
+        - division
+        - address
+        - additional_address
+        - city
+        - postal_code
+        - region
+        - country_code
+        - phone
+        - fax
+        - registration_number
+        - duns
+        - created_at
+    SearchResults:
+      title: SearchResults
+      x-stoplight:
+        id: b6jungvnx7er2
+      type: object
+      properties:
+        ssl_contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/SSLContact'
+        ssl_organisations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SSLOrganisation'
+        ssl_certificates:
+          type: array
+          items:
+            $ref: '#/components/schemas/SSLCertificate'
+        plesk_licenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PleskLicense'
+      required:
+        - ssl_contacts
+        - ssl_organisations
+        - ssl_certificates
+        - plesk_licenses
+    PleskLicense:
+      title: PleskLicense
+      x-stoplight:
+        id: hg2et4soupkv2
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        license:
+          type: string
+        key:
+          type: string
+        created_at:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - id
+        - project_id
+        - license
+        - key
+        - created_at
+    PleskLicenseType:
+      title: PleskLicenseType
+      x-stoplight:
+        id: 53lsg4mwfolc9
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+      required:
+        - id
+        - title
+  securitySchemes:
+    AuthToken:
+      type: http
+      scheme: bearer
+  responses:
+    InvalidRequestResponse:
+      description: Response for validation errors
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - messages
+              - metadata
+        application/xml:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - success
+              - messages
+    EmptyResponse:
+      description: Empty Response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+            required:
+              - success
+              - messages
+              - metadata
+    SSLCertificateListResponse:
+      description: SSLCertificate List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSLCertificate'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    SSLCertificateSingleResponse:
+      description: Single SSLCertificate
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SSLCertificate'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    SSLContactListResponse:
+      description: SSLContact List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSLContact'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    SSLContactSingleResponse:
+      description: Single SSLContact
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SSLContact'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+    SSLTypeSingleResponse:
+      description: Single SSLType
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SSLType'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    SSLTypeListResponse:
+      description: SSLType List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSLType'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+    SSLOrganisationSingleResponse:
+      description: Single SSLOrganisation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SSLOrganisation'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    SSLOrganisationListResponse:
+      description: SSLOrganisation List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSLOrganisation'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    SearchResponse:
+      description: Search result
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/SearchResults'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    PleskLicenseTypeSingleResponse:
+      description: Single PleskLicenseType
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/PleskLicenseType'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    PleskLicenseTypeListResponse:
+      description: PleskLicenseType List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMessages'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PleskLicenseType'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    PleskLicenseListResponse:
+      description: PleskLicense List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PleskLicense'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    PleskLicenseSingleResponse:
+      description: Single PleskLicense
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/PleskLicense'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+  parameters:
+    ProjectIDFilter:
+      name: 'filter[project_id]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: uuid
+      description: Project ID Filter
+    PaginationPage:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+      description: Page
+    PaginationPageSize:
+      name: page_size
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 10
+      description: Page Size
+    Search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Search
+    LabelsFilter:
+      name: 'filter[labels][:name]'
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filters for the label with the given name. Only checks the value if it's length is greater than 0.
+    WithLabels:
+      name: with_labels
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: 'If length 0, true or 1 is given, the labels will be added to the response objects.'
+    OrderBy:
+      name: order_by
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Field or array of fields to order by
+    Order:
+      name: order
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - ASC
+          - DESC
+      description: 'Order of the results, ascending by default'
+  requestBodies:
+    SSLCertificateCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              type_id:
+                type: string
+                format: uuid
+              organisation_id:
+                type: string
+                format: uuid
+              organisation:
+                type: string
+              admin_contact_id:
+                type: string
+                format: uuid
+              admin_contact:
+                type: string
+              tech_contact_id:
+                type: string
+                format: uuid
+              csr:
+                type: string
+              validationMethod:
+                type: string
+              approverEmail:
+                type: string
+                format: email
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - project_id
+              - type_id
+              - csr
+              - validationMethod
+              - approverEmail
+    SSLContactCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              title:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              organisation:
+                type: string
+              email:
+                type: string
+                format: email
+              phone:
+                type: string
+              fax:
+                type: string
+              address:
+                type: string
+              additonalAddress:
+                type: string
+              city:
+                type: string
+              postal_code:
+                type: string
+              region:
+                type: string
+              country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - first_name
+              - last_name
+              - organisation
+              - email
+              - phone
+              - address
+              - city
+              - postal_code
+              - country_code
+    SSLOrganisationCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              division:
+                type: string
+              address:
+                type: string
+              additional_address:
+                type: string
+              city:
+                type: string
+              postal_code:
+                type: string
+              region:
+                type: string
+              country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+              phone:
+                type: string
+              fax:
+                type: string
+              registration_number:
+                type: string
+              duns:
+                type: string
+              labels:
+                type: string
+                additionalProperties:
+                  type: string
+            required:
+              - name
+              - address
+              - city
+              - postal_code
+              - country_code
+              - phone
+    PleskLicenseCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+                format: uuid
+              type_id:
+                type: string
+                format: uuid
+              address:
+                type: string
+                format: ipv4
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
+            required:
+              - project_id
+              - type_id
+              - address
+    PleskLicenseUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              address:
+                type: string
+                format: ipv4
+              labels:
+                type: object
+                additionalProperties:
+                  type: string
