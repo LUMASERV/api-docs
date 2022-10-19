@@ -2185,8 +2185,6 @@ components:
                 type: string
               email:
                 type: string
-              balance:
-                type: number
               credit_limit:
                 type: number
               vat_id:
@@ -2349,6 +2347,14 @@ components:
                 type: number
               group_key:
                 type: string
+              period_from:
+                type: string
+                description: 'If supplied, period_to must also be supplied'
+                format: date-time
+              period_to:
+                type: string
+                description: 'If supplied, period_from must also be supplied'
+                format: date-time
             required:
               - name
               - description
@@ -2376,6 +2382,14 @@ components:
                 type: number
               group_key:
                 type: string
+              period_from:
+                type: string
+                format: date-time
+                description: 'If supplied, period_to must also be supplied'
+              period_to:
+                type: string
+                description: 'If supplied, period_from must also be supplied'
+                format: date-time
     InvoiceUpdateRequest:
       content:
         application/json:
