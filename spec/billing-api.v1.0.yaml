@@ -11,56 +11,6 @@ servers:
   - url: 'https://api.lumaserv.com/billing'
     description: Live
 paths:
-  /bank-transactions:
-    get:
-      summary: getBankTransactions
-      tags:
-        - payment
-      responses:
-        '200':
-          $ref: '#/components/responses/BankTransactionListResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getBankTransactions
-      description: Returns all bank transactions
-      parameters:
-        - $ref: '#/components/parameters/PaginationPage'
-        - $ref: '#/components/parameters/PaginationPageSize'
-        - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/Order'
-        - $ref: '#/components/parameters/OrderBy'
-  '/bank-transactions/{id}':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: BankTransaction ID
-    get:
-      summary: getBankTransaction
-      tags:
-        - payment
-      responses:
-        '200':
-          $ref: '#/components/responses/BankTransactionSingleResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getBankTransaction
-      description: Returns a single bank transaction
   /billing-positions:
     get:
       summary: getBillingPositions
@@ -85,11 +35,7 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/Order'
         - $ref: '#/components/parameters/OrderBy'
-        - schema:
-            type: string
-          in: query
-          name: 'filter[customer_id]'
-          description: Filter by customer id
+        - $ref: '#/components/parameters/CustomerFilter'
         - schema:
             type: string
           in: query
@@ -434,6 +380,7 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/Order'
         - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/CustomerFilter'
     post:
       summary: createInvoice
       operationId: createInvoice
@@ -668,98 +615,6 @@ paths:
           $ref: '#/components/responses/EmptyResponse'
       operationId: deleteInvoicePosition
       description: Deletes position of invoice identified by id
-  /payment-reminders:
-    get:
-      summary: getPaymentReminders
-      tags:
-        - billing
-      responses:
-        '200':
-          $ref: '#/components/responses/PaymentReminderListResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getPaymentReminders
-      description: Returns all payment reminders
-      parameters:
-        - $ref: '#/components/parameters/PaginationPage'
-        - $ref: '#/components/parameters/PaginationPageSize'
-        - $ref: '#/components/parameters/Search'
-        - $ref: '#/components/parameters/Order'
-        - $ref: '#/components/parameters/OrderBy'
-    post:
-      summary: createPaymentReminder
-      operationId: createPaymentReminder
-      responses:
-        '201':
-          $ref: '#/components/responses/PaymentReminderSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      description: Creates a new payment reminder
-      tags:
-        - billing
-      requestBody:
-        $ref: '#/components/requestBodies/PaymentReminderCreateRequest'
-  '/payment-reminders/{id}':
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: id
-        in: path
-        required: true
-        description: PaymentReminder ID
-    get:
-      summary: getPaymentReminder
-      tags:
-        - billing
-      responses:
-        '200':
-          $ref: '#/components/responses/PaymentReminderSingleResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      operationId: getPaymentReminder
-      description: Returns a single payment reminder
-    put:
-      summary: updatePaymentReminder
-      operationId: updatePaymentReminder
-      responses:
-        '200':
-          $ref: '#/components/responses/PaymentReminderSingleResponse'
-        '400':
-          $ref: '#/components/responses/InvalidRequestResponse'
-        '401':
-          $ref: '#/components/responses/EmptyResponse'
-        '403':
-          $ref: '#/components/responses/EmptyResponse'
-        '404':
-          $ref: '#/components/responses/EmptyResponse'
-        '500':
-          $ref: '#/components/responses/EmptyResponse'
-      description: Updates the payment reminder
-      tags:
-        - billing
-      requestBody:
-        $ref: '#/components/requestBodies/PaymentReminderUpdateRequest'
   /service-contracts:
     get:
       summary: getServiceContracts
@@ -784,6 +639,7 @@ paths:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/Order'
         - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/CustomerFilter'
     post:
       summary: createServiceContract
       operationId: createServiceContract
@@ -1066,44 +922,6 @@ components:
         - page
         - page_size
         - total
-    BankTransaction:
-      title: BankTransaction
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        bank_account_id:
-          type: string
-          format: uuid
-        booking_text:
-          type: string
-        depositor:
-          type: string
-        reference:
-          type: string
-        extended_reference:
-          type: string
-        type:
-          type: string
-          enum:
-            - DEBIT
-            - CREDIT
-        booking_date:
-          type: string
-        amount:
-          type: string
-        bank_code:
-          type: string
-        account_number:
-          type: string
-        value_date:
-          type: string
-        debit_id:
-          type: string
-          format: uuid
-      required:
-        - id
     BillingPosition:
       title: BillingPosition
       type: object
@@ -1362,56 +1180,6 @@ components:
         - paid_at
         - created_at
         - positions
-    OnlinePayment:
-      title: OnlinePayment
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        customer_id:
-          type: string
-        provider:
-          type: string
-          enum:
-            - PAYPAL
-        state:
-          type: string
-          enum:
-            - PENDING
-            - SUCCESS
-            - FAILED
-            - CANCELLED
-        amount:
-          type: number
-        external_id:
-          type: string
-      required:
-        - id
-    PaymentReminder:
-      title: PaymentReminder
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        customer_id:
-          type: string
-          format: uuid
-        invoice_id:
-          type: string
-          format: uuid
-        stage:
-          $ref: '#/components/schemas/PaymentReminderStage'
-        state:
-          $ref: '#/components/schemas/PaymentReminderState'
-        date:
-          type: string
-        due_date:
-          type: string
-      required:
-        - id
-        - invoice_id
     ServiceContractPosition:
       title: ServiceContractPosition
       type: object
@@ -1500,62 +1268,6 @@ components:
         - unit
         - price
         - group
-    OfferState:
-      type: string
-      title: OfferState
-      enum:
-        - DRAFT
-        - SENT
-        - ACCEPTED
-        - DENIED
-    OfferCreateRequestPosition:
-      title: OfferCreateRequestPosition
-      type: object
-      properties:
-        offer_id:
-          type: string
-          format: uuid
-        title:
-          type: string
-        description:
-          type: string
-        interval:
-          type: string
-        amount:
-          type: string
-        price:
-          type: string
-        purchasing_price:
-          type: string
-        note:
-          type: string
-        vat_rate:
-          type: string
-    OfferPositionInterval:
-      type: string
-      title: OfferPositionInterval
-      enum:
-        - WEEKLY
-        - MONTHLY
-        - QUARTERLY
-        - SEMI_ANNUAL
-        - ANNUAL
-    PaymentReminderStage:
-      type: string
-      title: PaymentReminderStage
-      enum:
-        - STAGE1
-        - STAGE2
-        - STAGE3
-    PaymentReminderState:
-      type: string
-      title: PaymentReminderState
-      enum:
-        - DRAFT
-        - PENDING
-        - PAID
-        - CANCELLED
-        - FAILED
     ServiceContractInterval:
       type: string
       title: ServiceContractInterval
@@ -1643,50 +1355,6 @@ components:
               - success
               - messages
               - metadata
-    BankTransactionListResponse:
-      description: BankTransaction List
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/BankTransaction'
-              pagination:
-                $ref: '#/components/schemas/ResponsePagination'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - pagination
-              - messages
-    BankTransactionSingleResponse:
-      description: Single BankTransaction
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                $ref: '#/components/schemas/BankTransaction'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
     BillingPositionListResponse:
       description: BillingPosition List
       content:
@@ -1944,50 +1612,6 @@ components:
                 type: boolean
               data:
                 $ref: '#/components/schemas/Position'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
-    PaymentReminderListResponse:
-      description: PaymentReminder List
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PaymentReminder'
-              pagination:
-                $ref: '#/components/schemas/ResponsePagination'
-              messages:
-                $ref: '#/components/schemas/ResponseMessages'
-            required:
-              - metadata
-              - success
-              - data
-              - messages
-    PaymentReminderSingleResponse:
-      description: Single PaymentReminder
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              metadata:
-                $ref: '#/components/schemas/ResponseMetadata'
-              success:
-                type: boolean
-              data:
-                $ref: '#/components/schemas/PaymentReminder'
               messages:
                 $ref: '#/components/schemas/ResponseMessages'
             required:
@@ -2407,43 +2031,6 @@ components:
                 type: string
               cancelled_at:
                 type: string
-    PaymentReminderCreateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              customer_id:
-                type: string
-                format: uuid
-              invoice_id:
-                type: string
-                format: uuid
-              stage:
-                type: string
-              state:
-                type: string
-              date:
-                type: string
-              due_date:
-                type: string
-            required:
-              - customer_id
-              - invoice_id
-    PaymentReminderUpdateRequest:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              stage:
-                $ref: '#/components/schemas/PaymentReminderStage'
-              state:
-                $ref: '#/components/schemas/PaymentReminderState'
-              date:
-                type: string
-              due_date:
-                type: string
     ServiceContractCreateRequest:
       content:
         application/json:
@@ -2530,6 +2117,13 @@ components:
       schema:
         type: string
       description: Field or array of fields to order by
+    CustomerFilter:
+      name: 'filter[customer_id]'
+      in: query
+      schema:
+        type: string
+        format: uuid
+      description: Filter by customer id
 security:
   - AuthToken: []
 tags:
@@ -2539,7 +2133,7 @@ tags:
     description: Customer Management
   - name: general
     description: General Endpoints
-  - name: payment
-    description: Payment Endpoints
   - name: invoices
     description: Invoice Endpoints
+  - name: payment
+    description: Payment Endpoints
