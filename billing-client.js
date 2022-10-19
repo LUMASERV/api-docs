@@ -36,12 +36,6 @@ export default class LUMASERVBillingClient {
             })
         });
     }
-    getBankTransactions(query = null) {
-        return this.request('get', '/bank-transactions', query, null);
-    }
-    getBankTransaction(id) {
-        return this.request('get', '/bank-transactions/' + id, null, null);
-    }
     getBillingPositions(query = null) {
         return this.request('get', '/billing-positions', query, null);
     }
@@ -116,18 +110,6 @@ export default class LUMASERVBillingClient {
     }
     updateInvoicePosition(invoice_id, id, body = null) {
         return this.request('put', '/invoices/' + invoice_id + '/positions/' + id, null, body);
-    }
-    getPaymentReminders(query = null) {
-        return this.request('get', '/payment-reminders', query, null);
-    }
-    createPaymentReminder(body = null) {
-        return this.request('post', '/payment-reminders', null, body);
-    }
-    getPaymentReminder(id) {
-        return this.request('get', '/payment-reminders/' + id, null, null);
-    }
-    updatePaymentReminder(id, body = null) {
-        return this.request('put', '/payment-reminders/' + id, null, body);
     }
     getServiceContracts(query = null) {
         return this.request('get', '/service-contracts', query, null);
