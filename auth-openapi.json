@@ -2512,6 +2512,7 @@
         "description" : "Accepts an invite to a project",
         "operationId" : "acceptProjectInvite",
         "parameters" : [ {
+          "description" : "ID of a project invite",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -2582,6 +2583,7 @@
         "description" : "Reject an invite to a project",
         "operationId" : "rejectProjectInvite",
         "parameters" : [ {
+          "description" : "ID of a project invite",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -2652,6 +2654,7 @@
         "description" : "Deletes a pending invite to a project",
         "operationId" : "deleteProjectInvite",
         "parameters" : [ {
+          "description" : "ID of a project invite",
           "explode" : false,
           "in" : "path",
           "name" : "id",
@@ -2715,6 +2718,117 @@
         },
         "summary" : "deleteProjectInvite",
         "tags" : [ "projects" ]
+      }
+    },
+    "/password-change" : {
+      "put" : {
+        "description" : "Change password of own user",
+        "operationId" : "changePassword",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/PasswordChangeRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getProjects_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createProject_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createProject_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createProject_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createProject_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getProjects_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "changePassword",
+        "tags" : [ "auth" ]
+      }
+    },
+    "/email-change" : {
+      "put" : {
+        "description" : "Change email of own user",
+        "operationId" : "changeEmail",
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/EmailChangeRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getProjects_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createProject_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createProject_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getProjects_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "changeEmail",
+        "tags" : [ "auth" ]
       }
     }
   },
@@ -2896,6 +3010,24 @@
           "application/json" : {
             "schema" : {
               "$ref" : "#/components/schemas/createProjectInvite_request"
+            }
+          }
+        }
+      },
+      "PasswordChangeRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/changePassword_request"
+            }
+          }
+        }
+      },
+      "EmailChangeRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/changeEmail_request"
             }
           }
         }
@@ -4009,6 +4141,33 @@
           }
         },
         "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "changePassword_request" : {
+        "properties" : {
+          "current_password" : {
+            "type" : "string"
+          },
+          "new_password" : {
+            "type" : "string"
+          },
+          "new_password_confirm" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "current_password", "new_password", "new_password_confirm" ],
+        "type" : "object"
+      },
+      "changeEmail_request" : {
+        "properties" : {
+          "password" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "email", "password" ],
         "type" : "object"
       }
     },

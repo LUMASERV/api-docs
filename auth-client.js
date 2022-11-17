@@ -132,4 +132,10 @@ export default class LUMASERVAuthClient {
     deleteProjectInvite(id) {
         return this.request('delete', '/project-invites/' + id, null, null);
     }
+    changePassword(body = null) {
+        return this.request('put', '/password-change', null, body);
+    }
+    changeEmail(body = null) {
+        return this.request('put', '/email-change', null, body);
+    }
 }
