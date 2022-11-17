@@ -779,6 +779,7 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of a project invite
     post:
       summary: acceptProjectInvite
       operationId: acceptProjectInvite
@@ -803,6 +804,7 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of a project invite
     post:
       summary: rejectProjectInvite
       operationId: rejectProjectInvite
@@ -827,6 +829,7 @@ paths:
         name: id
         in: path
         required: true
+        description: ID of a project invite
     delete:
       summary: deleteProjectInvite
       operationId: deleteProjectInvite
@@ -844,6 +847,40 @@ paths:
       description: Deletes a pending invite to a project
       tags:
         - projects
+  /password-change:
+    put:
+      summary: changePassword
+      operationId: changePassword
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/PasswordChangeRequest'
+      tags:
+        - auth
+      description: Change password of own user
+  /email-change:
+    put:
+      summary: changeEmail
+      operationId: changeEmail
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - auth
+      requestBody:
+        $ref: '#/components/requestBodies/EmailChangeRequest'
+      description: Change email of own user
 components:
   schemas:
     ResponseMessages:
@@ -1762,6 +1799,35 @@ components:
                 type: string
             required:
               - project_id
+              - email
+    PasswordChangeRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              current_password:
+                type: string
+              new_password:
+                type: string
+              new_password_confirm:
+                type: string
+            required:
+              - current_password
+              - new_password
+              - new_password_confirm
+    EmailChangeRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              password:
+                type: string
+              email:
+                type: string
+            required:
+              - password
               - email
   parameters:
     PaginationPage:
