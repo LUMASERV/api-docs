@@ -1272,7 +1272,6 @@ components:
       type: string
       title: ServiceContractInterval
       enum:
-        - WEEKLY
         - MONTHLY
         - QUARTERLY
         - SEMI_ANNUAL
@@ -2044,23 +2043,29 @@ components:
                 type: string
               description:
                 type: string
-              runtime:
-                $ref: '#/components/schemas/ServiceContractInterval'
               cancellation_period:
                 type: integer
-              accounting_period:
+              billing_interval:
                 $ref: '#/components/schemas/ServiceContractInterval'
-              positions:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CreateRequestPosition'
+              renewal_interval:
+                $ref: '#/components/schemas/ServiceContractInterval'
+              unit_price:
+                type: number
+              unit:
+                type: string
+              unit_amount:
+                type: number
+                default: 1
+              vat_rate:
+                type: number
+                default: 0.19
             required:
               - customer_id
               - title
               - description
-              - runtime
               - cancellation_period
-              - accounting_period
+              - unit_price
+              - unit
     ServiceContractUpdateRequest:
       content:
         application/json:
@@ -2074,11 +2079,18 @@ components:
                 type: string
               description:
                 type: string
-              runtime:
-                $ref: '#/components/schemas/ServiceContractInterval'
               cancellation_period:
                 type: integer
               accounting_period:
+                $ref: '#/components/schemas/ServiceContractInterval'
+              unit_amount:
+                type: number
+                default: 1
+              unit:
+                type: string
+              unit_price:
+                type: number
+              renewal_interval:
                 $ref: '#/components/schemas/ServiceContractInterval'
   parameters:
     PaginationPage:
