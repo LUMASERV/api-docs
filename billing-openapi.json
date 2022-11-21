@@ -4042,7 +4042,7 @@
         "type" : "object"
       },
       "ServiceContractInterval" : {
-        "enum" : [ "WEEKLY", "MONTHLY", "QUARTERLY", "SEMI_ANNUAL", "ANNUAL" ],
+        "enum" : [ "MONTHLY", "QUARTERLY", "SEMI_ANNUAL", "ANNUAL" ],
         "title" : "ServiceContractInterval",
         "type" : "string"
       },
@@ -4774,23 +4774,31 @@
           "description" : {
             "type" : "string"
           },
-          "runtime" : {
-            "$ref" : "#/components/schemas/ServiceContractInterval"
-          },
           "cancellation_period" : {
             "type" : "integer"
           },
-          "accounting_period" : {
+          "billing_interval" : {
             "$ref" : "#/components/schemas/ServiceContractInterval"
           },
-          "positions" : {
-            "items" : {
-              "$ref" : "#/components/schemas/CreateRequestPosition"
-            },
-            "type" : "array"
+          "renewal_interval" : {
+            "$ref" : "#/components/schemas/ServiceContractInterval"
+          },
+          "unit_price" : {
+            "type" : "number"
+          },
+          "unit" : {
+            "type" : "string"
+          },
+          "unit_amount" : {
+            "default" : 1,
+            "type" : "number"
+          },
+          "vat_rate" : {
+            "default" : 0.19,
+            "type" : "number"
           }
         },
-        "required" : [ "accounting_period", "cancellation_period", "customer_id", "description", "runtime", "title" ],
+        "required" : [ "cancellation_period", "customer_id", "description", "title", "unit", "unit_price" ],
         "type" : "object"
       },
       "createServiceContract_201_response" : {
@@ -4823,13 +4831,23 @@
           "description" : {
             "type" : "string"
           },
-          "runtime" : {
-            "$ref" : "#/components/schemas/ServiceContractInterval"
-          },
           "cancellation_period" : {
             "type" : "integer"
           },
           "accounting_period" : {
+            "$ref" : "#/components/schemas/ServiceContractInterval"
+          },
+          "unit_amount" : {
+            "default" : 1,
+            "type" : "number"
+          },
+          "unit" : {
+            "type" : "string"
+          },
+          "unit_price" : {
+            "type" : "number"
+          },
+          "renewal_interval" : {
             "$ref" : "#/components/schemas/ServiceContractInterval"
           }
         },
