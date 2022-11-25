@@ -392,6 +392,25 @@ paths:
       tags:
         - sshkeys
       description: Deletes a ssh key
+    put:
+      summary: updateSSHKey
+      operationId: updateSSHKey
+      responses:
+        '200':
+          $ref: '#/components/responses/SSHKeySingleResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      tags:
+        - sshkeys
+      requestBody:
+        $ref: '#/components/requestBodies/SSHKeyUpdateRequest'
+      description: Updates a ssh key
   /servers:
     get:
       summary: getServers
@@ -5718,6 +5737,7 @@ components:
               title:
                 type: string
                 minLength: 2
+                maxLength: 50
               public_key:
                 type: string
                 description: RSA Public Key in OpenSSH or RFC 4716 Format
@@ -6327,6 +6347,16 @@ components:
                 type: integer
             required:
               - size
+    SSHKeyUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                minLength: 2
+                maxLength: 50
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
