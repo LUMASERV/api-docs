@@ -1438,6 +1438,79 @@
         },
         "summary" : "getSSHKey",
         "tags" : [ "sshkeys" ]
+      },
+      "put" : {
+        "description" : "Updates a ssh key",
+        "operationId" : "updateSSHKey",
+        "parameters" : [ {
+          "description" : "SSH Key ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/SSHKeyUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createSSHKey_201_response"
+                }
+              }
+            },
+            "description" : "Single SSHKey"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateSSHKey",
+        "tags" : [ "sshkeys" ]
       }
     },
     "/servers" : {
@@ -11779,6 +11852,15 @@
             }
           }
         }
+      },
+      "SSHKeyUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/updateSSHKey_request"
+            }
+          }
+        }
       }
     },
     "responses" : {
@@ -13760,6 +13842,7 @@
             "type" : "string"
           },
           "title" : {
+            "maxLength" : 50,
             "minLength" : 2,
             "type" : "string"
           },
@@ -13793,6 +13876,16 @@
           }
         },
         "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "updateSSHKey_request" : {
+        "properties" : {
+          "title" : {
+            "maxLength" : 50,
+            "minLength" : 2,
+            "type" : "string"
+          }
+        },
         "type" : "object"
       },
       "getServers_200_response" : {

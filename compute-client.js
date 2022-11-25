@@ -81,6 +81,9 @@ export default class LUMASERVComputeClient {
     getSSHKey(id) {
         return this.request('get', '/ssh-keys/' + id, null, null);
     }
+    updateSSHKey(id, body = null) {
+        return this.request('put', '/ssh-keys/' + id, null, body);
+    }
     getServers(query = null) {
         return this.request('get', '/servers', query, null);
     }
