@@ -3576,6 +3576,9 @@ components:
         title:
           type: string
           example: Debian 10
+        project_id:
+          type: string
+          format: uuid
       required:
         - id
         - title
@@ -5931,6 +5934,9 @@ components:
                 type: string
               root_slot:
                 type: string
+              project_id:
+                type: string
+                format: uuid
             required:
               - zones
               - title
