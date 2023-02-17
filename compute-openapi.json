@@ -12739,6 +12739,10 @@
           "title" : {
             "example" : "Debian 10",
             "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
+            "type" : "string"
           }
         },
         "required" : [ "id", "title" ],
@@ -14120,6 +14124,10 @@
             "type" : "string"
           },
           "root_slot" : {
+            "type" : "string"
+          },
+          "project_id" : {
+            "format" : "uuid",
             "type" : "string"
           }
         },
