@@ -6748,7 +6748,9 @@
           "in" : "query",
           "name" : "iknowthisisunsafe",
           "required" : false,
-          "schema" : { },
+          "schema" : {
+            "type" : "string"
+          },
           "style" : "form"
         } ],
         "responses" : {
