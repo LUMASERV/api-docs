@@ -2019,6 +2019,11 @@ paths:
       description: Detaches the volume from the current server
       tags:
         - server-volume
+      parameters:
+        - schema: {}
+          in: query
+          name: iknowthisisunsafe
+          description: Detaching volumes is unsafe and may conclude in complete data loss. Use this parameter to detach a volume anyway
   '/servers/{id}/status':
     parameters:
       - schema:
