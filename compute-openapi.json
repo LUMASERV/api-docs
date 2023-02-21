@@ -13288,7 +13288,11 @@
           "title" : {
             "type" : "string"
           },
+          "type" : {
+            "type" : "string"
+          },
           "public_key" : {
+            "enum" : [ "rsa", "ed25519" ],
             "type" : "string"
           },
           "created_at" : {
@@ -13301,7 +13305,7 @@
             "type" : "object"
           }
         },
-        "required" : [ "created_at", "id", "project_id", "public_key", "title" ],
+        "required" : [ "created_at", "id", "project_id", "public_key", "title", "type" ],
         "title" : "SSHKey",
         "type" : "object"
       },
