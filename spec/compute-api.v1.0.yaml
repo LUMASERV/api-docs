@@ -3727,8 +3727,13 @@ components:
           example: 1428d399-8861-40a5-a85f-6ed4c669bae0
         title:
           type: string
+        type:
+          type: string
         public_key:
           type: string
+          enum:
+            - rsa
+            - ed25519
         created_at:
           type: string
         labels:
@@ -3739,6 +3744,7 @@ components:
         - id
         - project_id
         - title
+        - type
         - public_key
         - created_at
     ServerTemplate:
