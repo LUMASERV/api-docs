@@ -3326,6 +3326,179 @@ paths:
         - server-volume
       requestBody:
         $ref: '#/components/requestBodies/ServerVolumeResizeRequest'
+  /pricing/servers:
+    get:
+      summary: getServerPricing
+      tags:
+        - pricing
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVariantPriceListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerPricing
+      description: Returns the pricing for servers
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: project_id
+          description: Return pricing for specific project
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[variant_id]'
+          description: Variant ID Filter
+  /pricing/server-volumes:
+    get:
+      summary: getServerVolumePricing
+      tags:
+        - pricing
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumePriceListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerVolumePricing
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: project_id
+          description: Return pricing for specific project
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[class_id]'
+          description: Storage Class ID Filter
+      description: Returns the pricing for server volumes
+  '/server-price-ranges/{id}/volume-prices':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server Price Range ID
+    get:
+      summary: getServerPriceRangeVolumePrices
+      tags:
+        - pricing
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumePriceListResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerPriceRangeVolumePrices
+      description: Returns the volume prices of a server price range
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          in: query
+          name: 'filter[class_id]'
+          description: Storage Class ID Filter
+    post:
+      summary: createServerPriceRangeVolumePrice
+      operationId: createServerPriceRangeVolumePrice
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumePriceSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Creates a new volume price for a server price range
+      tags:
+        - pricing
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVolumePriceCreateRequest'
+  '/server-price-ranges/{id}/volume-prices/{class_id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Server Price Range ID
+      - schema:
+          type: string
+          format: uuid
+        name: class_id
+        in: path
+        required: true
+        description: Storage Class ID
+    get:
+      summary: getServerPriceRangeVolumePrice
+      tags:
+        - pricing
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumePriceSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getServerPriceRangeVolumePrice
+      description: Returns a volume price for a specific server price range and storage class
+    put:
+      summary: updateServerPriceRangeVolumePrice
+      operationId: updateServerPriceRangeVolumePrice
+      responses:
+        '200':
+          $ref: '#/components/responses/ServerVolumePriceSingleResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Updates a volume price for a specific server price range and storage class
+      requestBody:
+        $ref: '#/components/requestBodies/ServerVolumePriceUpdateRequest'
+      tags:
+        - pricing
+    delete:
+      summary: deleteServerPriceRangeVolumePrice
+      operationId: deleteServerPriceRangeVolumePrice
+      responses:
+        '200':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      description: Deletes a volume price for a specific server price range and storage class
+      tags:
+        - pricing
 components:
   schemas:
     ResponseMessages:
@@ -4291,6 +4464,8 @@ components:
       required:
         - id
         - title
+      x-tags:
+        - pricing
     ServerPriceRangeAssignment:
       title: ServerPriceRangeAssignment
       type: object
@@ -4311,6 +4486,8 @@ components:
         - id
         - range_id
         - user_id
+      x-tags:
+        - pricing
     ServerVariantPrice:
       title: ServerVariantPrice
       type: object
@@ -4326,6 +4503,8 @@ components:
         - variant_id
         - price
         - offline_price
+      x-tags:
+        - pricing
     ServerState:
       type: string
       title: ServerState
@@ -4350,6 +4529,22 @@ components:
       required:
         - assigned_type
         - assigned_id
+    ServerVolumePrice:
+      title: ServerVolumePrice
+      x-stoplight:
+        id: 6wkh29pik7oag
+      type: object
+      properties:
+        class_id:
+          type: string
+          format: uuid
+        price:
+          type: number
+      required:
+        - class_id
+        - price
+      x-tags:
+        - pricing
   securitySchemes:
     AuthToken:
       type: http
@@ -5661,6 +5856,50 @@ components:
               - success
               - data
               - messages
+    ServerVolumePriceListResponse:
+      description: ServerVolumePrice List
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerVolumePrice'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
+    ServerVolumePriceSingleResponse:
+      description: Single ServerVolumePrice
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              success:
+                type: boolean
+              data:
+                $ref: '#/components/schemas/ServerVolumePrice'
+              messages:
+                $ref: '#/components/schemas/ResponseMessages'
+            required:
+              - metadata
+              - success
+              - data
+              - messages
   requestBodies:
     S3BucketCreateRequest:
       content:
@@ -6363,6 +6602,28 @@ components:
                 type: string
                 minLength: 2
                 maxLength: 50
+    ServerVolumePriceCreateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              class_id:
+                type: string
+                format: uuid
+              price:
+                type: number
+            required:
+              - class_id
+              - price
+    ServerVolumePriceUpdateRequest:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              price:
+                type: number
   parameters:
     ProjectIDFilter:
       name: 'filter[project_id]'
