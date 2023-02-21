@@ -396,4 +396,25 @@ export default class LUMASERVComputeClient {
     resizeServerVolume(id, body = null) {
         return this.request('post', '/server-volumes/' + id + '/resize', null, body);
     }
+    getServerPricing(query = null) {
+        return this.request('get', '/pricing/servers', query, null);
+    }
+    getServerVolumePricing(query = null) {
+        return this.request('get', '/pricing/server-volumes', query, null);
+    }
+    getServerPriceRangeVolumePrices(id, query = null) {
+        return this.request('get', '/server-price-ranges/' + id + '/volume-prices', query, null);
+    }
+    createServerPriceRangeVolumePrice(id, body = null) {
+        return this.request('post', '/server-price-ranges/' + id + '/volume-prices', null, body);
+    }
+    deleteServerPriceRangeVolumePrice(id, class_id) {
+        return this.request('delete', '/server-price-ranges/' + id + '/volume-prices/' + class_id, null, null);
+    }
+    getServerPriceRangeVolumePrice(id, class_id) {
+        return this.request('get', '/server-price-ranges/' + id + '/volume-prices/' + class_id, null, null);
+    }
+    updateServerPriceRangeVolumePrice(id, class_id, body = null) {
+        return this.request('put', '/server-price-ranges/' + id + '/volume-prices/' + class_id, null, body);
+    }
 }

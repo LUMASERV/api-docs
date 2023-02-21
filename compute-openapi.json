@@ -11401,6 +11401,536 @@
         "summary" : "resizeServerVolume",
         "tags" : [ "server-volume" ]
       }
+    },
+    "/pricing/servers" : {
+      "get" : {
+        "description" : "Returns the pricing for servers",
+        "operationId" : "getServerPricing",
+        "parameters" : [ {
+          "description" : "Return pricing for specific project",
+          "explode" : true,
+          "in" : "query",
+          "name" : "project_id",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Variant ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[variant_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getServerVariantPrices_200_response"
+                }
+              }
+            },
+            "description" : "ServerVariantPrice List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerPricing",
+        "tags" : [ "pricing" ]
+      }
+    },
+    "/pricing/server-volumes" : {
+      "get" : {
+        "description" : "Returns the pricing for server volumes",
+        "operationId" : "getServerVolumePricing",
+        "parameters" : [ {
+          "description" : "Return pricing for specific project",
+          "explode" : true,
+          "in" : "query",
+          "name" : "project_id",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Storage Class ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[class_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getServerVolumePricing_200_response"
+                }
+              }
+            },
+            "description" : "ServerVolumePrice List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerVolumePricing",
+        "tags" : [ "pricing" ]
+      }
+    },
+    "/server-price-ranges/{id}/volume-prices" : {
+      "get" : {
+        "description" : "Returns the volume prices of a server price range",
+        "operationId" : "getServerPriceRangeVolumePrices",
+        "parameters" : [ {
+          "description" : "Server Price Range ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Storage Class ID Filter",
+          "explode" : true,
+          "in" : "query",
+          "name" : "filter[class_id]",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getServerVolumePricing_200_response"
+                }
+              }
+            },
+            "description" : "ServerVolumePrice List"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerPriceRangeVolumePrices",
+        "tags" : [ "pricing" ]
+      },
+      "post" : {
+        "description" : "Creates a new volume price for a server price range",
+        "operationId" : "createServerPriceRangeVolumePrice",
+        "parameters" : [ {
+          "description" : "Server Price Range ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerVolumePriceCreateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createServerPriceRangeVolumePrice_200_response"
+                }
+              }
+            },
+            "description" : "Single ServerVolumePrice"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createS3Bucket_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createS3Bucket_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "createServerPriceRangeVolumePrice",
+        "tags" : [ "pricing" ]
+      }
+    },
+    "/server-price-ranges/{id}/volume-prices/{class_id}" : {
+      "delete" : {
+        "description" : "Deletes a volume price for a specific server price range and storage class",
+        "operationId" : "deleteServerPriceRangeVolumePrice",
+        "parameters" : [ {
+          "description" : "Server Price Range ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Storage Class ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "class_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "deleteServerPriceRangeVolumePrice",
+        "tags" : [ "pricing" ]
+      },
+      "get" : {
+        "description" : "Returns a volume price for a specific server price range and storage class",
+        "operationId" : "getServerPriceRangeVolumePrice",
+        "parameters" : [ {
+          "description" : "Server Price Range ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Storage Class ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "class_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createServerPriceRangeVolumePrice_200_response"
+                }
+              }
+            },
+            "description" : "Single ServerVolumePrice"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getServerPriceRangeVolumePrice",
+        "tags" : [ "pricing" ]
+      },
+      "put" : {
+        "description" : "Updates a volume price for a specific server price range and storage class",
+        "operationId" : "updateServerPriceRangeVolumePrice",
+        "parameters" : [ {
+          "description" : "Server Price Range ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "Storage Class ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "class_id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/ServerVolumePriceUpdateRequest"
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createServerPriceRangeVolumePrice_200_response"
+                }
+              }
+            },
+            "description" : "Single ServerVolumePrice"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createS3Bucket_400_response"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/createS3Bucket_400_response_1"
+                }
+              }
+            },
+            "description" : "Response for validation errors"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "updateServerPriceRangeVolumePrice",
+        "tags" : [ "pricing" ]
+      }
     }
   },
   "components" : {
@@ -11858,6 +12388,24 @@
           "application/json" : {
             "schema" : {
               "$ref" : "#/components/schemas/updateSSHKey_request"
+            }
+          }
+        }
+      },
+      "ServerVolumePriceCreateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createServerPriceRangeVolumePrice_request"
+            }
+          }
+        }
+      },
+      "ServerVolumePriceUpdateRequest" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/updateServerPriceRangeVolumePrice_request"
             }
           }
         }
@@ -12458,6 +13006,26 @@
           }
         },
         "description" : "Single ServerVariantPrice"
+      },
+      "ServerVolumePriceListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getServerVolumePricing_200_response"
+            }
+          }
+        },
+        "description" : "ServerVolumePrice List"
+      },
+      "ServerVolumePriceSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/createServerPriceRangeVolumePrice_200_response"
+            }
+          }
+        },
+        "description" : "Single ServerVolumePrice"
       }
     },
     "schemas" : {
@@ -13508,7 +14076,8 @@
         },
         "required" : [ "id", "title" ],
         "title" : "ServerPriceRange",
-        "type" : "object"
+        "type" : "object",
+        "x-tags" : [ "pricing" ]
       },
       "ServerPriceRangeAssignment" : {
         "properties" : {
@@ -13531,7 +14100,8 @@
         },
         "required" : [ "id", "range_id", "user_id" ],
         "title" : "ServerPriceRangeAssignment",
-        "type" : "object"
+        "type" : "object",
+        "x-tags" : [ "pricing" ]
       },
       "ServerVariantPrice" : {
         "properties" : {
@@ -13548,7 +14118,8 @@
         },
         "required" : [ "offline_price", "price", "variant_id" ],
         "title" : "ServerVariantPrice",
-        "type" : "object"
+        "type" : "object",
+        "x-tags" : [ "pricing" ]
       },
       "ServerState" : {
         "enum" : [ "INSTALLATION", "RESTORE", "ONLINE", "OFFLINE" ],
@@ -13572,6 +14143,24 @@
         "x-stoplight" : {
           "id" : "1p389t6yl7rvw"
         }
+      },
+      "ServerVolumePrice" : {
+        "properties" : {
+          "class_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "price" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "class_id", "price" ],
+        "title" : "ServerVolumePrice",
+        "type" : "object",
+        "x-stoplight" : {
+          "id" : "6wkh29pik7oag"
+        },
+        "x-tags" : [ "pricing" ]
       },
       "getS3Buckets_200_response" : {
         "properties" : {
@@ -15548,6 +16137,69 @@
           }
         },
         "required" : [ "size" ],
+        "type" : "object"
+      },
+      "getServerVolumePricing_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ServerVolumePrice"
+            },
+            "type" : "array"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "createServerPriceRangeVolumePrice_request" : {
+        "properties" : {
+          "class_id" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "price" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "class_id", "price" ],
+        "type" : "object"
+      },
+      "createServerPriceRangeVolumePrice_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/ServerVolumePrice"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
+        "type" : "object"
+      },
+      "updateServerPriceRangeVolumePrice_request" : {
+        "properties" : {
+          "price" : {
+            "type" : "number"
+          }
+        },
         "type" : "object"
       }
     },
