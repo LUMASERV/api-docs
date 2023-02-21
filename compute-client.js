@@ -249,8 +249,8 @@ export default class LUMASERVComputeClient {
     attachServerVolume(id, body = null) {
         return this.request('post', '/server-volumes/' + id + '/attach', null, body);
     }
-    detachServerVolume(id) {
-        return this.request('post', '/server-volumes/' + id + '/detach', null, null);
+    detachServerVolume(id, query = null) {
+        return this.request('post', '/server-volumes/' + id + '/detach', query, null);
     }
     getServerStatus(id) {
         return this.request('get', '/servers/' + id + '/status', null, null);

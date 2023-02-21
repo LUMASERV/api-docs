@@ -6742,6 +6742,14 @@
             "type" : "string"
           },
           "style" : "simple"
+        }, {
+          "description" : "Detaching volumes is unsafe and may conclude in complete data loss. Use this parameter to detach a volume anyway",
+          "explode" : true,
+          "in" : "query",
+          "name" : "iknowthisisunsafe",
+          "required" : false,
+          "schema" : { },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
