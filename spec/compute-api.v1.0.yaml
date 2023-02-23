@@ -3730,11 +3730,11 @@ components:
           type: string
         type:
           type: string
-        public_key:
-          type: string
           enum:
             - rsa
             - ed25519
+        public_key:
+          type: string
         created_at:
           type: string
         labels:
