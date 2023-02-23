@@ -13291,10 +13291,10 @@
             "type" : "string"
           },
           "type" : {
+            "enum" : [ "rsa", "ed25519" ],
             "type" : "string"
           },
           "public_key" : {
-            "enum" : [ "rsa", "ed25519" ],
             "type" : "string"
           },
           "created_at" : {
