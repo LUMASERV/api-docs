@@ -1887,7 +1887,12 @@ paths:
         '500':
           $ref: '#/components/responses/EmptyResponse'
       operationId: getServerVNC
-      description: Returns vnc websocket credentials
+      description: |-
+        Returns a token to authenticate when connecting to the same endpoint using a websocket
+        The token is only valid for a short amount of time (< 30s)
+        The websocket speaks the RFB protocol supported by clients like noVNC
+
+        WebSocket URL: /servers/{id}/vnc?token=TOKEN
   /server-actions:
     parameters: []
     get:
@@ -4117,19 +4122,15 @@ components:
     ServerVNC:
       title: ServerVNC
       type: object
-      properties:
-        host:
-          type: string
-        port:
-          type: integer
-        password:
-          type: string
-      required:
-        - host
-        - port
-        - password
       x-tags:
         - server
+      required:
+        - token
+      properties:
+        token:
+          type: string
+          x-stoplight:
+            id: a5yyse20w8bge
     ServerAction:
       title: ServerAction
       type: object
