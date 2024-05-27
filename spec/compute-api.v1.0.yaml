@@ -3510,6 +3510,54 @@ paths:
       description: Deletes a volume price for a specific server price range and storage class
       tags:
         - pricing
+  /network-classes:
+    get:
+      summary: getNetworkClasses
+      tags:
+        - network
+      responses:
+        '200':
+          $ref: '#/components/responses/NetworkClassListResponse'
+        '400':
+          $ref: '#/components/responses/EmptyResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getNetworkClasses
+      x-stoplight:
+        id: rdsfth6ph1w51
+      parameters:
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/OrderBy'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/Search'
+  '/network-classes/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+        description: Network Class ID
+    get:
+      summary: getNetworkClass
+      tags:
+        - network
+      responses:
+        '200':
+          $ref: '#/components/responses/NetworkClassSingleResponse'
+        '401':
+          $ref: '#/components/responses/EmptyResponse'
+        '404':
+          $ref: '#/components/responses/EmptyResponse'
+        '500':
+          $ref: '#/components/responses/EmptyResponse'
+      operationId: getNetworkClass
+      x-stoplight:
+        id: s98rsm3marvtk
 components:
   schemas:
     ResponseMessages:
@@ -4558,6 +4606,36 @@ components:
         - price
       x-tags:
         - pricing
+    NetworkClass:
+      title: NetworkClass
+      x-stoplight:
+        id: e3s48mjbwm053
+      type: object
+      required:
+        - id
+        - name
+        - default
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: augu9wt5i0epx
+          format: uuid
+        name:
+          type: string
+          x-stoplight:
+            id: f2c55onxvtokk
+          minLength: 2
+          maxLength: 50
+        default:
+          type: boolean
+          x-stoplight:
+            id: mhcuvu4keh2d1
+          default: false
+        limit:
+          type: integer
+          x-stoplight:
+            id: j5it49hz3g5qc
   securitySchemes:
     AuthToken:
       type: http
@@ -5913,6 +5991,52 @@ components:
               - success
               - data
               - messages
+    NetworkClassListResponse:
+      description: NetworkClass List
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - success
+              - metadata
+              - data
+            properties:
+              success:
+                type: boolean
+                x-stoplight:
+                  id: c0v6hbfpduvib
+                default: true
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              data:
+                type: array
+                x-stoplight:
+                  id: 4d2ewob18nmjf
+                items:
+                  $ref: '#/components/schemas/NetworkClass'
+              pagination:
+                $ref: '#/components/schemas/ResponsePagination'
+    NetworkClassSingleResponse:
+      description: Single NetworkClass
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - success
+              - metadata
+              - data
+            properties:
+              success:
+                type: boolean
+                x-stoplight:
+                  id: 5cgaro2g1wvkj
+                default: true
+              metadata:
+                $ref: '#/components/schemas/ResponseMetadata'
+              data:
+                $ref: '#/components/schemas/NetworkClass'
   requestBodies:
     S3BucketCreateRequest:
       content:
@@ -6083,6 +6207,9 @@ components:
         application/json:
           schema:
             type: object
+            required:
+              - zone_id
+              - title
             properties:
               zone_id:
                 type: string
@@ -6099,9 +6226,11 @@ components:
                 type: integer
               subnet:
                 type: string
-            required:
-              - zone_id
-              - title
+              network_class_id:
+                type: string
+                x-stoplight:
+                  id: nx2jpcgwgv1cc
+                format: uuid
     ServerHostCreateRequest:
       content:
         application/json:
