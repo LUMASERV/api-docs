@@ -2830,6 +2830,83 @@
         "summary" : "changeEmail",
         "tags" : [ "auth" ]
       }
+    },
+    "/organizations" : {
+      "get" : {
+        "description" : "Returns all organizations",
+        "operationId" : "getOrganizations",
+        "parameters" : [ {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getOrganizations_200_response"
+                }
+              }
+            },
+            "description" : "Organization List"
+          }
+        },
+        "summary" : "getOrganizations",
+        "tags" : [ ],
+        "x-stoplight" : {
+          "id" : "gjriyk54v2gfd"
+        }
+      }
     }
   },
   "components" : {
@@ -3559,6 +3636,35 @@
           "id" : "r44qtk826ngsc"
         }
       },
+      "Organization" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "rhb2b303uu36r"
+            }
+          },
+          "customer_number" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "k5gtp0hryobyx"
+            }
+          },
+          "name" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "9h8nyz6bjcslw"
+            }
+          }
+        },
+        "required" : [ "id", "name" ],
+        "title" : "Organization",
+        "type" : "object",
+        "x-stoplight" : {
+          "id" : "qbe4yx7mns03u"
+        }
+      },
       "getProjects_200_response" : {
         "properties" : {
           "success" : {
@@ -3743,9 +3849,16 @@
           },
           "type" : {
             "$ref" : "#/components/schemas/UserType"
+          },
+          "organization_id" : {
+            "format" : "uuid",
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "je2my0finpc69"
+            }
           }
         },
-        "required" : [ "email", "first_name", "gender", "last_name", "password" ],
+        "required" : [ "email", "first_name", "gender", "last_name", "organization_id", "password" ],
         "type" : "object"
       },
       "createUser_200_response" : {
@@ -4168,6 +4281,36 @@
           }
         },
         "required" : [ "email", "password" ],
+        "type" : "object"
+      },
+      "getOrganizations_200_response" : {
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "success" : {
+            "type" : "boolean",
+            "x-stoplight" : {
+              "id" : "ea6h3oxlk4frj"
+            }
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Organization"
+            },
+            "type" : "array",
+            "x-stoplight" : {
+              "id" : "3qyd5atbh7e5d"
+            }
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          },
+          "messages" : {
+            "$ref" : "#/components/schemas/ResponseMessages"
+          }
+        },
+        "required" : [ "data", "messages", "metadata", "success" ],
         "type" : "object"
       }
     },

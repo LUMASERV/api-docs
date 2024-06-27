@@ -138,4 +138,7 @@ export default class LUMASERVAuthClient {
     changeEmail(body = null) {
         return this.request('put', '/email-change', null, body);
     }
+    getOrganizations(query = null) {
+        return this.request('get', '/organizations', query, null);
+    }
 }
