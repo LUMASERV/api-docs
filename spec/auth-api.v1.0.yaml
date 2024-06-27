@@ -917,7 +917,7 @@ paths:
       operationId: getOrganizations
       x-stoplight:
         id: gjriyk54v2gfd
-      description: Returns all organization
+      description: Returns all organizations
       parameters:
         - $ref: '#/components/parameters/Search'
         - $ref: '#/components/parameters/PaginationPage'
