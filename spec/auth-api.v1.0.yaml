@@ -881,6 +881,49 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/EmailChangeRequest'
       description: Change email of own user
+  /organizations:
+    get:
+      summary: getOrganizations
+      tags: []
+      responses:
+        '200':
+          description: Organization List
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - metadata
+                  - success
+                  - data
+                  - messages
+                properties:
+                  metadata:
+                    $ref: '#/components/schemas/ResponseMetadata'
+                  success:
+                    type: boolean
+                    x-stoplight:
+                      id: ea6h3oxlk4frj
+                  data:
+                    type: array
+                    x-stoplight:
+                      id: 3qyd5atbh7e5d
+                    items:
+                      $ref: '#/components/schemas/Organization'
+                  pagination:
+                    $ref: '#/components/schemas/ResponsePagination'
+                  messages:
+                    $ref: '#/components/schemas/ResponseMessages'
+      operationId: getOrganizations
+      x-stoplight:
+        id: gjriyk54v2gfd
+      description: Returns all organization
+      parameters:
+        - $ref: '#/components/parameters/Search'
+        - $ref: '#/components/parameters/PaginationPage'
+        - $ref: '#/components/parameters/PaginationPageSize'
+        - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/OrderBy'
 components:
   schemas:
     ResponseMessages:
@@ -1198,6 +1241,28 @@ components:
         - email
         - valid_until
         - created_at
+    Organization:
+      title: Organization
+      x-stoplight:
+        id: qbe4yx7mns03u
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: rhb2b303uu36r
+          format: uuid
+        customer_number:
+          type: string
+          x-stoplight:
+            id: k5gtp0hryobyx
+        name:
+          type: string
+          x-stoplight:
+            id: 9h8nyz6bjcslw
   securitySchemes:
     AuthToken:
       type: http
@@ -1681,6 +1746,13 @@ components:
         application/json:
           schema:
             type: object
+            required:
+              - gender
+              - first_name
+              - last_name
+              - email
+              - password
+              - organization_id
             properties:
               gender:
                 $ref: '#/components/schemas/Gender'
@@ -1697,12 +1769,11 @@ components:
                 type: string
               type:
                 $ref: '#/components/schemas/UserType'
-            required:
-              - gender
-              - first_name
-              - last_name
-              - email
-              - password
+              organization_id:
+                type: string
+                x-stoplight:
+                  id: je2my0finpc69
+                format: uuid
     UserUpdateRequest:
       content:
         application/json:
