@@ -6339,7 +6339,7 @@
     },
     "/servers/{id}/vnc" : {
       "get" : {
-        "description" : "Returns vnc websocket credentials",
+        "description" : "Returns a token to authenticate when connecting to the same endpoint using a websocket\nThe token is only valid for a short amount of time (< 30s)\nThe websocket speaks the RFB protocol supported by clients like noVNC\n\nWebSocket URL: /servers/{id}/vnc?token=TOKEN",
         "operationId" : "getServerVNC",
         "parameters" : [ {
           "description" : "Server ID",
@@ -11941,6 +11941,176 @@
         "summary" : "updateServerPriceRangeVolumePrice",
         "tags" : [ "pricing" ]
       }
+    },
+    "/network-classes" : {
+      "get" : {
+        "operationId" : "getNetworkClasses",
+        "parameters" : [ {
+          "description" : "Page",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Page Size",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page_size",
+          "required" : false,
+          "schema" : {
+            "default" : 10,
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Field or array of fields to order by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order_by",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Order of the results, ascending by default",
+          "explode" : true,
+          "in" : "query",
+          "name" : "order",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ASC", "DESC" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "Search",
+          "explode" : true,
+          "in" : "query",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getNetworkClasses_200_response"
+                }
+              }
+            },
+            "description" : "NetworkClass List"
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getNetworkClasses",
+        "tags" : [ "network" ],
+        "x-stoplight" : {
+          "id" : "rdsfth6ph1w51"
+        }
+      }
+    },
+    "/network-classes/{id}" : {
+      "get" : {
+        "operationId" : "getNetworkClass",
+        "parameters" : [ {
+          "description" : "Network Class ID",
+          "explode" : false,
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getNetworkClass_200_response"
+                }
+              }
+            },
+            "description" : "Single NetworkClass"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/getS3Buckets_401_response"
+                }
+              }
+            },
+            "description" : "Empty Response"
+          }
+        },
+        "summary" : "getNetworkClass",
+        "tags" : [ "network" ],
+        "x-stoplight" : {
+          "id" : "s98rsm3marvtk"
+        }
+      }
     }
   },
   "components" : {
@@ -13036,6 +13206,26 @@
           }
         },
         "description" : "Single ServerVolumePrice"
+      },
+      "NetworkClassListResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getNetworkClasses_200_response"
+            }
+          }
+        },
+        "description" : "NetworkClass List"
+      },
+      "NetworkClassSingleResponse" : {
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/getNetworkClass_200_response"
+            }
+          }
+        },
+        "description" : "Single NetworkClass"
       }
     },
     "schemas" : {
@@ -13728,17 +13918,14 @@
       },
       "ServerVNC" : {
         "properties" : {
-          "host" : {
-            "type" : "string"
-          },
-          "port" : {
-            "type" : "integer"
-          },
-          "password" : {
-            "type" : "string"
+          "token" : {
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "a5yyse20w8bge"
+            }
           }
         },
-        "required" : [ "host", "password", "port" ],
+        "required" : [ "token" ],
         "title" : "ServerVNC",
         "type" : "object",
         "x-tags" : [ "server" ]
@@ -14175,6 +14362,44 @@
           "id" : "6wkh29pik7oag"
         },
         "x-tags" : [ "pricing" ]
+      },
+      "NetworkClass" : {
+        "properties" : {
+          "id" : {
+            "format" : "uuid",
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "augu9wt5i0epx"
+            }
+          },
+          "name" : {
+            "maxLength" : 50,
+            "minLength" : 2,
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "f2c55onxvtokk"
+            }
+          },
+          "default" : {
+            "default" : false,
+            "type" : "boolean",
+            "x-stoplight" : {
+              "id" : "mhcuvu4keh2d1"
+            }
+          },
+          "limit" : {
+            "type" : "integer",
+            "x-stoplight" : {
+              "id" : "j5it49hz3g5qc"
+            }
+          }
+        },
+        "required" : [ "default", "id", "name" ],
+        "title" : "NetworkClass",
+        "type" : "object",
+        "x-stoplight" : {
+          "id" : "e3s48mjbwm053"
+        }
       },
       "getS3Buckets_200_response" : {
         "properties" : {
@@ -15096,6 +15321,13 @@
           },
           "subnet" : {
             "type" : "string"
+          },
+          "network_class_id" : {
+            "format" : "uuid",
+            "type" : "string",
+            "x-stoplight" : {
+              "id" : "nx2jpcgwgv1cc"
+            }
           }
         },
         "required" : [ "title", "zone_id" ],
@@ -16214,6 +16446,53 @@
             "type" : "number"
           }
         },
+        "type" : "object"
+      },
+      "getNetworkClasses_200_response" : {
+        "properties" : {
+          "success" : {
+            "default" : true,
+            "type" : "boolean",
+            "x-stoplight" : {
+              "id" : "c0v6hbfpduvib"
+            }
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "items" : {
+              "$ref" : "#/components/schemas/NetworkClass"
+            },
+            "type" : "array",
+            "x-stoplight" : {
+              "id" : "4d2ewob18nmjf"
+            }
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/ResponsePagination"
+          }
+        },
+        "required" : [ "data", "metadata", "success" ],
+        "type" : "object"
+      },
+      "getNetworkClass_200_response" : {
+        "properties" : {
+          "success" : {
+            "default" : true,
+            "type" : "boolean",
+            "x-stoplight" : {
+              "id" : "5cgaro2g1wvkj"
+            }
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/ResponseMetadata"
+          },
+          "data" : {
+            "$ref" : "#/components/schemas/NetworkClass"
+          }
+        },
+        "required" : [ "data", "metadata", "success" ],
         "type" : "object"
       }
     },

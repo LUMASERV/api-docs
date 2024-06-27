@@ -417,4 +417,10 @@ export default class LUMASERVComputeClient {
     updateServerPriceRangeVolumePrice(id, class_id, body = null) {
         return this.request('put', '/server-price-ranges/' + id + '/volume-prices/' + class_id, null, body);
     }
+    getNetworkClasses(query = null) {
+        return this.request('get', '/network-classes', query, null);
+    }
+    getNetworkClass(id) {
+        return this.request('get', '/network-classes/' + id, null, null);
+    }
 }
